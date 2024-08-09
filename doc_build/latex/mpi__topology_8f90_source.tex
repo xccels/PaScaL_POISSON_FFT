@@ -1,0 +1,82 @@
+\doxysection{mpi\+\_\+topology.\+f90}
+\hypertarget{mpi__topology_8f90_source}{}\label{mpi__topology_8f90_source}\index{examples/mpi\_topology.f90@{examples/mpi\_topology.f90}}
+\mbox{\hyperlink{mpi__topology_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00001}\mbox{\hyperlink{namespacempi__topology}{00001}}\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespacempi__topology}{mpi\_topology}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00003}00003\ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00005}00005\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00007}\mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{00007}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{mpi\_world\_cart}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00008}\mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{00008}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00009}\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{00009}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00012}\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{00012}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\_comm\_1d}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00013}\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d_a0b76696fcf5c27f5cfdc48e53a2671ef}{00013}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00014}\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d_adf78d1be6ca59cada6cc444edde4c3fc}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00015}\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d_a63baa1f74126ffda0b67af1c487dcd45}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ west\_rank}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00016}\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d_a550b10f02ed0c5a8469174df8b54f525}{00016}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ east\_rank}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00017}\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d_ab9d9b0c2f72db4fb74c0264691778a45}{00017}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mpi\_comm}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{end\ type\ }\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\_comm\_1d}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00020}\mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{00020}}\ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\_comm\_1d}})\ \ ::\ \mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\_1d\_x1}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00021}\mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{00021}}\ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\_comm\_1d}})\ \ ::\ \mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\_1d\_x2}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00022}\mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{00022}}\ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\_comm\_1d}})\ \ ::\ \mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c}{mpi\_topology\_make}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128}{mpi\_topology\_clean}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00032}\mbox{\hyperlink{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128}{00032}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128}{mpi\_topology\_clean}}()}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_free(\mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{mpi\_world\_cart}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00039}00039\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128}{mpi\_topology\_clean}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00044}00044\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00045}\mbox{\hyperlink{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c}{00045}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c}{mpi\_topology\_make}}()}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespaceglobal}{global}},\ \textcolor{keywordtype}{only}\ :\ \mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{np1}},\ \mbox{\hyperlink{namespaceglobal_a4e502b4b6979bd2863d01b3db92a06b0}{np2}},\ \mbox{\hyperlink{namespaceglobal_a344c6fc4e5718cc5e5654f805bdb53b5}{np3}},\ \mbox{\hyperlink{namespaceglobal_a4c97b706fc5c2c7ffde2935ad5f6f589}{pbc1}},\ \mbox{\hyperlink{namespaceglobal_aa8db0c9a30b7366f3e35088807e40a3f}{pbc2}},\ \mbox{\hyperlink{namespaceglobal_a248fbca810278258beab1a2dabb11f85}{pbc3}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00047}00047\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00049}00049\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ np\_dim(1:3)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ period(1:3)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ remain(1:3)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00054}00054\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ np\_dim(1)\ =\ \mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{np1}};\ \ \ \ np\_dim(2)\ =\ \mbox{\hyperlink{namespaceglobal_a4e502b4b6979bd2863d01b3db92a06b0}{np2}};\ \ \ \ np\_dim(3)\ =\ \mbox{\hyperlink{namespaceglobal_a344c6fc4e5718cc5e5654f805bdb53b5}{np3}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ period(1)\ =\ \mbox{\hyperlink{namespaceglobal_a4c97b706fc5c2c7ffde2935ad5f6f589}{pbc1}};\ \ \ period(2)\ =\ \mbox{\hyperlink{namespaceglobal_aa8db0c9a30b7366f3e35088807e40a3f}{pbc2}};\ \ \ period(3)\ =\ \mbox{\hyperlink{namespaceglobal_a248fbca810278258beab1a2dabb11f85}{pbc3}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00057}00057\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_cart\_create(\ mpi\_comm\_world,\ 3,\ np\_dim,\ period,\ .false.,\ \mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{mpi\_world\_cart}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00059}00059\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ remain\ =\ [.true.,\ .false.,\ .false.]}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{create\_subcommunicator}}(remain,\ \mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\_1d\_x1}})}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00062}00062\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ remain\ =\ [.false.,\ .true.,\ .false.]}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{create\_subcommunicator}}(remain,\ \mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\_1d\_x2}})}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00065}00065\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ remain\ =\ [.false.,\ .false.,\ .true.]}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{create\_subcommunicator}}(remain,\ \mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}})}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00068}00068\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c}{mpi\_topology\_make}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00070}\mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{00070}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{create\_subcommunicator}}(remain,\ comm\_1d)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)}\ ::\ remain(1:3)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\_comm\_1d}}),\ \textcolor{keywordtype}{intent(out)}\ ::\ comm\_1d}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00074}00074\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00076}00076\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_cart\_sub(\ \mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{mpi\_world\_cart}},\ remain,\ comm\_1d\%mpi\_comm,\ ierr)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_rank(comm\_1d\%mpi\_comm,\ comm\_1d\%myrank,\ ierr)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_size(comm\_1d\%mpi\_comm,\ comm\_1d\%nprocs,\ ierr)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_cart\_shift(comm\_1d\%mpi\_comm,\ 0,\ 1,\ comm\_1d\%west\_rank,\ comm\_1d\%east\_rank,\ ierr)}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00081}00081\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{create\_subcommunicator}}}
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{mpi__topology_8f90_source_l00083}00083\ \textcolor{keyword}{end\ module\ }\mbox{\hyperlink{namespacempi__topology}{mpi\_topology}}}
+
+\end{DoxyCode}

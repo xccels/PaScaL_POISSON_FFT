@@ -1,0 +1,121 @@
+\doxysection{examples/global.f90 File Reference}
+\hypertarget{global_8f90}{}\label{global_8f90}\index{examples/global.f90@{examples/global.f90}}
+\doxysubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \mbox{\hyperlink{namespaceglobal}{global}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespaceglobal_ac3c4a9e1a04fa53294db970883f9a5dc}{global\+::global\+\_\+inputpara}} (myrank)
+\item 
+subroutine \mbox{\hyperlink{namespaceglobal_a815507ebe28a87c3d2a5838296ff532e}{global\+::global\+\_\+print\+\_\+settings}} (myrank)
+\item 
+character(len=20) function \mbox{\hyperlink{namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3}{global\+::uniform\+\_\+type}} (uniform)
+\item 
+character(len=20) function \mbox{\hyperlink{namespaceglobal_a275d8b2aa047d50fa89b2938235d3b64}{global\+::poisson\+\_\+type}} (poisson)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, parameter \mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{global\+::rp}} = kind(0.\+0)
+\item 
+integer, parameter \mbox{\hyperlink{namespaceglobal_ae70b9faacad6e117d1caccc696cd57dc}{global\+::mpi\+\_\+real\+\_\+type}} = MPI\+\_\+\+REAL
+\item 
+integer, parameter \mbox{\hyperlink{namespaceglobal_afc100e0ded3d8ef70c4324f683f79e8f}{global\+::mpi\+\_\+complex\+\_\+type}} = MPI\+\_\+\+COMPLEX
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), parameter \mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{global\+::pi}} = real(dacos(-\/1.\+0d0), \mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a08e5886ef7fa819f9fdc4727c35be45c}{global\+::x1\+\_\+start}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a5fe2087fcac22706ccf63c6687b3739f}{global\+::x2\+\_\+start}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_ae59bd47c1996f54114ed35a50aa8bc60}{global\+::x3\+\_\+start}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a127a1f08cd9fbdd4ccb85a06660297ee}{global\+::x1\+\_\+end}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_ad3642fe4bf46a3e116b4c4d90998fca0}{global\+::x2\+\_\+end}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_aa8e818bdb00de4389789443e127310bc}{global\+::x3\+\_\+end}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{global\+::l1}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_adc784850351a8d6d3c389df42c14b350}{global\+::l2}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a58e2e938719f9f506a20baa4795cf152}{global\+::l3}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a6e71b371b2e38e04beca107129a77313}{global\+::volume}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a0c8a2a95d05302d597dff9c87218f47d}{global\+::n1}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_ace9ec405b0eae1e771312b12aceb4497}{global\+::n2}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a5d191b692f93fbe770043a03ea5657a1}{global\+::n3}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{global\+::n1m}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{global\+::n2m}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{global\+::n3m}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a649bf30673124d767482f804477b0838}{global\+::n1p}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_aed6cd18efdf63bf46c4bfb58af44e1b9}{global\+::n2p}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_aab476bc5d461059612f5514025e1532f}{global\+::n3p}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a3da9157e5a9945a236d7d613aa18b433}{global\+::resolution\+\_\+x}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_aad58cdc51689a93a75d7f283a826b412}{global\+::resolution\+\_\+y}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a0d4b169d0b151bbd4a28c23e986701d2}{global\+::resolution\+\_\+z}}
+\item 
+logical \mbox{\hyperlink{namespaceglobal_a4c97b706fc5c2c7ffde2935ad5f6f589}{global\+::pbc1}}
+\item 
+logical \mbox{\hyperlink{namespaceglobal_aa8db0c9a30b7366f3e35088807e40a3f}{global\+::pbc2}}
+\item 
+logical \mbox{\hyperlink{namespaceglobal_a248fbca810278258beab1a2dabb11f85}{global\+::pbc3}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a76758cd220390a344b5e5dfe511a3a18}{global\+::uniform1}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a1d6b385391f1f43098fafbafc5c5c4d5}{global\+::uniform2}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a849ac11b21aa0b23711238fceefb256d}{global\+::uniform3}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a017612876f42763b31e243ece662f597}{global\+::gamma1}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_afd79a22860c5a790a3173c3ad014fae8}{global\+::gamma2}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespaceglobal_a067d163b994e44005278681094df41a9}{global\+::gamma3}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{global\+::np1}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a4e502b4b6979bd2863d01b3db92a06b0}{global\+::np2}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a344c6fc4e5718cc5e5654f805bdb53b5}{global\+::np3}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a33db542cca17d8c3a156e90d31d8abe5}{global\+::thread\+\_\+in\+\_\+x}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a2694e42b57b63e348f472d5a59bfe0fb}{global\+::thread\+\_\+in\+\_\+y}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a1f39f066a0ed398d1e3e56d13d092718}{global\+::thread\+\_\+in\+\_\+z}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a0c53f9dfde5486b01023d0c9479db29c}{global\+::thread\+\_\+in\+\_\+x\+\_\+pascal}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_af395b143d44c9d28517e64a695920dda}{global\+::thread\+\_\+in\+\_\+y\+\_\+pascal}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_ad227cd185eef1c5ade91c3010086f796}{global\+::thread\+\_\+in\+\_\+fft\+\_\+pascal}}
+\item 
+integer \mbox{\hyperlink{namespaceglobal_a127f0f1018715311f41eab93b98d9ece}{global\+::poisson\+\_\+model}}
+\item 
+logical \mbox{\hyperlink{namespaceglobal_ad316d4458ac81f4c048623c3c82207e7}{global\+::continuefilein}}
+\item 
+logical \mbox{\hyperlink{namespaceglobal_a575540418173b039c6a6078a9408e7ca}{global\+::continuefileout}}
+\item 
+character(len=128) \mbox{\hyperlink{namespaceglobal_a61a471b9b10d8ad3f6fc3a877831f3c0}{global\+::dir\+\_\+cont\+\_\+filein}}
+\item 
+character(len=128) \mbox{\hyperlink{namespaceglobal_af77417ee59b989d9a22c0392edddf6a5}{global\+::dir\+\_\+cont\+\_\+fileout}}
+\item 
+character(len=128) \mbox{\hyperlink{namespaceglobal_ae7f8d51f3d4c339f9d24d3043e518451}{global\+::dir\+\_\+instantfield}}
+\end{DoxyCompactItemize}

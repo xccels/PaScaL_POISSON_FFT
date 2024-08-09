@@ -1,0 +1,98 @@
+\doxysection{cuda\+\_\+pressure.\+f90}
+\hypertarget{cuda__pressure_8f90_source}{}\label{cuda__pressure_8f90_source}\index{examples/cuda\_pressure.f90@{examples/cuda\_pressure.f90}}
+\mbox{\hyperlink{cuda__pressure_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00001}\mbox{\hyperlink{namespacecuda__pressure}{00001}}\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespacecuda__pressure}{cuda\_pressure}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00002}00002\ \ \ \ \ \textcolor{comment}{!\ use\ debug}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00003}00003\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespaceglobal}{global}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00004}00004\ \ \ \ \ \textcolor{keywordtype}{use\ }openacc}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00005}00005\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacenvtx}{nvtx}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00006}00006\ \ \ \ \ \textcolor{keywordtype}{use\ }cufft}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }cudafor}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacempi__subdomain}{mpi\_subdomain}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacecuda__subdomain}{cuda\_subdomain}},\ \textcolor{keywordtype}{only}\ :\ \mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{n1sub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{n2sub}},\ \mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{n3sub}},\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00013}\mbox{\hyperlink{namespacecuda__pressure_a7ee458e69544e248e0cb596a219c32f2}{00013}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}),\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:,:)}\ ::\ \mbox{\hyperlink{namespacecuda__pressure_a7ee458e69544e248e0cb596a219c32f2}{p}}\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00014}\mbox{\hyperlink{namespacecuda__pressure_a728f643b192a6d30bf29cdac20518786}{00014}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}),\ \mbox{\hyperlink{namespacecuda__pressure_a933598d08aac2015599038b79442c3a7}{device}},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:,:)}\ ::\ \mbox{\hyperlink{namespacecuda__pressure_a8b1cf014b1cbf920c9338baebf89badd}{p\_d}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00015}\mbox{\hyperlink{namespacecuda__pressure_af8a329bcc8fcfdccd351eead6ea6251f}{00015}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}),\ \ \ \ \ \textcolor{keywordtype}{pointer},\ \mbox{\hyperlink{namespacecuda__pressure_a933598d08aac2015599038b79442c3a7}{device}},\ \textcolor{keywordtype}{dimension(:,:,:)}\ ::\ \mbox{\hyperlink{namespacecuda__pressure_af8a329bcc8fcfdccd351eead6ea6251f}{prhs\_d}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00017}00017\ \textcolor{keyword}{contains}\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00019}\mbox{\hyperlink{namespacecuda__pressure_a480deca50547f83061e7a2a6385e4021}{00019}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__pressure_a480deca50547f83061e7a2a6385e4021}{cuda\_pressure\_memory}}(action)}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ action}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ j,\ k}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{selectcase}(action)}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(\textcolor{stringliteral}{'allocate'})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\mbox{\hyperlink{namespacecuda__pressure_a7ee458e69544e248e0cb596a219c32f2}{p}}(0:\mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{n1sub}},0:\mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{n2sub}},0:\mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{n3sub}}))}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__pressure_a7ee458e69544e248e0cb596a219c32f2}{p}}(0:\mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{n1sub}},0:\mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{n2sub}},0:\mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{n3sub}})\ =\ real(0.0,\ \mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\mbox{\hyperlink{namespacecuda__pressure_a8b1cf014b1cbf920c9338baebf89badd}{p\_d}}(0:\mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{n1sub}},0:\mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{n2sub}},0:\mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{n3sub}}))}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__pressure_a8b1cf014b1cbf920c9338baebf89badd}{p\_d}}(0:\mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{n1sub}},0:\mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{n2sub}},0:\mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{n3sub}})\ =\ real(0.0,\ \mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(\textcolor{stringliteral}{'clean'})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(\mbox{\hyperlink{namespacecuda__pressure_a7ee458e69544e248e0cb596a219c32f2}{p}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(\mbox{\hyperlink{namespacecuda__pressure_a8b1cf014b1cbf920c9338baebf89badd}{p\_d}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00034}00034\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endselect}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__pressure_a480deca50547f83061e7a2a6385e4021}{cuda\_pressure\_memory}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00038}\mbox{\hyperlink{namespacecuda__pressure_ab5bc5dcd31eec76cce182e570d735ace}{00038}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__pressure_ab5bc5dcd31eec76cce182e570d735ace}{cuda\_pressure\_rhs}}(prhs\_d)}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacecuda__subdomain}{cuda\_subdomain}},\ \ \ \textcolor{keywordtype}{only}\ :\ \mbox{\hyperlink{namespaceglobal_a33db542cca17d8c3a156e90d31d8abe5}{thread\_in\_x}},\ \mbox{\hyperlink{namespaceglobal_a2694e42b57b63e348f472d5a59bfe0fb}{thread\_in\_y}},\ \mbox{\hyperlink{namespaceglobal_a1f39f066a0ed398d1e3e56d13d092718}{thread\_in\_z}},\ \mbox{\hyperlink{namespacecuda__subdomain_ab8957ee4a038f7eb32fa07380b6247f6}{block\_in\_x}},\ \mbox{\hyperlink{namespacecuda__subdomain_a04878817e99727a2ce6f05324aa8cc7e}{block\_in\_y}},\ \mbox{\hyperlink{namespacecuda__subdomain_ae6720d30aaae59ede400b6be45787bcb}{block\_in\_z}},\ \mbox{\hyperlink{namespacecuda__subdomain_a303a5e170d58092c2d044c0eea935d81}{threads}},\ \mbox{\hyperlink{namespacecuda__subdomain_a9e8060dba8d36ffd68a153094cd9ae5c}{blocks}},\ \mbox{\hyperlink{namespacecuda__subdomain_a00615354884cc42f3e4e03c0f9041c6b}{share\_size}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00042}00042\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ device,\ \textcolor{keywordtype}{dimension(\ 1:,\ 1:,\ 1:)},\ \textcolor{keywordtype}{intent(out)}\ \ ::\ prhs\_d}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__subdomain_a9e8060dba8d36ffd68a153094cd9ae5c}{blocks}}\ \ =\ dim3(\mbox{\hyperlink{namespacecuda__subdomain_ab8957ee4a038f7eb32fa07380b6247f6}{block\_in\_x}}\ ,\ \ \mbox{\hyperlink{namespacecuda__subdomain_a04878817e99727a2ce6f05324aa8cc7e}{block\_in\_y}},\ \ \mbox{\hyperlink{namespacecuda__subdomain_ae6720d30aaae59ede400b6be45787bcb}{block\_in\_z}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__subdomain_a303a5e170d58092c2d044c0eea935d81}{threads}}\ =\ dim3(\mbox{\hyperlink{namespaceglobal_a33db542cca17d8c3a156e90d31d8abe5}{thread\_in\_x}},\ \mbox{\hyperlink{namespaceglobal_a2694e42b57b63e348f472d5a59bfe0fb}{thread\_in\_y}},\ \mbox{\hyperlink{namespaceglobal_a1f39f066a0ed398d1e3e56d13d092718}{thread\_in\_z}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{namespacenvtx_abaf43be3229e42bd0f4c1e75d9670075}{nvtxstartrange}}(\textcolor{stringliteral}{"{}Poisson-\/RHS"{}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_pressure\_rhs\_kernel<<<\mbox{\hyperlink{namespacecuda__subdomain_a9e8060dba8d36ffd68a153094cd9ae5c}{blocks}},\ \mbox{\hyperlink{namespacecuda__subdomain_a303a5e170d58092c2d044c0eea935d81}{threads}},\ 5*\mbox{\hyperlink{namespacecuda__subdomain_a00615354884cc42f3e4e03c0f9041c6b}{share\_size}}>>>(prhs\_d,\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}})\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{namespacenvtx_aed9b06c5398e0a5b8d7a6e687564fb46}{nvtxendrange}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__pressure_ab5bc5dcd31eec76cce182e570d735ace}{cuda\_pressure\_rhs}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00053}\mbox{\hyperlink{namespacecuda__pressure_a1dd6cc8f9dcfac76157fadcbee3643d4}{00053}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__pressure_a1dd6cc8f9dcfac76157fadcbee3643d4}{cuda\_pressure\_prhs\_memory}}(action)}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ action}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{selectcase}(action)}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(\textcolor{stringliteral}{'allocate'})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(\textcolor{stringliteral}{'clean'})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(\mbox{\hyperlink{namespacecuda__pressure_af8a329bcc8fcfdccd351eead6ea6251f}{prhs\_d}})}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00062}00062\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endselect}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00064}00064\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__pressure_a1dd6cc8f9dcfac76157fadcbee3643d4}{cuda\_pressure\_prhs\_memory}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00066}00066\ \ \ \ \ attributes(\mbox{\hyperlink{namespaceglobal}{global}})\ \textcolor{keyword}{subroutine\ }cuda\_pressure\_rhs\_kernel(prhs\_d,\ n1,\ n2,\ n3)}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacecuda__subdomain}{cuda\_subdomain}},\ \textcolor{keywordtype}{only}\ :\ \mbox{\hyperlink{namespacecuda__subdomain_af41073bf416146dc555a44b1ce6ea4b2}{x1\_d}},\ \mbox{\hyperlink{namespacecuda__subdomain_afe92472cd9d3c88faa482f1e9b1bde9f}{x2\_d}},\ \mbox{\hyperlink{namespacecuda__subdomain_a34101a1e5f0c07b84d55f4a27d3d998a}{x3\_d}},\ \mbox{\hyperlink{namespacecuda__subdomain_a7a4bcadeffec62435e74b77503a08c8c}{dx3\_d}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00071}00071\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ device,\ \textcolor{keywordtype}{dimension(\ 1:,\ 1:,\ 1:)},\ \textcolor{keywordtype}{intent(out)}\ \ ::\ prhs\_d}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \ \textcolor{keywordtype}{value},\ \textcolor{keywordtype}{intent(in)}\ ::\ n1,\ n2,\ n3}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ j,\ k}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ im\ ,ip\ ,jm\ ,jp\ ,km\ ,kp}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ium,iup,jvm,jvp,kwm,kwp}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ tim,\ ti,\ tip,\ tjm,\ tj,\ tjp,\ tkm,\ tk,\ tkp}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ i\ =\ (blockidx\%x-\/1)\ *\ blockdim\%x\ +\ threadidx\%x;\ im=i-\/1;\ ip=i+1;}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ j\ =\ (blockidx\%y-\/1)\ *\ blockdim\%y\ +\ threadidx\%y;\ jm=j-\/1;\ jp=j+1;}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ k\ =\ (blockidx\%z-\/1)\ *\ blockdim\%z\ +\ threadidx\%z;\ km=k-\/1;\ kp=k+1;}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ <=\ n1)\ .and.\ (j\ <=\ n2)\ .and.\ (k\ <=\ n3))\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ prhs\_d(i,j,k)\ =\ -\/\ cos(\mbox{\hyperlink{namespacecuda__subdomain_af41073bf416146dc555a44b1ce6ea4b2}{x1\_d}}(i)*\mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{pi}})*cos(\mbox{\hyperlink{namespacecuda__subdomain_afe92472cd9d3c88faa482f1e9b1bde9f}{x2\_d}}(j)*\mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{pi}})*cos(\mbox{\hyperlink{namespacecuda__subdomain_a34101a1e5f0c07b84d55f4a27d3d998a}{x3\_d}}(k)*\mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{pi}})*3.0*\mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{pi}}*\mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{pi}}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00088}00088\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00090}00090\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }cuda\_pressure\_rhs\_kernel}
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{cuda__pressure_8f90_source_l00092}00092\ \textcolor{keyword}{end\ module\ }\mbox{\hyperlink{namespacecuda__pressure}{cuda\_pressure}}}
+
+\end{DoxyCode}

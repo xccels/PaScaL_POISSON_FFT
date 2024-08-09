@@ -1,0 +1,165 @@
+\doxysection{mpi\+\_\+topology Module Reference}
+\hypertarget{namespacempi__topology}{}\label{namespacempi__topology}\index{mpi\_topology@{mpi\_topology}}
+\doxysubsubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}
+\begin{DoxyCompactList}\small\item\em Type variable for the information of 1D communicator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \mbox{\hyperlink{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128}{mpi\+\_\+topology\+\_\+clean}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the communicator for cartesian topology. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c}{mpi\+\_\+topology\+\_\+make}} ()
+\begin{DoxyCompactList}\small\item\em Create the cartesian topology for the MPI processes and subcommunicators. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{create\+\_\+subcommunicator}} (remain, comm\+\_\+1d)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{mpi\+\_\+world\+\_\+cart}}
+\begin{DoxyCompactList}\small\item\em Communicator for cartesian topology. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}
+\begin{DoxyCompactList}\small\item\em World size. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}
+\begin{DoxyCompactList}\small\item\em World rank. \end{DoxyCompactList}\item 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) \mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\+\_\+1d\+\_\+x1}}
+\begin{DoxyCompactList}\small\item\em Subcommunicator information in x-\/direction. \end{DoxyCompactList}\item 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) \mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\+\_\+1d\+\_\+x2}}
+\begin{DoxyCompactList}\small\item\em Subcommunicator information in y-\/direction. \end{DoxyCompactList}\item 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) \mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\+\_\+1d\+\_\+x3}}
+\begin{DoxyCompactList}\small\item\em Subcommunicator information in z-\/direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\Hypertarget{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}\index{mpi\_topology@{mpi\_topology}!create\_subcommunicator@{create\_subcommunicator}}
+\index{create\_subcommunicator@{create\_subcommunicator}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{create\_subcommunicator()}{create\_subcommunicator()}}
+{\footnotesize\ttfamily \label{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d} 
+subroutine mpi\+\_\+topology\+::create\+\_\+subcommunicator (\begin{DoxyParamCaption}\item[{logical, dimension(1\+:3), intent(in)}]{remain}{, }\item[{type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}), intent(out)}]{comm\+\_\+1d}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00070}{70}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+Here is the caller graph for this function\+:
+% FIG 0
+\Hypertarget{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128}\index{mpi\_topology@{mpi\_topology}!mpi\_topology\_clean@{mpi\_topology\_clean}}
+\index{mpi\_topology\_clean@{mpi\_topology\_clean}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{mpi\_topology\_clean()}{mpi\_topology\_clean()}}
+{\footnotesize\ttfamily \label{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128} 
+subroutine, public mpi\+\_\+topology\+::mpi\+\_\+topology\+\_\+clean}
+
+
+
+Destroy the communicator for cartesian topology. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00032}{32}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+\Hypertarget{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c}\index{mpi\_topology@{mpi\_topology}!mpi\_topology\_make@{mpi\_topology\_make}}
+\index{mpi\_topology\_make@{mpi\_topology\_make}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{mpi\_topology\_make()}{mpi\_topology\_make()}}
+{\footnotesize\ttfamily \label{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c} 
+subroutine, public mpi\+\_\+topology\+::mpi\+\_\+topology\+\_\+make}
+
+
+
+Create the cartesian topology for the MPI processes and subcommunicators. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00045}{45}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}\index{mpi\_topology@{mpi\_topology}!comm\_1d\_x1@{comm\_1d\_x1}}
+\index{comm\_1d\_x1@{comm\_1d\_x1}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{comm\_1d\_x1}{comm\_1d\_x1}}
+{\footnotesize\ttfamily \label{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c} 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) mpi\+\_\+topology\+::comm\+\_\+1d\+\_\+x1}
+
+
+
+Subcommunicator information in x-\/direction. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00020}{20}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+\Hypertarget{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}\index{mpi\_topology@{mpi\_topology}!comm\_1d\_x2@{comm\_1d\_x2}}
+\index{comm\_1d\_x2@{comm\_1d\_x2}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{comm\_1d\_x2}{comm\_1d\_x2}}
+{\footnotesize\ttfamily \label{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385} 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) mpi\+\_\+topology\+::comm\+\_\+1d\+\_\+x2}
+
+
+
+Subcommunicator information in y-\/direction. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00021}{21}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+\Hypertarget{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}\index{mpi\_topology@{mpi\_topology}!comm\_1d\_x3@{comm\_1d\_x3}}
+\index{comm\_1d\_x3@{comm\_1d\_x3}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{comm\_1d\_x3}{comm\_1d\_x3}}
+{\footnotesize\ttfamily \label{namespacempi__topology_ae10ed14bc299bc08c779453199acb580} 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) mpi\+\_\+topology\+::comm\+\_\+1d\+\_\+x3}
+
+
+
+Subcommunicator information in z-\/direction. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00022}{22}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+\Hypertarget{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}\index{mpi\_topology@{mpi\_topology}!mpi\_world\_cart@{mpi\_world\_cart}}
+\index{mpi\_world\_cart@{mpi\_world\_cart}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{mpi\_world\_cart}{mpi\_world\_cart}}
+{\footnotesize\ttfamily \label{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c} 
+integer mpi\+\_\+topology\+::mpi\+\_\+world\+\_\+cart}
+
+
+
+Communicator for cartesian topology. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00007}{7}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+\Hypertarget{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}\index{mpi\_topology@{mpi\_topology}!myrank@{myrank}}
+\index{myrank@{myrank}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{myrank}{myrank}}
+{\footnotesize\ttfamily \label{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4} 
+integer mpi\+\_\+topology\+::myrank}
+
+
+
+World rank. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00009}{9}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+
+\Hypertarget{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}\index{mpi\_topology@{mpi\_topology}!nprocs@{nprocs}}
+\index{nprocs@{nprocs}!mpi\_topology@{mpi\_topology}}
+\doxysubsubsection{\texorpdfstring{nprocs}{nprocs}}
+{\footnotesize\ttfamily \label{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e} 
+integer mpi\+\_\+topology\+::nprocs}
+
+
+
+World size. 
+
+
+
+Definition at line \mbox{\hyperlink{mpi__topology_8f90_source_l00008}{8}} of file \mbox{\hyperlink{mpi__topology_8f90_source}{mpi\+\_\+topology.\+f90}}.
+

@@ -1,0 +1,19 @@
+\doxysection{Pa\+Sca\+L\+\_\+\+TDMA/src Directory Reference}
+\hypertarget{dir_05e4748c9aa588d01ab218be14d08600}{}\label{dir_05e4748c9aa588d01ab218be14d08600}\index{PaScaL\_TDMA/src Directory Reference@{PaScaL\_TDMA/src Directory Reference}}
+Directory dependency graph for src\+:
+% FIG 0
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90}{nvtx.\+f90}}
+\item 
+file \mbox{\hyperlink{_pa_sca_l___t_d_m_a_2src_2para__range_8f90}{para\+\_\+range.\+f90}}
+\begin{DoxyCompactList}\small\item\em The para\+\_\+range function assigns the computing range to each MPI process. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{pascal__tdma_8f90}{pascal\+\_\+tdma.\+f90}}
+\begin{DoxyCompactList}\small\item\em Pa\+Sca\+L\+\_\+\+TDMA -\/ Parallel and Scalable Library for Tri\+Diagonal Matrix Algorithm. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{pascal__tdma__cuda_8f90}{pascal\+\_\+tdma\+\_\+cuda.\+f90}}
+\item 
+file \mbox{\hyperlink{tdmas_8f90}{tdmas.\+f90}}
+\begin{DoxyCompactList}\small\item\em Tridiagonal matrix (TDM) solvers using the Thomas algorithm. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{tdmas__cuda_8f90}{tdmas\+\_\+cuda.\+f90}}
+\end{DoxyCompactItemize}

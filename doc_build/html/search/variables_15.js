@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['x1_0',['x1',['../namespacempi__subdomain.html#a549159be14ce5ccf1c046a2f8f4d360e',1,'mpi_subdomain']]],
+  ['x1_5fd_1',['x1_d',['../namespacecuda__subdomain.html#af41073bf416146dc555a44b1ce6ea4b2',1,'cuda_subdomain']]],
+  ['x1_5fd_5fc_2',['x1_d_c',['../namespacecuda__subdomain.html#a80329de72386f8ec27dca14b4341575f',1,'cuda_subdomain']]],
+  ['x1_5fend_3',['x1_end',['../namespaceglobal.html#a127a1f08cd9fbdd4ccb85a06660297ee',1,'global']]],
+  ['x1_5fg_4',['x1_g',['../namespacempi__subdomain.html#ad7ed6615192b7dbec4ff972ee18dc2a7',1,'mpi_subdomain']]],
+  ['x1_5fg_5fd_5',['x1_g_d',['../namespacecuda__subdomain.html#a9dc7a9ae2f1479a0f9e0290eeabdc8b0',1,'cuda_subdomain']]],
+  ['x1_5fg_5fd_5fc_6',['x1_g_d_c',['../namespacecuda__subdomain.html#a0ba556a03a5fc5cb953d197dc3cd3528',1,'cuda_subdomain']]],
+  ['x1_5fstart_7',['x1_start',['../namespaceglobal.html#a08e5886ef7fa819f9fdc4727c35be45c',1,'global']]],
+  ['x2_8',['x2',['../namespacempi__subdomain.html#a1dc70b2d2a7cb45deb0fcb39d3bd5cdb',1,'mpi_subdomain']]],
+  ['x2_5fd_9',['x2_d',['../namespacecuda__subdomain.html#afe92472cd9d3c88faa482f1e9b1bde9f',1,'cuda_subdomain']]],
+  ['x2_5fd_5fc_10',['x2_d_c',['../namespacecuda__subdomain.html#ad85cbe33da5277202c3e88524c2d88e1',1,'cuda_subdomain']]],
+  ['x2_5fend_11',['x2_end',['../namespaceglobal.html#ad3642fe4bf46a3e116b4c4d90998fca0',1,'global']]],
+  ['x2_5fg_12',['x2_g',['../namespacempi__subdomain.html#ad5fabef2439fa78ab5c3553b8ee59920',1,'mpi_subdomain']]],
+  ['x2_5fg_5fd_13',['x2_g_d',['../namespacecuda__subdomain.html#affc61b578e77db5fed743106e813c714',1,'cuda_subdomain']]],
+  ['x2_5fg_5fd_5fc_14',['x2_g_d_c',['../namespacecuda__subdomain.html#a51173eaaaec67d4f734fd1f929938a2a',1,'cuda_subdomain']]],
+  ['x2_5fstart_15',['x2_start',['../namespaceglobal.html#a5fe2087fcac22706ccf63c6687b3739f',1,'global']]],
+  ['x3_16',['x3',['../namespacempi__subdomain.html#a6684d132faeeffbaccc7744c9ae670f1',1,'mpi_subdomain']]],
+  ['x3_5fd_17',['x3_d',['../namespacecuda__subdomain.html#a34101a1e5f0c07b84d55f4a27d3d998a',1,'cuda_subdomain']]],
+  ['x3_5fd_5fc_18',['x3_d_c',['../namespacecuda__subdomain.html#a247ea374eb5323d75024191bfcfd72c3',1,'cuda_subdomain']]],
+  ['x3_5fend_19',['x3_end',['../namespaceglobal.html#aa8e818bdb00de4389789443e127310bc',1,'global']]],
+  ['x3_5fg_20',['x3_g',['../namespacempi__subdomain.html#af4cf06a0ab87be2f45328e8e41b23dc6',1,'mpi_subdomain']]],
+  ['x3_5fg_5fd_21',['x3_g_d',['../namespacecuda__subdomain.html#a6d114733ca3fd7b567fdb9c92e0f2441',1,'cuda_subdomain']]],
+  ['x3_5fg_5fd_5fc_22',['x3_g_d_c',['../namespacecuda__subdomain.html#a5b470324062f8561193672f38a9e9c7a',1,'cuda_subdomain']]],
+  ['x3_5fstart_23',['x3_start',['../namespaceglobal.html#ae59bd47c1996f54114ed35a50aa8bc60',1,'global']]],
+  ['xyzrank_24',['xyzrank',['../namespacecuda__post.html#af44f49f87bf4b2fd4179cdef175246cd',1,'cuda_post']]]
+];

@@ -1,0 +1,228 @@
+\doxysection{examples/cuda\+\_\+subdomain.f90 File Reference}
+\hypertarget{cuda__subdomain_8f90}{}\label{cuda__subdomain_8f90}\index{examples/cuda\_subdomain.f90@{examples/cuda\_subdomain.f90}}
+\doxysubsubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \mbox{\hyperlink{interfacecuda__subdomain_1_1cuda__subdomain__ghostcell__update}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update}}
+\item 
+interface \mbox{\hyperlink{interfacecuda__subdomain_1_1ghostcell__update__on__direction}{cuda\+\_\+subdomain\+::ghostcell\+\_\+update\+\_\+on\+\_\+direction}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \mbox{\hyperlink{namespacecuda__subdomain}{cuda\+\_\+subdomain}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_aad00f718e2a92cbfac05c26d3107d43b}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+environment}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a5d8b98bd38d2f6dc1e19c2d8a714ed49}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+initial}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a0f350540445c4f9a623b3d088ab914a9}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+mesh}}
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_ab788fcbb838da952de16c6c2e34980c5}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+blockandthreads}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a37b21deccd62523a052bd0cf1c2ae31d}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+dtoh}} (devicedata, hostdata)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a2110a2fa10782f739c468aff4a622ab7}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+htod}} (hostdata, devicedata)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a3e8dd3c26f412a82b4cbe286d653fd2d}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+scalar}} (value\+\_\+sub\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a91ca880a7e12134f59b98203215f77a4}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+real}} (value\+\_\+sub\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a9f983585f2c46773a5e10bbc5eaf679b}{cuda\+\_\+subdomain\+::ghostcell\+\_\+update\+\_\+on\+\_\+direction\+\_\+real}} (comm\+\_\+1d, direction, pbc, sbuf\+\_\+0\+\_\+d, sbuf\+\_\+1\+\_\+d, rbuf\+\_\+0\+\_\+d, rbuf\+\_\+1\+\_\+d, nsub\+\_\+a, nsub\+\_\+b, nsub\+\_\+c, value\+\_\+sub\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a25f080aaec4f196d1dbc0081925cdae6}{cuda\+\_\+subdomain\+::cuda\+\_\+neumann\+\_\+bc}} (x\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_ac4faaf90ef0c1f1199f9cae475f48274}{cuda\+\_\+subdomain\+::apply\+\_\+bc\+\_\+on\+\_\+direction}} (x\+\_\+d, comm\+\_\+1d, dmx\+\_\+d, pbc, nmsub\+\_\+a, nsub\+\_\+a, nsub\+\_\+b, nsub\+\_\+c, direction)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a17df0e3552de6f8d48e097a6467e7bfb}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+clean}}
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a22fe6dbed56c513021cb3d2b2090db9c}{cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+temp\+\_\+allocation}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a52a4ab13475e7529d1b619a334118f29}{cuda\+\_\+subdomain\+::cuda\+\_\+destroy\+\_\+ptr}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a708c6fa08e0cef0a2399dea884aa02ef}{cuda\+\_\+subdomain\+::device}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad8d32a03324927a0a101e4d7286a1761}{cuda\+\_\+subdomain\+::target}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{cuda\+\_\+subdomain\+::allocatable}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:) \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{cuda\+\_\+subdomain\+::dimension}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a80329de72386f8ec27dca14b4341575f}{cuda\+\_\+subdomain\+::x1\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad85cbe33da5277202c3e88524c2d88e1}{cuda\+\_\+subdomain\+::x2\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a247ea374eb5323d75024191bfcfd72c3}{cuda\+\_\+subdomain\+::x3\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af3481424c7134059209b9e8e96435fdd}{cuda\+\_\+subdomain\+::dx1\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_abf28e83fd4cd2a3674c08af4eb14a147}{cuda\+\_\+subdomain\+::dx2\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a8311a76ee3bd94b3d28c7718f29691a3}{cuda\+\_\+subdomain\+::dx3\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a546114f6221e81c94d6997012f1a3611}{cuda\+\_\+subdomain\+::dmx1\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a75f6f81c1e53525c2cc93429ee4e3cbd}{cuda\+\_\+subdomain\+::dmx2\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a385c4e6c82fa9729b2125831267fcb75}{cuda\+\_\+subdomain\+::dmx3\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ac1c21e6bf3c0b73ff361aa784abd97a6}{cuda\+\_\+subdomain\+::ic\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_acb7b5076105322a0817c2882bcba3943}{cuda\+\_\+subdomain\+::is\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a8d54fac9f662eae5a1c43e6a1bb94f76}{cuda\+\_\+subdomain\+::jc\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a48f28489bbac44672587f45dba4287f1}{cuda\+\_\+subdomain\+::js\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_abade6c94986752d08291ccfdf211fa14}{cuda\+\_\+subdomain\+::kc\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af53715a78c8eccfcb6d04b34e26063cd}{cuda\+\_\+subdomain\+::ks\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ab8ce2ba686e04240d14a93c9480afc38}{cuda\+\_\+subdomain\+::ic\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af554dca546366cc1e3450acd67a6afde}{cuda\+\_\+subdomain\+::is\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a1d3f89ff30b942f720932bf2856ad489}{cuda\+\_\+subdomain\+::jc\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ad13475d31be57c89579e30be77189ea0}{cuda\+\_\+subdomain\+::js\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a6ffbfe7e9ad71309ffd5821a8ecfd877}{cuda\+\_\+subdomain\+::kc\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a15ff9e3353109d870bda6c8d416a0b7e}{cuda\+\_\+subdomain\+::ks\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_aa64034da3b565917a3d00569f3efa7cd}{cuda\+\_\+subdomain\+::pointer}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af41073bf416146dc555a44b1ce6ea4b2}{cuda\+\_\+subdomain\+::x1\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_afe92472cd9d3c88faa482f1e9b1bde9f}{cuda\+\_\+subdomain\+::x2\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a34101a1e5f0c07b84d55f4a27d3d998a}{cuda\+\_\+subdomain\+::x3\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a0b87e1bc53505104acbcd89b6527b955}{cuda\+\_\+subdomain\+::dx1\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ae9ee96c686c41bdaf2f37c105c760b98}{cuda\+\_\+subdomain\+::dx2\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a7a4bcadeffec62435e74b77503a08c8c}{cuda\+\_\+subdomain\+::dx3\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a24bc4eccede8d85a98e4f598a3f7a606}{cuda\+\_\+subdomain\+::dmx1\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a272b659dde090c7270a4097517bfea7b}{cuda\+\_\+subdomain\+::dmx2\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a3dd6c22a9218eead4be5a1ee9801ce7e}{cuda\+\_\+subdomain\+::dmx3\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af280bbddf94542f487dc02663ff6c62e}{cuda\+\_\+subdomain\+::ic\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a8077edc4116d8b4c173e61614f57ea50}{cuda\+\_\+subdomain\+::is\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_adb5b8d9c612ffb9ad4a3001d023ff9c3}{cuda\+\_\+subdomain\+::jc\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a21408e5fbc8f94d75457236aa5bbac45}{cuda\+\_\+subdomain\+::js\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a75f69a1cb32e5957607750c10fa4f042}{cuda\+\_\+subdomain\+::kc\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a19ce41ff2ca2734287af4d4b709e1902}{cuda\+\_\+subdomain\+::ks\+\_\+bc\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a9dc7a9ae2f1479a0f9e0290eeabdc8b0}{cuda\+\_\+subdomain\+::x1\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_affc61b578e77db5fed743106e813c714}{cuda\+\_\+subdomain\+::x2\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a6d114733ca3fd7b567fdb9c92e0f2441}{cuda\+\_\+subdomain\+::x3\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a7bab8b1df311fccb58f4b282932fcc9b}{cuda\+\_\+subdomain\+::dx1\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af3a18f9e0918e9043e084ca3cc7d05c4}{cuda\+\_\+subdomain\+::dx2\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_abe3093c95ca5a9d3518ce6c6d26e6047}{cuda\+\_\+subdomain\+::dx3\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a9bd2097d085ddc7441fdb4d2c97bca53}{cuda\+\_\+subdomain\+::dmx1\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad5e435bf11f90b88fc51186f35552240}{cuda\+\_\+subdomain\+::dmx2\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad1bd4d9dde41692de5c02c65b1ebd07a}{cuda\+\_\+subdomain\+::dmx3\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a0ba556a03a5fc5cb953d197dc3cd3528}{cuda\+\_\+subdomain\+::x1\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a51173eaaaec67d4f734fd1f929938a2a}{cuda\+\_\+subdomain\+::x2\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a5b470324062f8561193672f38a9e9c7a}{cuda\+\_\+subdomain\+::x3\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a961579b609123ec52254123750721339}{cuda\+\_\+subdomain\+::dx1\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad88be71db0621c6d53ffafeef2ec1894}{cuda\+\_\+subdomain\+::dx2\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a1c02179a76e9941b3f7a15338346b6cd}{cuda\+\_\+subdomain\+::dx3\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a329d87a57d3455098a2a589ba3151332}{cuda\+\_\+subdomain\+::dmx1\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a4a2c2d2f50bdb8328a68107f6ebd4404}{cuda\+\_\+subdomain\+::dmx2\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab0db10266bc93023023e24e57ad5b120}{cuda\+\_\+subdomain\+::dmx3\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ab8957ee4a038f7eb32fa07380b6247f6}{cuda\+\_\+subdomain\+::block\+\_\+in\+\_\+x}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a04878817e99727a2ce6f05324aa8cc7e}{cuda\+\_\+subdomain\+::block\+\_\+in\+\_\+y}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ae6720d30aaae59ede400b6be45787bcb}{cuda\+\_\+subdomain\+::block\+\_\+in\+\_\+z}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a00615354884cc42f3e4e03c0f9041c6b}{cuda\+\_\+subdomain\+::share\+\_\+size}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ae2a205700209d6c6672e930a72494147}{cuda\+\_\+subdomain\+::share\+\_\+size\+\_\+pascal}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ad9968f61db736546ffc233f00f2e9b3d}{cuda\+\_\+subdomain\+::share\+\_\+size\+\_\+fft}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_a9e8060dba8d36ffd68a153094cd9ae5c}{cuda\+\_\+subdomain\+::blocks}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_a303a5e170d58092c2d044c0eea935d81}{cuda\+\_\+subdomain\+::threads}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_aa412d320c48f771347d03a0df60aad79}{cuda\+\_\+subdomain\+::threads\+\_\+tdma}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_a7f1b6ff4980dffe8999bb6a47206b6e6}{cuda\+\_\+subdomain\+::threads\+\_\+fft}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a9920a75d2af837068feac1eccaf05d8d}{cuda\+\_\+subdomain\+::sbuf\+\_\+0\+\_\+temp}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_aac6a507bcb235d0591e1a27db2d3a42c}{cuda\+\_\+subdomain\+::sbuf\+\_\+1\+\_\+temp}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a789d983096fe0dded583587d784a6e7c}{cuda\+\_\+subdomain\+::rbuf\+\_\+0\+\_\+temp}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af0e7d2d38a187bcdc8b7523dff9aad63}{cuda\+\_\+subdomain\+::rbuf\+\_\+1\+\_\+temp}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a2671a41e8c8755d4f3f8ab57101bf17a}{cuda\+\_\+subdomain\+::sbuf\+\_\+0\+\_\+temp\+\_\+int}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a8785380a8b8853f782a37f78e4ae6e07}{cuda\+\_\+subdomain\+::sbuf\+\_\+1\+\_\+temp\+\_\+int}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af2bf70267a33599bc62e429e7fd1a1a9}{cuda\+\_\+subdomain\+::rbuf\+\_\+0\+\_\+temp\+\_\+int}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_aad8580cea523c9a78ad3c1da57672589}{cuda\+\_\+subdomain\+::rbuf\+\_\+1\+\_\+temp\+\_\+int}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab2bc24e99070283a76585fc865e29553}{cuda\+\_\+subdomain\+::rhs\+\_\+buff1}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a2df3ceea49264608f8b3b4884e5453ae}{cuda\+\_\+subdomain\+::rhs\+\_\+buff2}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad435eaf71375e605405189a7b0e378b4}{cuda\+\_\+subdomain\+::api\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a59bbf6ec286453bdf2a5696426f7997c}{cuda\+\_\+subdomain\+::aci\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a089aed354949b4c9bde5a96b0d5cb551}{cuda\+\_\+subdomain\+::ami\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab380e335289614d7c34cd0057a491a23}{cuda\+\_\+subdomain\+::apj\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_aca7f2c913dd00bacd5d3750304ba22ab}{cuda\+\_\+subdomain\+::acj\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a451b86d748a63a66aa6779b2d4edc9fb}{cuda\+\_\+subdomain\+::amj\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a34a77c51dc29c0e4992a3f1ef25ca114}{cuda\+\_\+subdomain\+::apk\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a1b51d420095c4ef93697bbe4f7cc8085}{cuda\+\_\+subdomain\+::ack\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a76e1410260bc4de401716abc6cd0a015}{cuda\+\_\+subdomain\+::amk\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ababb6b0c882894d178c9efb66fefff9e}{cuda\+\_\+subdomain\+::temp1}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a43cd4c4357678d5f0265a642703f0d2a}{cuda\+\_\+subdomain\+::temp2}}
+\end{DoxyCompactItemize}

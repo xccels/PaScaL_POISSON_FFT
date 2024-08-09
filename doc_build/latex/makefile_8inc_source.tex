@@ -1,0 +1,15 @@
+\doxysection{makefile.\+inc}
+\hypertarget{makefile_8inc_source}{}\label{makefile_8inc_source}\mbox{\hyperlink{makefile_8inc}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00001}00001\ \textcolor{preprocessor}{\#\ MPI를\ 사용하는\ 주요\ 컴파일러.\ Intel\ MPI의\ 경우\ mpiifort\ 사용.}}
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00002}00002\ FC\ =\ mpif90}
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00004}00004\ \textcolor{preprocessor}{\#\ 컴파일\ 플래그}}
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00006}00006\ \textcolor{preprocessor}{\#\ 디버깅용}}
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00007}00007\ \textcolor{preprocessor}{\#FLAG\ =\ -\/O0\ -\/C\ -\/g\ -\/traceback\ -\/Mpreprocess\ -\/Mchkptr\ -\/Mchkstk\ -\/Mcoff\ -\/Kieee\ -\/fPIC\ -\/Minform=warn\ -\/gpu=debug}}
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00009}00009\ \textcolor{preprocessor}{\#\ 최적화된\ 실행용\ }}
+\DoxyCodeLine{\Hypertarget{makefile_8inc_source_l00010}00010\ FLAG\ =\ -\/O3\ -\/Munroll\ -\/Mpreprocess\ -\/fast\ -\/fPIC\ -\/fortranlibs\ -\/Kieee\ -\/Mlarge\_arrays}
+
+\end{DoxyCode}

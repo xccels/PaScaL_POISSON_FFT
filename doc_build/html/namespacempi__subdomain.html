@@ -1,0 +1,2188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:image" content="../preview.png" />
+<meta property="og:description" content="Documentation for parallel and scalable tri-diagonal matrix solver" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="../preview.png" />
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END twitter metadata -->
+<title>PaScaL_POISSON_FFT: mpi_subdomain Module Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            messageStyle: "normal",
+            linebreaks: {
+                automatic: false
+            }
+        },
+        tex2jax: { 
+            inlineMath: [["\\(","\\)"]], 
+            displayMath: [["$$","$$"],["\\[","\\]"]], 
+            processEscapes: true
+        },
+        TeX: {
+            Macros: {
+                tr: "{\\scriptscriptstyle\\mathrm{T}}",
+            }
+        }
+    });
+</script>
+<!--MathJax(LaTeX) -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript" id="MathJax-script" async  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/xccels/PaScaL_POISSON_FFT" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 65px;">
+  <td id="projectlogo">
+    <a href="./index.html">
+        <img alt="Logo" src="home.png"/></td>
+    </a>
+  <td id="projectalign" style="padding-left: 0.5em;padding-top: 0.5em;">
+   <div id="projectname">PaScaL_POISSON_FFT
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespacempi__subdomain.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions/Subroutines</a>  </div>
+  <div class="headertitle"><div class="title">mpi_subdomain Module Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions/Subroutines</h2></td></tr>
+<tr class="memitem:a08a058394bb6440415e751416d179b4e" id="r_a08a058394bb6440415e751416d179b4e"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a058394bb6440415e751416d179b4e">mpi_subdomain_environment</a> ()</td></tr>
+<tr class="separator:a08a058394bb6440415e751416d179b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f8fae60589d5823dd003cf000d666c" id="r_ac4f8fae60589d5823dd003cf000d666c"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4f8fae60589d5823dd003cf000d666c">mpi_subdomain_initial</a> ()</td></tr>
+<tr class="separator:ac4f8fae60589d5823dd003cf000d666c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d94c8bb173fa5431f9871f55c5e21e1" id="r_a4d94c8bb173fa5431f9871f55c5e21e1"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d94c8bb173fa5431f9871f55c5e21e1">mpi_subdomain_make</a> ()</td></tr>
+<tr class="separator:a4d94c8bb173fa5431f9871f55c5e21e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6e43d2f880ef0c364c36d64b348daf2" id="r_ab6e43d2f880ef0c364c36d64b348daf2"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6e43d2f880ef0c364c36d64b348daf2">mpi_subdomain_clean</a> ()</td></tr>
+<tr class="separator:ab6e43d2f880ef0c364c36d64b348daf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64428ebdf38fd330259d426e918a5a7f" id="r_a64428ebdf38fd330259d426e918a5a7f"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64428ebdf38fd330259d426e918a5a7f">mpi_subdomain_mesh</a> ()</td></tr>
+<tr class="separator:a64428ebdf38fd330259d426e918a5a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c4582ad06e86f894c7639d95c440172" id="r_a0c4582ad06e86f894c7639d95c440172"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c4582ad06e86f894c7639d95c440172">mpi_subdomain_ddt_ghostcell</a> ()</td></tr>
+<tr class="memdesc:a0c4582ad06e86f894c7639d95c440172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build derived datatypes for subdomain communication using ghostcells.  <br /></td></tr>
+<tr class="separator:a0c4582ad06e86f894c7639d95c440172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6977abd3483be7c07e8e9787e0153067" id="r_a6977abd3483be7c07e8e9787e0153067"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6977abd3483be7c07e8e9787e0153067">mpi_subdomain_ddt_transpose2</a> ()</td></tr>
+<tr class="memdesc:a6977abd3483be7c07e8e9787e0153067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build derived datatypes for FFT with transpose scheme 1.  <br /></td></tr>
+<tr class="separator:a6977abd3483be7c07e8e9787e0153067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1049eaee94f74b47de90db7f6c6fe720" id="r_a1049eaee94f74b47de90db7f6c6fe720"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1049eaee94f74b47de90db7f6c6fe720">calculate_x</a> (uniform, sta, end, x_start, x_end, l, n, nm, gamma, pbc, comm_1d, x, nsub)</td></tr>
+<tr class="separator:a1049eaee94f74b47de90db7f6c6fe720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ff4a11473c234629f88d085a5552202" id="r_a1ff4a11473c234629f88d085a5552202"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ff4a11473c234629f88d085a5552202">non_uniform_channel_grid</a> (sta, end, x, x_start, l, nm, gamma)</td></tr>
+<tr class="separator:a1ff4a11473c234629f88d085a5552202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad137fad7b035a82fad57a58b736b63fd" id="r_ad137fad7b035a82fad57a58b736b63fd"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad137fad7b035a82fad57a58b736b63fd">uniform_grid</a> (sta, end, x, x_start, l, nm)</td></tr>
+<tr class="separator:ad137fad7b035a82fad57a58b736b63fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6afc5409589148cbe322d22ffd9e731" id="r_af6afc5409589148cbe322d22ffd9e731"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6afc5409589148cbe322d22ffd9e731">calculate_dx_dmx</a> (comm_1d, x, dx, dmx, nsub, nmsub, pbc)</td></tr>
+<tr class="separator:af6afc5409589148cbe322d22ffd9e731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb00f13df2d2b6fcea5955b69f8de639" id="r_afb00f13df2d2b6fcea5955b69f8de639"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb00f13df2d2b6fcea5955b69f8de639">expand_global_grid</a> (comm_1d, nsub, x, dx, dmx, x_g, dx_g, dmx_g)</td></tr>
+<tr class="separator:afb00f13df2d2b6fcea5955b69f8de639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ffc2f3ce5695ca6deb3f35581f1aabc" id="r_a3ffc2f3ce5695ca6deb3f35581f1aabc"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ffc2f3ce5695ca6deb3f35581f1aabc">subdomain_para_range</a> (nsta, nend, nprocs, myrank, index_sta, index_end)</td></tr>
+<tr class="separator:a3ffc2f3ce5695ca6deb3f35581f1aabc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb37a0b27f109e760d54e03787a4be49" id="r_acb37a0b27f109e760d54e03787a4be49"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb37a0b27f109e760d54e03787a4be49">mpi_subdomain_ghostcell_update_real</a> (value_sub)</td></tr>
+<tr class="separator:acb37a0b27f109e760d54e03787a4be49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad828fd7887fe8117fa64bf339d0a0e4e" id="r_ad828fd7887fe8117fa64bf339d0a0e4e"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad828fd7887fe8117fa64bf339d0a0e4e">mpi_subdomain_ghostcell_update_integer</a> (value_sub)</td></tr>
+<tr class="separator:ad828fd7887fe8117fa64bf339d0a0e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2689ec8a6f874f4174026e93eab4b1b" id="r_ac2689ec8a6f874f4174026e93eab4b1b"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2689ec8a6f874f4174026e93eab4b1b">mpi_subdomain_ghostcell_1d</a> (data, comm_1d, nsub, nmsub)</td></tr>
+<tr class="separator:ac2689ec8a6f874f4174026e93eab4b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66c765f687b3641b442074d73496d23c" id="r_a66c765f687b3641b442074d73496d23c"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66c765f687b3641b442074d73496d23c">mpi_allreduce_max</a> (value)</td></tr>
+<tr class="separator:a66c765f687b3641b442074d73496d23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e91a05f224a31553e16ea833af9bf06" id="r_a1e91a05f224a31553e16ea833af9bf06"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e91a05f224a31553e16ea833af9bf06">calc_x3</a> (index, min_size, n3cut, stretch)</td></tr>
+<tr class="separator:a1e91a05f224a31553e16ea833af9bf06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a35bc02b9405da47b034646c07e99ba8c" id="r_a35bc02b9405da47b034646c07e99ba8c"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35bc02b9405da47b034646c07e99ba8c">n1sub</a></td></tr>
+<tr class="memdesc:a35bc02b9405da47b034646c07e99ba8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid numbers in the subdomain.  <br /></td></tr>
+<tr class="separator:a35bc02b9405da47b034646c07e99ba8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6310973b1645cf729d629916d7de3be2" id="r_a6310973b1645cf729d629916d7de3be2"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6310973b1645cf729d629916d7de3be2">n2sub</a></td></tr>
+<tr class="separator:a6310973b1645cf729d629916d7de3be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada135affeeebabdf246cc4ea1b27c2ce" id="r_ada135affeeebabdf246cc4ea1b27c2ce"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a></td></tr>
+<tr class="separator:ada135affeeebabdf246cc4ea1b27c2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071dcdc72760ebe3e03e78c0b6df370d" id="r_a071dcdc72760ebe3e03e78c0b6df370d"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a071dcdc72760ebe3e03e78c0b6df370d">n1msub</a></td></tr>
+<tr class="separator:a071dcdc72760ebe3e03e78c0b6df370d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef43d8b875825360eb1d4e684c0b40de" id="r_aef43d8b875825360eb1d4e684c0b40de"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef43d8b875825360eb1d4e684c0b40de">n2msub</a></td></tr>
+<tr class="separator:aef43d8b875825360eb1d4e684c0b40de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c2f36f6adbb1fea8556998474335969" id="r_a6c2f36f6adbb1fea8556998474335969"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c2f36f6adbb1fea8556998474335969">n3msub</a></td></tr>
+<tr class="separator:a6c2f36f6adbb1fea8556998474335969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ab8925faaa6f45326c1d11efa37e03566" id="r_ab8925faaa6f45326c1d11efa37e03566"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8925faaa6f45326c1d11efa37e03566">ista</a></td></tr>
+<tr class="memdesc:ab8925faaa6f45326c1d11efa37e03566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid indices of the assigned range.  <br /></td></tr>
+<tr class="separator:ab8925faaa6f45326c1d11efa37e03566"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd7d35107c53bcfd2b2b52771f4aa67" id="r_abbd7d35107c53bcfd2b2b52771f4aa67"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbd7d35107c53bcfd2b2b52771f4aa67">iend</a></td></tr>
+<tr class="separator:abbd7d35107c53bcfd2b2b52771f4aa67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac85bfba1caf77f9c3c0047fe9450fee6" id="r_ac85bfba1caf77f9c3c0047fe9450fee6"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac85bfba1caf77f9c3c0047fe9450fee6">jsta</a></td></tr>
+<tr class="separator:ac85bfba1caf77f9c3c0047fe9450fee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06433a0d1a081c51202a0010c21c9d36" id="r_a06433a0d1a081c51202a0010c21c9d36"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06433a0d1a081c51202a0010c21c9d36">jend</a></td></tr>
+<tr class="separator:a06433a0d1a081c51202a0010c21c9d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd499eb1d07159aa9f5c878f9519b00f" id="r_acd499eb1d07159aa9f5c878f9519b00f"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd499eb1d07159aa9f5c878f9519b00f">ksta</a></td></tr>
+<tr class="separator:acd499eb1d07159aa9f5c878f9519b00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9934313b1ccbcb09f30916df3326076" id="r_af9934313b1ccbcb09f30916df3326076"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9934313b1ccbcb09f30916df3326076">kend</a></td></tr>
+<tr class="separator:af9934313b1ccbcb09f30916df3326076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a549159be14ce5ccf1c046a2f8f4d360e" id="r_a549159be14ce5ccf1c046a2f8f4d360e"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a549159be14ce5ccf1c046a2f8f4d360e">x1</a></td></tr>
+<tr class="memdesc:a549159be14ce5ccf1c046a2f8f4d360e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordinates of grid points in the subdomain.  <br /></td></tr>
+<tr class="separator:a549159be14ce5ccf1c046a2f8f4d360e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc70b2d2a7cb45deb0fcb39d3bd5cdb" id="r_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dc70b2d2a7cb45deb0fcb39d3bd5cdb">x2</a></td></tr>
+<tr class="separator:a1dc70b2d2a7cb45deb0fcb39d3bd5cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6684d132faeeffbaccc7744c9ae670f1" id="r_a6684d132faeeffbaccc7744c9ae670f1"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6684d132faeeffbaccc7744c9ae670f1">x3</a></td></tr>
+<tr class="separator:a6684d132faeeffbaccc7744c9ae670f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ed6615192b7dbec4ff972ee18dc2a7" id="r_ad7ed6615192b7dbec4ff972ee18dc2a7"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7ed6615192b7dbec4ff972ee18dc2a7">x1_g</a></td></tr>
+<tr class="separator:ad7ed6615192b7dbec4ff972ee18dc2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5fabef2439fa78ab5c3553b8ee59920" id="r_ad5fabef2439fa78ab5c3553b8ee59920"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5fabef2439fa78ab5c3553b8ee59920">x2_g</a></td></tr>
+<tr class="separator:ad5fabef2439fa78ab5c3553b8ee59920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4cf06a0ab87be2f45328e8e41b23dc6" id="r_af4cf06a0ab87be2f45328e8e41b23dc6"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4cf06a0ab87be2f45328e8e41b23dc6">x3_g</a></td></tr>
+<tr class="separator:af4cf06a0ab87be2f45328e8e41b23dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a4e02fdf7c38b038bbcbad8f91b15525e" id="r_a4e02fdf7c38b038bbcbad8f91b15525e"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e02fdf7c38b038bbcbad8f91b15525e">dx1</a></td></tr>
+<tr class="memdesc:a4e02fdf7c38b038bbcbad8f91b15525e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid lengths in the subdomain.  <br /></td></tr>
+<tr class="separator:a4e02fdf7c38b038bbcbad8f91b15525e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc76de54a5a6e7da32d6efb205f1b1e5" id="r_abc76de54a5a6e7da32d6efb205f1b1e5"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc76de54a5a6e7da32d6efb205f1b1e5">dx2</a></td></tr>
+<tr class="separator:abc76de54a5a6e7da32d6efb205f1b1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c438d5dfbc448cabe080f67373619a1" id="r_a2c438d5dfbc448cabe080f67373619a1"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c438d5dfbc448cabe080f67373619a1">dx3</a></td></tr>
+<tr class="separator:a2c438d5dfbc448cabe080f67373619a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfacef2b3b4818caae18b9139fa6dad1" id="r_acfacef2b3b4818caae18b9139fa6dad1"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfacef2b3b4818caae18b9139fa6dad1">dmx1</a></td></tr>
+<tr class="separator:acfacef2b3b4818caae18b9139fa6dad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd28b6a1d18efdbeab60b8da47afe8c" id="r_a8dd28b6a1d18efdbeab60b8da47afe8c"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dd28b6a1d18efdbeab60b8da47afe8c">dmx2</a></td></tr>
+<tr class="separator:a8dd28b6a1d18efdbeab60b8da47afe8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e61cc2167c9ad2404a7edaddc7ddd7c" id="r_a3e61cc2167c9ad2404a7edaddc7ddd7c"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e61cc2167c9ad2404a7edaddc7ddd7c">dmx3</a></td></tr>
+<tr class="separator:a3e61cc2167c9ad2404a7edaddc7ddd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92ba74c2adee8762f1a802b45ef3cc00" id="r_a92ba74c2adee8762f1a802b45ef3cc00"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92ba74c2adee8762f1a802b45ef3cc00">dx1_g</a></td></tr>
+<tr class="separator:a92ba74c2adee8762f1a802b45ef3cc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac88fb0c8e48afa4b3da372cd5c57ca05" id="r_ac88fb0c8e48afa4b3da372cd5c57ca05"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac88fb0c8e48afa4b3da372cd5c57ca05">dx2_g</a></td></tr>
+<tr class="separator:ac88fb0c8e48afa4b3da372cd5c57ca05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67317f24830c6cc391d5288fbfded6c4" id="r_a67317f24830c6cc391d5288fbfded6c4"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67317f24830c6cc391d5288fbfded6c4">dx3_g</a></td></tr>
+<tr class="separator:a67317f24830c6cc391d5288fbfded6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af311a47573a8198d4567c3fdcc6fbe85" id="r_af311a47573a8198d4567c3fdcc6fbe85"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af311a47573a8198d4567c3fdcc6fbe85">dmx1_g</a></td></tr>
+<tr class="separator:af311a47573a8198d4567c3fdcc6fbe85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b446f4b3208823044781c9f18a2281b" id="r_a4b446f4b3208823044781c9f18a2281b"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b446f4b3208823044781c9f18a2281b">dmx2_g</a></td></tr>
+<tr class="separator:a4b446f4b3208823044781c9f18a2281b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a972faa18cdacd1504cc746e5879ef633" id="r_a972faa18cdacd1504cc746e5879ef633"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a972faa18cdacd1504cc746e5879ef633">dmx3_g</a></td></tr>
+<tr class="separator:a972faa18cdacd1504cc746e5879ef633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93395266b1630e5a91e8e89531dfcec6" id="r_a93395266b1630e5a91e8e89531dfcec6"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93395266b1630e5a91e8e89531dfcec6">ddtype_sendto_e</a></td></tr>
+<tr class="memdesc:a93395266b1630e5a91e8e89531dfcec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived datatype for communication between x-neighbor subdomains.  <br /></td></tr>
+<tr class="separator:a93395266b1630e5a91e8e89531dfcec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2a4ab6d6a88a3817f473a5c2c172b9" id="r_a0b2a4ab6d6a88a3817f473a5c2c172b9"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b2a4ab6d6a88a3817f473a5c2c172b9">ddtype_recvfrom_w</a></td></tr>
+<tr class="separator:a0b2a4ab6d6a88a3817f473a5c2c172b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0701fde01daea1a6fd51b62c75b8ee82" id="r_a0701fde01daea1a6fd51b62c75b8ee82"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0701fde01daea1a6fd51b62c75b8ee82">ddtype_sendto_w</a></td></tr>
+<tr class="separator:a0701fde01daea1a6fd51b62c75b8ee82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18a84c0f3ca27cd4dd73057ff035f341" id="r_a18a84c0f3ca27cd4dd73057ff035f341"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18a84c0f3ca27cd4dd73057ff035f341">ddtype_recvfrom_e</a></td></tr>
+<tr class="separator:a18a84c0f3ca27cd4dd73057ff035f341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a55f5c1af9bd941fd176e619bddbb8d82" id="r_a55f5c1af9bd941fd176e619bddbb8d82"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55f5c1af9bd941fd176e619bddbb8d82">ddtype_sendto_n</a></td></tr>
+<tr class="memdesc:a55f5c1af9bd941fd176e619bddbb8d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived datatype for communication between y-neighbor subdomains.  <br /></td></tr>
+<tr class="separator:a55f5c1af9bd941fd176e619bddbb8d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f46916f08758533cad3ecac33233e38" id="r_a1f46916f08758533cad3ecac33233e38"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f46916f08758533cad3ecac33233e38">ddtype_recvfrom_s</a></td></tr>
+<tr class="separator:a1f46916f08758533cad3ecac33233e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a660f83d621188fb7eb60ad10eab4c9b5" id="r_a660f83d621188fb7eb60ad10eab4c9b5"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a660f83d621188fb7eb60ad10eab4c9b5">ddtype_sendto_s</a></td></tr>
+<tr class="separator:a660f83d621188fb7eb60ad10eab4c9b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74f1edb3c9227692b250285680518dc4" id="r_a74f1edb3c9227692b250285680518dc4"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74f1edb3c9227692b250285680518dc4">ddtype_recvfrom_n</a></td></tr>
+<tr class="separator:a74f1edb3c9227692b250285680518dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a4f3d66535b947c7afee75e6e73a47206" id="r_a4f3d66535b947c7afee75e6e73a47206"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f3d66535b947c7afee75e6e73a47206">ddtype_sendto_f</a></td></tr>
+<tr class="memdesc:a4f3d66535b947c7afee75e6e73a47206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived datatype for communication between z-neighbor subdomains.  <br /></td></tr>
+<tr class="separator:a4f3d66535b947c7afee75e6e73a47206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6462f18c8c68c076005957e9d062252" id="r_ad6462f18c8c68c076005957e9d062252"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6462f18c8c68c076005957e9d062252">ddtype_recvfrom_b</a></td></tr>
+<tr class="separator:ad6462f18c8c68c076005957e9d062252"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a2af0322a7aaa435951a5432859687a" id="r_a7a2af0322a7aaa435951a5432859687a"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a2af0322a7aaa435951a5432859687a">ddtype_sendto_b</a></td></tr>
+<tr class="separator:a7a2af0322a7aaa435951a5432859687a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da19838e8bc3934ad5c24db424bec2c" id="r_a4da19838e8bc3934ad5c24db424bec2c"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4da19838e8bc3934ad5c24db424bec2c">ddtype_recvfrom_f</a></td></tr>
+<tr class="separator:a4da19838e8bc3934ad5c24db424bec2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a407e938c99b3069cdfc9f18d1cab5609" id="r_a407e938c99b3069cdfc9f18d1cab5609"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a407e938c99b3069cdfc9f18d1cab5609">h1p</a></td></tr>
+<tr class="memdesc:a407e938c99b3069cdfc9f18d1cab5609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Half grid numbers plus one in the global domain.  <br /></td></tr>
+<tr class="separator:a407e938c99b3069cdfc9f18d1cab5609"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68c628c55d42d70212d1a703acdfb41d" id="r_a68c628c55d42d70212d1a703acdfb41d"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68c628c55d42d70212d1a703acdfb41d">h2p</a></td></tr>
+<tr class="separator:a68c628c55d42d70212d1a703acdfb41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aaddc53e3475e23021946f5cb4a5e6233" id="r_aaddc53e3475e23021946f5cb4a5e6233"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaddc53e3475e23021946f5cb4a5e6233">h1pjsub</a></td></tr>
+<tr class="memdesc:aaddc53e3475e23021946f5cb4a5e6233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partitioned grid numbers in the subdomain for transpose scheme 1.  <br /></td></tr>
+<tr class="separator:aaddc53e3475e23021946f5cb4a5e6233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8612b8563a66e84340b2e9e2b10f7df" id="r_af8612b8563a66e84340b2e9e2b10f7df"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8612b8563a66e84340b2e9e2b10f7df">n2misub</a></td></tr>
+<tr class="separator:af8612b8563a66e84340b2e9e2b10f7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8afdf04327005005535e7c3a10cb3ca" id="r_ae8afdf04327005005535e7c3a10cb3ca"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8afdf04327005005535e7c3a10cb3ca">n2mjsub</a></td></tr>
+<tr class="separator:ae8afdf04327005005535e7c3a10cb3ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad11f1273d0f1d7aabe759ac19201588d" id="r_ad11f1273d0f1d7aabe759ac19201588d"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad11f1273d0f1d7aabe759ac19201588d">h1pjsub_ista</a></td></tr>
+<tr class="separator:ad11f1273d0f1d7aabe759ac19201588d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebdac5c8b4380c37e113c1101a43b1e8" id="r_aebdac5c8b4380c37e113c1101a43b1e8"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebdac5c8b4380c37e113c1101a43b1e8">h1pjsub_iend</a></td></tr>
+<tr class="separator:aebdac5c8b4380c37e113c1101a43b1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d8a941b42e2dddb7b3b4e7c948fd97" id="r_a87d8a941b42e2dddb7b3b4e7c948fd97"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87d8a941b42e2dddb7b3b4e7c948fd97">n2mjsub_jsta</a></td></tr>
+<tr class="separator:a87d8a941b42e2dddb7b3b4e7c948fd97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4db1926a76505ff3a30f63117ffb7ef5" id="r_a4db1926a76505ff3a30f63117ffb7ef5"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4db1926a76505ff3a30f63117ffb7ef5">n2mjsub_jend</a></td></tr>
+<tr class="separator:a4db1926a76505ff3a30f63117ffb7ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:acdfbaef272f85dd85651ffc2a8931f61" id="r_acdfbaef272f85dd85651ffc2a8931f61"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdfbaef272f85dd85651ffc2a8931f61">n2msub_isub</a></td></tr>
+<tr class="memdesc:acdfbaef272f85dd85651ffc2a8931f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partitioned grid numbers in the subdomain for transpose scheme 2.  <br /></td></tr>
+<tr class="separator:acdfbaef272f85dd85651ffc2a8931f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f0d09d33d408ff034b32ea20a451f3b" id="r_a0f0d09d33d408ff034b32ea20a451f3b"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f0d09d33d408ff034b32ea20a451f3b">h1psub</a></td></tr>
+<tr class="separator:a0f0d09d33d408ff034b32ea20a451f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7477357f2c1fdb3755564c452873d01d" id="r_a7477357f2c1fdb3755564c452873d01d"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7477357f2c1fdb3755564c452873d01d">h1psub_jsub</a></td></tr>
+<tr class="separator:a7477357f2c1fdb3755564c452873d01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1df2d2970263f71188fdcc45f11055b5" id="r_a1df2d2970263f71188fdcc45f11055b5"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1df2d2970263f71188fdcc45f11055b5">h1psub_jsub_ista</a></td></tr>
+<tr class="separator:a1df2d2970263f71188fdcc45f11055b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad10c793a002372e3bebad09f57aee184" id="r_ad10c793a002372e3bebad09f57aee184"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad10c793a002372e3bebad09f57aee184">h1psub_jsub_iend</a></td></tr>
+<tr class="separator:ad10c793a002372e3bebad09f57aee184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a8787fa485469e2580a10f7efa2765e90" id="r_a8787fa485469e2580a10f7efa2765e90"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8787fa485469e2580a10f7efa2765e90">ddtype_dble_c_in_c2i</a></td></tr>
+<tr class="memdesc:a8787fa485469e2580a10f7efa2765e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived datatype for transpose scheme 1 and transpose scheme 2. C: cubic (org.), I: x-aligned, J: y-aligned.  <br /></td></tr>
+<tr class="separator:a8787fa485469e2580a10f7efa2765e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab861a1890b8820f0b2e97dbbe0430c50" id="r_ab861a1890b8820f0b2e97dbbe0430c50"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab861a1890b8820f0b2e97dbbe0430c50">ddtype_dble_i_in_c2i</a></td></tr>
+<tr class="separator:ab861a1890b8820f0b2e97dbbe0430c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a397d797e4c78dc667212cf71ff7c9559" id="r_a397d797e4c78dc667212cf71ff7c9559"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a397d797e4c78dc667212cf71ff7c9559">ddtype_cplx_c_in_c2i</a></td></tr>
+<tr class="separator:a397d797e4c78dc667212cf71ff7c9559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a844b95feed9833f453b886390ad1bb16" id="r_a844b95feed9833f453b886390ad1bb16"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a844b95feed9833f453b886390ad1bb16">ddtype_cplx_i_in_c2i</a></td></tr>
+<tr class="separator:a844b95feed9833f453b886390ad1bb16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d63d8ec3c37848c4eec1cb6312aad88" id="r_a6d63d8ec3c37848c4eec1cb6312aad88"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d63d8ec3c37848c4eec1cb6312aad88">ddtype_cplx_i_in_i2j</a></td></tr>
+<tr class="separator:a6d63d8ec3c37848c4eec1cb6312aad88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78b0a36b2acae13132869e0f4b80f3a" id="r_ac78b0a36b2acae13132869e0f4b80f3a"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac78b0a36b2acae13132869e0f4b80f3a">ddtype_cplx_j_in_i2j</a></td></tr>
+<tr class="separator:ac78b0a36b2acae13132869e0f4b80f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e4c0f670c06e31894c28a44c8736727" id="r_a7e4c0f670c06e31894c28a44c8736727"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e4c0f670c06e31894c28a44c8736727">ddtype_dble_c_in_c2j</a></td></tr>
+<tr class="separator:a7e4c0f670c06e31894c28a44c8736727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29160b65c81e9d021939008c7b3d374c" id="r_a29160b65c81e9d021939008c7b3d374c"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29160b65c81e9d021939008c7b3d374c">ddtype_dble_j_in_c2j</a></td></tr>
+<tr class="separator:a29160b65c81e9d021939008c7b3d374c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff3cb68106648833f0119a127b59f9b" id="r_a4ff3cb68106648833f0119a127b59f9b"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ff3cb68106648833f0119a127b59f9b">ddtype_cplx_c_in_c2j</a></td></tr>
+<tr class="separator:a4ff3cb68106648833f0119a127b59f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af650f876ca51cafc16d0ae57cca1a14c" id="r_af650f876ca51cafc16d0ae57cca1a14c"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af650f876ca51cafc16d0ae57cca1a14c">ddtype_cplx_j_in_c2j</a></td></tr>
+<tr class="separator:af650f876ca51cafc16d0ae57cca1a14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a6380c67dc324ef2e21c6836f312ab608" id="r_a6380c67dc324ef2e21c6836f312ab608"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6380c67dc324ef2e21c6836f312ab608">countsendi</a></td></tr>
+<tr class="memdesc:a6380c67dc324ef2e21c6836f312ab608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array for MPI_Alltoallw.  <br /></td></tr>
+<tr class="separator:a6380c67dc324ef2e21c6836f312ab608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ca32c69051325db389a0d9b235d266" id="r_a80ca32c69051325db389a0d9b235d266"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80ca32c69051325db389a0d9b235d266">countdisti</a></td></tr>
+<tr class="separator:a80ca32c69051325db389a0d9b235d266"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac04f49403582cb43b233c91f5410e86" id="r_aac04f49403582cb43b233c91f5410e86"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac04f49403582cb43b233c91f5410e86">countsendj</a></td></tr>
+<tr class="separator:aac04f49403582cb43b233c91f5410e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79d1db8bd23476a5d5700b0a68bc75c5" id="r_a79d1db8bd23476a5d5700b0a68bc75c5"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79d1db8bd23476a5d5700b0a68bc75c5">countdistj</a></td></tr>
+<tr class="separator:a79d1db8bd23476a5d5700b0a68bc75c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="a1e91a05f224a31553e16ea833af9bf06" name="a1e91a05f224a31553e16ea833af9bf06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e91a05f224a31553e16ea833af9bf06">&#9670;&#160;</a></span>calc_x3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) function mpi_subdomain::calc_x3 </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>min_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n3cut</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>stretch</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00816">816</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a1e91a05f224a31553e16ea833af9bf06_cgraph.png" border="0" usemap="#anamespacempi__subdomain_a1e91a05f224a31553e16ea833af9bf06_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a1e91a05f224a31553e16ea833af9bf06_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a1e91a05f224a31553e16ea833af9bf06_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af6afc5409589148cbe322d22ffd9e731" name="af6afc5409589148cbe322d22ffd9e731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6afc5409589148cbe322d22ffd9e731">&#9670;&#160;</a></span>calculate_dx_dmx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::calculate_dx_dmx </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structmpi__topology_1_1cart__comm__1d.html">cart_comm_1d</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>comm_1d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>dx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>dmx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsub</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nmsub</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>pbc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00443">443</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_af6afc5409589148cbe322d22ffd9e731_cgraph.png" border="0" usemap="#anamespacempi__subdomain_af6afc5409589148cbe322d22ffd9e731_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_af6afc5409589148cbe322d22ffd9e731_icgraph.png" border="0" usemap="#anamespacempi__subdomain_af6afc5409589148cbe322d22ffd9e731_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a1049eaee94f74b47de90db7f6c6fe720" name="a1049eaee94f74b47de90db7f6c6fe720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1049eaee94f74b47de90db7f6c6fe720">&#9670;&#160;</a></span>calculate_x()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::calculate_x </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>uniform</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>sta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>x_start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>x_end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>l</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nm</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>gamma</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>pbc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structmpi__topology_1_1cart__comm__1d.html">cart_comm_1d</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>comm_1d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(out)</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsub</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00397">397</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a1049eaee94f74b47de90db7f6c6fe720_cgraph.png" border="0" usemap="#anamespacempi__subdomain_a1049eaee94f74b47de90db7f6c6fe720_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a1049eaee94f74b47de90db7f6c6fe720_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a1049eaee94f74b47de90db7f6c6fe720_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="afb00f13df2d2b6fcea5955b69f8de639" name="afb00f13df2d2b6fcea5955b69f8de639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb00f13df2d2b6fcea5955b69f8de639">&#9670;&#160;</a></span>expand_global_grid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::expand_global_grid </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structmpi__topology_1_1cart__comm__1d.html">cart_comm_1d</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>comm_1d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsub</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>dx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>dmx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(out)</td>          <td class="paramname"><span class="paramname"><em>x_g</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(out)</td>          <td class="paramname"><span class="paramname"><em>dx_g</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(out)</td>          <td class="paramname"><span class="paramname"><em>dmx_g</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00474">474</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_afb00f13df2d2b6fcea5955b69f8de639_icgraph.png" border="0" usemap="#anamespacempi__subdomain_afb00f13df2d2b6fcea5955b69f8de639_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a66c765f687b3641b442074d73496d23c" name="a66c765f687b3641b442074d73496d23c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66c765f687b3641b442074d73496d23c">&#9670;&#160;</a></span>mpi_allreduce_max()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_allreduce_max </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00800">800</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab6e43d2f880ef0c364c36d64b348daf2" name="ab6e43d2f880ef0c364c36d64b348daf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6e43d2f880ef0c364c36d64b348daf2">&#9670;&#160;</a></span>mpi_subdomain_clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_clean</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00115">115</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0c4582ad06e86f894c7639d95c440172" name="a0c4582ad06e86f894c7639d95c440172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c4582ad06e86f894c7639d95c440172">&#9670;&#160;</a></span>mpi_subdomain_ddt_ghostcell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_ddt_ghostcell</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Build derived datatypes for subdomain communication using ghostcells. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00160">160</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a0c4582ad06e86f894c7639d95c440172_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a0c4582ad06e86f894c7639d95c440172_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a6977abd3483be7c07e8e9787e0153067" name="a6977abd3483be7c07e8e9787e0153067"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6977abd3483be7c07e8e9787e0153067">&#9670;&#160;</a></span>mpi_subdomain_ddt_transpose2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_ddt_transpose2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Build derived datatypes for FFT with transpose scheme 1. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00247">247</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a6977abd3483be7c07e8e9787e0153067_cgraph.png" border="0" usemap="#anamespacempi__subdomain_a6977abd3483be7c07e8e9787e0153067_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a6977abd3483be7c07e8e9787e0153067_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a6977abd3483be7c07e8e9787e0153067_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a08a058394bb6440415e751416d179b4e" name="a08a058394bb6440415e751416d179b4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a058394bb6440415e751416d179b4e">&#9670;&#160;</a></span>mpi_subdomain_environment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_environment</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00062">62</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ac2689ec8a6f874f4174026e93eab4b1b" name="ac2689ec8a6f874f4174026e93eab4b1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2689ec8a6f874f4174026e93eab4b1b">&#9670;&#160;</a></span>mpi_subdomain_ghostcell_1d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_ghostcell_1d </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structmpi__topology_1_1cart__comm__1d.html">cart_comm_1d</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>comm_1d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsub</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nmsub</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00783">783</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_ac2689ec8a6f874f4174026e93eab4b1b_icgraph.png" border="0" usemap="#anamespacempi__subdomain_ac2689ec8a6f874f4174026e93eab4b1b_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ad828fd7887fe8117fa64bf339d0a0e4e" name="ad828fd7887fe8117fa64bf339d0a0e4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad828fd7887fe8117fa64bf339d0a0e4e">&#9670;&#160;</a></span>mpi_subdomain_ghostcell_update_integer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_ghostcell_update_integer </td>
+          <td>(</td>
+          <td class="paramtype">integer, dimension(-1:<a class="el" href="#a35bc02b9405da47b034646c07e99ba8c">n1sub</a>+1, -1:<a class="el" href="#a6310973b1645cf729d629916d7de3be2">n2sub</a>+1, -1:<a class="el" href="#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a>+1), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>value_sub</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00645">645</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="acb37a0b27f109e760d54e03787a4be49" name="acb37a0b27f109e760d54e03787a4be49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb37a0b27f109e760d54e03787a4be49">&#9670;&#160;</a></span>mpi_subdomain_ghostcell_update_real()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_ghostcell_update_real </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:<a class="el" href="#a35bc02b9405da47b034646c07e99ba8c">n1sub</a>, 0:<a class="el" href="#a6310973b1645cf729d629916d7de3be2">n2sub</a>, 0:<a class="el" href="#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>value_sub</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00520">520</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_acb37a0b27f109e760d54e03787a4be49_icgraph.png" border="0" usemap="#anamespacempi__subdomain_acb37a0b27f109e760d54e03787a4be49_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac4f8fae60589d5823dd003cf000d666c" name="ac4f8fae60589d5823dd003cf000d666c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f8fae60589d5823dd003cf000d666c">&#9670;&#160;</a></span>mpi_subdomain_initial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_initial</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00075">75</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_ac4f8fae60589d5823dd003cf000d666c_cgraph.png" border="0" usemap="#anamespacempi__subdomain_ac4f8fae60589d5823dd003cf000d666c_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a4d94c8bb173fa5431f9871f55c5e21e1" name="a4d94c8bb173fa5431f9871f55c5e21e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d94c8bb173fa5431f9871f55c5e21e1">&#9670;&#160;</a></span>mpi_subdomain_make()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_make</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00086">86</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a4d94c8bb173fa5431f9871f55c5e21e1_cgraph.png" border="0" usemap="#anamespacempi__subdomain_a4d94c8bb173fa5431f9871f55c5e21e1_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a4d94c8bb173fa5431f9871f55c5e21e1_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a4d94c8bb173fa5431f9871f55c5e21e1_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a64428ebdf38fd330259d426e918a5a7f" name="a64428ebdf38fd330259d426e918a5a7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64428ebdf38fd330259d426e918a5a7f">&#9670;&#160;</a></span>mpi_subdomain_mesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::mpi_subdomain_mesh</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00136">136</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a64428ebdf38fd330259d426e918a5a7f_cgraph.png" border="0" usemap="#anamespacempi__subdomain_a64428ebdf38fd330259d426e918a5a7f_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a64428ebdf38fd330259d426e918a5a7f_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a64428ebdf38fd330259d426e918a5a7f_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a1ff4a11473c234629f88d085a5552202" name="a1ff4a11473c234629f88d085a5552202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ff4a11473c234629f88d085a5552202">&#9670;&#160;</a></span>non_uniform_channel_grid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::non_uniform_channel_grid </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>sta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>x_start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>l</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nm</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>gamma</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00417">417</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a1ff4a11473c234629f88d085a5552202_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a1ff4a11473c234629f88d085a5552202_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a3ffc2f3ce5695ca6deb3f35581f1aabc" name="a3ffc2f3ce5695ca6deb3f35581f1aabc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ffc2f3ce5695ca6deb3f35581f1aabc">&#9670;&#160;</a></span>subdomain_para_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::subdomain_para_range </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nend</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nprocs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>myrank</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(out)</td>          <td class="paramname"><span class="paramname"><em>index_sta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(out)</td>          <td class="paramname"><span class="paramname"><em>index_end</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00504">504</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_a3ffc2f3ce5695ca6deb3f35581f1aabc_icgraph.png" border="0" usemap="#anamespacempi__subdomain_a3ffc2f3ce5695ca6deb3f35581f1aabc_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ad137fad7b035a82fad57a58b736b63fd" name="ad137fad7b035a82fad57a58b736b63fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad137fad7b035a82fad57a58b736b63fd">&#9670;&#160;</a></span>uniform_grid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine mpi_subdomain::uniform_grid </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>sta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(0:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>x_start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>l</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nm</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00431">431</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacempi__subdomain_ad137fad7b035a82fad57a58b736b63fd_icgraph.png" border="0" usemap="#anamespacempi__subdomain_ad137fad7b035a82fad57a58b736b63fd_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a80ca32c69051325db389a0d9b235d266" name="a80ca32c69051325db389a0d9b235d266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80ca32c69051325db389a0d9b235d266">&#9670;&#160;</a></span>countdisti</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::countdisti</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00056">56</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a79d1db8bd23476a5d5700b0a68bc75c5" name="a79d1db8bd23476a5d5700b0a68bc75c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79d1db8bd23476a5d5700b0a68bc75c5">&#9670;&#160;</a></span>countdistj</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::countdistj</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00057">57</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6380c67dc324ef2e21c6836f312ab608" name="a6380c67dc324ef2e21c6836f312ab608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6380c67dc324ef2e21c6836f312ab608">&#9670;&#160;</a></span>countsendi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::countsendi</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Array for MPI_Alltoallw. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00056">56</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aac04f49403582cb43b233c91f5410e86" name="aac04f49403582cb43b233c91f5410e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac04f49403582cb43b233c91f5410e86">&#9670;&#160;</a></span>countsendj</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::countsendj</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00057">57</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a397d797e4c78dc667212cf71ff7c9559" name="a397d797e4c78dc667212cf71ff7c9559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a397d797e4c78dc667212cf71ff7c9559">&#9670;&#160;</a></span>ddtype_cplx_c_in_c2i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_cplx_c_in_c2i</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00050">50</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4ff3cb68106648833f0119a127b59f9b" name="a4ff3cb68106648833f0119a127b59f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ff3cb68106648833f0119a127b59f9b">&#9670;&#160;</a></span>ddtype_cplx_c_in_c2j</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_cplx_c_in_c2j</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00053">53</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a844b95feed9833f453b886390ad1bb16" name="a844b95feed9833f453b886390ad1bb16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a844b95feed9833f453b886390ad1bb16">&#9670;&#160;</a></span>ddtype_cplx_i_in_c2i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_cplx_i_in_c2i</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00050">50</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6d63d8ec3c37848c4eec1cb6312aad88" name="a6d63d8ec3c37848c4eec1cb6312aad88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d63d8ec3c37848c4eec1cb6312aad88">&#9670;&#160;</a></span>ddtype_cplx_i_in_i2j</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_cplx_i_in_i2j</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00051">51</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af650f876ca51cafc16d0ae57cca1a14c" name="af650f876ca51cafc16d0ae57cca1a14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af650f876ca51cafc16d0ae57cca1a14c">&#9670;&#160;</a></span>ddtype_cplx_j_in_c2j</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_cplx_j_in_c2j</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00053">53</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ac78b0a36b2acae13132869e0f4b80f3a" name="ac78b0a36b2acae13132869e0f4b80f3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78b0a36b2acae13132869e0f4b80f3a">&#9670;&#160;</a></span>ddtype_cplx_j_in_i2j</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_cplx_j_in_i2j</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00051">51</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a8787fa485469e2580a10f7efa2765e90" name="a8787fa485469e2580a10f7efa2765e90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8787fa485469e2580a10f7efa2765e90">&#9670;&#160;</a></span>ddtype_dble_c_in_c2i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_dble_c_in_c2i</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Derived datatype for transpose scheme 1 and transpose scheme 2. C: cubic (org.), I: x-aligned, J: y-aligned. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00049">49</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a7e4c0f670c06e31894c28a44c8736727" name="a7e4c0f670c06e31894c28a44c8736727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e4c0f670c06e31894c28a44c8736727">&#9670;&#160;</a></span>ddtype_dble_c_in_c2j</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_dble_c_in_c2j</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00052">52</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab861a1890b8820f0b2e97dbbe0430c50" name="ab861a1890b8820f0b2e97dbbe0430c50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab861a1890b8820f0b2e97dbbe0430c50">&#9670;&#160;</a></span>ddtype_dble_i_in_c2i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_dble_i_in_c2i</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00049">49</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a29160b65c81e9d021939008c7b3d374c" name="a29160b65c81e9d021939008c7b3d374c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29160b65c81e9d021939008c7b3d374c">&#9670;&#160;</a></span>ddtype_dble_j_in_c2j</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable mpi_subdomain::ddtype_dble_j_in_c2j</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00052">52</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad6462f18c8c68c076005957e9d062252" name="ad6462f18c8c68c076005957e9d062252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6462f18c8c68c076005957e9d062252">&#9670;&#160;</a></span>ddtype_recvfrom_b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_recvfrom_b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a18a84c0f3ca27cd4dd73057ff035f341" name="a18a84c0f3ca27cd4dd73057ff035f341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18a84c0f3ca27cd4dd73057ff035f341">&#9670;&#160;</a></span>ddtype_recvfrom_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_recvfrom_e</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00028">28</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4da19838e8bc3934ad5c24db424bec2c" name="a4da19838e8bc3934ad5c24db424bec2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4da19838e8bc3934ad5c24db424bec2c">&#9670;&#160;</a></span>ddtype_recvfrom_f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_recvfrom_f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a74f1edb3c9227692b250285680518dc4" name="a74f1edb3c9227692b250285680518dc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74f1edb3c9227692b250285680518dc4">&#9670;&#160;</a></span>ddtype_recvfrom_n</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_recvfrom_n</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00031">31</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1f46916f08758533cad3ecac33233e38" name="a1f46916f08758533cad3ecac33233e38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f46916f08758533cad3ecac33233e38">&#9670;&#160;</a></span>ddtype_recvfrom_s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_recvfrom_s</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00031">31</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0b2a4ab6d6a88a3817f473a5c2c172b9" name="a0b2a4ab6d6a88a3817f473a5c2c172b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2a4ab6d6a88a3817f473a5c2c172b9">&#9670;&#160;</a></span>ddtype_recvfrom_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_recvfrom_w</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00028">28</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a7a2af0322a7aaa435951a5432859687a" name="a7a2af0322a7aaa435951a5432859687a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a2af0322a7aaa435951a5432859687a">&#9670;&#160;</a></span>ddtype_sendto_b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_sendto_b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a93395266b1630e5a91e8e89531dfcec6" name="a93395266b1630e5a91e8e89531dfcec6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93395266b1630e5a91e8e89531dfcec6">&#9670;&#160;</a></span>ddtype_sendto_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_sendto_e</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Derived datatype for communication between x-neighbor subdomains. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00028">28</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4f3d66535b947c7afee75e6e73a47206" name="a4f3d66535b947c7afee75e6e73a47206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f3d66535b947c7afee75e6e73a47206">&#9670;&#160;</a></span>ddtype_sendto_f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_sendto_f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Derived datatype for communication between z-neighbor subdomains. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a55f5c1af9bd941fd176e619bddbb8d82" name="a55f5c1af9bd941fd176e619bddbb8d82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55f5c1af9bd941fd176e619bddbb8d82">&#9670;&#160;</a></span>ddtype_sendto_n</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_sendto_n</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Derived datatype for communication between y-neighbor subdomains. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00031">31</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a660f83d621188fb7eb60ad10eab4c9b5" name="a660f83d621188fb7eb60ad10eab4c9b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a660f83d621188fb7eb60ad10eab4c9b5">&#9670;&#160;</a></span>ddtype_sendto_s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_sendto_s</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00031">31</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0701fde01daea1a6fd51b62c75b8ee82" name="a0701fde01daea1a6fd51b62c75b8ee82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0701fde01daea1a6fd51b62c75b8ee82">&#9670;&#160;</a></span>ddtype_sendto_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::ddtype_sendto_w</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00028">28</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="acfacef2b3b4818caae18b9139fa6dad1" name="acfacef2b3b4818caae18b9139fa6dad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfacef2b3b4818caae18b9139fa6dad1">&#9670;&#160;</a></span>dmx1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dmx1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00023">23</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af311a47573a8198d4567c3fdcc6fbe85" name="af311a47573a8198d4567c3fdcc6fbe85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af311a47573a8198d4567c3fdcc6fbe85">&#9670;&#160;</a></span>dmx1_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dmx1_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00025">25</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a8dd28b6a1d18efdbeab60b8da47afe8c" name="a8dd28b6a1d18efdbeab60b8da47afe8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd28b6a1d18efdbeab60b8da47afe8c">&#9670;&#160;</a></span>dmx2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dmx2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00023">23</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4b446f4b3208823044781c9f18a2281b" name="a4b446f4b3208823044781c9f18a2281b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b446f4b3208823044781c9f18a2281b">&#9670;&#160;</a></span>dmx2_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dmx2_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00025">25</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a3e61cc2167c9ad2404a7edaddc7ddd7c" name="a3e61cc2167c9ad2404a7edaddc7ddd7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e61cc2167c9ad2404a7edaddc7ddd7c">&#9670;&#160;</a></span>dmx3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dmx3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00023">23</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a972faa18cdacd1504cc746e5879ef633" name="a972faa18cdacd1504cc746e5879ef633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a972faa18cdacd1504cc746e5879ef633">&#9670;&#160;</a></span>dmx3_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dmx3_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00025">25</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4e02fdf7c38b038bbcbad8f91b15525e" name="a4e02fdf7c38b038bbcbad8f91b15525e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e02fdf7c38b038bbcbad8f91b15525e">&#9670;&#160;</a></span>dx1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dx1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Grid lengths in the subdomain. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00022">22</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a92ba74c2adee8762f1a802b45ef3cc00" name="a92ba74c2adee8762f1a802b45ef3cc00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92ba74c2adee8762f1a802b45ef3cc00">&#9670;&#160;</a></span>dx1_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dx1_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00024">24</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="abc76de54a5a6e7da32d6efb205f1b1e5" name="abc76de54a5a6e7da32d6efb205f1b1e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc76de54a5a6e7da32d6efb205f1b1e5">&#9670;&#160;</a></span>dx2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dx2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00022">22</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ac88fb0c8e48afa4b3da372cd5c57ca05" name="ac88fb0c8e48afa4b3da372cd5c57ca05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac88fb0c8e48afa4b3da372cd5c57ca05">&#9670;&#160;</a></span>dx2_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dx2_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00024">24</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a2c438d5dfbc448cabe080f67373619a1" name="a2c438d5dfbc448cabe080f67373619a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c438d5dfbc448cabe080f67373619a1">&#9670;&#160;</a></span>dx3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dx3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00022">22</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a67317f24830c6cc391d5288fbfded6c4" name="a67317f24830c6cc391d5288fbfded6c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67317f24830c6cc391d5288fbfded6c4">&#9670;&#160;</a></span>dx3_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::dx3_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00024">24</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a407e938c99b3069cdfc9f18d1cab5609" name="a407e938c99b3069cdfc9f18d1cab5609"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a407e938c99b3069cdfc9f18d1cab5609">&#9670;&#160;</a></span>h1p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1p</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Half grid numbers plus one in the global domain. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00038">38</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aaddc53e3475e23021946f5cb4a5e6233" name="aaddc53e3475e23021946f5cb4a5e6233"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaddc53e3475e23021946f5cb4a5e6233">&#9670;&#160;</a></span>h1pjsub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1pjsub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Partitioned grid numbers in the subdomain for transpose scheme 1. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aebdac5c8b4380c37e113c1101a43b1e8" name="aebdac5c8b4380c37e113c1101a43b1e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebdac5c8b4380c37e113c1101a43b1e8">&#9670;&#160;</a></span>h1pjsub_iend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1pjsub_iend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad11f1273d0f1d7aabe759ac19201588d" name="ad11f1273d0f1d7aabe759ac19201588d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad11f1273d0f1d7aabe759ac19201588d">&#9670;&#160;</a></span>h1pjsub_ista</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1pjsub_ista</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0f0d09d33d408ff034b32ea20a451f3b" name="a0f0d09d33d408ff034b32ea20a451f3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f0d09d33d408ff034b32ea20a451f3b">&#9670;&#160;</a></span>h1psub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1psub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00045">45</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a7477357f2c1fdb3755564c452873d01d" name="a7477357f2c1fdb3755564c452873d01d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7477357f2c1fdb3755564c452873d01d">&#9670;&#160;</a></span>h1psub_jsub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1psub_jsub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00045">45</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad10c793a002372e3bebad09f57aee184" name="ad10c793a002372e3bebad09f57aee184"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad10c793a002372e3bebad09f57aee184">&#9670;&#160;</a></span>h1psub_jsub_iend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1psub_jsub_iend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00045">45</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1df2d2970263f71188fdcc45f11055b5" name="a1df2d2970263f71188fdcc45f11055b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1df2d2970263f71188fdcc45f11055b5">&#9670;&#160;</a></span>h1psub_jsub_ista</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h1psub_jsub_ista</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00045">45</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a68c628c55d42d70212d1a703acdfb41d" name="a68c628c55d42d70212d1a703acdfb41d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68c628c55d42d70212d1a703acdfb41d">&#9670;&#160;</a></span>h2p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::h2p</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00038">38</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="abbd7d35107c53bcfd2b2b52771f4aa67" name="abbd7d35107c53bcfd2b2b52771f4aa67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbd7d35107c53bcfd2b2b52771f4aa67">&#9670;&#160;</a></span>iend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::iend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab8925faaa6f45326c1d11efa37e03566" name="ab8925faaa6f45326c1d11efa37e03566"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8925faaa6f45326c1d11efa37e03566">&#9670;&#160;</a></span>ista</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::ista</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Grid indices of the assigned range. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a06433a0d1a081c51202a0010c21c9d36" name="a06433a0d1a081c51202a0010c21c9d36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06433a0d1a081c51202a0010c21c9d36">&#9670;&#160;</a></span>jend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::jend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ac85bfba1caf77f9c3c0047fe9450fee6" name="ac85bfba1caf77f9c3c0047fe9450fee6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac85bfba1caf77f9c3c0047fe9450fee6">&#9670;&#160;</a></span>jsta</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::jsta</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af9934313b1ccbcb09f30916df3326076" name="af9934313b1ccbcb09f30916df3326076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9934313b1ccbcb09f30916df3326076">&#9670;&#160;</a></span>kend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::kend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="acd499eb1d07159aa9f5c878f9519b00f" name="acd499eb1d07159aa9f5c878f9519b00f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd499eb1d07159aa9f5c878f9519b00f">&#9670;&#160;</a></span>ksta</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::ksta</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a071dcdc72760ebe3e03e78c0b6df370d" name="a071dcdc72760ebe3e03e78c0b6df370d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a071dcdc72760ebe3e03e78c0b6df370d">&#9670;&#160;</a></span>n1msub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::n1msub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00011">11</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a35bc02b9405da47b034646c07e99ba8c" name="a35bc02b9405da47b034646c07e99ba8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35bc02b9405da47b034646c07e99ba8c">&#9670;&#160;</a></span>n1sub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::n1sub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Grid numbers in the subdomain. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00010">10</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af8612b8563a66e84340b2e9e2b10f7df" name="af8612b8563a66e84340b2e9e2b10f7df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8612b8563a66e84340b2e9e2b10f7df">&#9670;&#160;</a></span>n2misub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::n2misub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ae8afdf04327005005535e7c3a10cb3ca" name="ae8afdf04327005005535e7c3a10cb3ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8afdf04327005005535e7c3a10cb3ca">&#9670;&#160;</a></span>n2mjsub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::n2mjsub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4db1926a76505ff3a30f63117ffb7ef5" name="a4db1926a76505ff3a30f63117ffb7ef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4db1926a76505ff3a30f63117ffb7ef5">&#9670;&#160;</a></span>n2mjsub_jend</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::n2mjsub_jend</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a87d8a941b42e2dddb7b3b4e7c948fd97" name="a87d8a941b42e2dddb7b3b4e7c948fd97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87d8a941b42e2dddb7b3b4e7c948fd97">&#9670;&#160;</a></span>n2mjsub_jsta</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::n2mjsub_jsta</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aef43d8b875825360eb1d4e684c0b40de" name="aef43d8b875825360eb1d4e684c0b40de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef43d8b875825360eb1d4e684c0b40de">&#9670;&#160;</a></span>n2msub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::n2msub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00011">11</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="acdfbaef272f85dd85651ffc2a8931f61" name="acdfbaef272f85dd85651ffc2a8931f61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdfbaef272f85dd85651ffc2a8931f61">&#9670;&#160;</a></span>n2msub_isub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer mpi_subdomain::n2msub_isub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Partitioned grid numbers in the subdomain for transpose scheme 2. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00045">45</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6310973b1645cf729d629916d7de3be2" name="a6310973b1645cf729d629916d7de3be2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6310973b1645cf729d629916d7de3be2">&#9670;&#160;</a></span>n2sub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::n2sub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00010">10</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6c2f36f6adbb1fea8556998474335969" name="a6c2f36f6adbb1fea8556998474335969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c2f36f6adbb1fea8556998474335969">&#9670;&#160;</a></span>n3msub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::n3msub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00011">11</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ada135affeeebabdf246cc4ea1b27c2ce" name="ada135affeeebabdf246cc4ea1b27c2ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada135affeeebabdf246cc4ea1b27c2ce">&#9670;&#160;</a></span>n3sub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, public mpi_subdomain::n3sub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00010">10</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a549159be14ce5ccf1c046a2f8f4d360e" name="a549159be14ce5ccf1c046a2f8f4d360e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549159be14ce5ccf1c046a2f8f4d360e">&#9670;&#160;</a></span>x1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::x1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Coordinates of grid points in the subdomain. </p>
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00018">18</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad7ed6615192b7dbec4ff972ee18dc2a7" name="ad7ed6615192b7dbec4ff972ee18dc2a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ed6615192b7dbec4ff972ee18dc2a7">&#9670;&#160;</a></span>x1_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::x1_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00019">19</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1dc70b2d2a7cb45deb0fcb39d3bd5cdb" name="a1dc70b2d2a7cb45deb0fcb39d3bd5cdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc70b2d2a7cb45deb0fcb39d3bd5cdb">&#9670;&#160;</a></span>x2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::x2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00018">18</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad5fabef2439fa78ab5c3553b8ee59920" name="ad5fabef2439fa78ab5c3553b8ee59920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5fabef2439fa78ab5c3553b8ee59920">&#9670;&#160;</a></span>x2_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::x2_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00019">19</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6684d132faeeffbaccc7744c9ae670f1" name="a6684d132faeeffbaccc7744c9ae670f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6684d132faeeffbaccc7744c9ae670f1">&#9670;&#160;</a></span>x3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::x3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00018">18</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af4cf06a0ab87be2f45328e8e41b23dc6" name="af4cf06a0ab87be2f45328e8e41b23dc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4cf06a0ab87be2f45328e8e41b23dc6">&#9670;&#160;</a></span>x3_g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:), allocatable mpi_subdomain::x3_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="mpi__subdomain_8f90_source.html#l00019">19</a> of file <a class="el" href="mpi__subdomain_8f90_source.html">mpi_subdomain.f90</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacempi__subdomain.html">mpi_subdomain</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

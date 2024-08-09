@@ -1,0 +1,131 @@
+\doxysection{main.\+f90}
+\hypertarget{main_8f90_source}{}\label{main_8f90_source}\index{examples/main.f90@{examples/main.f90}}
+\mbox{\hyperlink{main_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00001}\mbox{\hyperlink{namespacewrapper__module}{00001}}\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespacewrapper__module}{wrapper\_module}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00002}00002\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespaceglobal}{global}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00003}00003\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ use\_nvtx}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00004}00004\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacenvtx}{nvtx}}\ \textcolor{comment}{!\ for\ profiling}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00005}00005\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ mpi}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00007}00007\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00008}00008\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacempi__subdomain}{mpi\_subdomain}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ cuda}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }cudafor}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }openacc}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacecuda__subdomain}{cuda\_subdomain}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ poisson\ solver}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacefft__poisson}{fft\_poisson}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ physics}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacecuda__pressure}{cuda\_pressure}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ for\ postprocessing}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacecuda__post}{cuda\_post}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00020}\mbox{\hyperlink{namespacewrapper__module_a36a6caef829ea7cf5a4ff566fb372ed5}{00020}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision}\ ::\ \mbox{\hyperlink{namespacewrapper__module_a36a6caef829ea7cf5a4ff566fb372ed5}{timer}}(4)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00021}00021\ \textcolor{keyword}{end\ module}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00023}\mbox{\hyperlink{main_8f90_a0e77c80ff79f6c1aae177841941f709f}{00023}}\ \textcolor{keyword}{program}\ \mbox{\hyperlink{main_8f90_a0e77c80ff79f6c1aae177841941f709f}{mpm\_std}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacewrapper__module}{wrapper\_module}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr,\ istat}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{main_8f90_a8cdfda82b81e31ea3d28d910bb60fb00}{initial}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{!!\ allocatable\ memory}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_temp\_allocation()\ \textcolor{comment}{!\ temp1:\ dv\_d,dp\_d\ temp2:\ dw\_d}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00032}00032\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}[[[==============\ all\ setup\ finished\ ==============]]]"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}[[[===========\ main\ simulation\ starts!\ ============]]]"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewrapper__module_a36a6caef829ea7cf5a4ff566fb372ed5}{timer}}(1)=mpi\_wtime()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ use\_nvtx}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00040}00040\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }nvtxstartrange(\textcolor{stringliteral}{"{}Poisson"{}})}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00042}00042\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prhs\_d(1:n1msub,1:n2msub,1:n3msub)\ =>\ temp1\ \textcolor{comment}{!\ warning:\ grid\ size\ are\ different}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_pressure\_rhs(prhs\_d)\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_poisson\_fft\_1d(prhs\_d,\ p\_d,\ dmx1\_d,\ dmx2\_d,\ dmx3\_d,\ dx3\_d)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(prhs\_d)\ \textcolor{comment}{!\ nullify\ temp1\ \ }}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_dtoh(p\_d,\ p)\ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ use\_nvtx}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00051}00051\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }nvtxendrange}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00053}00053\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewrapper__module_a36a6caef829ea7cf5a4ff566fb372ed5}{timer}}(4)=mpi\_wtime()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}Total\ calculation\ time:\ "{}},\ \mbox{\hyperlink{namespacewrapper__module_a36a6caef829ea7cf5a4ff566fb372ed5}{timer}}(4)-\/\mbox{\hyperlink{namespacewrapper__module_a36a6caef829ea7cf5a4ff566fb372ed5}{timer}}(1)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_post\_fileout\_instantfield\_3d(p)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{main_8f90_a1705aa38d70fb1c1ddcf212d73edcd98}{clean}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00062}00062\ \textcolor{keyword}{end\ program}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00064}\mbox{\hyperlink{main_8f90_a8cdfda82b81e31ea3d28d910bb60fb00}{00064}}\ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{main_8f90_a8cdfda82b81e31ea3d28d910bb60fb00}{initial}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacewrapper__module}{wrapper\_module}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ use\_nvtx}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00070}00070\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }nvtxstartrange(\textcolor{stringliteral}{"{}initial"{}})}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00072}00072\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{call\ \ }mpi\_subdomain\_environment()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}00:\ mpi\ initializing"{}}\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_environment()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}01:\ cuda\ initializing"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }global\_inputpara(myrank)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}02:\ module\_global\ setting"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ \ }mpi\_subdomain\_initial()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}04:\ mpi\ subdomain\ initializing"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_initial()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}05:\ cuda\ subdomain\ initializing"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }fft\_poisson\_plan\_cuda\_create(comm\_1d\_x1\%myrank\ \ \ ,\ comm\_1d\_x2\%myrank\ \ \ ,\ comm\_1d\_x3\%myrank\ \ \ ,\&}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ comm\_1d\_x1\%nprocs\ \ \ ,\ comm\_1d\_x2\%nprocs\ \ \ ,\ comm\_1d\_x3\%nprocs\ \ \ ,\&}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ comm\_1d\_x1\%west\_rank,\ comm\_1d\_x2\%west\_rank,\ comm\_1d\_x3\%west\_rank,\&}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ comm\_1d\_x1\%east\_rank,\ comm\_1d\_x2\%east\_rank,\ comm\_1d\_x3\%east\_rank,\&}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ comm\_1d\_x1\%mpi\_comm\ ,\ comm\_1d\_x2\%mpi\_comm\ ,\ comm\_1d\_x3\%mpi\_comm\ ,\&}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n1,\ n2,\ n3,\ n1sub,\ n2sub,\ n3sub,\ l1,\ l2,\ l3,\ pbc1,\ pbc2,\ pbc3,\ threads\_tdma,\ threads\_fft)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_poisson\_fft\_initial()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_pressure\_memory(\textcolor{stringliteral}{'allocate'})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}12:\ pressure\ initializing"{}}\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_post\_initial()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}15:\ post\ process\ allocation"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_ghostcell\_update(p\_d)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_dtoh(p\_d,\ p)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}15:\ ghostcell\ update\ and\ host-\/device\ synchronizing"{}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_barrier(mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ ierr\ =\ cudadevicesynchronize()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (continuefilein==.true.)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;\ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}16:\ continue\ calculation\ setting"{}}\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_post\_filein\_continue\_post\_reassembly\_io(myrank,p)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_htod(p,\ p\_d)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00099}00099\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ use\_nvtx}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00102}00102\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }nvtxendrange}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00104}00104\ \textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00105}00105\ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{main_8f90_a8cdfda82b81e31ea3d28d910bb60fb00}{initial}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00108}\mbox{\hyperlink{main_8f90_a1705aa38d70fb1c1ddcf212d73edcd98}{00108}}\ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{main_8f90_a1705aa38d70fb1c1ddcf212d73edcd98}{clean}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacewrapper__module}{wrapper\_module}}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_destroy\_ptr()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_post\_clean()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_pressure\_memory(\textcolor{stringliteral}{'clean'})}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_poisson\_fft\_clean()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cuda\_subdomain\_clean()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_topology\_clean()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_subdomain\_clean()}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_finalize(ierr)}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(myrank==0)\ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{'[main]\ The\ main\ simulation\ complete.'}}
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8f90_source_l00125}00125\ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{main_8f90_a1705aa38d70fb1c1ddcf212d73edcd98}{clean}}}
+
+\end{DoxyCode}

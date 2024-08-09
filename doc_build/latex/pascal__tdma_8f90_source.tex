@@ -1,0 +1,589 @@
+\doxysection{pascal\+\_\+tdma.\+f90}
+\hypertarget{pascal__tdma_8f90_source}{}\label{pascal__tdma_8f90_source}\index{PaScaL\_TDMA/src/pascal\_tdma.f90@{PaScaL\_TDMA/src/pascal\_tdma.f90}}
+\mbox{\hyperlink{pascal__tdma_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00001}00001\ \textcolor{comment}{!======================================================================================================================}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00048}00048\ \textcolor{comment}{!======================================================================================================================}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00058}\mbox{\hyperlink{namespacepascal__tdma}{00058}}\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespacepascal__tdma}{pascal\_tdma}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00062}00062\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00068}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{00068}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{ptdma\_plan\_many}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00070}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_acb7e645e37c791564905c6e2808db0c6}{00070}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ptdma\_world}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00071}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_a22b42947ab742f83aad3bbeb3a42a0f6}{00071}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_sys\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00072}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_ad94248e2aa0653f151f0575d62d6fff7}{00072}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_row\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00074}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_aefad054b588906989c2fdfc5ef9cb6d4}{00074}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ nprocs}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00077}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_ab7a5a4be85650cfe4dfc30fd83b132d7}{00077}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ ::\ ddtype\_fs,\ count\_send,\ displ\_send}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00081}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_a30cebfb14bfcc955d3e98d9b1ea5fad7}{00081}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ ::\ ddtype\_bs,\ count\_recv,\ displ\_recv}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00086}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_a6d9101716eca623dc8c45075788f06bd}{00086}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:)}\ ::\ a\_rd,\ b\_rd,\ c\_rd,\ d\_rd\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00091}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many_a42be039aee75c5393c22111cf232e77d}{00091}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:)}\ ::\ a\_rt,\ b\_rt,\ c\_rt,\ d\_rt\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00094}00094\ \ \ \ \ \textcolor{keyword}{end\ type\ }\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{ptdma\_plan\_many}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00099}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{00099}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{ptdma\_plan\_single}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00101}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single_a073cddefd8ef983b185b6727d8ad7de6}{00101}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ptdma\_world}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00102}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single_a91fd8fb919f9b7d3137b13fcaa55dc1b}{00102}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_row\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00104}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single_af0d3b3bce8b9956aa9e80ba0712a9a9d}{00104}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ gather\_rank}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00105}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single_af473533b36508af4e0752cee8d182334}{00105}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ myrank}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00106}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single_ad37699922fd3eb9c8ef7c42a60583dc7}{00106}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ nprocs}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00110}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single_a732d93dcbef429c1396a6f7ace9cefa6}{00110}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ ::\ a\_rd,\ b\_rd,\ c\_rd,\ d\_rd}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00115}\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single_ad8bed95f594c23d7df9467e204025a74}{00115}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ ::\ a\_rt,\ b\_rt,\ c\_rt,\ d\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00118}00118\ \ \ \ \ \textcolor{keyword}{end\ type\ }\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{ptdma\_plan\_single}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00120}00120\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00122}00122\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_a5dfc2d7c919b47ad364a74d141532a9f}{pascal\_tdma\_plan\_single\_create}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00123}00123\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_adb04e59c740ce6c4b9518dd86eaeb594}{pascal\_tdma\_plan\_single\_destroy}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00124}00124\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_a6813b0fa9625caf2a7c41d7fee5ce5e2}{pascal\_tdma\_single\_solve}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00125}00125\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_a87ccb9a30141caf44726566f93d17cf7}{pascal\_tdma\_single\_solve\_cycle}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00127}00127\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_a7e9c24b343ae949044eccc8692dcc6e9}{pascal\_tdma\_plan\_many\_create}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00128}00128\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_aceec478e18d25d413a5bd8a174c3fcb8}{pascal\_tdma\_plan\_many\_destroy}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00129}00129\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_ad2e08adda91b031a6df7d90ef43c7f2a}{pascal\_tdma\_many\_solve}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00130}00130\ \ \ \ \ \textcolor{keywordtype}{public}\ \ ::\ \mbox{\hyperlink{namespacepascal__tdma_a44784cc88e2252697711d2ac7d525d97}{pascal\_tdma\_many\_solve\_cycle}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00132}00132\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00142}\mbox{\hyperlink{namespacepascal__tdma_a5dfc2d7c919b47ad364a74d141532a9f}{00142}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a5dfc2d7c919b47ad364a74d141532a9f}{pascal\_tdma\_plan\_single\_create}}(plan,\ myrank,\ nprocs,\ mpi\_world,\ gather\_rank)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{ptdma\_plan\_single}}),\ \textcolor{keywordtype}{intent(inout)}\ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ ::\ myrank,\ nprocs,\ mpi\_world,\ gather\_rank}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::\ nr\_rd\ \ \ \ \textcolor{comment}{!\ Number\ of\ rows\ of\ a\ reduced\ tridiagonal\ system\ per\ process,\ 2}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::\ nr\_rt\ \ \ \ \textcolor{comment}{!\ Number\ of\ rows\ of\ a\ reduced\ tridiagonal\ system\ after\ MPI\_Gather}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ nr\_rd\ =\ 2}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ nr\_rt\ =\ nr\_rd*nprocs}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ plan\%myrank\ =\ myrank}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ plan\%nprocs\ =\ nprocs}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ plan\%gather\_rank\ =\ gather\_rank}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ plan\%ptdma\_world\ =\ mpi\_world}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ plan\%n\_row\_rt\ =\ nr\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%A\_rd(1:nr\_rd),\ plan\%B\_rd(1:nr\_rd),\ plan\%C\_rd(1:nr\_rd),\ plan\%D\_rd(1:nr\_rd)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%A\_rt(1:nr\_rt),\ plan\%B\_rt(1:nr\_rt),\ plan\%C\_rt(1:nr\_rt),\ plan\%D\_rt(1:nr\_rt)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00164}00164\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a5dfc2d7c919b47ad364a74d141532a9f}{pascal\_tdma\_plan\_single\_create}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00170}\mbox{\hyperlink{namespacepascal__tdma_adb04e59c740ce6c4b9518dd86eaeb594}{00170}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_adb04e59c740ce6c4b9518dd86eaeb594}{pascal\_tdma\_plan\_single\_destroy}}(plan)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{ptdma\_plan\_single}}),\ \textcolor{keywordtype}{intent(inout)}\ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(plan\%A\_rd,\ plan\%B\_rd,\ plan\%C\_rd,\ plan\%D\_rd)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(plan\%A\_rt,\ plan\%B\_rt,\ plan\%C\_rt,\ plan\%D\_rt)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00179}00179\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_adb04e59c740ce6c4b9518dd86eaeb594}{pascal\_tdma\_plan\_single\_destroy}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00189}\mbox{\hyperlink{namespacepascal__tdma_a7e9c24b343ae949044eccc8692dcc6e9}{00189}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a7e9c24b343ae949044eccc8692dcc6e9}{pascal\_tdma\_plan\_many\_create}}(plan,\ n\_sys,\ myrank,\ nprocs,\ mpi\_world)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{ptdma\_plan\_many}}),\ \textcolor{keywordtype}{intent(inout)}\ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ ::\ n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ ::\ myrank,\ nprocs,\ mpi\_world}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ ierr}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ista,\ iend\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ First\ and\ last\ indices\ of\ assigned\ range\ in\ many\ tridiagonal\ systems\ of\ equations\ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ bigsize(2),\ subsize(2),\ start(2)\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Temporary\ variables\ of\ derived\ data\ type\ (DDT)}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ns\_rd,\ nr\_rd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Dimensions\ of\ many\ reduced\ tridiagonal\ systems}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ns\_rt,\ nr\_rt\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Dimensions\ of\ many\ reduced\ tridiagonal\ systems\ after\ transpose}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}::\ ns\_rt\_array\ \ \ \ \textcolor{comment}{!\ Array\ specifying\ the\ number\ of\ tridiagonal\ systems\ for\ each\ process\ after\ transpose}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ plan\%nprocs\ =\ nprocs}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Specify\ dimensions\ for\ reduced\ systems.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ ns\_rd\ =\ n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ nr\_rd\ =\ 2}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Specify\ dimensions\ for\ reduced\ systems\ after\ transpose.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ ns\_rt\ \ \ \ \ \ \ \ \ :\ divide\ the\ number\ of\ tridiagonal\ systems\ of\ equations\ per\ each\ process\ \ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ ns\_rt\_array\ \ \ :\ save\ the\ ns\_rt\ in\ ns\_rt\_array\ for\ defining\ the\ DDT}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ nr\_rt\ \ \ \ \ \ \ \ \ :\ dimensions\ of\ the\ reduced\ tridiagonal\ systems\ in\ the\ solving\ direction,\ nr\_rd*nprocs}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{examples_2para__range_8f90_ab75ab386311975aa4ff7cac06798fcd4}{para\_range}}(1,\ ns\_rd,\ nprocs,\ myrank,\ ista,\ iend)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ ns\_rt\ =\ iend\ -\/\ ista\ +\ 1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(ns\_rt\_array(0:nprocs-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_allgather(ns\_rt,\ 1,\ mpi\_integer,\ ns\_rt\_array,1,\ mpi\_integer,\ mpi\_world,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ nr\_rt\ =\ nr\_rd*nprocs}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Assign\ plan\ variables\ and\ allocate\ coefficient\ arrays.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ plan\%n\_sys\_rt\ =\ ns\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ plan\%n\_row\_rt\ =\ nr\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ plan\%ptdma\_world\ =\ mpi\_world}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%A\_rd(1:ns\_rd,\ 1:nr\_rd)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%B\_rd(1:ns\_rd,\ 1:nr\_rd)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%C\_rd(1:ns\_rd,\ 1:nr\_rd)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%D\_rd(1:ns\_rd,\ 1:nr\_rd)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%A\_rt(1:ns\_rt,\ 1:nr\_rt)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%B\_rt(1:ns\_rt,\ 1:nr\_rt)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%C\_rt(1:ns\_rt,\ 1:nr\_rt)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ plan\%D\_rt(1:ns\_rt,\ 1:nr\_rt)\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Building\ the\ DDTs.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(plan\%ddtype\_Fs(0:nprocs-\/1),\ \ plan\%ddtype\_Bs(0:nprocs-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=0,nprocs-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ DDT\ for\ sending\ coefficients\ of\ the\ reduced\ tridiagonal\ systems\ using\ MPI\_Ialltoallw\ communication.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ bigsize(1)=ns\_rd}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ bigsize(2)=nr\_rd}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ subsize(1)=ns\_rt\_array(i)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ subsize(2)=nr\_rd}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ start(1)=sum(ns\_rt\_array(0:i))\ -\/\ ns\_rt\_array(i)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ start(2)=0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_subarray(\ \ 2,\ bigsize,\ subsize,\ start,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpi\_order\_fortran,\ mpi\_double\_precision,\ \ \ \ \ \ \ \ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ddtype\_Fs(i),\ ierr\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_commit(plan\%ddtype\_Fs(i),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ DDT\ for\ receiving\ coefficients\ for\ the\ transposed\ systems\ of\ reduction\ using\ MPI\_Ialltoallw\ communication.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ bigsize(1)=ns\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ bigsize(2)=nr\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ subsize(1)=ns\_rt}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ subsize(2)=nr\_rd}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ start(1)=0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ start(2)=nr\_rd*i}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_subarray(\ \ 2,\ bigsize,\ subsize,\ start,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpi\_order\_fortran,\ mpi\_double\_precision,\ \ \ \ \ \ \ \ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ddtype\_Bs(i),\ ierr\ )}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_commit(plan\%ddtype\_Bs(i),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00260}00260\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00262}00262\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Buffer\ counts\ and\ displacements\ for\ MPI\_Ialltoallw.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ All\ buffer\ counts\ are\ 1\ and\ displacements\ are\ 0\ due\ to\ the\ defined\ DDT.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(plan\%count\_send(0:nprocs-\/1),\ plan\%displ\_send(0:nprocs-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(plan\%count\_recv(0:nprocs-\/1),\ plan\%displ\_recv(0:nprocs-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00266}00266\ \ \ \ \ \ \ \ \ plan\%count\_send=1;\ plan\%displ\_send=0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00267}00267\ \ \ \ \ \ \ \ \ plan\%count\_recv=1;\ plan\%displ\_recv=0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Deallocate\ local\ array.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{allocated}(ns\_rt\_array))\ \textcolor{keyword}{deallocate}(ns\_rt\_array)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00272}00272\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a7e9c24b343ae949044eccc8692dcc6e9}{pascal\_tdma\_plan\_many\_create}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00278}\mbox{\hyperlink{namespacepascal__tdma_aceec478e18d25d413a5bd8a174c3fcb8}{00278}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_aceec478e18d25d413a5bd8a174c3fcb8}{pascal\_tdma\_plan\_many\_destroy}}(plan,nprocs)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{ptdma\_plan\_many}}),\ \textcolor{keywordtype}{intent(inout)}\ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,nprocs,ierr}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=0,nprocs-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_free(plan\%ddtype\_Fs(i),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_free(plan\%ddtype\_Bs(i),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00287}00287\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(plan\%ddtype\_Fs,\ \ plan\%ddtype\_Bs)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(plan\%count\_send,\ plan\%displ\_send)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(plan\%count\_recv,\ plan\%displ\_recv)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00292}00292\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(plan\%A\_rd,\ plan\%B\_rd,\ plan\%C\_rd,\ plan\%D\_rd)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(plan\%A\_rt,\ plan\%B\_rt,\ plan\%C\_rt,\ plan\%D\_rt)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00296}00296\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_aceec478e18d25d413a5bd8a174c3fcb8}{pascal\_tdma\_plan\_many\_destroy}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00307}\mbox{\hyperlink{namespacepascal__tdma_a6813b0fa9625caf2a7c41d7fee5ce5e2}{00307}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a6813b0fa9625caf2a7c41d7fee5ce5e2}{pascal\_tdma\_single\_solve}}(plan,\ A,\ B,\ C,\ D,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00308}00308\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00311}00311\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{ptdma\_plan\_single}}),\ \textcolor{keywordtype}{intent(inout)}\ \ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \ \ \textcolor{keywordtype}{intent(inout)}\ \ \ ::\ a(1:n\_row),\ b(1:n\_row),\ c(1:n\_row),\ d(1:n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Temporary\ variables\ for\ computation\ and\ parameters\ for\ MPI\ functions}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision}\ ::\ r}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00317}00317\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ request(4),\ ierr}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plan\%nprocs.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ tridiagonal\ systems\ directly\ when\ nprocs\ =\ 1.\ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_a4a6130fff49607012fefacc8640424a7}{tdma\_single}}(a,\ b,\ c,\ d,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00324}00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Reduction\ step\ :\ elimination\ of\ lower\ diagonal\ elements}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ a(1)\ =\ a(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ d(1)\ =\ d(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ c(1)\ =\ c(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ a(2)\ =\ a(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ d(2)\ =\ d(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ c(2)\ =\ c(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00333}00333\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=3,n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ r\ \ \ \ =\ \ 1.d0/(b(i)-\/a(i)*c(i-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i)\ =\ \ r*(d(i)-\/a(i)*d(i-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i)\ =\ \ r*c(i)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i)\ =\ -\/r*a(i)*a(i-\/1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00339}00339\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Reduction\ step\ :\ elimination\ of\ upper\ diagonal\ elements}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=n\_row-\/2,2,-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i)\ =\ d(i)-\/c(i)*d(i+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i)\ =\ a(i)-\/c(i)*a(i+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i)\ =-\/c(i)*c(i+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00346}00346\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ r\ =\ 1.d0/(1.d0-\/a(2)*c(1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ d(1)\ =\ \ r*(d(1)-\/c(1)*d(2))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ a(1)\ =\ \ r*a(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ c(1)\ =\ -\/r*c(1)*c(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Construct\ a\ reduced\ tridiagonal\ system\ of\ equations\ per\ each\ rank.\ Each\ process\ has\ two\ reduced\ rows.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rd(1)\ =\ a(1);\ plan\%A\_rd(2)\ =\ a(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rd(1)\ =\ 1.d0;\ plan\%B\_rd(2)\ =\ 1.d0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rd(1)\ =\ c(1);\ plan\%C\_rd(2)\ =\ c(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd(1)\ =\ d(1);\ plan\%D\_rd(2)\ =\ d(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Gather\ the\ coefficients\ of\ the\ reduced\ tridiagonal\ system\ to\ a\ defined\ rank,\ plan\%gather\_rank.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%A\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%B\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(2),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%C\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(3),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%D\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(4),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(4,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ reduced\ tridiagonal\ system\ on\ plan\%gather\_rank.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(plan\%myrank\ ==\ plan\%gather\_rank)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_a4a6130fff49607012fefacc8640424a7}{tdma\_single}}(plan\%A\_rt,plan\%B\_rt,plan\%C\_rt,plan\%D\_rt,\ plan\%n\_row\_rt)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00377}00377\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Scatter\ the\ solutions\ to\ each\ rank.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_iscatter(plan\%D\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00383}00383\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(1,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00385}00385\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Update\ solutions\ of\ the\ modified\ tridiagonal\ system\ with\ the\ solutions\ of\ the\ reduced\ tridiagonal\ system.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ d(1\ )\ =\ plan\%D\_rd(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ d(n\_row)\ =\ plan\%D\_rd(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=2,n\_row-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i)\ =\ d(i)-\/a(i)*d(1)-\/c(i)*d(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00391}00391\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00392}00392\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00393}00393\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00394}00394\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a6813b0fa9625caf2a7c41d7fee5ce5e2}{pascal\_tdma\_single\_solve}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00395}00395\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00405}\mbox{\hyperlink{namespacepascal__tdma_a87ccb9a30141caf44726566f93d17cf7}{00405}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a87ccb9a30141caf44726566f93d17cf7}{pascal\_tdma\_single\_solve\_cycle}}(plan,\ A,\ B,\ C,\ D,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00406}00406\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00407}00407\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00408}00408\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00409}00409\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{ptdma\_plan\_single}}),\ \textcolor{keywordtype}{intent(inout)}\ \ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00410}00410\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{intent(inout)}\ \ \ \ \ ::\ a(1:n\_row),\ b(1:n\_row),\ c(1:n\_row),\ d(1:n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00411}00411\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::\ n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00412}00412\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00413}00413\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Temporary\ variables\ for\ computation\ and\ parameters\ for\ MPI\ functions.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00414}00414\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ request(4),\ ierr}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00415}00415\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision}\ ::\ rr}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00417}00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plan\%nprocs.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00418}00418\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ tridiagonal\ systems\ directly\ when\ nprocs\ =\ 1.\ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_a4cb1f95e9c608085c5bb19baff639d9e}{tdma\_cycl\_single}}(a,\ b,\ c,\ d,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00421}00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ The\ modified\ Thomas\ algorithm\ :\ elimination\ of\ lower\ diagonal\ elements.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ a(1)\ =\ a(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ d(1)\ =\ d(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ c(1)\ =\ c(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ a(2)\ =\ a(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ d(2)\ =\ d(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ c(2)\ =\ c(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=3,n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rr\ =\ 1.d0/(b(i)-\/a(i)*c(i-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i)\ =\ \ rr*(d(i)-\/a(i)*d(i-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i)\ =\ \ rr*c(i)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i)\ =\ -\/rr*a(i)*a(i-\/1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00437}00437\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00438}00438\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ The\ modified\ Thomas\ algorithm\ :\ elimination\ of\ upper\ diagonal\ elements.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=n\_row-\/2,2,-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i)\ =\ \ d(i)-\/c(i)*d(i+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i)\ =\ \ a(i)-\/c(i)*a(i+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i)\ =\ -\/c(i)*c(i+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00444}00444\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ rr\ =\ 1.d0/(1.d0-\/a(2)*c(1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ d(1)\ =\ \ rr*(d(1)-\/c(1)*d(2))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ a(1)\ =\ \ rr*a(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ c(1)\ =\ -\/rr*c(1)*c(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00450}00450\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Construct\ a\ reduced\ tridiagonal\ system\ of\ equations\ per\ each\ rank.\ Each\ process\ has\ two\ reduced\ rows.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rd(1)\ =\ a(1);\ plan\%A\_rd(2)\ =\ a(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rd(1)\ =\ 1.d0;\ plan\%B\_rd(2)\ =\ 1.d0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rd(1)\ =\ c(1);\ plan\%C\_rd(2)\ =\ c(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd(1)\ =\ d(1);\ plan\%D\_rd(2)\ =\ d(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00456}00456\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Gather\ the\ coefficients\ of\ the\ reduced\ tridiagonal\ system\ to\ a\ defined\ rank,\ plan\%gather\_rank.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%A\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%B\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(2),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%C\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(3),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_igather(plan\%D\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(4),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00470}00470\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(4,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ reduced\ cyclic\ tridiagonal\ system\ on\ plan\%gather\_rank.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(plan\%myrank\ ==\ plan\%gather\_rank)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_a4cb1f95e9c608085c5bb19baff639d9e}{tdma\_cycl\_single}}(plan\%A\_rt,plan\%B\_rt,plan\%C\_rt,plan\%D\_rt,\ plan\%n\_row\_rt)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00476}00476\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Distribute\ the\ solutions\ to\ each\ rank.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_iscatter(plan\%D\_rt,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd,\ 2,\ mpi\_double\_precision,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%gather\_rank,\ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00482}00482\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(1,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00484}00484\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Update\ solutions\ of\ the\ modified\ tridiagonal\ system\ with\ the\ solutions\ of\ the\ reduced\ tridiagonal\ system.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ d(1\ )\ =\ plan\%D\_rd(1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ d(n\_row)\ =\ plan\%D\_rd(2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00488}00488\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=2,\ n\_row-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i)\ =\ d(i)-\/a(i)*d(1)-\/c(i)*d(n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00491}00491\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00492}00492\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00493}00493\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00494}00494\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a87ccb9a30141caf44726566f93d17cf7}{pascal\_tdma\_single\_solve\_cycle}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00495}00495\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00506}\mbox{\hyperlink{namespacepascal__tdma_ad2e08adda91b031a6df7d90ef43c7f2a}{00506}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_ad2e08adda91b031a6df7d90ef43c7f2a}{pascal\_tdma\_many\_solve}}(plan,\ A,\ B,\ C,\ D,\ n\_sys,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00507}00507\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00508}00508\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00509}00509\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00510}00510\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{ptdma\_plan\_many}}),\ \textcolor{keywordtype}{intent(inout)}\ \ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00511}00511\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{intent(inout)}\ \ \ \ \ ::\ a(1:n\_sys,1:n\_row),\ b(1:n\_sys,1:n\_row),\ c(1:n\_sys,1:n\_row),\ d(1:n\_sys,1:n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00512}00512\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::\ n\_sys,\ n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00513}00513\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00514}00514\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Temporary\ variables\ for\ computation\ and\ parameters\ for\ MPI\ functions.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00515}00515\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ j}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00516}00516\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ request(4),ierr}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00517}00517\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision}\ ::\ r}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00518}00518\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00519}00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plan\%nprocs.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ tridiagonal\ systems\ directly\ when\ nprocs\ =\ 1.\ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_ab8cc761496e63e21ee8379d4fc077f05}{tdma\_many}}(a,\ b,\ c,\ d,\ n\_sys,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00523}00523\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00524}00524\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ The\ modified\ Thomas\ algorithm\ :\ elimination\ of\ lower\ diagonal\ elements.\ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ First\ index\ indicates\ a\ number\ of\ independent\ many\ tridiagonal\ systems\ to\ use\ vectorization.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Second\ index\ indicates\ a\ row\ number\ in\ a\ partitioned\ tridiagonal\ system\ .}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,\ n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,1)\ =\ a(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,1)\ =\ d(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,1)\ =\ c(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,2)\ =\ a(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,2)\ =\ d(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,2)\ =\ c(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00536}00536\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00537}00537\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ j=3,\ n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,\ n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ r\ \ \ \ =\ \ \ \ 1.d0/(b(i,j)-\/a(i,j)*c(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)\ =\ \ r*(d(i,j)-\/a(i,j)*d(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,j)\ =\ \ r*c(i,j)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,j)\ =\ -\/r*a(i,j)*a(i,j-\/1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00544}00544\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00545}00545\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00546}00546\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ The\ modified\ Thomas\ algorithm\ :\ elimination\ of\ upper\ diagonal\ elements.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ j=n\_row-\/2,\ 2,\ -\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,\ n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)\ =\ d(i,j)-\/c(i,j)*d(i,j+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,j)\ =\ a(i,j)-\/c(i,j)*a(i,j+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,j)\ =-\/c(i,j)*c(i,j+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00553}00553\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00554}00554\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00555}00555\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,\ n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ r\ =\ 1.d0/(1.d0-\/a(i,2)*c(i,1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,1)\ =\ \ r*(d(i,1)-\/c(i,1)*d(i,2))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,1)\ =\ \ r*a(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,1)\ =\ -\/r*c(i,1)*c(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00561}00561\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Construct\ many\ reduced\ tridiagonal\ systems\ per\ each\ rank.\ Each\ process\ has\ two\ rows\ of\ reduced\ systems.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rd(i,1)\ =\ a(i,1);\ plan\%A\_rd(i,2)\ =\ a(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rd(i,1)\ =\ 1.d0\ \ ;\ plan\%B\_rd(i,2)\ =\ 1.d0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rd(i,1)\ =\ c(i,1);\ plan\%C\_rd(i,2)\ =\ c(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd(i,1)\ =\ d(i,1);\ plan\%D\_rd(i,2)\ =\ d(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00567}00567\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00568}00568\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Transpose\ the\ reduced\ systems\ of\ equations\ for\ TDMA\ using\ MPI\_Ialltoallw\ and\ DDTs.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%A\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%B\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(2),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%C\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(3),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%D\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(4),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00583}00583\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(4,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00585}00585\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ reduced\ tridiagonal\ systems\ of\ equations\ using\ Thomas\ algorithm.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_ab8cc761496e63e21ee8379d4fc077f05}{tdma\_many}}(plan\%A\_rt,plan\%B\_rt,plan\%C\_rt,plan\%D\_rt,\ plan\%n\_sys\_rt,\ plan\%n\_row\_rt)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00588}00588\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Transpose\ the\ obtained\ solutions\ to\ original\ reduced\ forms\ using\ MPI\_Ialltoallw\ and\ DDTs.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00590}00590\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%D\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00593}00593\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(1,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00594}00594\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Update\ solutions\ of\ the\ modified\ tridiagonal\ system\ with\ the\ solutions\ of\ the\ reduced\ tridiagonal\ system.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,1\ )\ =\ plan\%D\_rd(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00598}00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,n\_row)\ =\ plan\%D\_rd(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00599}00599\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00600}00600\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ j=2,n\_row-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00603}00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)\ =\ d(i,j)-\/a(i,j)*d(i,1)-\/c(i,j)*d(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00604}00604\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00605}00605\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00606}00606\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00607}00607\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00608}00608\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_ad2e08adda91b031a6df7d90ef43c7f2a}{pascal\_tdma\_many\_solve}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00609}00609\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00620}\mbox{\hyperlink{namespacepascal__tdma_a44784cc88e2252697711d2ac7d525d97}{00620}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a44784cc88e2252697711d2ac7d525d97}{pascal\_tdma\_many\_solve\_cycle}}(plan,\ A,\ B,\ C,\ D,\ n\_sys,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00621}00621\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00622}00622\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00623}00623\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00624}00624\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{ptdma\_plan\_many}}),\ \textcolor{keywordtype}{intent(inout)}\ \ \ ::\ plan}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00625}00625\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{intent(inout)}\ \ \ \ \ ::\ a(1:n\_sys,1:n\_row),\ b(1:n\_sys,1:n\_row),\ c(1:n\_sys,1:n\_row),\ d(1:n\_sys,1:n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00626}00626\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::\ n\_sys,\ n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00627}00627\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00628}00628\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Temporary\ variables\ for\ computation\ and\ parameters\ for\ MPI\ functions.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00629}00629\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,j}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00630}00630\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ request(4),\ ierr}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00631}00631\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision}\ ::\ r}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00632}00632\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00633}00633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plan\%nprocs.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00634}00634\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ tridiagonal\ systems\ directly\ when\ nprocs\ =\ 1.\ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00636}00636\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_a6c50d548eaa4b5e9b96ccbf8f65cb12a}{tdma\_cycl\_many}}(a,\ b,\ c,\ d,\ n\_sys,\ n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00637}00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00638}00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ The\ modified\ Thomas\ algorithm\ :\ elimination\ of\ lower\ diagonal\ elements.\ }}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00639}00639\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ First\ index\ indicates\ a\ number\ of\ independent\ many\ tridiagonal\ systems\ to\ use\ vectorization.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00640}00640\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Second\ index\ indicates\ a\ row\ number\ in\ a\ partitioned\ tridiagonal\ system.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,1)\ =\ a(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00643}00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,1)\ =\ d(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,1)\ =\ c(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00645}00645\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00646}00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,2)\ =\ a(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,2)\ =\ d(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00648}00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,2)\ =\ c(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00649}00649\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00650}00650\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00651}00651\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ j=3,n\_row}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00652}00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ r\ =\ \ \ \ 1.d0/(b(i,j)-\/a(i,j)*c(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00654}00654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)\ =\ \ r*(d(i,j)-\/a(i,j)*d(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00655}00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,j)\ =\ \ r*c(i,j)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00656}00656\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,j)\ =\ -\/r*a(i,j)*a(i,j-\/1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00657}00657\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00658}00658\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00659}00659\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00660}00660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ The\ modified\ Thomas\ algorithm\ :\ elimination\ of\ upper\ diagonal\ elements.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00661}00661\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ j=n\_row-\/2,2,-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00662}00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00663}00663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)\ =\ d(i,j)-\/c(i,j)*d(i,j+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00664}00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,j)\ =\ a(i,j)-\/c(i,j)*a(i,j+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00665}00665\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,j)\ =-\/c(i,j)*c(i,j+1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00666}00666\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00667}00667\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00668}00668\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00669}00669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00670}00670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ r\ =\ 1.d0/(1.d0-\/a(i,2)*c(i,1))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00671}00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,1)\ =\ \ r*(d(i,1)-\/c(i,1)*d(i,2))}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00672}00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,1)\ =\ \ r*a(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c(i,1)\ =\ -\/r*c(i,1)*c(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00674}00674\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00675}00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Construct\ the\ reduced\ tridiagonal\ equations\ per\ each\ rank.\ Each\ process\ has\ two\ rows\ of\ reduced\ systems.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rd(i,1)\ =\ a(i,1);\ plan\%A\_rd(i,2)\ =\ a(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00677}00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rd(i,1)\ =\ 1.d0\ \ ;\ plan\%B\_rd(i,2)\ =\ 1.d0}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00678}00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rd(i,1)\ =\ c(i,1);\ plan\%C\_rd(i,2)\ =\ c(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00679}00679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd(i,1)\ =\ d(i,1);\ plan\%D\_rd(i,2)\ =\ d(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00680}00680\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00681}00681\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00682}00682\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Transpose\ the\ reduced\ systems\ of\ equations\ for\ TDMA\ using\ MPI\_Ialltoallw\ and\ DDTs.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%A\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%A\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00685}00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00686}00686\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%B\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%B\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00688}00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(2),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00689}00689\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%C\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00690}00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%C\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00691}00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(3),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00692}00692\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%D\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00693}00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00694}00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(4),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00695}00695\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00696}00696\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(4,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00697}00697\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00698}00698\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Solve\ the\ reduced\ cyclic\ tridiagonal\ systems\ of\ equations\ using\ cyclic\ TDMA.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00699}00699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{tdmas_8f90_a6c50d548eaa4b5e9b96ccbf8f65cb12a}{tdma\_cycl\_many}}(plan\%A\_rt,\ plan\%B\_rt,\ plan\%C\_rt,\ plan\%D\_rt,\ plan\%n\_sys\_rt,\ plan\%n\_row\_rt)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00700}00700\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00701}00701\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Transpose\ the\ obtained\ solutions\ to\ original\ reduced\ forms\ using\ MPI\_Ialltoallw\ and\ DDTs.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00702}00702\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_ialltoallw(plan\%D\_rt,\ plan\%count\_recv,\ plan\%displ\_recv,\ plan\%ddtype\_Bs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00703}00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%D\_rd,\ plan\%count\_send,\ plan\%displ\_send,\ plan\%ddtype\_Fs,\ \&}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00704}00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ plan\%ptdma\_world,\ request(1),\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00705}00705\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_waitall(1,\ request,\ mpi\_statuses\_ignore,\ ierr)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00706}00706\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00707}00707\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Update\ solutions\ of\ the\ modified\ tridiagonal\ system\ with\ the\ solutions\ of\ the\ reduced\ tridiagonal\ system.}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00708}00708\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00709}00709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,1\ )\ =\ plan\%D\_rd(i,1)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00710}00710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,n\_row)\ =\ plan\%D\_rd(i,2)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00711}00711\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00712}00712\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00713}00713\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ j=2,n\_row-\/1}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00714}00714\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n\_sys}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00715}00715\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)\ =\ d(i,j)-\/a(i,j)*d(i,1)-\/c(i,j)*d(i,n\_row)}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00716}00716\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00717}00717\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00718}00718\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00719}00719\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00720}00720\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacepascal__tdma_a44784cc88e2252697711d2ac7d525d97}{pascal\_tdma\_many\_solve\_cycle}}}
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00721}00721\ }
+\DoxyCodeLine{\Hypertarget{pascal__tdma_8f90_source_l00722}00722\ \textcolor{keyword}{end\ module\ }\mbox{\hyperlink{namespacepascal__tdma}{pascal\_tdma}}}
+
+\end{DoxyCode}

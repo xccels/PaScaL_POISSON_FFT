@@ -1,0 +1,237 @@
+\doxysection{global.\+f90}
+\hypertarget{global_8f90_source}{}\label{global_8f90_source}\index{examples/global.f90@{examples/global.f90}}
+\mbox{\hyperlink{global_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00001}\mbox{\hyperlink{namespaceglobal}{00001}}\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespaceglobal}{global}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00002}00002\ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00003}00003\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00004}00004\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#ifdef\ SINGLE\_PRECISION}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00006}\mbox{\hyperlink{namespaceglobal_afc100e0ded3d8ef70c4324f683f79e8f}{00006}}\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{parameter}\ ::\ \mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}\ =\ kind(0.0),\ \mbox{\hyperlink{namespaceglobal_ae70b9faacad6e117d1caccc696cd57dc}{mpi\_real\_type}}\ =\ mpi\_real,\ \mbox{\hyperlink{namespaceglobal_afc100e0ded3d8ef70c4324f683f79e8f}{mpi\_complex\_type}}\ =\ mpi\_complex}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00007}00007\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00008}00008\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{parameter}\ ::\ \mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}\ =\ kind(0.0d0),\ \mbox{\hyperlink{namespaceglobal_ae70b9faacad6e117d1caccc696cd57dc}{mpi\_real\_type}}\ =\ mpi\_double\_precision,\ \mbox{\hyperlink{namespaceglobal_afc100e0ded3d8ef70c4324f683f79e8f}{mpi\_complex\_type}}\ =\ mpi\_double\_complex}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00009}00009\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00010}\mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{00010}}\ \textcolor{preprocessor}{}\textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}),\ \textcolor{keywordtype}{parameter}\ ::\ \mbox{\hyperlink{namespaceglobal_a966b628b489f6e6612dcad5fd6f74977}{pi}}\ =\ real(dacos(-\/1.0d0),\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00012}00012\ \ \ \ \ \textcolor{comment}{!\ 1\ -\/\ Domain\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00013}00013\ \ \ \ \ \textcolor{comment}{!\ 1-\/1.\ Size\ and\ Volume}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00014}\mbox{\hyperlink{namespaceglobal_a08e5886ef7fa819f9fdc4727c35be45c}{00014}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespaceglobal_a08e5886ef7fa819f9fdc4727c35be45c}{x1\_start}},\ \mbox{\hyperlink{namespaceglobal_a5fe2087fcac22706ccf63c6687b3739f}{x2\_start}},\ \mbox{\hyperlink{namespaceglobal_ae59bd47c1996f54114ed35a50aa8bc60}{x3\_start}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00015}\mbox{\hyperlink{namespaceglobal_a127a1f08cd9fbdd4ccb85a06660297ee}{00015}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespaceglobal_a127a1f08cd9fbdd4ccb85a06660297ee}{x1\_end}}\ \ ,\ \mbox{\hyperlink{namespaceglobal_ad3642fe4bf46a3e116b4c4d90998fca0}{x2\_end}}\ \ ,\ \mbox{\hyperlink{namespaceglobal_aa8e818bdb00de4389789443e127310bc}{x3\_end}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00016}\mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{00016}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{l1}},\ \mbox{\hyperlink{namespaceglobal_adc784850351a8d6d3c389df42c14b350}{l2}},\ \mbox{\hyperlink{namespaceglobal_a58e2e938719f9f506a20baa4795cf152}{l3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00017}\mbox{\hyperlink{namespaceglobal_a6e71b371b2e38e04beca107129a77313}{00017}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespaceglobal_a6e71b371b2e38e04beca107129a77313}{volume}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00019}00019\ \ \ \ \ \textcolor{comment}{!\ 1-\/2.\ Mesh}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00020}\mbox{\hyperlink{namespaceglobal_a0c8a2a95d05302d597dff9c87218f47d}{00020}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \ \mbox{\hyperlink{namespaceglobal_a0c8a2a95d05302d597dff9c87218f47d}{n1}},\ \ \mbox{\hyperlink{namespaceglobal_ace9ec405b0eae1e771312b12aceb4497}{n2}},\ \ \mbox{\hyperlink{namespaceglobal_a5d191b692f93fbe770043a03ea5657a1}{n3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00021}\mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{00021}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00022}\mbox{\hyperlink{namespaceglobal_a649bf30673124d767482f804477b0838}{00022}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a649bf30673124d767482f804477b0838}{n1p}},\ \mbox{\hyperlink{namespaceglobal_aed6cd18efdf63bf46c4bfb58af44e1b9}{n2p}},\ \mbox{\hyperlink{namespaceglobal_aab476bc5d461059612f5514025e1532f}{n3p}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00023}\mbox{\hyperlink{namespaceglobal_a3da9157e5a9945a236d7d613aa18b433}{00023}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespaceglobal_a3da9157e5a9945a236d7d613aa18b433}{resolution\_x}},\ \mbox{\hyperlink{namespaceglobal_aad58cdc51689a93a75d7f283a826b412}{resolution\_y}},\ \mbox{\hyperlink{namespaceglobal_a0d4b169d0b151bbd4a28c23e986701d2}{resolution\_z}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00024}00024\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00025}00025\ \ \ \ \ \textcolor{comment}{!\ 2.\ Mesh\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00026}00026\ \ \ \ \ \textcolor{comment}{!\ 2-\/1.\ Grid\ Style}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00027}\mbox{\hyperlink{namespaceglobal_a4c97b706fc5c2c7ffde2935ad5f6f589}{00027}}\ \ \ \ \ \textcolor{keywordtype}{logical}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a4c97b706fc5c2c7ffde2935ad5f6f589}{pbc1}},\ \mbox{\hyperlink{namespaceglobal_aa8db0c9a30b7366f3e35088807e40a3f}{pbc2}},\ \mbox{\hyperlink{namespaceglobal_a248fbca810278258beab1a2dabb11f85}{pbc3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00028}\mbox{\hyperlink{namespaceglobal_a76758cd220390a344b5e5dfe511a3a18}{00028}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a76758cd220390a344b5e5dfe511a3a18}{uniform1}},\ \mbox{\hyperlink{namespaceglobal_a1d6b385391f1f43098fafbafc5c5c4d5}{uniform2}},\ \mbox{\hyperlink{namespaceglobal_a849ac11b21aa0b23711238fceefb256d}{uniform3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00029}\mbox{\hyperlink{namespaceglobal_a017612876f42763b31e243ece662f597}{00029}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespaceglobal_a017612876f42763b31e243ece662f597}{gamma1}},\ \mbox{\hyperlink{namespaceglobal_afd79a22860c5a790a3173c3ad014fae8}{gamma2}},\ \mbox{\hyperlink{namespaceglobal_a067d163b994e44005278681094df41a9}{gamma3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00030}00030\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00031}00031\ \ \ \ \ \textcolor{comment}{!\ 3.\ Parallel\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00032}00032\ \ \ \ \ \textcolor{comment}{!\ 3-\/1.\ MPI\ Procs}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00033}\mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{00033}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{np1}},\ \mbox{\hyperlink{namespaceglobal_a4e502b4b6979bd2863d01b3db92a06b0}{np2}},\ \mbox{\hyperlink{namespaceglobal_a344c6fc4e5718cc5e5654f805bdb53b5}{np3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00034}00034\ \ \ \ \ \textcolor{comment}{!\ 3-\/2.\ CUDA\ Thread}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00035}\mbox{\hyperlink{namespaceglobal_a33db542cca17d8c3a156e90d31d8abe5}{00035}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a33db542cca17d8c3a156e90d31d8abe5}{thread\_in\_x}},\ \mbox{\hyperlink{namespaceglobal_a2694e42b57b63e348f472d5a59bfe0fb}{thread\_in\_y}},\ \mbox{\hyperlink{namespaceglobal_a1f39f066a0ed398d1e3e56d13d092718}{thread\_in\_z}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00036}00036\ \ \ \ \ \textcolor{comment}{!\ 3-\/3.\ CUDA\ Pascal\ TDMA\ Thread}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00037}\mbox{\hyperlink{namespaceglobal_ad227cd185eef1c5ade91c3010086f796}{00037}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a0c53f9dfde5486b01023d0c9479db29c}{thread\_in\_x\_pascal}},\ \mbox{\hyperlink{namespaceglobal_af395b143d44c9d28517e64a695920dda}{thread\_in\_y\_pascal}},\ \mbox{\hyperlink{namespaceglobal_ad227cd185eef1c5ade91c3010086f796}{thread\_in\_fft\_pascal}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00038}00038\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00039}\mbox{\hyperlink{namespaceglobal_a127f0f1018715311f41eab93b98d9ece}{00039}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ \ ::\ \mbox{\hyperlink{namespaceglobal_a127f0f1018715311f41eab93b98d9ece}{poisson\_model}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00041}00041\ \ \ \ \ \textcolor{comment}{!\ 7.\ Post\ Options:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00042}\mbox{\hyperlink{namespaceglobal_ad316d4458ac81f4c048623c3c82207e7}{00042}}\ \ \ \ \ \textcolor{keywordtype}{logical}\ \ ::\ \mbox{\hyperlink{namespaceglobal_ad316d4458ac81f4c048623c3c82207e7}{continuefilein}},\ \mbox{\hyperlink{namespaceglobal_a575540418173b039c6a6078a9408e7ca}{continuefileout}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00043}00043\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00044}00044\ \ \ \ \ \textcolor{comment}{!\ 8.\ Directories:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00045}\mbox{\hyperlink{namespaceglobal_a61a471b9b10d8ad3f6fc3a877831f3c0}{00045}}\ \ \ \ \ \textcolor{keywordtype}{character(len=128)}\ ::\ \mbox{\hyperlink{namespaceglobal_a61a471b9b10d8ad3f6fc3a877831f3c0}{dir\_cont\_filein}},\ \mbox{\hyperlink{namespaceglobal_af77417ee59b989d9a22c0392edddf6a5}{dir\_cont\_fileout}},\ \mbox{\hyperlink{namespaceglobal_ae7f8d51f3d4c339f9d24d3043e518451}{dir\_instantfield}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00047}00047\ \ \ \ \ \textcolor{comment}{!integer\ \ ::\ print\_j\_index\_wall,print\_j\_index\_bulk,print\_k\_index}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00049}00049\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00050}00050\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00051}\mbox{\hyperlink{namespaceglobal_ac3c4a9e1a04fa53294db970883f9a5dc}{00051}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceglobal_ac3c4a9e1a04fa53294db970883f9a5dc}{global\_inputpara}}(myrank)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00053}00053\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp)\ ::\ tttmp(1:3)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ myrank,\ ierr}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Namelist\ variables\ for\ file\ input}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1\ -\/\ Domain\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1-\/1.\ Size\ and\ Volume}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00059}00059\ \ \ \ \ \ \ \ \ namelist\ /domain\_size/\ \mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{l1}},\ \mbox{\hyperlink{namespaceglobal_adc784850351a8d6d3c389df42c14b350}{l2}},\ \mbox{\hyperlink{namespaceglobal_a58e2e938719f9f506a20baa4795cf152}{l3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1-\/2.\ Mesh}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ namelist\ /mesh/\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00062}00062\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 2\ -\/\ Mesh\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 2-\/1.\ Grid\ Style}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ namelist\ /grid\_style/\ \mbox{\hyperlink{namespaceglobal_a4c97b706fc5c2c7ffde2935ad5f6f589}{pbc1}},\ \mbox{\hyperlink{namespaceglobal_aa8db0c9a30b7366f3e35088807e40a3f}{pbc2}},\ \mbox{\hyperlink{namespaceglobal_a248fbca810278258beab1a2dabb11f85}{pbc3}},\ \ \ \ \ \ \ \ \ \ \ \ \ \&}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a76758cd220390a344b5e5dfe511a3a18}{uniform1}},\ \mbox{\hyperlink{namespaceglobal_a1d6b385391f1f43098fafbafc5c5c4d5}{uniform2}},\ \mbox{\hyperlink{namespaceglobal_a849ac11b21aa0b23711238fceefb256d}{uniform3}},\ \&}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a017612876f42763b31e243ece662f597}{gamma1}},\ \mbox{\hyperlink{namespaceglobal_afd79a22860c5a790a3173c3ad014fae8}{gamma2}},\ \mbox{\hyperlink{namespaceglobal_a067d163b994e44005278681094df41a9}{gamma3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 3\ -\/\ Parallel\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 3-\/1.\ MPI\ Procs}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ namelist\ /mpi\_procs/\ \mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{np1}},\ \mbox{\hyperlink{namespaceglobal_a4e502b4b6979bd2863d01b3db92a06b0}{np2}},\ \mbox{\hyperlink{namespaceglobal_a344c6fc4e5718cc5e5654f805bdb53b5}{np3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 3-\/2.\ CUDA\ Thread}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ namelist\ /cuda\_thread/\ \mbox{\hyperlink{namespaceglobal_a33db542cca17d8c3a156e90d31d8abe5}{thread\_in\_x}},\ \mbox{\hyperlink{namespaceglobal_a2694e42b57b63e348f472d5a59bfe0fb}{thread\_in\_y}},\ \mbox{\hyperlink{namespaceglobal_a1f39f066a0ed398d1e3e56d13d092718}{thread\_in\_z}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 3-\/3.\ CUDA\ Pascal\ TDMA\ Thread}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ namelist\ /cuda\_pascal\_tdma\_thread/\ \mbox{\hyperlink{namespaceglobal_a0c53f9dfde5486b01023d0c9479db29c}{thread\_in\_x\_pascal}},\ \mbox{\hyperlink{namespaceglobal_af395b143d44c9d28517e64a695920dda}{thread\_in\_y\_pascal}},\ \mbox{\hyperlink{namespaceglobal_ad227cd185eef1c5ade91c3010086f796}{thread\_in\_fft\_pascal}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ namelist\ /poisson/\ \mbox{\hyperlink{namespaceglobal_a127f0f1018715311f41eab93b98d9ece}{poisson\_model}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 7\ -\/\ Post\ Options:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ namelist\ /post\_option/\ \mbox{\hyperlink{namespaceglobal_ad316d4458ac81f4c048623c3c82207e7}{continuefilein}},\ \mbox{\hyperlink{namespaceglobal_a575540418173b039c6a6078a9408e7ca}{continuefileout}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 8\ -\/\ Directories:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ namelist\ /directories/\ \mbox{\hyperlink{namespaceglobal_a61a471b9b10d8ad3f6fc3a877831f3c0}{dir\_cont\_filein}},\ \mbox{\hyperlink{namespaceglobal_af77417ee59b989d9a22c0392edddf6a5}{dir\_cont\_fileout}},\ \mbox{\hyperlink{namespaceglobal_ae7f8d51f3d4c339f9d24d3043e518451}{dir\_instantfield}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{!Using\ file\ input}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit\ =\ 1,\ file\ =\ \textcolor{stringliteral}{"{}../run/PARA\_INPUT.dat"{}})}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1\ -\/\ Domain\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ domain\_size)\ \ \textcolor{comment}{!\ Size\ and\ Volume}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ mesh)\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Mesh}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 2\ -\/\ Mesh\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ grid\_style)\ \ \ \textcolor{comment}{!\ Grid\ Style}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 3\ -\/\ Parallel\ Settings:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ mpi\_procs)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ MPI\ Procs}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ cuda\_thread)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ CUDA\ Thread}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ cuda\_pascal\_tdma\_thread)\ \ \textcolor{comment}{!\ CUDA\ Pascal\ TDMA\ Thread}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ poisson)\ \ \ \ \ \ \textcolor{comment}{!\ Poisson\ Equation}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 7\ -\/\ Post\ Options:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ post\_option)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 8\ -\/\ Directories:}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Assuming\ a\ new\ namelist\ for\ directories\ to\ align\ with\ the\ provided\ order.}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(1,\ directories)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(1)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1-\/1\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a08e5886ef7fa819f9fdc4727c35be45c}{x1\_start}}=real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a5fe2087fcac22706ccf63c6687b3739f}{x2\_start}}=real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_ae59bd47c1996f54114ed35a50aa8bc60}{x3\_start}}=real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a127a1f08cd9fbdd4ccb85a06660297ee}{x1\_end}}=\mbox{\hyperlink{namespaceglobal_a08e5886ef7fa819f9fdc4727c35be45c}{x1\_start}}+\mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{l1}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_ad3642fe4bf46a3e116b4c4d90998fca0}{x2\_end}}=\mbox{\hyperlink{namespaceglobal_a5fe2087fcac22706ccf63c6687b3739f}{x2\_start}}+\mbox{\hyperlink{namespaceglobal_adc784850351a8d6d3c389df42c14b350}{l2}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_aa8e818bdb00de4389789443e127310bc}{x3\_end}}=\mbox{\hyperlink{namespaceglobal_ae59bd47c1996f54114ed35a50aa8bc60}{x3\_start}}+\mbox{\hyperlink{namespaceglobal_a58e2e938719f9f506a20baa4795cf152}{l3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a6e71b371b2e38e04beca107129a77313}{volume}}\ =\ \mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{l1}}*\mbox{\hyperlink{namespaceglobal_adc784850351a8d6d3c389df42c14b350}{l2}}*\mbox{\hyperlink{namespaceglobal_a58e2e938719f9f506a20baa4795cf152}{l3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1-\/2\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Computational\ size\ for\ the\ physical\ domain\ and\ time\ discretization}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a0c8a2a95d05302d597dff9c87218f47d}{n1}}=\mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}}+1;\ \mbox{\hyperlink{namespaceglobal_a649bf30673124d767482f804477b0838}{n1p}}=\mbox{\hyperlink{namespaceglobal_a0c8a2a95d05302d597dff9c87218f47d}{n1}}+1;}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_ace9ec405b0eae1e771312b12aceb4497}{n2}}=\mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}}+1;\ \mbox{\hyperlink{namespaceglobal_aed6cd18efdf63bf46c4bfb58af44e1b9}{n2p}}=\mbox{\hyperlink{namespaceglobal_ace9ec405b0eae1e771312b12aceb4497}{n2}}+1;}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a5d191b692f93fbe770043a03ea5657a1}{n3}}=\mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}+1;\ \mbox{\hyperlink{namespaceglobal_aab476bc5d461059612f5514025e1532f}{n3p}}=\mbox{\hyperlink{namespaceglobal_a5d191b692f93fbe770043a03ea5657a1}{n3}}+1;}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00127}00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a3da9157e5a9945a236d7d613aa18b433}{resolution\_x}}\ =\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}}/\mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{l1}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00128}00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_aad58cdc51689a93a75d7f283a826b412}{resolution\_y}}\ =\ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}}/\mbox{\hyperlink{namespaceglobal_adc784850351a8d6d3c389df42c14b350}{l2}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglobal_a0d4b169d0b151bbd4a28c23e986701d2}{resolution\_z}}\ =\ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}/\mbox{\hyperlink{namespaceglobal_a58e2e938719f9f506a20baa4795cf152}{l3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{namespaceglobal_a815507ebe28a87c3d2a5838296ff532e}{global\_print\_settings}}(myrank)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00133}00133\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceglobal_ac3c4a9e1a04fa53294db970883f9a5dc}{global\_inputpara}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00135}\mbox{\hyperlink{namespaceglobal_a815507ebe28a87c3d2a5838296ff532e}{00135}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceglobal_a815507ebe28a87c3d2a5838296ff532e}{global\_print\_settings}}(myrank)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ myrank}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ \ \ \ \ \ \ \ \ \ \ \ \ ::\ ierr}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00139}00139\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myrank\ ==\ 0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'==================\ Poisson\ solver\ with\ Fourier\ Transform\ =================='}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'1\ -\/\ Domain\ Settings:'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3F12.2)'})\ \textcolor{stringliteral}{'\ \ -\/\ Start\ (x1,\ x2,\ x3):'},\ \mbox{\hyperlink{namespaceglobal_a08e5886ef7fa819f9fdc4727c35be45c}{x1\_start}},\ \mbox{\hyperlink{namespaceglobal_a5fe2087fcac22706ccf63c6687b3739f}{x2\_start}},\ \mbox{\hyperlink{namespaceglobal_ae59bd47c1996f54114ed35a50aa8bc60}{x3\_start}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3F12.2)'})\ \textcolor{stringliteral}{'\ \ -\/\ End\ \ \ (x1,\ x2,\ x3):'},\ \mbox{\hyperlink{namespaceglobal_a127a1f08cd9fbdd4ccb85a06660297ee}{x1\_end}},\ \mbox{\hyperlink{namespaceglobal_ad3642fe4bf46a3e116b4c4d90998fca0}{x2\_end}},\ \mbox{\hyperlink{namespaceglobal_aa8e818bdb00de4389789443e127310bc}{x3\_end}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3F12.2)'})\ \textcolor{stringliteral}{'\ \ -\/\ Size\ \ (L1,\ L2,\ L3):'},\ \mbox{\hyperlink{namespaceglobal_a61df12b29bca54d780fd105be391e9cb}{l1}},\ \mbox{\hyperlink{namespaceglobal_adc784850351a8d6d3c389df42c14b350}{l2}},\ \mbox{\hyperlink{namespaceglobal_a58e2e938719f9f506a20baa4795cf152}{l3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ F12.2)'})\ \ \textcolor{stringliteral}{'\ \ -\/\ Volume:'},\ \mbox{\hyperlink{namespaceglobal_a6e71b371b2e38e04beca107129a77313}{volume}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'2\ -\/\ Mesh\ Settings:'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3I12)'})\ \textcolor{stringliteral}{'\ \ -\/\ Grid\ Points\ (n1m,\ n2m,\ n3m):'},\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3I12)'})\ \textcolor{stringliteral}{'\ \ -\/\ Plus\ Points\ (n1p,\ n2p,\ n3p):'},\ \mbox{\hyperlink{namespaceglobal_a649bf30673124d767482f804477b0838}{n1p}},\ \mbox{\hyperlink{namespaceglobal_aed6cd18efdf63bf46c4bfb58af44e1b9}{n2p}},\ \mbox{\hyperlink{namespaceglobal_aab476bc5d461059612f5514025e1532f}{n3p}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'3\ -\/\ Grid\ Style:'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3L12)'})\ \ \ \textcolor{stringliteral}{'\ \ -\/\ PBC\ (pbc1,\ pbc2,\ pbc3)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ '},\ \mbox{\hyperlink{namespaceglobal_a4c97b706fc5c2c7ffde2935ad5f6f589}{pbc1}},\ \mbox{\hyperlink{namespaceglobal_aa8db0c9a30b7366f3e35088807e40a3f}{pbc2}},\ \mbox{\hyperlink{namespaceglobal_a248fbca810278258beab1a2dabb11f85}{pbc3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3A12)'})\ \ \ \textcolor{stringliteral}{'\ \ -\/\ Uniformity\ (uniform1,\ uniform2,\ uniform3):\ '},\ \mbox{\hyperlink{namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3}{uniform\_type}}(\mbox{\hyperlink{namespaceglobal_a76758cd220390a344b5e5dfe511a3a18}{uniform1}}),\ \mbox{\hyperlink{namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3}{uniform\_type}}(\mbox{\hyperlink{namespaceglobal_a1d6b385391f1f43098fafbafc5c5c4d5}{uniform2}}),\ \mbox{\hyperlink{namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3}{uniform\_type}}(\mbox{\hyperlink{namespaceglobal_a849ac11b21aa0b23711238fceefb256d}{uniform3}})}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3F12.2)'})\ \textcolor{stringliteral}{'\ \ -\/\ Gamma\ (gamma1,\ gamma2,\ gamma3)\ \ \ \ \ \ \ \ \ \ \ :\ '},\ \mbox{\hyperlink{namespaceglobal_a017612876f42763b31e243ece662f597}{gamma1}},\ \mbox{\hyperlink{namespaceglobal_afd79a22860c5a790a3173c3ad014fae8}{gamma2}},\ \mbox{\hyperlink{namespaceglobal_a067d163b994e44005278681094df41a9}{gamma3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'4\ -\/\ Parallel\ Settings:'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3I12)'})\ \textcolor{stringliteral}{'\ \ -\/\ MPI\ Procs\ (np1,\ np2,\ np3):'},\ \mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{np1}},\ \mbox{\hyperlink{namespaceglobal_a4e502b4b6979bd2863d01b3db92a06b0}{np2}},\ \mbox{\hyperlink{namespaceglobal_a344c6fc4e5718cc5e5654f805bdb53b5}{np3}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3I12)'})\ \textcolor{stringliteral}{'\ \ -\/\ CUDA\ Thread\ (x,\ y,\ z)\ \ \ \ :'},\ \mbox{\hyperlink{namespaceglobal_a33db542cca17d8c3a156e90d31d8abe5}{thread\_in\_x}},\ \mbox{\hyperlink{namespaceglobal_a2694e42b57b63e348f472d5a59bfe0fb}{thread\_in\_y}},\ \mbox{\hyperlink{namespaceglobal_a1f39f066a0ed398d1e3e56d13d092718}{thread\_in\_z}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 3I12)'})\ \textcolor{stringliteral}{'\ \ -\/\ CUDA\ Pascal\ TDMA\ Thread\ \ :'},\ \mbox{\hyperlink{namespaceglobal_a0c53f9dfde5486b01023d0c9479db29c}{thread\_in\_x\_pascal}},\ \mbox{\hyperlink{namespaceglobal_af395b143d44c9d28517e64a695920dda}{thread\_in\_y\_pascal}},\ \mbox{\hyperlink{namespaceglobal_ad227cd185eef1c5ade91c3010086f796}{thread\_in\_fft\_pascal}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ A20)'})\ \textcolor{stringliteral}{'\ \ -\/\ Poisson\ Equation\ (Poisson\_model):'},\ trim(\mbox{\hyperlink{namespaceglobal_a275d8b2aa047d50fa89b2938235d3b64}{poisson\_type}}(\mbox{\hyperlink{namespaceglobal_a127f0f1018715311f41eab93b98d9ece}{poisson\_model}}))}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'8\ -\/\ Post\ Options:'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ 2L12)'})\ \textcolor{stringliteral}{'\ \ -\/\ Continue\ File\ in/out\ (ContinueFilein,\ ContinueFileout)\ \ \ \ \ :'},\ \mbox{\hyperlink{namespaceglobal_ad316d4458ac81f4c048623c3c82207e7}{continuefilein}},\ \mbox{\hyperlink{namespaceglobal_a575540418173b039c6a6078a9408e7ca}{continuefileout}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'9\ -\/\ Directories:'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ A)'})\ \textcolor{stringliteral}{'\ \ -\/\ Infile\ \ \ \ \ \ \ \ :\ '},\ trim(\mbox{\hyperlink{namespaceglobal_a61a471b9b10d8ad3f6fc3a877831f3c0}{dir\_cont\_filein}})}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A,\ A)'})\ \textcolor{stringliteral}{'\ \ -\/\ Outfile\ \ \ \ \ \ \ :\ '},\ trim(\mbox{\hyperlink{namespaceglobal_af77417ee59b989d9a22c0392edddf6a5}{dir\_cont\_fileout}})}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\ \textcolor{stringliteral}{'(A)'})\ \textcolor{stringliteral}{'================================================================================'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00179}00179\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Grid\ check\ for\ Poisson\ FFT\ communication\ requirements\ and\ even\ number\ constraint}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}}\ <\ (2\ *\ \mbox{\hyperlink{namespaceglobal_a0712c73a2727555530c2ef0b8c5bb4b5}{np1}}\ *\ \mbox{\hyperlink{namespaceglobal_a344c6fc4e5718cc5e5654f805bdb53b5}{np3}}\ -\/\ 2))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}n1m\ should\ be\ greater\ than\ or\ equal\ to\ 2*np1*np3\ -\/\ 2\ for\ Poisson\ FFT\ All-\/to-\/All\ communication.\ Program\ will\ be\ terminated."{}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_abort(mpi\_comm\_world,\ 1,\ ierr)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elseif}\ (mod(\mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ 2)\ /=\ 0\ .or.\ mod(\mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ 2)\ /=\ 0\ .or.\ mod(\mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}},\ 2)\ /=\ 0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{"{}n1m,\ n2m,\ and\ n3m\ must\ all\ be\ even\ numbers.\ Program\ will\ be\ terminated."{}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_abort(mpi\_comm\_world,\ 1,\ ierr)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00188}00188\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Folder\ generation}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }system(\textcolor{stringliteral}{'mkdir\ -\/p\ ./data'});\ \textcolor{keyword}{call\ }system(\textcolor{stringliteral}{'mkdir\ -\/p\ ./data/1\_continue'});\ \textcolor{keyword}{call\ }system(\textcolor{stringliteral}{'mkdir\ -\/p\ ./data/2\_instantfield'});\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00194}00194\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceglobal_a815507ebe28a87c3d2a5838296ff532e}{global\_print\_settings}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00197}\mbox{\hyperlink{namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3}{00197}}\ \ \ \ \ \textcolor{keyword}{function\ }\mbox{\hyperlink{namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3}{uniform\_type}}(uniform)\ \textcolor{keyword}{result}(uniformString)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ uniform}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=20)}\ ::\ uniformstring}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (uniform)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (0)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ uniformstring\ =\ \textcolor{stringliteral}{'Non-\/uniform'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ uniformstring\ =\ \textcolor{stringliteral}{'Uniform'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ uniformstring\ =\ \textcolor{stringliteral}{'Non-\/uniform-\/2'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (3)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ uniformstring\ =\ \textcolor{stringliteral}{'Stretch\_grid'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00211}00211\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ uniformstring\ =\ \textcolor{stringliteral}{'Unknown'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00213}00213\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00214}00214\ \ \ \ \ \textcolor{keyword}{end\ function\ }\mbox{\hyperlink{namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3}{uniform\_type}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00216}\mbox{\hyperlink{namespaceglobal_a275d8b2aa047d50fa89b2938235d3b64}{00216}}\ \ \ \ \ \textcolor{keyword}{function\ }\mbox{\hyperlink{namespaceglobal_a275d8b2aa047d50fa89b2938235d3b64}{poisson\_type}}(poisson)\ \textcolor{keyword}{result}(poissonString)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ poisson}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=20)}\ ::\ poissonstring}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (poisson)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ poissonstring\ =\ \textcolor{stringliteral}{'FFT'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ poissonstring\ =\ \textcolor{stringliteral}{'Multigrid'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00226}00226\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ poissonstring\ =\ \textcolor{stringliteral}{'Unknown'}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00228}00228\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00229}00229\ \ \ \ \ \textcolor{keyword}{end\ function\ }\mbox{\hyperlink{namespaceglobal_a275d8b2aa047d50fa89b2938235d3b64}{poisson\_type}}}
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{global_8f90_source_l00231}00231\ \textcolor{keyword}{end\ module\ }\mbox{\hyperlink{namespaceglobal}{global}}}
+
+\end{DoxyCode}

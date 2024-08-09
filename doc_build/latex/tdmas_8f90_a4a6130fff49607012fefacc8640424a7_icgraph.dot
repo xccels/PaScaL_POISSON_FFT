@@ -1,0 +1,11 @@
+digraph "tdma_single"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="tdma_single",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Solve a single tridiagonal system of equations using the Thomas algorithm."];
+  Node1 -> Node2 [id="edge2_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="pascal_tdma::pascal\l_tdma_single_solve",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacepascal__tdma.html#a6813b0fa9625caf2a7c41d7fee5ce5e2",tooltip="Solve a single tridiagonal system of equation."];
+}

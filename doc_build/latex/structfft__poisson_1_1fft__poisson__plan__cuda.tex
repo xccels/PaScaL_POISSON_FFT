@@ -1,0 +1,288 @@
+\doxysection{fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda Type Reference}
+\hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda}{}\label{structfft__poisson_1_1fft__poisson__plan__cuda}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+
+
+Collaboration diagram for fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+:
+% FIG 0
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+type(comm\+\_\+1d) \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_ad710e67ccac0679cf2f7d39a06e1eca9}{comm\+\_\+1d\+\_\+x2}}
+\item 
+type(comm\+\_\+1d) \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_acaf4530d43afa6b1c135f1ffe9fd2429}{comm\+\_\+1d\+\_\+x3}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_aaa2992c4bb0c920be6c1dd8819dc074e}{n1}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a19fda8f57c1b89af821ecf27bac941c9}{n2}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_aae2b6bc57aa1c29ce055a414bf462118}{n3}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_afef9934204007751fa34ca2c845143d7}{n1sub}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_aacb90aa0d42b590f0c9dbd9f62705a27}{n2sub}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_aa3bdb157ceb0148fd79d6e5b54d74763}{n3sub}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a779f30a7cda74f21606d646dd24aae91}{n1m}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a7da237de331df817a818f20a52a82c00}{n2m}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a324b448085a14506c3674448262b7c01}{n3m}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a2bdc5bc47be06107f053d1b31b4b511a}{n1msub}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a51a62b32de986d87efbbf885346b162b}{n2msub}}
+\item 
+integer \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a099aef1e36292dfbc591e50c8a124f30}{n3msub}}
+\item 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}) \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a9791c38feee191f04bf265c41faae8fe}{l1}}
+\item 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}) \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_af29097456c902d3bc0036f8f512d7b7f}{l2}}
+\item 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}) \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_af39dc391d33764cf6a5abb2c857ec65c}{l3}}
+\item 
+logical \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a5bd20c7feeeab72d94ac476194551699}{pbc1}}
+\item 
+logical \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_ad2ed0378ca4e3aa615cbd300b1db1ce2}{pbc2}}
+\item 
+logical \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a62fb25cfdd7a341eb6e52865cf6f5e00}{pbc3}}
+\item 
+type(dim3) \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a86a9a752626413def4fb6d48fb4713d2}{threads\+\_\+tdma}}
+\item 
+type(dim3) \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda_a6bca1f885664d298447ec7ccbb5ea1c9}{threads\+\_\+fft}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00025}{25}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_ad710e67ccac0679cf2f7d39a06e1eca9}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!comm\_1d\_x2@{comm\_1d\_x2}}
+\index{comm\_1d\_x2@{comm\_1d\_x2}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{comm\_1d\_x2}{comm\_1d\_x2}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_ad710e67ccac0679cf2f7d39a06e1eca9} 
+type(comm\+\_\+1d) fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::comm\+\_\+1d\+\_\+x2}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00028}{28}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_acaf4530d43afa6b1c135f1ffe9fd2429}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!comm\_1d\_x3@{comm\_1d\_x3}}
+\index{comm\_1d\_x3@{comm\_1d\_x3}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{comm\_1d\_x3}{comm\_1d\_x3}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_acaf4530d43afa6b1c135f1ffe9fd2429} 
+type(comm\+\_\+1d) fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::comm\+\_\+1d\+\_\+x3}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00028}{28}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a9791c38feee191f04bf265c41faae8fe}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!l1@{l1}}
+\index{l1@{l1}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{l1}{l1}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a9791c38feee191f04bf265c41faae8fe} 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}) fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::l1}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00034}{34}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_af29097456c902d3bc0036f8f512d7b7f}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!l2@{l2}}
+\index{l2@{l2}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{l2}{l2}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_af29097456c902d3bc0036f8f512d7b7f} 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}) fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::l2}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00034}{34}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_af39dc391d33764cf6a5abb2c857ec65c}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!l3@{l3}}
+\index{l3@{l3}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{l3}{l3}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_af39dc391d33764cf6a5abb2c857ec65c} 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}) fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::l3}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00034}{34}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_aaa2992c4bb0c920be6c1dd8819dc074e}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n1@{n1}}
+\index{n1@{n1}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n1}{n1}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_aaa2992c4bb0c920be6c1dd8819dc074e} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n1}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00030}{30}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a779f30a7cda74f21606d646dd24aae91}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n1m@{n1m}}
+\index{n1m@{n1m}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n1m}{n1m}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a779f30a7cda74f21606d646dd24aae91} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n1m}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00032}{32}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a2bdc5bc47be06107f053d1b31b4b511a}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n1msub@{n1msub}}
+\index{n1msub@{n1msub}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n1msub}{n1msub}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a2bdc5bc47be06107f053d1b31b4b511a} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n1msub}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00033}{33}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_afef9934204007751fa34ca2c845143d7}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n1sub@{n1sub}}
+\index{n1sub@{n1sub}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n1sub}{n1sub}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_afef9934204007751fa34ca2c845143d7} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n1sub}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00031}{31}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a19fda8f57c1b89af821ecf27bac941c9}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n2@{n2}}
+\index{n2@{n2}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n2}{n2}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a19fda8f57c1b89af821ecf27bac941c9} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n2}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00030}{30}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a7da237de331df817a818f20a52a82c00}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n2m@{n2m}}
+\index{n2m@{n2m}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n2m}{n2m}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a7da237de331df817a818f20a52a82c00} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n2m}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00032}{32}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a51a62b32de986d87efbbf885346b162b}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n2msub@{n2msub}}
+\index{n2msub@{n2msub}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n2msub}{n2msub}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a51a62b32de986d87efbbf885346b162b} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n2msub}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00033}{33}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_aacb90aa0d42b590f0c9dbd9f62705a27}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n2sub@{n2sub}}
+\index{n2sub@{n2sub}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n2sub}{n2sub}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_aacb90aa0d42b590f0c9dbd9f62705a27} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n2sub}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00031}{31}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_aae2b6bc57aa1c29ce055a414bf462118}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n3@{n3}}
+\index{n3@{n3}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n3}{n3}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_aae2b6bc57aa1c29ce055a414bf462118} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n3}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00030}{30}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a324b448085a14506c3674448262b7c01}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n3m@{n3m}}
+\index{n3m@{n3m}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n3m}{n3m}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a324b448085a14506c3674448262b7c01} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n3m}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00032}{32}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a099aef1e36292dfbc591e50c8a124f30}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n3msub@{n3msub}}
+\index{n3msub@{n3msub}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n3msub}{n3msub}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a099aef1e36292dfbc591e50c8a124f30} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n3msub}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00033}{33}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_aa3bdb157ceb0148fd79d6e5b54d74763}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!n3sub@{n3sub}}
+\index{n3sub@{n3sub}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{n3sub}{n3sub}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_aa3bdb157ceb0148fd79d6e5b54d74763} 
+integer fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::n3sub}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00031}{31}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a5bd20c7feeeab72d94ac476194551699}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!pbc1@{pbc1}}
+\index{pbc1@{pbc1}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{pbc1}{pbc1}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a5bd20c7feeeab72d94ac476194551699} 
+logical fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::pbc1}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00036}{36}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_ad2ed0378ca4e3aa615cbd300b1db1ce2}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!pbc2@{pbc2}}
+\index{pbc2@{pbc2}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{pbc2}{pbc2}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_ad2ed0378ca4e3aa615cbd300b1db1ce2} 
+logical fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::pbc2}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00036}{36}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a62fb25cfdd7a341eb6e52865cf6f5e00}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!pbc3@{pbc3}}
+\index{pbc3@{pbc3}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{pbc3}{pbc3}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a62fb25cfdd7a341eb6e52865cf6f5e00} 
+logical fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::pbc3}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00036}{36}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a6bca1f885664d298447ec7ccbb5ea1c9}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!threads\_fft@{threads\_fft}}
+\index{threads\_fft@{threads\_fft}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{threads\_fft}{threads\_fft}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a6bca1f885664d298447ec7ccbb5ea1c9} 
+type(dim3) fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::threads\+\_\+fft}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00038}{38}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{structfft__poisson_1_1fft__poisson__plan__cuda_a86a9a752626413def4fb6d48fb4713d2}\index{fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}!threads\_tdma@{threads\_tdma}}
+\index{threads\_tdma@{threads\_tdma}!fft\_poisson::fft\_poisson\_plan\_cuda@{fft\_poisson::fft\_poisson\_plan\_cuda}}
+\doxysubsubsection{\texorpdfstring{threads\_tdma}{threads\_tdma}}
+{\footnotesize\ttfamily \label{structfft__poisson_1_1fft__poisson__plan__cuda_a86a9a752626413def4fb6d48fb4713d2} 
+type(dim3) fft\+\_\+poisson\+::fft\+\_\+poisson\+\_\+plan\+\_\+cuda\+::threads\+\_\+tdma}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00038}{38}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+
+
+The documentation for this type was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{fft__3d__poisson_8f90}{fft\+\_\+3d\+\_\+poisson.\+f90}}\end{DoxyCompactItemize}

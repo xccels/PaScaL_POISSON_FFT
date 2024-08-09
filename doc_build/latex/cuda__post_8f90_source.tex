@@ -1,0 +1,342 @@
+\doxysection{cuda\+\_\+post.\+f90}
+\hypertarget{cuda__post_8f90_source}{}\label{cuda__post_8f90_source}\index{examples/cuda\_post.f90@{examples/cuda\_post.f90}}
+\mbox{\hyperlink{cuda__post_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00001}\mbox{\hyperlink{namespacecuda__post}{00001}}\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespacecuda__post}{cuda\_post}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00002}00002\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacempi__topology}{mpi\_topology}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00003}00003\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespaceglobal}{global}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00004}00004\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacecuda__subdomain}{cuda\_subdomain}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00005}00005\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacempi__subdomain}{mpi\_subdomain}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00008}\mbox{\hyperlink{namespacecuda__post_a842c8b6a2c7d0f3503b386d5da1e80af}{00008}}\ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ \mbox{\hyperlink{namespacecuda__post_a13d16aee9f81aff49104b81c9b22391d}{firstprintxy}}=.true.,\mbox{\hyperlink{namespacecuda__post_a8c2ef03d254470344a0ac19453dd9374}{firstprintxz}}=.true.,\mbox{\hyperlink{namespacecuda__post_a3e2050d54f33eb8104482da025035fae}{firstprinth}}=.true.,\mbox{\hyperlink{namespacecuda__post_a842c8b6a2c7d0f3503b386d5da1e80af}{firstprint3}}=.true.,\mbox{\hyperlink{namespacecuda__post_a2c0a9713c3c71bb4bcd5f8304b061646}{firstprintgrid}}=.true.,\mbox{\hyperlink{namespacecuda__post_a2e6d0477a98d20d312561fc0dd52f8d8}{firstprint3d}}=.true.,\mbox{\hyperlink{namespacecuda__post_ac9b7b8118df3a2d459c0c91763b6d8c7}{firstprintdiv}}=.true.}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00011}\mbox{\hyperlink{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}{00011}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}{ddtype\_inner\_domain}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00012}\mbox{\hyperlink{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}{00012}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}{ddtype\_global\_domain\_pr\_io}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00013}\mbox{\hyperlink{namespacecuda__post_ac349052ed42338825cf7787affffb43e}{00013}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacecuda__post_ac349052ed42338825cf7787affffb43e}{ddtype\_global\_domain\_mpi\_io}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00014}\mbox{\hyperlink{namespacecuda__post_af21f7efe43ad04325fc4a20227c76341}{00014}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacecuda__post_af21f7efe43ad04325fc4a20227c76341}{ddtype\_global\_domain\_mpi\_io\_aggregation}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00015}\mbox{\hyperlink{namespacecuda__post_a55c617c03e441d0ce2e867490b7b81b5}{00015}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacecuda__post_a55c617c03e441d0ce2e867490b7b81b5}{ddtype\_aggregation\_chunk}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00019}\mbox{\hyperlink{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1}{00019}}\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{DIMENSION(:)}\ \ ::\ \mbox{\hyperlink{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}{cnts\_pr}},\ \mbox{\hyperlink{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}{disp\_pr}},\ \mbox{\hyperlink{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1}{cnts\_aggr}},\ \mbox{\hyperlink{namespacecuda__post_a0f934efd4ad822056d2477f5d29145b9}{disp\_aggr}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{private}\ ::\ comm\_io}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mpi\_comm}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{end\ type\ }comm\_io}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00030}\mbox{\hyperlink{namespacecuda__post_a188303cfa17d56ee0ef05f822a53660f}{00030}}\ \ \ \ \ \textcolor{keywordtype}{type}(comm\_io)\ \ ::\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00031}\mbox{\hyperlink{namespacecuda__post_adcfa4aeebdd61b5c0f4cc1fb9a45b6f8}{00031}}\ \ \ \ \ \textcolor{keywordtype}{type}(comm\_io)\ \ ::\ \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00034}00034\ \ \ \ \ \textcolor{keywordtype}{public}\ ::\ \mbox{\hyperlink{namespacecuda__post_a748dd7097779c5fd225ff56369f50281}{cuda\_post\_initial}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00036}00036\ \ \ \ \ \textcolor{comment}{!\ public\ ::\ cuda\_Post\_FileOut\_InstantField\ \ \ \ \ \ \ \ \ \ \ \ \ \ !\ Instanteneous\ filed\ print\ in\ ascii\ format}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00038}00038\ \ \ \ \ \textcolor{keywordtype}{public}\ ::\ \mbox{\hyperlink{namespacecuda__post_abf3f2d9a82791dca060fb9cb130ce2f9}{cuda\_post\_filein\_continue\_post\_reassembly\_io}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{public}\ ::\ \mbox{\hyperlink{namespacecuda__post_ada5cf21ab199f979b868c1f9b121ad9e}{cuda\_post\_fileout\_continue\_post\_reassembly\_io}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00042}\mbox{\hyperlink{namespacecuda__post_a2d39db5cd7972ee31e7d7d01a7140ca3}{00042}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespacecuda__post_a2d39db5cd7972ee31e7d7d01a7140ca3}{maxdivu}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00044}\mbox{\hyperlink{namespacecuda__post_af44f49f87bf4b2fd4179cdef175246cd}{00044}}\ \ \ \ \ \textcolor{keywordtype}{character(len=17)}\ ::\ \mbox{\hyperlink{namespacecuda__post_af44f49f87bf4b2fd4179cdef175246cd}{xyzrank}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00046}00046\ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00048}\mbox{\hyperlink{namespacecuda__post_a748dd7097779c5fd225ff56369f50281}{00048}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__post_a748dd7097779c5fd225ff56369f50281}{cuda\_post\_initial}}()}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ chunk\_size=1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ color}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ j,\ k,\ icur,\ ierr}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ sizes(3),\ subsizes(3),\ starts(3)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ddtype\_temp}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ r8size}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mpi\_world\_group,\ mpi\_master\_group}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:)}\ \ \ \ ::\ cart\_coord}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ \ \ \ \ \ ::\ n1msub\_cnt,\ \ n2msub\_cnt,\ \ n3msub\_cnt}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ \ \ \ \ \ ::\ n1msub\_disp,\ n2msub\_disp,\ n3msub\_disp}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ \ \ \ \ \ ::\ maste\_group\_rank}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(kind=MPI\_ADDRESS\_KIND)}\ \ \ \ \ \ \ \ \ \ ::\ extent,\ lb}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ String\ of\ rank\ ID\ in\ x,\ y,\ and\ z-\/direction}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\mbox{\hyperlink{namespacecuda__post_af44f49f87bf4b2fd4179cdef175246cd}{xyzrank}},\ \textcolor{stringliteral}{'(I5.5,1A1,I5.5,1A1,I5.5)'}\ )\ \mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\_1d\_x1}}\%myrank,\textcolor{stringliteral}{'\_'},\ \ \ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\_1d\_x2}}\%myrank,\textcolor{stringliteral}{'\_'},\ \ \ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}}\%myrank}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ comm\_IO\_aggregation\ includes\ MPI\ processes\ of\ chunk\_size\ (mpi\_size\_aggregation)\ in\ z-\/direction.}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs\ =\ chunk\_size}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ mod(\mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}}\%nprocs,\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs).ne.0\ )\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ print\ *,\ \textcolor{stringliteral}{'[Error]\ Chunk\_size\ for\ IO\ aggregation\ should\ be\ a\ measure\ of\ mpisize\ in\ z-\/direction'}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_abort(mpi\_comm\_world,\ 11,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00085}00085\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ color\ =\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}\ /\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_split(mpi\_comm\_world,\ color,\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%mpi\_comm,\ ierr\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_rank(\mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%mpi\_comm,\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%myrank,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ comm\_IO\_master\ includes\ rank0\ processes\ in\ comm\_IO\_aggregation}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%mpi\_comm\ =\ mpi\_comm\_null}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%nprocs\ =\ \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}\ /\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ maste\_group\_rank(\mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%nprocs)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 1,\ \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%nprocs}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ maste\_group\_rank(i)\ =\ (i-\/1)\ *\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00099}00099\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_group(mpi\_comm\_world,\ mpi\_world\_group,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_group\_incl(mpi\_world\_group,\ \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%nprocs,\ maste\_group\_rank,\ mpi\_master\_group,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_create\_group(mpi\_comm\_world,\ mpi\_master\_group,\ 0,\ \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%mpi\_comm,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%mpi\_comm.ne.mpi\_comm\_null)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_rank(\mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%mpi\_comm,\ \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\_io\_master}}\%myrank,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00107}00107\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(\ maste\_group\_rank\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ sizes\ \ \ \ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}}+2,\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}}+2,\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}+2\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ subsizes\ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \ \ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \ \ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ \ \ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ starts\ \ \ =\ (/\ 1,\ 1,\ 1\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_subarray(\ \ 3,\ sizes,\ subsizes,\ starts,\ mpi\_order\_fortran,\ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpi\_double\_precision,\ \mbox{\hyperlink{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}{ddtype\_inner\_domain}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_commit(\mbox{\hyperlink{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}{ddtype\_inner\_domain}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Post\ reassembly\ can\ be\ used\ when\ a\ single\ node\ is\ capable\ of\ memory\ allocation\ for\ the\ global\ domain.}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ All\ data\ is\ gathered\ into\ rank\ 0\ and\ scattered\ from\ rank\ 0\ using\ MPI\_Scatterv\ and\ MPI\_Gatherv}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ sizes\ \ \ \ =\ (/\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \ \ \ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \ \ \ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}\ \ \ \ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ subsizes\ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ starts\ \ \ =\ (/\ 0,\ 0,\ 0\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_subarray(\ \ 3,\ sizes,\ subsizes,\ starts,\ mpi\_order\_fortran,\ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpi\_double\_precision,\ ddtype\_temp,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{CALL\ }mpi\_type\_size(mpi\_double\_precision,\ r8size,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00130}00130\ \ \ \ \ \ \ \ \ lb\ =\ 0}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ extent\ =\ r8size}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_resized(ddtype\_temp,\ lb,\ extent,\ \mbox{\hyperlink{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}{ddtype\_global\_domain\_pr\_io}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_commit(\mbox{\hyperlink{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}{ddtype\_global\_domain\_pr\_io}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Counts\ and\ displacements\ for\ MPI\_Gatherv\ and\ MPI\_Scatterv\ }}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ cart\_coord(3,0:\mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}-\/1)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 0,\ \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_cart\_coords(\mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{mpi\_world\_cart}},\ i,\ 3,\ cart\_coord(:,i),\ ierr\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00140}00140\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(n1msub\_cnt(0:\mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\_1d\_x1}}\%nprocs-\/1),\ n1msub\_disp(0:\mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\_1d\_x1}}\%nprocs-\/1))}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(n2msub\_cnt(0:\mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\_1d\_x2}}\%nprocs-\/1),\ n2msub\_disp(0:\mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\_1d\_x2}}\%nprocs-\/1))}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(n3msub\_cnt(0:\mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}}\%nprocs-\/1),\ n3msub\_disp(0:\mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}}\%nprocs-\/1))}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_allgather(\mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ 1,\ mpi\_integer,\ n1msub\_cnt,\ 1,\ mpi\_integer,\ \mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\_1d\_x1}}\%mpi\_comm,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_allgather(\mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ 1,\ mpi\_integer,\ n2msub\_cnt,\ 1,\ mpi\_integer,\ \mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\_1d\_x2}}\%mpi\_comm,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_allgather(\mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}},\ 1,\ mpi\_integer,\ n3msub\_cnt,\ 1,\ mpi\_integer,\ \mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}}\%mpi\_comm,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ n1msub\_disp(0)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 1,\ \mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{comm\_1d\_x1}}\%nprocs-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ n1msub\_disp(i)=sum(n1msub\_cnt(0:i-\/1))}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00153}00153\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ n2msub\_disp(0)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 1,\ \mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{comm\_1d\_x2}}\%nprocs-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ n2msub\_disp(i)=sum(n2msub\_cnt(0:i-\/1))}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00158}00158\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ n3msub\_disp(0)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 1,\ \mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{comm\_1d\_x3}}\%nprocs-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ n3msub\_disp(i)=sum(n3msub\_cnt(0:i-\/1))}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00163}00163\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ \mbox{\hyperlink{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}{cnts\_pr}}(0:\mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}-\/1)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ \mbox{\hyperlink{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}{disp\_pr}}(0:\mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}-\/1)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 0,\ \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{nprocs}}-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}{cnts\_pr}}(i)\ =\ 1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}{disp\_pr}}(i)\ =\ \ n1msub\_disp(cart\_coord(1,i))\ \ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ n2msub\_disp(cart\_coord(2,i))\ *\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}}\ \ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ n3msub\_disp(cart\_coord(3,i))\ *\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}}\ *\ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00173}00173\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(cart\_coord)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(n1msub\_cnt,\ n2msub\_cnt,\ n3msub\_cnt)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(n1msub\_disp,\ n2msub\_disp,\ n3msub\_disp)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ sizes\ \ \ \ =\ (/\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \ \ \ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \ \ \ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}\ \ \ \ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ subsizes\ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ starts\ \ \ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_ab8925faaa6f45326c1d11efa37e03566}{ista}}-\/1,\ \mbox{\hyperlink{namespacempi__subdomain_ac85bfba1caf77f9c3c0047fe9450fee6}{jsta}}-\/1,\ \mbox{\hyperlink{namespacempi__subdomain_acd499eb1d07159aa9f5c878f9519b00f}{ksta}}-\/1\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_subarray(\ \ 3,\ sizes,\ subsizes,\ starts,\ mpi\_order\_fortran,\ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpi\_double\_precision,\ \mbox{\hyperlink{namespacecuda__post_ac349052ed42338825cf7787affffb43e}{ddtype\_global\_domain\_mpi\_io}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_commit(\mbox{\hyperlink{namespacecuda__post_ac349052ed42338825cf7787affffb43e}{ddtype\_global\_domain\_mpi\_io}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ sizes\ \ \ \ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ *\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ subsizes\ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ starts\ \ \ =\ (/\ 0,\ 0,\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ *\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%myrank\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_subarray(\ \ 3,\ sizes,\ subsizes,\ starts,\ mpi\_order\_fortran,\ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpi\_double\_precision,\ ddtype\_temp,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{CALL\ }mpi\_type\_size(mpi\_double\_precision,\ r8size,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ lb\ =\ 0}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ extent\ =\ r8size}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_resized(ddtype\_temp,\ lb,\ extent,\ \mbox{\hyperlink{namespacecuda__post_a55c617c03e441d0ce2e867490b7b81b5}{ddtype\_aggregation\_chunk}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_commit(\mbox{\hyperlink{namespacecuda__post_a55c617c03e441d0ce2e867490b7b81b5}{ddtype\_aggregation\_chunk}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ \mbox{\hyperlink{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1}{cnts\_aggr}}(0:\mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs-\/1)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\ \mbox{\hyperlink{namespacecuda__post_a0f934efd4ad822056d2477f5d29145b9}{disp\_aggr}}(0:\mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs-\/1)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 0,\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1}{cnts\_aggr}}(i)\ =\ 1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacecuda__post_a0f934efd4ad822056d2477f5d29145b9}{disp\_aggr}}(i)\ =\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}}\ *\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}}\ *\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ *\ i}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00210}00210\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ sizes\ \ \ \ =\ (/\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \ \ \ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \ \ \ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}}\ \ \ \ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ subsizes\ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{n1msub}},\ \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{n2msub}},\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ *\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%nprocs\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ starts\ \ \ =\ (/\ \mbox{\hyperlink{namespacempi__subdomain_ab8925faaa6f45326c1d11efa37e03566}{ista}}-\/1,\ \mbox{\hyperlink{namespacempi__subdomain_ac85bfba1caf77f9c3c0047fe9450fee6}{jsta}}-\/1,\ \mbox{\hyperlink{namespacempi__subdomain_acd499eb1d07159aa9f5c878f9519b00f}{ksta}}-\/1\ -\/\ \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{n3msub}}\ *\ \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\_io\_aggregation}}\%myrank\ /)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_create\_subarray(\ \ 3,\ sizes,\ subsizes,\ starts,\ mpi\_order\_fortran,\ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpi\_double\_precision,\ \mbox{\hyperlink{namespacecuda__post_af21f7efe43ad04325fc4a20227c76341}{ddtype\_global\_domain\_mpi\_io\_aggregation}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_commit(\mbox{\hyperlink{namespacecuda__post_af21f7efe43ad04325fc4a20227c76341}{ddtype\_global\_domain\_mpi\_io\_aggregation}},\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00221}00221\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__post_a748dd7097779c5fd225ff56369f50281}{cuda\_post\_initial}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00224}\mbox{\hyperlink{namespacecuda__post_abf3f2d9a82791dca060fb9cb130ce2f9}{00224}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__post_abf3f2d9a82791dca060fb9cb130ce2f9}{cuda\_post\_filein\_continue\_post\_reassembly\_io}}(myrank,Pin)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{dimension(0:n1sub,\ 0:n2sub,\ 0:n3sub)}\ ::\ pin}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:,:)}\ ::\ var\_all}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ allocates\ chunk\ array\ which\ have\ all\ field\ array\ data}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ \textcolor{keyword}{allocate}(\ var\_all(\ \mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}})\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ reads\ P\ from\ a\ single\ file}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},\ file=trim(\mbox{\hyperlink{namespaceglobal_a61a471b9b10d8ad3f6fc3a877831f3c0}{dir\_cont\_filein}})//\textcolor{stringliteral}{'cont\_P.bin'},\ form=\textcolor{stringliteral}{'UNFORMATTED'},\ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=\textcolor{stringliteral}{'OLD'},\ action=\textcolor{stringliteral}{'READ'},\ access=\textcolor{stringliteral}{'DIRECT'},\ recl=sizeof(var\_all)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},\ rec=1)\ var\_all}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}})}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00245}00245\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ scatter\ P\ using\ the\ defined\ DDT}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_scatterv(var\_all,\ \mbox{\hyperlink{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}{cnts\_pr}},\ \mbox{\hyperlink{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}{disp\_pr}},\ \mbox{\hyperlink{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}{ddtype\_global\_domain\_pr\_io}},\ pin,\ 1,\ \mbox{\hyperlink{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}{ddtype\_inner\_domain}},\ 0,\ mpi\_comm\_world,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ deallocates\ chunk\ array}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ \textcolor{keyword}{deallocate}(\ var\_all\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Ghostcell\ update}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{namespacempi__subdomain_acb37a0b27f109e760d54e03787a4be49}{mpi\_subdomain\_ghostcell\_update\_real}}(pin)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00255}00255\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ print\ \textcolor{stringliteral}{'(a)'},\ \textcolor{stringliteral}{'Read\ continue\ file\ using\ post\ reassembly\ IO'}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00258}00258\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__post_abf3f2d9a82791dca060fb9cb130ce2f9}{cuda\_post\_filein\_continue\_post\_reassembly\_io}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00260}\mbox{\hyperlink{namespacecuda__post_ada5cf21ab199f979b868c1f9b121ad9e}{00260}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__post_ada5cf21ab199f979b868c1f9b121ad9e}{cuda\_post\_fileout\_continue\_post\_reassembly\_io}}(myrank,Pin)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{dimension(0:n1sub,\ 0:n2sub,\ 0:n3sub)}\ ::\ pin}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:,:)}\ ::\ var\_all}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr,\ i,\ j,\ k}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00270}00270\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ x1g,\ x2g,\ x3g}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ allocates\ chunk\ array\ which\ have\ all\ field\ array\ data}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ \textcolor{keyword}{allocate}(\ var\_all(\mbox{\hyperlink{namespaceglobal_a7d811842c2d79f995acf2588cc7bb1b0}{n1m}},\ \mbox{\hyperlink{namespaceglobal_acae77b7e199acdd9b7f3a52f3261a222}{n2m}},\ \mbox{\hyperlink{namespaceglobal_a8918979761fc45ad2d16f06dadda7ce9}{n3m}})\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ gathers\ P\ using\ the\ defined\ DDT}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_gatherv(pin,\ 1,\ \mbox{\hyperlink{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}{ddtype\_inner\_domain}},\ var\_all,\ \mbox{\hyperlink{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}{cnts\_pr}},\ \mbox{\hyperlink{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}{disp\_pr}},\ \mbox{\hyperlink{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}{ddtype\_global\_domain\_pr\_io}},\ 0,\ mpi\_comm\_world,\ ierr)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ writes\ P\ to\ a\ single\ file}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},\ file=trim(\mbox{\hyperlink{namespaceglobal_af77417ee59b989d9a22c0392edddf6a5}{dir\_cont\_fileout}})//\textcolor{stringliteral}{'cont\_P.bin'},\ form=\textcolor{stringliteral}{'UNFORMATTED'},\ \&}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=\textcolor{stringliteral}{'REPLACE'},\ action=\textcolor{stringliteral}{'WRITE'},\ access=\textcolor{stringliteral}{'DIRECT'},\ recl=sizeof(var\_all)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},\ rec=1)\ var\_all}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}})}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00285}00285\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Rank\ 0\ deallocates\ chunk\ array}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ \textcolor{keyword}{deallocate}(\ var\_all\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}.eq.0)\ print\ \textcolor{stringliteral}{'(a)'},\ \textcolor{stringliteral}{'Write\ continue\ file\ using\ post\ reassembly\ IO'}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00292}00292\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__post_ada5cf21ab199f979b868c1f9b121ad9e}{cuda\_post\_fileout\_continue\_post\_reassembly\_io}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00294}\mbox{\hyperlink{namespacecuda__post_aba7f9010598592a6ebe65aa69466bf97}{00294}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__post_aba7f9010598592a6ebe65aa69466bf97}{cuda\_post\_fileout\_instantfield\_3d}}(P)\ \textcolor{comment}{!\ YMG\ 210408}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacempi__subdomain}{mpi\_subdomain}},\ \textcolor{keywordtype}{only}\ :\ \mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{x1}},\ \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{x2}},\ \mbox{\hyperlink{namespacempi__subdomain_a6684d132faeeffbaccc7744c9ae670f1}{x3}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacempi__topology}{mpi\_topology}}\ ,\ \textcolor{keywordtype}{only}\ :\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00297}00297\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00301}00301\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{dimension(\ 0:n1sub\ \ ,\ \ 0:n2sub\ \ ,\ \ 0:n3sub\ \ \ \ \ \ \ \ \ )}\ ::\ P}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00303}00303\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp)\ ::\ pg}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00304}00304\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=22)}\ ::\ filename\_instantfield3D,\ filename,\ cfile\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,j,k,im,jm,km}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00307}00307\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00308}00308\ \ \ \ \ \ \ \ \ filename\_instantfield3d=\textcolor{stringliteral}{'Output\_instantfield\_3D'}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00309}00309\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(cfile,\ \textcolor{stringliteral}{'(I3.3)'})\ \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00312}00312\ \ \ \ \ \ \ \ \ filename\ =\ \textcolor{stringliteral}{'P\_'}//trim(adjustl(cfile))//\textcolor{stringliteral}{'.PLT'}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00313}00313\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},file=trim(\mbox{\hyperlink{namespaceglobal_ae7f8d51f3d4c339f9d24d3043e518451}{dir\_instantfield}})//filename)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},*)\ \textcolor{stringliteral}{'VARIABLES="{}X"{},"{}Y"{},"{}Z"{},"{}P"{}'}\ \ \textcolor{comment}{!-\/-\/}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},*)\ \textcolor{stringliteral}{'zone\ t="{}'},1,\textcolor{stringliteral}{'"{}'},\textcolor{stringliteral}{'i='},(\mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{n1sub}}-\/1),\textcolor{stringliteral}{'j='},(\mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{n2sub}}-\/1),\textcolor{stringliteral}{'k='},(\mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{n3sub}}-\/1)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ k=1,\ \mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{n3sub}}-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ j=1,\ \mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{n2sub}}-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,\ \mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{n1sub}}-\/1}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ im\ =\ i-\/1\ ;\ jm\ =\ j-\/1;\ km\ =\ k-\/1;}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pg\ =\ \mbox{\hyperlink{namespacecuda__post_add4d4e4d9a2d6d74621256b61ae51836}{calc\_c2g}}(p,\ i,\ j,\ k,\ im,\ jm,\ km)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}},\textcolor{stringliteral}{'(4(E11.4,1x))'}\ )\ \mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{x1}}(i),\ \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{x2}}(j),\ \mbox{\hyperlink{namespacempi__subdomain_a6684d132faeeffbaccc7744c9ae670f1}{x3}}(k),\ pg\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00326}00326\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00327}00327\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00328}00328\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}})}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00330}00330\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00331}00331\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__post_aba7f9010598592a6ebe65aa69466bf97}{cuda\_post\_fileout\_instantfield\_3d}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00333}\mbox{\hyperlink{namespacecuda__post_a20e05bc449ea01cc1d5a4f90cc04623e}{00333}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacecuda__post_a20e05bc449ea01cc1d5a4f90cc04623e}{cuda\_post\_clean}}()}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00335}00335\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(\mbox{\hyperlink{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}{cnts\_pr}},\ \mbox{\hyperlink{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}{disp\_pr}},\ \mbox{\hyperlink{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1}{cnts\_aggr}},\ \mbox{\hyperlink{namespacecuda__post_a0f934efd4ad822056d2477f5d29145b9}{disp\_aggr}})}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00337}00337\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespacecuda__post_a20e05bc449ea01cc1d5a4f90cc04623e}{cuda\_post\_clean}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00339}\mbox{\hyperlink{namespacecuda__post_add4d4e4d9a2d6d74621256b61ae51836}{00339}}\ \textcolor{keywordtype}{\ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ function\ \mbox{\hyperlink{namespacecuda__post_add4d4e4d9a2d6d74621256b61ae51836}{calc\_c2g}}(x,\ i,\ j,\ k,\ im,\ jm,\ km)\ result(xg)}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespacempi__subdomain}{mpi\_subdomain}},\ \ \textcolor{keywordtype}{only}\ :\ \mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}},\ \mbox{\hyperlink{namespacempi__subdomain_abc76de54a5a6e7da32d6efb205f1b1e5}{dx2}},\ \mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}},\ \mbox{\hyperlink{namespacempi__subdomain_acfacef2b3b4818caae18b9139fa6dad1}{dmx1}},\ \mbox{\hyperlink{namespacempi__subdomain_a8dd28b6a1d18efdbeab60b8da47afe8c}{dmx2}},\ \mbox{\hyperlink{namespacempi__subdomain_a3e61cc2167c9ad2404a7edaddc7ddd7c}{dmx3}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00342}00342\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}),\ \textcolor{keywordtype}{dimension(0:,0:,0:)},\ \textcolor{keywordtype}{intent(in)}\ ::\ x}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ i,\ j,\ k,\ im,\ jm,\ km}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00344}00344\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})\ ::\ \mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{x1}},\ \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{x2}},\ x\_y1,\ x\_y2}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{x1}}\ \ \ =\ (\ x(im,jm,k)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)+x(im,jm,km)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)\ )/(\ \mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)+\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00347}00347\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{x2}}\ \ \ =\ (\ x(i\ ,jm,k)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)+x(i\ ,jm,km)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)\ )/(\ \mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)+\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ x\_y1\ =\ (\ \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{x2}}\ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(im)+\mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{x1}}\ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(i)\ )/(\ \mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(i)+\mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(im)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{x1}}\ \ \ =\ (\ x(im,j\ ,k)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)+x(im,j\ ,km)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)\ )/(\ \mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)+\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{x2}}\ \ \ =\ (\ x(i\ ,j\ ,k)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)+x(i\ ,j\ ,km)*\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)\ )/(\ \mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(k)+\mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{dx3}}(km)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ x\_y2\ =\ (\ \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{x2}}\ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(im)+\mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{x1}}\ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(i)\ )/(\ \mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(i)+\mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{dx1}}(im)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00352}00352\ \ \ \ \ \ \ \ \ xg\ \ \ =\ (\ x\_y2\ \ \ \ \ \ *\mbox{\hyperlink{namespacempi__subdomain_abc76de54a5a6e7da32d6efb205f1b1e5}{dx2}}(jm)+x\_y1\ \ \ \ \ \ \ *\mbox{\hyperlink{namespacempi__subdomain_abc76de54a5a6e7da32d6efb205f1b1e5}{dx2}}(j)\ )/(\ \mbox{\hyperlink{namespacempi__subdomain_abc76de54a5a6e7da32d6efb205f1b1e5}{dx2}}(j)+\mbox{\hyperlink{namespacempi__subdomain_abc76de54a5a6e7da32d6efb205f1b1e5}{dx2}}(jm)\ )}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00353}00353\ \ \ \ \ \textcolor{keyword}{end\ function\ }\mbox{\hyperlink{namespacecuda__post_add4d4e4d9a2d6d74621256b61ae51836}{calc\_c2g}}}
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00354}00354\ }
+\DoxyCodeLine{\Hypertarget{cuda__post_8f90_source_l00355}00355\ \textcolor{keyword}{end\ module\ }\mbox{\hyperlink{namespacecuda__post}{cuda\_post}}}
+
+\end{DoxyCode}

@@ -1,0 +1,10 @@
+digraph "fft_poisson::fft_poisson_plan_cuda"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="fft_poisson::fft_poisson\l_plan_cuda",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [id="edge2_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" comm_1d_x2\ncomm_1d_x3",fontcolor="grey" ];
+  Node2 [id="Node000002",label="fft_poisson::comm_1d",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+}

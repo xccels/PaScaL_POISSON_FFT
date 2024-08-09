@@ -1,0 +1,1281 @@
+\doxysection{cuda\+\_\+subdomain Module Reference}
+\hypertarget{namespacecuda__subdomain}{}\label{namespacecuda__subdomain}\index{cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \mbox{\hyperlink{interfacecuda__subdomain_1_1cuda__subdomain__ghostcell__update}{cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update}}
+\item 
+interface \mbox{\hyperlink{interfacecuda__subdomain_1_1ghostcell__update__on__direction}{ghostcell\+\_\+update\+\_\+on\+\_\+direction}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_aad00f718e2a92cbfac05c26d3107d43b}{cuda\+\_\+subdomain\+\_\+environment}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a5d8b98bd38d2f6dc1e19c2d8a714ed49}{cuda\+\_\+subdomain\+\_\+initial}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a0f350540445c4f9a623b3d088ab914a9}{cuda\+\_\+subdomain\+\_\+mesh}}
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_ab788fcbb838da952de16c6c2e34980c5}{cuda\+\_\+subdomain\+\_\+blockandthreads}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a37b21deccd62523a052bd0cf1c2ae31d}{cuda\+\_\+subdomain\+\_\+dtoh}} (devicedata, hostdata)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a2110a2fa10782f739c468aff4a622ab7}{cuda\+\_\+subdomain\+\_\+htod}} (hostdata, devicedata)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a3e8dd3c26f412a82b4cbe286d653fd2d}{cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+scalar}} (value\+\_\+sub\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a91ca880a7e12134f59b98203215f77a4}{cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+real}} (value\+\_\+sub\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a9f983585f2c46773a5e10bbc5eaf679b}{ghostcell\+\_\+update\+\_\+on\+\_\+direction\+\_\+real}} (comm\+\_\+1d, direction, pbc, sbuf\+\_\+0\+\_\+d, sbuf\+\_\+1\+\_\+d, rbuf\+\_\+0\+\_\+d, rbuf\+\_\+1\+\_\+d, nsub\+\_\+a, nsub\+\_\+b, nsub\+\_\+c, value\+\_\+sub\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a25f080aaec4f196d1dbc0081925cdae6}{cuda\+\_\+neumann\+\_\+bc}} (x\+\_\+d)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_ac4faaf90ef0c1f1199f9cae475f48274}{apply\+\_\+bc\+\_\+on\+\_\+direction}} (x\+\_\+d, comm\+\_\+1d, dmx\+\_\+d, pbc, nmsub\+\_\+a, nsub\+\_\+a, nsub\+\_\+b, nsub\+\_\+c, direction)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a17df0e3552de6f8d48e097a6467e7bfb}{cuda\+\_\+subdomain\+\_\+clean}}
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a22fe6dbed56c513021cb3d2b2090db9c}{cuda\+\_\+subdomain\+\_\+temp\+\_\+allocation}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__subdomain_a52a4ab13475e7529d1b619a334118f29}{cuda\+\_\+destroy\+\_\+ptr}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a708c6fa08e0cef0a2399dea884aa02ef}{device}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad8d32a03324927a0a101e4d7286a1761}{target}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:) \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a80329de72386f8ec27dca14b4341575f}{x1\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad85cbe33da5277202c3e88524c2d88e1}{x2\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a247ea374eb5323d75024191bfcfd72c3}{x3\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af3481424c7134059209b9e8e96435fdd}{dx1\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_abf28e83fd4cd2a3674c08af4eb14a147}{dx2\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a8311a76ee3bd94b3d28c7718f29691a3}{dx3\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a546114f6221e81c94d6997012f1a3611}{dmx1\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a75f6f81c1e53525c2cc93429ee4e3cbd}{dmx2\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a385c4e6c82fa9729b2125831267fcb75}{dmx3\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ac1c21e6bf3c0b73ff361aa784abd97a6}{ic\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_acb7b5076105322a0817c2882bcba3943}{is\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a8d54fac9f662eae5a1c43e6a1bb94f76}{jc\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a48f28489bbac44672587f45dba4287f1}{js\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_abade6c94986752d08291ccfdf211fa14}{kc\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af53715a78c8eccfcb6d04b34e26063cd}{ks\+\_\+bc\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ab8ce2ba686e04240d14a93c9480afc38}{ic\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af554dca546366cc1e3450acd67a6afde}{is\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a1d3f89ff30b942f720932bf2856ad489}{jc\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ad13475d31be57c89579e30be77189ea0}{js\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a6ffbfe7e9ad71309ffd5821a8ecfd877}{kc\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a15ff9e3353109d870bda6c8d416a0b7e}{ks\+\_\+index\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_aa64034da3b565917a3d00569f3efa7cd}{pointer}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af41073bf416146dc555a44b1ce6ea4b2}{x1\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_afe92472cd9d3c88faa482f1e9b1bde9f}{x2\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a34101a1e5f0c07b84d55f4a27d3d998a}{x3\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a0b87e1bc53505104acbcd89b6527b955}{dx1\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ae9ee96c686c41bdaf2f37c105c760b98}{dx2\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a7a4bcadeffec62435e74b77503a08c8c}{dx3\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a24bc4eccede8d85a98e4f598a3f7a606}{dmx1\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a272b659dde090c7270a4097517bfea7b}{dmx2\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a3dd6c22a9218eead4be5a1ee9801ce7e}{dmx3\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af280bbddf94542f487dc02663ff6c62e}{ic\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a8077edc4116d8b4c173e61614f57ea50}{is\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_adb5b8d9c612ffb9ad4a3001d023ff9c3}{jc\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a21408e5fbc8f94d75457236aa5bbac45}{js\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a75f69a1cb32e5957607750c10fa4f042}{kc\+\_\+bc\+\_\+d}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a19ce41ff2ca2734287af4d4b709e1902}{ks\+\_\+bc\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a9dc7a9ae2f1479a0f9e0290eeabdc8b0}{x1\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_affc61b578e77db5fed743106e813c714}{x2\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a6d114733ca3fd7b567fdb9c92e0f2441}{x3\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a7bab8b1df311fccb58f4b282932fcc9b}{dx1\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af3a18f9e0918e9043e084ca3cc7d05c4}{dx2\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_abe3093c95ca5a9d3518ce6c6d26e6047}{dx3\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a9bd2097d085ddc7441fdb4d2c97bca53}{dmx1\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad5e435bf11f90b88fc51186f35552240}{dmx2\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad1bd4d9dde41692de5c02c65b1ebd07a}{dmx3\+\_\+g\+\_\+d}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a0ba556a03a5fc5cb953d197dc3cd3528}{x1\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a51173eaaaec67d4f734fd1f929938a2a}{x2\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a5b470324062f8561193672f38a9e9c7a}{x3\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a961579b609123ec52254123750721339}{dx1\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad88be71db0621c6d53ffafeef2ec1894}{dx2\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a1c02179a76e9941b3f7a15338346b6cd}{dx3\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a329d87a57d3455098a2a589ba3151332}{dmx1\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a4a2c2d2f50bdb8328a68107f6ebd4404}{dmx2\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab0db10266bc93023023e24e57ad5b120}{dmx3\+\_\+g\+\_\+d\+\_\+c}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ab8957ee4a038f7eb32fa07380b6247f6}{block\+\_\+in\+\_\+x}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a04878817e99727a2ce6f05324aa8cc7e}{block\+\_\+in\+\_\+y}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ae6720d30aaae59ede400b6be45787bcb}{block\+\_\+in\+\_\+z}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a00615354884cc42f3e4e03c0f9041c6b}{share\+\_\+size}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ae2a205700209d6c6672e930a72494147}{share\+\_\+size\+\_\+pascal}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_ad9968f61db736546ffc233f00f2e9b3d}{share\+\_\+size\+\_\+fft}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_a9e8060dba8d36ffd68a153094cd9ae5c}{blocks}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_a303a5e170d58092c2d044c0eea935d81}{threads}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_aa412d320c48f771347d03a0df60aad79}{threads\+\_\+tdma}}
+\item 
+type(dim3) \mbox{\hyperlink{namespacecuda__subdomain_a7f1b6ff4980dffe8999bb6a47206b6e6}{threads\+\_\+fft}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a9920a75d2af837068feac1eccaf05d8d}{sbuf\+\_\+0\+\_\+temp}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_aac6a507bcb235d0591e1a27db2d3a42c}{sbuf\+\_\+1\+\_\+temp}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a789d983096fe0dded583587d784a6e7c}{rbuf\+\_\+0\+\_\+temp}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_af0e7d2d38a187bcdc8b7523dff9aad63}{rbuf\+\_\+1\+\_\+temp}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a2671a41e8c8755d4f3f8ab57101bf17a}{sbuf\+\_\+0\+\_\+temp\+\_\+int}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_a8785380a8b8853f782a37f78e4ae6e07}{sbuf\+\_\+1\+\_\+temp\+\_\+int}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_af2bf70267a33599bc62e429e7fd1a1a9}{rbuf\+\_\+0\+\_\+temp\+\_\+int}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__subdomain_aad8580cea523c9a78ad3c1da57672589}{rbuf\+\_\+1\+\_\+temp\+\_\+int}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab2bc24e99070283a76585fc865e29553}{rhs\+\_\+buff1}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a2df3ceea49264608f8b3b4884e5453ae}{rhs\+\_\+buff2}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ad435eaf71375e605405189a7b0e378b4}{api\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a59bbf6ec286453bdf2a5696426f7997c}{aci\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a089aed354949b4c9bde5a96b0d5cb551}{ami\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ab380e335289614d7c34cd0057a491a23}{apj\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_aca7f2c913dd00bacd5d3750304ba22ab}{acj\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a451b86d748a63a66aa6779b2d4edc9fb}{amj\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a34a77c51dc29c0e4992a3f1ef25ca114}{apk\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a1b51d420095c4ef93697bbe4f7cc8085}{ack\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a76e1410260bc4de401716abc6cd0a015}{amk\+\_\+ptr}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_ababb6b0c882894d178c9efb66fefff9e}{temp1}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__subdomain_a43cd4c4357678d5f0265a642703f0d2a}{temp2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\Hypertarget{namespacecuda__subdomain_ac4faaf90ef0c1f1199f9cae475f48274}\index{cuda\_subdomain@{cuda\_subdomain}!apply\_bc\_on\_direction@{apply\_bc\_on\_direction}}
+\index{apply\_bc\_on\_direction@{apply\_bc\_on\_direction}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{apply\_bc\_on\_direction()}{apply\_bc\_on\_direction()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ac4faaf90ef0c1f1199f9cae475f48274} 
+subroutine cuda\+\_\+subdomain\+::apply\+\_\+bc\+\_\+on\+\_\+direction (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{x\+\_\+d}{, }\item[{type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}})}]{comm\+\_\+1d}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{dmx\+\_\+d}{, }\item[{logical}]{pbc}{, }\item[{integer}]{nmsub\+\_\+a}{, }\item[{integer}]{nsub\+\_\+a}{, }\item[{integer}]{nsub\+\_\+b}{, }\item[{integer}]{nsub\+\_\+c}{, }\item[{integer}]{direction}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00324}{324}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+Here is the caller graph for this function\+:
+% FIG 0
+\Hypertarget{namespacecuda__subdomain_a52a4ab13475e7529d1b619a334118f29}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_destroy\_ptr@{cuda\_destroy\_ptr}}
+\index{cuda\_destroy\_ptr@{cuda\_destroy\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_destroy\_ptr()}{cuda\_destroy\_ptr()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a52a4ab13475e7529d1b619a334118f29} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+destroy\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00400}{400}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a25f080aaec4f196d1dbc0081925cdae6}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_neumann\_bc@{cuda\_neumann\_bc}}
+\index{cuda\_neumann\_bc@{cuda\_neumann\_bc}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_neumann\_bc()}{cuda\_neumann\_bc()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a25f080aaec4f196d1dbc0081925cdae6} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+neumann\+\_\+bc (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{x\+\_\+d}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00313}{313}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+\Hypertarget{namespacecuda__subdomain_ab788fcbb838da952de16c6c2e34980c5}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_blockandthreads@{cuda\_subdomain\_blockandthreads}}
+\index{cuda\_subdomain\_blockandthreads@{cuda\_subdomain\_blockandthreads}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_blockandthreads()}{cuda\_subdomain\_blockandthreads()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ab788fcbb838da952de16c6c2e34980c5} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+blockandthreads}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00146}{146}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{namespacecuda__subdomain_a17df0e3552de6f8d48e097a6467e7bfb}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_clean@{cuda\_subdomain\_clean}}
+\index{cuda\_subdomain\_clean@{cuda\_subdomain\_clean}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_clean()}{cuda\_subdomain\_clean()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a17df0e3552de6f8d48e097a6467e7bfb} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+clean}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00370}{370}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a37b21deccd62523a052bd0cf1c2ae31d}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_dtoh@{cuda\_subdomain\_dtoh}}
+\index{cuda\_subdomain\_dtoh@{cuda\_subdomain\_dtoh}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_dtoh()}{cuda\_subdomain\_dtoh()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a37b21deccd62523a052bd0cf1c2ae31d} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+dtoh (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{devicedata}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(0\+:n1sub, 0\+:n2sub, 0\+:n3sub), intent(inout)}]{hostdata}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00176}{176}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_aad00f718e2a92cbfac05c26d3107d43b}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_environment@{cuda\_subdomain\_environment}}
+\index{cuda\_subdomain\_environment@{cuda\_subdomain\_environment}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_environment()}{cuda\_subdomain\_environment()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_aad00f718e2a92cbfac05c26d3107d43b} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+environment}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00056}{56}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a91ca880a7e12134f59b98203215f77a4}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_ghostcell\_update\_real@{cuda\_subdomain\_ghostcell\_update\_real}}
+\index{cuda\_subdomain\_ghostcell\_update\_real@{cuda\_subdomain\_ghostcell\_update\_real}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_ghostcell\_update\_real()}{cuda\_subdomain\_ghostcell\_update\_real()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a91ca880a7e12134f59b98203215f77a4} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+real (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{value\+\_\+sub\+\_\+d}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00199}{199}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{namespacecuda__subdomain_a3e8dd3c26f412a82b4cbe286d653fd2d}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_ghostcell\_update\_scalar@{cuda\_subdomain\_ghostcell\_update\_scalar}}
+\index{cuda\_subdomain\_ghostcell\_update\_scalar@{cuda\_subdomain\_ghostcell\_update\_scalar}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_ghostcell\_update\_scalar()}{cuda\_subdomain\_ghostcell\_update\_scalar()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a3e8dd3c26f412a82b4cbe286d653fd2d} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+scalar (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{value\+\_\+sub\+\_\+d}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00189}{189}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a2110a2fa10782f739c468aff4a622ab7}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_htod@{cuda\_subdomain\_htod}}
+\index{cuda\_subdomain\_htod@{cuda\_subdomain\_htod}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_htod()}{cuda\_subdomain\_htod()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a2110a2fa10782f739c468aff4a622ab7} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+htod (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(0\+:n1sub, 0\+:n2sub, 0\+:n3sub), intent(inout)}]{hostdata}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{devicedata}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00182}{182}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a5d8b98bd38d2f6dc1e19c2d8a714ed49}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_initial@{cuda\_subdomain\_initial}}
+\index{cuda\_subdomain\_initial@{cuda\_subdomain\_initial}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_initial()}{cuda\_subdomain\_initial()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a5d8b98bd38d2f6dc1e19c2d8a714ed49} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+initial}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00089}{89}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+\Hypertarget{namespacecuda__subdomain_a0f350540445c4f9a623b3d088ab914a9}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_mesh@{cuda\_subdomain\_mesh}}
+\index{cuda\_subdomain\_mesh@{cuda\_subdomain\_mesh}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_mesh()}{cuda\_subdomain\_mesh()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a0f350540445c4f9a623b3d088ab914a9} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+mesh}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00096}{96}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{namespacecuda__subdomain_a22fe6dbed56c513021cb3d2b2090db9c}\index{cuda\_subdomain@{cuda\_subdomain}!cuda\_subdomain\_temp\_allocation@{cuda\_subdomain\_temp\_allocation}}
+\index{cuda\_subdomain\_temp\_allocation@{cuda\_subdomain\_temp\_allocation}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{cuda\_subdomain\_temp\_allocation()}{cuda\_subdomain\_temp\_allocation()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a22fe6dbed56c513021cb3d2b2090db9c} 
+subroutine cuda\+\_\+subdomain\+::cuda\+\_\+subdomain\+\_\+temp\+\_\+allocation}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00387}{387}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a9f983585f2c46773a5e10bbc5eaf679b}\index{cuda\_subdomain@{cuda\_subdomain}!ghostcell\_update\_on\_direction\_real@{ghostcell\_update\_on\_direction\_real}}
+\index{ghostcell\_update\_on\_direction\_real@{ghostcell\_update\_on\_direction\_real}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ghostcell\_update\_on\_direction\_real()}{ghostcell\_update\_on\_direction\_real()}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a9f983585f2c46773a5e10bbc5eaf679b} 
+subroutine cuda\+\_\+subdomain\+::ghostcell\+\_\+update\+\_\+on\+\_\+direction\+\_\+real (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}), intent(in)}]{comm\+\_\+1d}{, }\item[{integer, intent(in)}]{direction}{, }\item[{logical, intent(in)}]{pbc}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{sbuf\+\_\+0\+\_\+d}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{sbuf\+\_\+1\+\_\+d}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{rbuf\+\_\+0\+\_\+d}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}})}]{rbuf\+\_\+1\+\_\+d}{, }\item[{integer, intent(in)}]{nsub\+\_\+a}{, }\item[{integer, intent(in)}]{nsub\+\_\+b}{, }\item[{integer, intent(in)}]{nsub\+\_\+c}{, }\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(0\+:,0\+:,0\+:)}]{value\+\_\+sub\+\_\+d}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00222}{222}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacecuda__subdomain_a59bbf6ec286453bdf2a5696426f7997c}\index{cuda\_subdomain@{cuda\_subdomain}!aci\_ptr@{aci\_ptr}}
+\index{aci\_ptr@{aci\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{aci\_ptr}{aci\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a59bbf6ec286453bdf2a5696426f7997c} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::aci\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_aca7f2c913dd00bacd5d3750304ba22ab}\index{cuda\_subdomain@{cuda\_subdomain}!acj\_ptr@{acj\_ptr}}
+\index{acj\_ptr@{acj\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{acj\_ptr}{acj\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_aca7f2c913dd00bacd5d3750304ba22ab} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::acj\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a1b51d420095c4ef93697bbe4f7cc8085}\index{cuda\_subdomain@{cuda\_subdomain}!ack\_ptr@{ack\_ptr}}
+\index{ack\_ptr@{ack\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ack\_ptr}{ack\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a1b51d420095c4ef93697bbe4f7cc8085} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::ack\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}\index{cuda\_subdomain@{cuda\_subdomain}!allocatable@{allocatable}}
+\index{allocatable@{allocatable}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{allocatable}{allocatable}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49} 
+integer cuda\+\_\+subdomain\+::allocatable}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a089aed354949b4c9bde5a96b0d5cb551}\index{cuda\_subdomain@{cuda\_subdomain}!ami\_ptr@{ami\_ptr}}
+\index{ami\_ptr@{ami\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ami\_ptr}{ami\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a089aed354949b4c9bde5a96b0d5cb551} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::ami\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a451b86d748a63a66aa6779b2d4edc9fb}\index{cuda\_subdomain@{cuda\_subdomain}!amj\_ptr@{amj\_ptr}}
+\index{amj\_ptr@{amj\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{amj\_ptr}{amj\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a451b86d748a63a66aa6779b2d4edc9fb} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::amj\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a76e1410260bc4de401716abc6cd0a015}\index{cuda\_subdomain@{cuda\_subdomain}!amk\_ptr@{amk\_ptr}}
+\index{amk\_ptr@{amk\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{amk\_ptr}{amk\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a76e1410260bc4de401716abc6cd0a015} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::amk\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad435eaf71375e605405189a7b0e378b4}\index{cuda\_subdomain@{cuda\_subdomain}!api\_ptr@{api\_ptr}}
+\index{api\_ptr@{api\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{api\_ptr}{api\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad435eaf71375e605405189a7b0e378b4} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::api\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ab380e335289614d7c34cd0057a491a23}\index{cuda\_subdomain@{cuda\_subdomain}!apj\_ptr@{apj\_ptr}}
+\index{apj\_ptr@{apj\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{apj\_ptr}{apj\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ab380e335289614d7c34cd0057a491a23} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::apj\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a34a77c51dc29c0e4992a3f1ef25ca114}\index{cuda\_subdomain@{cuda\_subdomain}!apk\_ptr@{apk\_ptr}}
+\index{apk\_ptr@{apk\_ptr}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{apk\_ptr}{apk\_ptr}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a34a77c51dc29c0e4992a3f1ef25ca114} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::apk\+\_\+ptr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ab8957ee4a038f7eb32fa07380b6247f6}\index{cuda\_subdomain@{cuda\_subdomain}!block\_in\_x@{block\_in\_x}}
+\index{block\_in\_x@{block\_in\_x}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{block\_in\_x}{block\_in\_x}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ab8957ee4a038f7eb32fa07380b6247f6} 
+integer cuda\+\_\+subdomain\+::block\+\_\+in\+\_\+x}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00032}{32}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a04878817e99727a2ce6f05324aa8cc7e}\index{cuda\_subdomain@{cuda\_subdomain}!block\_in\_y@{block\_in\_y}}
+\index{block\_in\_y@{block\_in\_y}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{block\_in\_y}{block\_in\_y}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a04878817e99727a2ce6f05324aa8cc7e} 
+integer cuda\+\_\+subdomain\+::block\+\_\+in\+\_\+y}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00032}{32}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ae6720d30aaae59ede400b6be45787bcb}\index{cuda\_subdomain@{cuda\_subdomain}!block\_in\_z@{block\_in\_z}}
+\index{block\_in\_z@{block\_in\_z}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{block\_in\_z}{block\_in\_z}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ae6720d30aaae59ede400b6be45787bcb} 
+integer cuda\+\_\+subdomain\+::block\+\_\+in\+\_\+z}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00032}{32}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a9e8060dba8d36ffd68a153094cd9ae5c}\index{cuda\_subdomain@{cuda\_subdomain}!blocks@{blocks}}
+\index{blocks@{blocks}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{blocks}{blocks}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a9e8060dba8d36ffd68a153094cd9ae5c} 
+type(dim3) cuda\+\_\+subdomain\+::blocks}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00034}{34}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a708c6fa08e0cef0a2399dea884aa02ef}\index{cuda\_subdomain@{cuda\_subdomain}!device@{device}}
+\index{device@{device}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a708c6fa08e0cef0a2399dea884aa02ef} 
+integer cuda\+\_\+subdomain\+::device}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}\index{cuda\_subdomain@{cuda\_subdomain}!dimension@{dimension}}
+\index{dimension@{dimension}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0} 
+integer cuda\+\_\+subdomain\+::dimension}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a24bc4eccede8d85a98e4f598a3f7a606}\index{cuda\_subdomain@{cuda\_subdomain}!dmx1\_d@{dmx1\_d}}
+\index{dmx1\_d@{dmx1\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx1\_d}{dmx1\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a24bc4eccede8d85a98e4f598a3f7a606} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx1\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00020}{20}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a546114f6221e81c94d6997012f1a3611}\index{cuda\_subdomain@{cuda\_subdomain}!dmx1\_d\_c@{dmx1\_d\_c}}
+\index{dmx1\_d\_c@{dmx1\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx1\_d\_c}{dmx1\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a546114f6221e81c94d6997012f1a3611} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx1\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00014}{14}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a9bd2097d085ddc7441fdb4d2c97bca53}\index{cuda\_subdomain@{cuda\_subdomain}!dmx1\_g\_d@{dmx1\_g\_d}}
+\index{dmx1\_g\_d@{dmx1\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx1\_g\_d}{dmx1\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a9bd2097d085ddc7441fdb4d2c97bca53} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx1\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00026}{26}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a329d87a57d3455098a2a589ba3151332}\index{cuda\_subdomain@{cuda\_subdomain}!dmx1\_g\_d\_c@{dmx1\_g\_d\_c}}
+\index{dmx1\_g\_d\_c@{dmx1\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx1\_g\_d\_c}{dmx1\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a329d87a57d3455098a2a589ba3151332} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx1\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00029}{29}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a272b659dde090c7270a4097517bfea7b}\index{cuda\_subdomain@{cuda\_subdomain}!dmx2\_d@{dmx2\_d}}
+\index{dmx2\_d@{dmx2\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx2\_d}{dmx2\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a272b659dde090c7270a4097517bfea7b} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx2\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00020}{20}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a75f6f81c1e53525c2cc93429ee4e3cbd}\index{cuda\_subdomain@{cuda\_subdomain}!dmx2\_d\_c@{dmx2\_d\_c}}
+\index{dmx2\_d\_c@{dmx2\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx2\_d\_c}{dmx2\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a75f6f81c1e53525c2cc93429ee4e3cbd} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx2\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00014}{14}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad5e435bf11f90b88fc51186f35552240}\index{cuda\_subdomain@{cuda\_subdomain}!dmx2\_g\_d@{dmx2\_g\_d}}
+\index{dmx2\_g\_d@{dmx2\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx2\_g\_d}{dmx2\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad5e435bf11f90b88fc51186f35552240} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx2\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00026}{26}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a4a2c2d2f50bdb8328a68107f6ebd4404}\index{cuda\_subdomain@{cuda\_subdomain}!dmx2\_g\_d\_c@{dmx2\_g\_d\_c}}
+\index{dmx2\_g\_d\_c@{dmx2\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx2\_g\_d\_c}{dmx2\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a4a2c2d2f50bdb8328a68107f6ebd4404} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx2\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00029}{29}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a3dd6c22a9218eead4be5a1ee9801ce7e}\index{cuda\_subdomain@{cuda\_subdomain}!dmx3\_d@{dmx3\_d}}
+\index{dmx3\_d@{dmx3\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx3\_d}{dmx3\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a3dd6c22a9218eead4be5a1ee9801ce7e} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx3\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00020}{20}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a385c4e6c82fa9729b2125831267fcb75}\index{cuda\_subdomain@{cuda\_subdomain}!dmx3\_d\_c@{dmx3\_d\_c}}
+\index{dmx3\_d\_c@{dmx3\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx3\_d\_c}{dmx3\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a385c4e6c82fa9729b2125831267fcb75} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx3\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00014}{14}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad1bd4d9dde41692de5c02c65b1ebd07a}\index{cuda\_subdomain@{cuda\_subdomain}!dmx3\_g\_d@{dmx3\_g\_d}}
+\index{dmx3\_g\_d@{dmx3\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx3\_g\_d}{dmx3\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad1bd4d9dde41692de5c02c65b1ebd07a} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx3\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00026}{26}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ab0db10266bc93023023e24e57ad5b120}\index{cuda\_subdomain@{cuda\_subdomain}!dmx3\_g\_d\_c@{dmx3\_g\_d\_c}}
+\index{dmx3\_g\_d\_c@{dmx3\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dmx3\_g\_d\_c}{dmx3\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ab0db10266bc93023023e24e57ad5b120} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dmx3\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00029}{29}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a0b87e1bc53505104acbcd89b6527b955}\index{cuda\_subdomain@{cuda\_subdomain}!dx1\_d@{dx1\_d}}
+\index{dx1\_d@{dx1\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx1\_d}{dx1\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a0b87e1bc53505104acbcd89b6527b955} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx1\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00019}{19}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af3481424c7134059209b9e8e96435fdd}\index{cuda\_subdomain@{cuda\_subdomain}!dx1\_d\_c@{dx1\_d\_c}}
+\index{dx1\_d\_c@{dx1\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx1\_d\_c}{dx1\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af3481424c7134059209b9e8e96435fdd} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx1\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00013}{13}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a7bab8b1df311fccb58f4b282932fcc9b}\index{cuda\_subdomain@{cuda\_subdomain}!dx1\_g\_d@{dx1\_g\_d}}
+\index{dx1\_g\_d@{dx1\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx1\_g\_d}{dx1\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a7bab8b1df311fccb58f4b282932fcc9b} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx1\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00025}{25}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a961579b609123ec52254123750721339}\index{cuda\_subdomain@{cuda\_subdomain}!dx1\_g\_d\_c@{dx1\_g\_d\_c}}
+\index{dx1\_g\_d\_c@{dx1\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx1\_g\_d\_c}{dx1\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a961579b609123ec52254123750721339} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx1\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00028}{28}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ae9ee96c686c41bdaf2f37c105c760b98}\index{cuda\_subdomain@{cuda\_subdomain}!dx2\_d@{dx2\_d}}
+\index{dx2\_d@{dx2\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx2\_d}{dx2\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ae9ee96c686c41bdaf2f37c105c760b98} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx2\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00019}{19}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_abf28e83fd4cd2a3674c08af4eb14a147}\index{cuda\_subdomain@{cuda\_subdomain}!dx2\_d\_c@{dx2\_d\_c}}
+\index{dx2\_d\_c@{dx2\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx2\_d\_c}{dx2\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_abf28e83fd4cd2a3674c08af4eb14a147} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx2\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00013}{13}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af3a18f9e0918e9043e084ca3cc7d05c4}\index{cuda\_subdomain@{cuda\_subdomain}!dx2\_g\_d@{dx2\_g\_d}}
+\index{dx2\_g\_d@{dx2\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx2\_g\_d}{dx2\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af3a18f9e0918e9043e084ca3cc7d05c4} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx2\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00025}{25}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad88be71db0621c6d53ffafeef2ec1894}\index{cuda\_subdomain@{cuda\_subdomain}!dx2\_g\_d\_c@{dx2\_g\_d\_c}}
+\index{dx2\_g\_d\_c@{dx2\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx2\_g\_d\_c}{dx2\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad88be71db0621c6d53ffafeef2ec1894} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx2\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00028}{28}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a7a4bcadeffec62435e74b77503a08c8c}\index{cuda\_subdomain@{cuda\_subdomain}!dx3\_d@{dx3\_d}}
+\index{dx3\_d@{dx3\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx3\_d}{dx3\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a7a4bcadeffec62435e74b77503a08c8c} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx3\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00019}{19}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a8311a76ee3bd94b3d28c7718f29691a3}\index{cuda\_subdomain@{cuda\_subdomain}!dx3\_d\_c@{dx3\_d\_c}}
+\index{dx3\_d\_c@{dx3\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx3\_d\_c}{dx3\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a8311a76ee3bd94b3d28c7718f29691a3} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx3\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00013}{13}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_abe3093c95ca5a9d3518ce6c6d26e6047}\index{cuda\_subdomain@{cuda\_subdomain}!dx3\_g\_d@{dx3\_g\_d}}
+\index{dx3\_g\_d@{dx3\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx3\_g\_d}{dx3\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_abe3093c95ca5a9d3518ce6c6d26e6047} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx3\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00025}{25}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a1c02179a76e9941b3f7a15338346b6cd}\index{cuda\_subdomain@{cuda\_subdomain}!dx3\_g\_d\_c@{dx3\_g\_d\_c}}
+\index{dx3\_g\_d\_c@{dx3\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{dx3\_g\_d\_c}{dx3\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a1c02179a76e9941b3f7a15338346b6cd} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::dx3\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00028}{28}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af280bbddf94542f487dc02663ff6c62e}\index{cuda\_subdomain@{cuda\_subdomain}!ic\_bc\_d@{ic\_bc\_d}}
+\index{ic\_bc\_d@{ic\_bc\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ic\_bc\_d}{ic\_bc\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af280bbddf94542f487dc02663ff6c62e} 
+integer cuda\+\_\+subdomain\+::ic\+\_\+bc\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00021}{21}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ac1c21e6bf3c0b73ff361aa784abd97a6}\index{cuda\_subdomain@{cuda\_subdomain}!ic\_bc\_d\_c@{ic\_bc\_d\_c}}
+\index{ic\_bc\_d\_c@{ic\_bc\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ic\_bc\_d\_c}{ic\_bc\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ac1c21e6bf3c0b73ff361aa784abd97a6} 
+integer cuda\+\_\+subdomain\+::ic\+\_\+bc\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00015}{15}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ab8ce2ba686e04240d14a93c9480afc38}\index{cuda\_subdomain@{cuda\_subdomain}!ic\_index\_d\_c@{ic\_index\_d\_c}}
+\index{ic\_index\_d\_c@{ic\_index\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ic\_index\_d\_c}{ic\_index\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ab8ce2ba686e04240d14a93c9480afc38} 
+integer cuda\+\_\+subdomain\+::ic\+\_\+index\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00016}{16}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a8077edc4116d8b4c173e61614f57ea50}\index{cuda\_subdomain@{cuda\_subdomain}!is\_bc\_d@{is\_bc\_d}}
+\index{is\_bc\_d@{is\_bc\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{is\_bc\_d}{is\_bc\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a8077edc4116d8b4c173e61614f57ea50} 
+integer cuda\+\_\+subdomain\+::is\+\_\+bc\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00021}{21}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_acb7b5076105322a0817c2882bcba3943}\index{cuda\_subdomain@{cuda\_subdomain}!is\_bc\_d\_c@{is\_bc\_d\_c}}
+\index{is\_bc\_d\_c@{is\_bc\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{is\_bc\_d\_c}{is\_bc\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_acb7b5076105322a0817c2882bcba3943} 
+integer cuda\+\_\+subdomain\+::is\+\_\+bc\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00015}{15}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af554dca546366cc1e3450acd67a6afde}\index{cuda\_subdomain@{cuda\_subdomain}!is\_index\_d\_c@{is\_index\_d\_c}}
+\index{is\_index\_d\_c@{is\_index\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{is\_index\_d\_c}{is\_index\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af554dca546366cc1e3450acd67a6afde} 
+integer cuda\+\_\+subdomain\+::is\+\_\+index\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00016}{16}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_adb5b8d9c612ffb9ad4a3001d023ff9c3}\index{cuda\_subdomain@{cuda\_subdomain}!jc\_bc\_d@{jc\_bc\_d}}
+\index{jc\_bc\_d@{jc\_bc\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{jc\_bc\_d}{jc\_bc\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_adb5b8d9c612ffb9ad4a3001d023ff9c3} 
+integer cuda\+\_\+subdomain\+::jc\+\_\+bc\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00021}{21}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a8d54fac9f662eae5a1c43e6a1bb94f76}\index{cuda\_subdomain@{cuda\_subdomain}!jc\_bc\_d\_c@{jc\_bc\_d\_c}}
+\index{jc\_bc\_d\_c@{jc\_bc\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{jc\_bc\_d\_c}{jc\_bc\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a8d54fac9f662eae5a1c43e6a1bb94f76} 
+integer cuda\+\_\+subdomain\+::jc\+\_\+bc\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00015}{15}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a1d3f89ff30b942f720932bf2856ad489}\index{cuda\_subdomain@{cuda\_subdomain}!jc\_index\_d\_c@{jc\_index\_d\_c}}
+\index{jc\_index\_d\_c@{jc\_index\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{jc\_index\_d\_c}{jc\_index\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a1d3f89ff30b942f720932bf2856ad489} 
+integer cuda\+\_\+subdomain\+::jc\+\_\+index\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00016}{16}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a21408e5fbc8f94d75457236aa5bbac45}\index{cuda\_subdomain@{cuda\_subdomain}!js\_bc\_d@{js\_bc\_d}}
+\index{js\_bc\_d@{js\_bc\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{js\_bc\_d}{js\_bc\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a21408e5fbc8f94d75457236aa5bbac45} 
+integer cuda\+\_\+subdomain\+::js\+\_\+bc\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00021}{21}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a48f28489bbac44672587f45dba4287f1}\index{cuda\_subdomain@{cuda\_subdomain}!js\_bc\_d\_c@{js\_bc\_d\_c}}
+\index{js\_bc\_d\_c@{js\_bc\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{js\_bc\_d\_c}{js\_bc\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a48f28489bbac44672587f45dba4287f1} 
+integer cuda\+\_\+subdomain\+::js\+\_\+bc\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00015}{15}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad13475d31be57c89579e30be77189ea0}\index{cuda\_subdomain@{cuda\_subdomain}!js\_index\_d\_c@{js\_index\_d\_c}}
+\index{js\_index\_d\_c@{js\_index\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{js\_index\_d\_c}{js\_index\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad13475d31be57c89579e30be77189ea0} 
+integer cuda\+\_\+subdomain\+::js\+\_\+index\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00016}{16}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a75f69a1cb32e5957607750c10fa4f042}\index{cuda\_subdomain@{cuda\_subdomain}!kc\_bc\_d@{kc\_bc\_d}}
+\index{kc\_bc\_d@{kc\_bc\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{kc\_bc\_d}{kc\_bc\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a75f69a1cb32e5957607750c10fa4f042} 
+integer cuda\+\_\+subdomain\+::kc\+\_\+bc\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00021}{21}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_abade6c94986752d08291ccfdf211fa14}\index{cuda\_subdomain@{cuda\_subdomain}!kc\_bc\_d\_c@{kc\_bc\_d\_c}}
+\index{kc\_bc\_d\_c@{kc\_bc\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{kc\_bc\_d\_c}{kc\_bc\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_abade6c94986752d08291ccfdf211fa14} 
+integer cuda\+\_\+subdomain\+::kc\+\_\+bc\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00015}{15}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a6ffbfe7e9ad71309ffd5821a8ecfd877}\index{cuda\_subdomain@{cuda\_subdomain}!kc\_index\_d\_c@{kc\_index\_d\_c}}
+\index{kc\_index\_d\_c@{kc\_index\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{kc\_index\_d\_c}{kc\_index\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a6ffbfe7e9ad71309ffd5821a8ecfd877} 
+integer cuda\+\_\+subdomain\+::kc\+\_\+index\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00016}{16}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a19ce41ff2ca2734287af4d4b709e1902}\index{cuda\_subdomain@{cuda\_subdomain}!ks\_bc\_d@{ks\_bc\_d}}
+\index{ks\_bc\_d@{ks\_bc\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ks\_bc\_d}{ks\_bc\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a19ce41ff2ca2734287af4d4b709e1902} 
+integer cuda\+\_\+subdomain\+::ks\+\_\+bc\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00021}{21}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af53715a78c8eccfcb6d04b34e26063cd}\index{cuda\_subdomain@{cuda\_subdomain}!ks\_bc\_d\_c@{ks\_bc\_d\_c}}
+\index{ks\_bc\_d\_c@{ks\_bc\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ks\_bc\_d\_c}{ks\_bc\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af53715a78c8eccfcb6d04b34e26063cd} 
+integer cuda\+\_\+subdomain\+::ks\+\_\+bc\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00015}{15}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a15ff9e3353109d870bda6c8d416a0b7e}\index{cuda\_subdomain@{cuda\_subdomain}!ks\_index\_d\_c@{ks\_index\_d\_c}}
+\index{ks\_index\_d\_c@{ks\_index\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{ks\_index\_d\_c}{ks\_index\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a15ff9e3353109d870bda6c8d416a0b7e} 
+integer cuda\+\_\+subdomain\+::ks\+\_\+index\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00016}{16}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_aa64034da3b565917a3d00569f3efa7cd}\index{cuda\_subdomain@{cuda\_subdomain}!pointer@{pointer}}
+\index{pointer@{pointer}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{pointer}{pointer}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_aa64034da3b565917a3d00569f3efa7cd} 
+integer cuda\+\_\+subdomain\+::pointer}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00018}{18}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a789d983096fe0dded583587d784a6e7c}\index{cuda\_subdomain@{cuda\_subdomain}!rbuf\_0\_temp@{rbuf\_0\_temp}}
+\index{rbuf\_0\_temp@{rbuf\_0\_temp}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{rbuf\_0\_temp}{rbuf\_0\_temp}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a789d983096fe0dded583587d784a6e7c} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::rbuf\+\_\+0\+\_\+temp}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00037}{37}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af2bf70267a33599bc62e429e7fd1a1a9}\index{cuda\_subdomain@{cuda\_subdomain}!rbuf\_0\_temp\_int@{rbuf\_0\_temp\_int}}
+\index{rbuf\_0\_temp\_int@{rbuf\_0\_temp\_int}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{rbuf\_0\_temp\_int}{rbuf\_0\_temp\_int}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af2bf70267a33599bc62e429e7fd1a1a9} 
+integer cuda\+\_\+subdomain\+::rbuf\+\_\+0\+\_\+temp\+\_\+int}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00038}{38}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af0e7d2d38a187bcdc8b7523dff9aad63}\index{cuda\_subdomain@{cuda\_subdomain}!rbuf\_1\_temp@{rbuf\_1\_temp}}
+\index{rbuf\_1\_temp@{rbuf\_1\_temp}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{rbuf\_1\_temp}{rbuf\_1\_temp}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af0e7d2d38a187bcdc8b7523dff9aad63} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::rbuf\+\_\+1\+\_\+temp}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00037}{37}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_aad8580cea523c9a78ad3c1da57672589}\index{cuda\_subdomain@{cuda\_subdomain}!rbuf\_1\_temp\_int@{rbuf\_1\_temp\_int}}
+\index{rbuf\_1\_temp\_int@{rbuf\_1\_temp\_int}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{rbuf\_1\_temp\_int}{rbuf\_1\_temp\_int}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_aad8580cea523c9a78ad3c1da57672589} 
+integer cuda\+\_\+subdomain\+::rbuf\+\_\+1\+\_\+temp\+\_\+int}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00038}{38}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ab2bc24e99070283a76585fc865e29553}\index{cuda\_subdomain@{cuda\_subdomain}!rhs\_buff1@{rhs\_buff1}}
+\index{rhs\_buff1@{rhs\_buff1}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{rhs\_buff1}{rhs\_buff1}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ab2bc24e99070283a76585fc865e29553} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::rhs\+\_\+buff1}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00041}{41}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a2df3ceea49264608f8b3b4884e5453ae}\index{cuda\_subdomain@{cuda\_subdomain}!rhs\_buff2@{rhs\_buff2}}
+\index{rhs\_buff2@{rhs\_buff2}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{rhs\_buff2}{rhs\_buff2}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a2df3ceea49264608f8b3b4884e5453ae} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::rhs\+\_\+buff2}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00041}{41}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a9920a75d2af837068feac1eccaf05d8d}\index{cuda\_subdomain@{cuda\_subdomain}!sbuf\_0\_temp@{sbuf\_0\_temp}}
+\index{sbuf\_0\_temp@{sbuf\_0\_temp}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{sbuf\_0\_temp}{sbuf\_0\_temp}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a9920a75d2af837068feac1eccaf05d8d} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::sbuf\+\_\+0\+\_\+temp}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00037}{37}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a2671a41e8c8755d4f3f8ab57101bf17a}\index{cuda\_subdomain@{cuda\_subdomain}!sbuf\_0\_temp\_int@{sbuf\_0\_temp\_int}}
+\index{sbuf\_0\_temp\_int@{sbuf\_0\_temp\_int}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{sbuf\_0\_temp\_int}{sbuf\_0\_temp\_int}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a2671a41e8c8755d4f3f8ab57101bf17a} 
+integer cuda\+\_\+subdomain\+::sbuf\+\_\+0\+\_\+temp\+\_\+int}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00038}{38}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_aac6a507bcb235d0591e1a27db2d3a42c}\index{cuda\_subdomain@{cuda\_subdomain}!sbuf\_1\_temp@{sbuf\_1\_temp}}
+\index{sbuf\_1\_temp@{sbuf\_1\_temp}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{sbuf\_1\_temp}{sbuf\_1\_temp}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_aac6a507bcb235d0591e1a27db2d3a42c} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::sbuf\+\_\+1\+\_\+temp}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00037}{37}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a8785380a8b8853f782a37f78e4ae6e07}\index{cuda\_subdomain@{cuda\_subdomain}!sbuf\_1\_temp\_int@{sbuf\_1\_temp\_int}}
+\index{sbuf\_1\_temp\_int@{sbuf\_1\_temp\_int}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{sbuf\_1\_temp\_int}{sbuf\_1\_temp\_int}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a8785380a8b8853f782a37f78e4ae6e07} 
+integer cuda\+\_\+subdomain\+::sbuf\+\_\+1\+\_\+temp\+\_\+int}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00038}{38}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a00615354884cc42f3e4e03c0f9041c6b}\index{cuda\_subdomain@{cuda\_subdomain}!share\_size@{share\_size}}
+\index{share\_size@{share\_size}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{share\_size}{share\_size}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a00615354884cc42f3e4e03c0f9041c6b} 
+integer cuda\+\_\+subdomain\+::share\+\_\+size}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00033}{33}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad9968f61db736546ffc233f00f2e9b3d}\index{cuda\_subdomain@{cuda\_subdomain}!share\_size\_fft@{share\_size\_fft}}
+\index{share\_size\_fft@{share\_size\_fft}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{share\_size\_fft}{share\_size\_fft}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad9968f61db736546ffc233f00f2e9b3d} 
+integer cuda\+\_\+subdomain\+::share\+\_\+size\+\_\+fft}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00033}{33}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ae2a205700209d6c6672e930a72494147}\index{cuda\_subdomain@{cuda\_subdomain}!share\_size\_pascal@{share\_size\_pascal}}
+\index{share\_size\_pascal@{share\_size\_pascal}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{share\_size\_pascal}{share\_size\_pascal}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ae2a205700209d6c6672e930a72494147} 
+integer cuda\+\_\+subdomain\+::share\+\_\+size\+\_\+pascal}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00033}{33}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad8d32a03324927a0a101e4d7286a1761}\index{cuda\_subdomain@{cuda\_subdomain}!target@{target}}
+\index{target@{target}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad8d32a03324927a0a101e4d7286a1761} 
+integer cuda\+\_\+subdomain\+::target}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ababb6b0c882894d178c9efb66fefff9e}\index{cuda\_subdomain@{cuda\_subdomain}!temp1@{temp1}}
+\index{temp1@{temp1}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{temp1}{temp1}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ababb6b0c882894d178c9efb66fefff9e} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::temp1}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00044}{44}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a43cd4c4357678d5f0265a642703f0d2a}\index{cuda\_subdomain@{cuda\_subdomain}!temp2@{temp2}}
+\index{temp2@{temp2}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{temp2}{temp2}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a43cd4c4357678d5f0265a642703f0d2a} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::temp2}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00044}{44}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a303a5e170d58092c2d044c0eea935d81}\index{cuda\_subdomain@{cuda\_subdomain}!threads@{threads}}
+\index{threads@{threads}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{threads}{threads}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a303a5e170d58092c2d044c0eea935d81} 
+type(dim3) cuda\+\_\+subdomain\+::threads}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00034}{34}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a7f1b6ff4980dffe8999bb6a47206b6e6}\index{cuda\_subdomain@{cuda\_subdomain}!threads\_fft@{threads\_fft}}
+\index{threads\_fft@{threads\_fft}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{threads\_fft}{threads\_fft}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a7f1b6ff4980dffe8999bb6a47206b6e6} 
+type(dim3) cuda\+\_\+subdomain\+::threads\+\_\+fft}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00034}{34}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_aa412d320c48f771347d03a0df60aad79}\index{cuda\_subdomain@{cuda\_subdomain}!threads\_tdma@{threads\_tdma}}
+\index{threads\_tdma@{threads\_tdma}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{threads\_tdma}{threads\_tdma}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_aa412d320c48f771347d03a0df60aad79} 
+type(dim3) cuda\+\_\+subdomain\+::threads\+\_\+tdma}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00034}{34}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_af41073bf416146dc555a44b1ce6ea4b2}\index{cuda\_subdomain@{cuda\_subdomain}!x1\_d@{x1\_d}}
+\index{x1\_d@{x1\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x1\_d}{x1\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_af41073bf416146dc555a44b1ce6ea4b2} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x1\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00018}{18}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a80329de72386f8ec27dca14b4341575f}\index{cuda\_subdomain@{cuda\_subdomain}!x1\_d\_c@{x1\_d\_c}}
+\index{x1\_d\_c@{x1\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x1\_d\_c}{x1\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a80329de72386f8ec27dca14b4341575f} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x1\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a9dc7a9ae2f1479a0f9e0290eeabdc8b0}\index{cuda\_subdomain@{cuda\_subdomain}!x1\_g\_d@{x1\_g\_d}}
+\index{x1\_g\_d@{x1\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x1\_g\_d}{x1\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a9dc7a9ae2f1479a0f9e0290eeabdc8b0} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x1\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00024}{24}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a0ba556a03a5fc5cb953d197dc3cd3528}\index{cuda\_subdomain@{cuda\_subdomain}!x1\_g\_d\_c@{x1\_g\_d\_c}}
+\index{x1\_g\_d\_c@{x1\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x1\_g\_d\_c}{x1\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a0ba556a03a5fc5cb953d197dc3cd3528} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x1\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00027}{27}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_afe92472cd9d3c88faa482f1e9b1bde9f}\index{cuda\_subdomain@{cuda\_subdomain}!x2\_d@{x2\_d}}
+\index{x2\_d@{x2\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x2\_d}{x2\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_afe92472cd9d3c88faa482f1e9b1bde9f} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x2\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00018}{18}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_ad85cbe33da5277202c3e88524c2d88e1}\index{cuda\_subdomain@{cuda\_subdomain}!x2\_d\_c@{x2\_d\_c}}
+\index{x2\_d\_c@{x2\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x2\_d\_c}{x2\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_ad85cbe33da5277202c3e88524c2d88e1} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x2\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_affc61b578e77db5fed743106e813c714}\index{cuda\_subdomain@{cuda\_subdomain}!x2\_g\_d@{x2\_g\_d}}
+\index{x2\_g\_d@{x2\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x2\_g\_d}{x2\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_affc61b578e77db5fed743106e813c714} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x2\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00024}{24}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a51173eaaaec67d4f734fd1f929938a2a}\index{cuda\_subdomain@{cuda\_subdomain}!x2\_g\_d\_c@{x2\_g\_d\_c}}
+\index{x2\_g\_d\_c@{x2\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x2\_g\_d\_c}{x2\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a51173eaaaec67d4f734fd1f929938a2a} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x2\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00027}{27}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a34101a1e5f0c07b84d55f4a27d3d998a}\index{cuda\_subdomain@{cuda\_subdomain}!x3\_d@{x3\_d}}
+\index{x3\_d@{x3\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x3\_d}{x3\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a34101a1e5f0c07b84d55f4a27d3d998a} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x3\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00018}{18}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a247ea374eb5323d75024191bfcfd72c3}\index{cuda\_subdomain@{cuda\_subdomain}!x3\_d\_c@{x3\_d\_c}}
+\index{x3\_d\_c@{x3\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x3\_d\_c}{x3\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a247ea374eb5323d75024191bfcfd72c3} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x3\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a6d114733ca3fd7b567fdb9c92e0f2441}\index{cuda\_subdomain@{cuda\_subdomain}!x3\_g\_d@{x3\_g\_d}}
+\index{x3\_g\_d@{x3\_g\_d}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x3\_g\_d}{x3\_g\_d}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a6d114733ca3fd7b567fdb9c92e0f2441} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x3\+\_\+g\+\_\+d}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00024}{24}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+
+\Hypertarget{namespacecuda__subdomain_a5b470324062f8561193672f38a9e9c7a}\index{cuda\_subdomain@{cuda\_subdomain}!x3\_g\_d\_c@{x3\_g\_d\_c}}
+\index{x3\_g\_d\_c@{x3\_g\_d\_c}!cuda\_subdomain@{cuda\_subdomain}}
+\doxysubsubsection{\texorpdfstring{x3\_g\_d\_c}{x3\_g\_d\_c}}
+{\footnotesize\ttfamily \label{namespacecuda__subdomain_a5b470324062f8561193672f38a9e9c7a} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+subdomain\+::x3\+\_\+g\+\_\+d\+\_\+c}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__subdomain_8f90_source_l00027}{27}} of file \mbox{\hyperlink{cuda__subdomain_8f90_source}{cuda\+\_\+subdomain.\+f90}}.
+

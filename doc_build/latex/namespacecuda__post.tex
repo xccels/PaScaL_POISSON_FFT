@@ -1,0 +1,590 @@
+\doxysection{cuda\+\_\+post Module Reference}
+\hypertarget{namespacecuda__post}{}\label{namespacecuda__post}\index{cuda\_post@{cuda\_post}}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \mbox{\hyperlink{namespacecuda__post_abf3f2d9a82791dca060fb9cb130ce2f9}{cuda\+\_\+post\+\_\+filein\+\_\+continue\+\_\+post\+\_\+reassembly\+\_\+io}} (\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}, pin)
+\item 
+subroutine, public \mbox{\hyperlink{namespacecuda__post_ada5cf21ab199f979b868c1f9b121ad9e}{cuda\+\_\+post\+\_\+fileout\+\_\+continue\+\_\+post\+\_\+reassembly\+\_\+io}} (\mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{myrank}}, pin)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__post_aba7f9010598592a6ebe65aa69466bf97}{cuda\+\_\+post\+\_\+fileout\+\_\+instantfield\+\_\+3d}} (p)
+\item 
+subroutine \mbox{\hyperlink{namespacecuda__post_a20e05bc449ea01cc1d5a4f90cc04623e}{cuda\+\_\+post\+\_\+clean}} ()
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) function \mbox{\hyperlink{namespacecuda__post_add4d4e4d9a2d6d74621256b61ae51836}{calc\+\_\+c2g}} (x, i, j, k, im, jm, km)
+\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \mbox{\hyperlink{namespacecuda__post_a748dd7097779c5fd225ff56369f50281}{cuda\+\_\+post\+\_\+initial}} ()
+\end{DoxyCompactItemize}
+
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical \mbox{\hyperlink{namespacecuda__post_a13d16aee9f81aff49104b81c9b22391d}{firstprintxy}} =.true.
+\item 
+logical \mbox{\hyperlink{namespacecuda__post_a8c2ef03d254470344a0ac19453dd9374}{firstprintxz}} =.true.
+\item 
+logical \mbox{\hyperlink{namespacecuda__post_a3e2050d54f33eb8104482da025035fae}{firstprinth}} =.true.
+\item 
+logical \mbox{\hyperlink{namespacecuda__post_a842c8b6a2c7d0f3503b386d5da1e80af}{firstprint3}} =.true.
+\item 
+logical \mbox{\hyperlink{namespacecuda__post_a2c0a9713c3c71bb4bcd5f8304b061646}{firstprintgrid}} =.true.
+\item 
+logical \mbox{\hyperlink{namespacecuda__post_a2e6d0477a98d20d312561fc0dd52f8d8}{firstprint3d}} =.true.
+\item 
+logical \mbox{\hyperlink{namespacecuda__post_ac9b7b8118df3a2d459c0c91763b6d8c7}{firstprintdiv}} =.true.
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}{comm\+\_\+io\+\_\+aggregation}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a53b0f40fb53106455c6d76178ced733f}{communicator}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a00e72e835e370009af848d32b3d96cb2}{for}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a188303cfa17d56ee0ef05f822a53660f}{aggregation}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}{comm\+\_\+io\+\_\+master}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a4ee5eeba1f2bc79e1ff8d2b4b1159b4b}{master}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a59da04d5a079171cb9b3b0b3ee626e88}{process}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a36f1f2af05e0a06a05a4e959536cba6f}{having}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_adcfa4aeebdd61b5c0f4cc1fb9a45b6f8}{aggregated}}
+\item 
+type(comm\+\_\+io) \mbox{\hyperlink{namespacecuda__post_a8a9de38fb1c5c5e8e3f3c69dadc2ff9a}{data}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) \mbox{\hyperlink{namespacecuda__post_a2d39db5cd7972ee31e7d7d01a7140ca3}{maxdivu}}
+\item 
+character(len=17) \mbox{\hyperlink{namespacecuda__post_af44f49f87bf4b2fd4179cdef175246cd}{xyzrank}}
+\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}{ddtype\+\_\+inner\+\_\+domain}}
+\begin{DoxyCompactList}\small\item\em MPI derived datatype for file IO. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}{ddtype\+\_\+global\+\_\+domain\+\_\+pr\+\_\+io}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__post_ac349052ed42338825cf7787affffb43e}{ddtype\+\_\+global\+\_\+domain\+\_\+mpi\+\_\+io}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__post_af21f7efe43ad04325fc4a20227c76341}{ddtype\+\_\+global\+\_\+domain\+\_\+mpi\+\_\+io\+\_\+aggregation}}
+\item 
+integer \mbox{\hyperlink{namespacecuda__post_a55c617c03e441d0ce2e867490b7b81b5}{ddtype\+\_\+aggregation\+\_\+chunk}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} \mbox{\hyperlink{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}{cnts\+\_\+pr}}
+\begin{DoxyCompactList}\small\item\em Temporary variables for building DDT for file IO. \end{DoxyCompactList}\item 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} \mbox{\hyperlink{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}{disp\+\_\+pr}}
+\item 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} \mbox{\hyperlink{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1}{cnts\+\_\+aggr}}
+\item 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} \mbox{\hyperlink{namespacecuda__post_a0f934efd4ad822056d2477f5d29145b9}{disp\+\_\+aggr}}
+\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\Hypertarget{namespacecuda__post_add4d4e4d9a2d6d74621256b61ae51836}\index{cuda\_post@{cuda\_post}!calc\_c2g@{calc\_c2g}}
+\index{calc\_c2g@{calc\_c2g}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{calc\_c2g()}{calc\_c2g()}}
+{\footnotesize\ttfamily \label{namespacecuda__post_add4d4e4d9a2d6d74621256b61ae51836} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) function cuda\+\_\+post\+::calc\+\_\+c2g (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(0\+:,0\+:,0\+:), intent(in)}]{x}{, }\item[{integer, intent(in)}]{i}{, }\item[{integer, intent(in)}]{j}{, }\item[{integer, intent(in)}]{k}{, }\item[{integer, intent(in)}]{im}{, }\item[{integer, intent(in)}]{jm}{, }\item[{integer, intent(in)}]{km}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00339}{339}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+Here is the caller graph for this function\+:
+% FIG 0
+\Hypertarget{namespacecuda__post_a20e05bc449ea01cc1d5a4f90cc04623e}\index{cuda\_post@{cuda\_post}!cuda\_post\_clean@{cuda\_post\_clean}}
+\index{cuda\_post\_clean@{cuda\_post\_clean}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{cuda\_post\_clean()}{cuda\_post\_clean()}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a20e05bc449ea01cc1d5a4f90cc04623e} 
+subroutine cuda\+\_\+post\+::cuda\+\_\+post\+\_\+clean}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00333}{333}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_abf3f2d9a82791dca060fb9cb130ce2f9}\index{cuda\_post@{cuda\_post}!cuda\_post\_filein\_continue\_post\_reassembly\_io@{cuda\_post\_filein\_continue\_post\_reassembly\_io}}
+\index{cuda\_post\_filein\_continue\_post\_reassembly\_io@{cuda\_post\_filein\_continue\_post\_reassembly\_io}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{cuda\_post\_filein\_continue\_post\_reassembly\_io()}{cuda\_post\_filein\_continue\_post\_reassembly\_io()}}
+{\footnotesize\ttfamily \label{namespacecuda__post_abf3f2d9a82791dca060fb9cb130ce2f9} 
+subroutine, public cuda\+\_\+post\+::cuda\+\_\+post\+\_\+filein\+\_\+continue\+\_\+post\+\_\+reassembly\+\_\+io (\begin{DoxyParamCaption}\item[{integer}]{myrank}{, }\item[{double precision, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(0\+:n1sub, 0\+:n2sub, 0\+:n3sub)}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00224}{224}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+\Hypertarget{namespacecuda__post_ada5cf21ab199f979b868c1f9b121ad9e}\index{cuda\_post@{cuda\_post}!cuda\_post\_fileout\_continue\_post\_reassembly\_io@{cuda\_post\_fileout\_continue\_post\_reassembly\_io}}
+\index{cuda\_post\_fileout\_continue\_post\_reassembly\_io@{cuda\_post\_fileout\_continue\_post\_reassembly\_io}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{cuda\_post\_fileout\_continue\_post\_reassembly\_io()}{cuda\_post\_fileout\_continue\_post\_reassembly\_io()}}
+{\footnotesize\ttfamily \label{namespacecuda__post_ada5cf21ab199f979b868c1f9b121ad9e} 
+subroutine, public cuda\+\_\+post\+::cuda\+\_\+post\+\_\+fileout\+\_\+continue\+\_\+post\+\_\+reassembly\+\_\+io (\begin{DoxyParamCaption}\item[{integer}]{myrank}{, }\item[{double precision, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(0\+:n1sub, 0\+:n2sub, 0\+:n3sub)}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00260}{260}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_aba7f9010598592a6ebe65aa69466bf97}\index{cuda\_post@{cuda\_post}!cuda\_post\_fileout\_instantfield\_3d@{cuda\_post\_fileout\_instantfield\_3d}}
+\index{cuda\_post\_fileout\_instantfield\_3d@{cuda\_post\_fileout\_instantfield\_3d}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{cuda\_post\_fileout\_instantfield\_3d()}{cuda\_post\_fileout\_instantfield\_3d()}}
+{\footnotesize\ttfamily \label{namespacecuda__post_aba7f9010598592a6ebe65aa69466bf97} 
+subroutine cuda\+\_\+post\+::cuda\+\_\+post\+\_\+fileout\+\_\+instantfield\+\_\+3d (\begin{DoxyParamCaption}\item[{real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}( 0\+:n1sub  ,  0\+:n2sub  ,  0\+:n3sub         )}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00294}{294}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+\Hypertarget{namespacecuda__post_a748dd7097779c5fd225ff56369f50281}\index{cuda\_post@{cuda\_post}!cuda\_post\_initial@{cuda\_post\_initial}}
+\index{cuda\_post\_initial@{cuda\_post\_initial}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{cuda\_post\_initial()}{cuda\_post\_initial()}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a748dd7097779c5fd225ff56369f50281} 
+subroutine, public cuda\+\_\+post\+::cuda\+\_\+post\+\_\+initial}
+
+Temporary local variables for communicator setup
+
+Temporary local variables for communicator setup
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+MPI communicator for data aggregation (comm\+\_\+\+IO\+\_\+aggregation) \end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+MPI communicator for aggregation\+\_\+master (comm\+\_\+\+IO\+\_\+master) \end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+Derived datatype for inner domain without ghost cells \end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+Derived datatype for post reassembly IO \end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+Derived datatype for MPI IO \end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+Derived datatype for data aggregation. \end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+
+
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+\begin{quote}
+Derived datatype for aggregated MPI IO. \end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+\end{quote}
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00048}{48}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacecuda__post_adcfa4aeebdd61b5c0f4cc1fb9a45b6f8}\index{cuda\_post@{cuda\_post}!aggregated@{aggregated}}
+\index{aggregated@{aggregated}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{aggregated}{aggregated}}
+{\footnotesize\ttfamily \label{namespacecuda__post_adcfa4aeebdd61b5c0f4cc1fb9a45b6f8} 
+type(comm\+\_\+io) cuda\+\_\+post\+::aggregated}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00031}{31}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a188303cfa17d56ee0ef05f822a53660f}\index{cuda\_post@{cuda\_post}!aggregation@{aggregation}}
+\index{aggregation@{aggregation}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{aggregation}{aggregation}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a188303cfa17d56ee0ef05f822a53660f} 
+type(comm\+\_\+io) cuda\+\_\+post\+::aggregation}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00030}{30}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1}\index{cuda\_post@{cuda\_post}!cnts\_aggr@{cnts\_aggr}}
+\index{cnts\_aggr@{cnts\_aggr}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{cnts\_aggr}{cnts\_aggr}}
+{\footnotesize\ttfamily \label{namespacecuda__post_adaaff110b7e27a0dd41b8bc663ece9d1} 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} cuda\+\_\+post\+::cnts\+\_\+aggr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00019}{19}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a}\index{cuda\_post@{cuda\_post}!cnts\_pr@{cnts\_pr}}
+\index{cnts\_pr@{cnts\_pr}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{cnts\_pr}{cnts\_pr}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a2477c9e79a366ac5b77565563cf81e8a} 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} cuda\+\_\+post\+::cnts\+\_\+pr}
+
+
+
+Temporary variables for building DDT for file IO. 
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00019}{19}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936}\index{cuda\_post@{cuda\_post}!comm\_io\_aggregation@{comm\_io\_aggregation}}
+\index{comm\_io\_aggregation@{comm\_io\_aggregation}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{comm\_io\_aggregation}{comm\_io\_aggregation}}
+{\footnotesize\ttfamily \label{namespacecuda__post_aecfe02de79d2eed8ca691afc02edb936} 
+type(comm\+\_\+io) cuda\+\_\+post\+::comm\+\_\+io\+\_\+aggregation}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00030}{30}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c}\index{cuda\_post@{cuda\_post}!comm\_io\_master@{comm\_io\_master}}
+\index{comm\_io\_master@{comm\_io\_master}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{comm\_io\_master}{comm\_io\_master}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a1c943f620f3f00fcca7af1a2a34fba7c} 
+type(comm\+\_\+io) cuda\+\_\+post\+::comm\+\_\+io\+\_\+master}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00031}{31}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a53b0f40fb53106455c6d76178ced733f}\index{cuda\_post@{cuda\_post}!communicator@{communicator}}
+\index{communicator@{communicator}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{communicator}{communicator}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a53b0f40fb53106455c6d76178ced733f} 
+type(comm\+\_\+io) cuda\+\_\+post\+::communicator}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00030}{30}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a8a9de38fb1c5c5e8e3f3c69dadc2ff9a}\index{cuda\_post@{cuda\_post}!data@{data}}
+\index{data@{data}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a8a9de38fb1c5c5e8e3f3c69dadc2ff9a} 
+type(comm\+\_\+io) cuda\+\_\+post\+::data}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00031}{31}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a55c617c03e441d0ce2e867490b7b81b5}\index{cuda\_post@{cuda\_post}!ddtype\_aggregation\_chunk@{ddtype\_aggregation\_chunk}}
+\index{ddtype\_aggregation\_chunk@{ddtype\_aggregation\_chunk}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{ddtype\_aggregation\_chunk}{ddtype\_aggregation\_chunk}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a55c617c03e441d0ce2e867490b7b81b5} 
+integer cuda\+\_\+post\+::ddtype\+\_\+aggregation\+\_\+chunk}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00015}{15}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_ac349052ed42338825cf7787affffb43e}\index{cuda\_post@{cuda\_post}!ddtype\_global\_domain\_mpi\_io@{ddtype\_global\_domain\_mpi\_io}}
+\index{ddtype\_global\_domain\_mpi\_io@{ddtype\_global\_domain\_mpi\_io}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{ddtype\_global\_domain\_mpi\_io}{ddtype\_global\_domain\_mpi\_io}}
+{\footnotesize\ttfamily \label{namespacecuda__post_ac349052ed42338825cf7787affffb43e} 
+integer cuda\+\_\+post\+::ddtype\+\_\+global\+\_\+domain\+\_\+mpi\+\_\+io}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00013}{13}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_af21f7efe43ad04325fc4a20227c76341}\index{cuda\_post@{cuda\_post}!ddtype\_global\_domain\_mpi\_io\_aggregation@{ddtype\_global\_domain\_mpi\_io\_aggregation}}
+\index{ddtype\_global\_domain\_mpi\_io\_aggregation@{ddtype\_global\_domain\_mpi\_io\_aggregation}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{ddtype\_global\_domain\_mpi\_io\_aggregation}{ddtype\_global\_domain\_mpi\_io\_aggregation}}
+{\footnotesize\ttfamily \label{namespacecuda__post_af21f7efe43ad04325fc4a20227c76341} 
+integer cuda\+\_\+post\+::ddtype\+\_\+global\+\_\+domain\+\_\+mpi\+\_\+io\+\_\+aggregation}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00014}{14}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a54a842d824cf455f92f509b1114121d0}\index{cuda\_post@{cuda\_post}!ddtype\_global\_domain\_pr\_io@{ddtype\_global\_domain\_pr\_io}}
+\index{ddtype\_global\_domain\_pr\_io@{ddtype\_global\_domain\_pr\_io}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{ddtype\_global\_domain\_pr\_io}{ddtype\_global\_domain\_pr\_io}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a54a842d824cf455f92f509b1114121d0} 
+integer cuda\+\_\+post\+::ddtype\+\_\+global\+\_\+domain\+\_\+pr\+\_\+io}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00012}{12}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6}\index{cuda\_post@{cuda\_post}!ddtype\_inner\_domain@{ddtype\_inner\_domain}}
+\index{ddtype\_inner\_domain@{ddtype\_inner\_domain}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{ddtype\_inner\_domain}{ddtype\_inner\_domain}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a308d6b4f121550c2b4759f2f8c771ad6} 
+integer cuda\+\_\+post\+::ddtype\+\_\+inner\+\_\+domain}
+
+
+
+MPI derived datatype for file IO. 
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00011}{11}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a0f934efd4ad822056d2477f5d29145b9}\index{cuda\_post@{cuda\_post}!disp\_aggr@{disp\_aggr}}
+\index{disp\_aggr@{disp\_aggr}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{disp\_aggr}{disp\_aggr}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a0f934efd4ad822056d2477f5d29145b9} 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} cuda\+\_\+post\+::disp\+\_\+aggr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00019}{19}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf}\index{cuda\_post@{cuda\_post}!disp\_pr@{disp\_pr}}
+\index{disp\_pr@{disp\_pr}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{disp\_pr}{disp\_pr}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a11906e0ae1df27ee4dc73de09cefe3cf} 
+integer, \mbox{\hyperlink{namespacecuda__subdomain_a6a866b05d9154ca4b66f707485cfadf0}{dimension}}(\+:), \mbox{\hyperlink{namespacecuda__subdomain_ab0ba92a3b47d77096f508d2ef3613b49}{allocatable}} cuda\+\_\+post\+::disp\+\_\+pr}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00019}{19}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a842c8b6a2c7d0f3503b386d5da1e80af}\index{cuda\_post@{cuda\_post}!firstprint3@{firstprint3}}
+\index{firstprint3@{firstprint3}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{firstprint3}{firstprint3}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a842c8b6a2c7d0f3503b386d5da1e80af} 
+logical cuda\+\_\+post\+::firstprint3 =.true.}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00008}{8}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a2e6d0477a98d20d312561fc0dd52f8d8}\index{cuda\_post@{cuda\_post}!firstprint3d@{firstprint3d}}
+\index{firstprint3d@{firstprint3d}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{firstprint3d}{firstprint3d}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a2e6d0477a98d20d312561fc0dd52f8d8} 
+logical cuda\+\_\+post\+::firstprint3d =.true.}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00008}{8}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_ac9b7b8118df3a2d459c0c91763b6d8c7}\index{cuda\_post@{cuda\_post}!firstprintdiv@{firstprintdiv}}
+\index{firstprintdiv@{firstprintdiv}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{firstprintdiv}{firstprintdiv}}
+{\footnotesize\ttfamily \label{namespacecuda__post_ac9b7b8118df3a2d459c0c91763b6d8c7} 
+logical cuda\+\_\+post\+::firstprintdiv =.true.}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00008}{8}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a2c0a9713c3c71bb4bcd5f8304b061646}\index{cuda\_post@{cuda\_post}!firstprintgrid@{firstprintgrid}}
+\index{firstprintgrid@{firstprintgrid}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{firstprintgrid}{firstprintgrid}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a2c0a9713c3c71bb4bcd5f8304b061646} 
+logical cuda\+\_\+post\+::firstprintgrid =.true.}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00008}{8}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a3e2050d54f33eb8104482da025035fae}\index{cuda\_post@{cuda\_post}!firstprinth@{firstprinth}}
+\index{firstprinth@{firstprinth}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{firstprinth}{firstprinth}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a3e2050d54f33eb8104482da025035fae} 
+logical cuda\+\_\+post\+::firstprinth =.true.}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00008}{8}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a13d16aee9f81aff49104b81c9b22391d}\index{cuda\_post@{cuda\_post}!firstprintxy@{firstprintxy}}
+\index{firstprintxy@{firstprintxy}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{firstprintxy}{firstprintxy}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a13d16aee9f81aff49104b81c9b22391d} 
+logical cuda\+\_\+post\+::firstprintxy =.true.}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00008}{8}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a8c2ef03d254470344a0ac19453dd9374}\index{cuda\_post@{cuda\_post}!firstprintxz@{firstprintxz}}
+\index{firstprintxz@{firstprintxz}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{firstprintxz}{firstprintxz}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a8c2ef03d254470344a0ac19453dd9374} 
+logical cuda\+\_\+post\+::firstprintxz =.true.}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00008}{8}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a00e72e835e370009af848d32b3d96cb2}\index{cuda\_post@{cuda\_post}!for@{for}}
+\index{for@{for}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{for}{for}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a00e72e835e370009af848d32b3d96cb2} 
+type(comm\+\_\+io) cuda\+\_\+post\+::for}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00030}{30}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a36f1f2af05e0a06a05a4e959536cba6f}\index{cuda\_post@{cuda\_post}!having@{having}}
+\index{having@{having}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{having}{having}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a36f1f2af05e0a06a05a4e959536cba6f} 
+type(comm\+\_\+io) cuda\+\_\+post\+::having}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00031}{31}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a4ee5eeba1f2bc79e1ff8d2b4b1159b4b}\index{cuda\_post@{cuda\_post}!master@{master}}
+\index{master@{master}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{master}{master}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a4ee5eeba1f2bc79e1ff8d2b4b1159b4b} 
+type(comm\+\_\+io) cuda\+\_\+post\+::master}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00031}{31}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a2d39db5cd7972ee31e7d7d01a7140ca3}\index{cuda\_post@{cuda\_post}!maxdivu@{maxdivu}}
+\index{maxdivu@{maxdivu}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{maxdivu}{maxdivu}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a2d39db5cd7972ee31e7d7d01a7140ca3} 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) cuda\+\_\+post\+::maxdivu}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00042}{42}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_a59da04d5a079171cb9b3b0b3ee626e88}\index{cuda\_post@{cuda\_post}!process@{process}}
+\index{process@{process}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{process}{process}}
+{\footnotesize\ttfamily \label{namespacecuda__post_a59da04d5a079171cb9b3b0b3ee626e88} 
+type(comm\+\_\+io) cuda\+\_\+post\+::process}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00031}{31}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+
+\Hypertarget{namespacecuda__post_af44f49f87bf4b2fd4179cdef175246cd}\index{cuda\_post@{cuda\_post}!xyzrank@{xyzrank}}
+\index{xyzrank@{xyzrank}!cuda\_post@{cuda\_post}}
+\doxysubsubsection{\texorpdfstring{xyzrank}{xyzrank}}
+{\footnotesize\ttfamily \label{namespacecuda__post_af44f49f87bf4b2fd4179cdef175246cd} 
+character(len=17) cuda\+\_\+post\+::xyzrank}
+
+
+
+Definition at line \mbox{\hyperlink{cuda__post_8f90_source_l00044}{44}} of file \mbox{\hyperlink{cuda__post_8f90_source}{cuda\+\_\+post.\+f90}}.
+

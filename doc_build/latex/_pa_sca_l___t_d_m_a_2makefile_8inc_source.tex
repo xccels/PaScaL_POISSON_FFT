@@ -1,0 +1,40 @@
+\doxysection{Makefile.\+inc}
+\hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source}{}\label{_pa_sca_l___t_d_m_a_2makefile_8inc_source}\index{PaScaL\_TDMA/Makefile.inc@{PaScaL\_TDMA/Makefile.inc}}
+\mbox{\hyperlink{_pa_sca_l___t_d_m_a_2makefile_8inc}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00001}00001\ \textcolor{preprocessor}{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00002}00002\ \textcolor{preprocessor}{\#\ Compile\ setting\ with\ intel\ compiler\ and\ intel\ MPI.}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00003}00003\ \textcolor{preprocessor}{\#\ Modify\ flags\ according\ to\ the\ system\ and\ environment}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00004}00004\ \textcolor{preprocessor}{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00006}00006\ \textcolor{preprocessor}{\#\ FC\ =\ mpiifort}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00008}00008\ \textcolor{preprocessor}{\#\ FLAG\ \ =\ -\/O3\ -\/fPIC\ -\/cpp}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00009}00009\ \textcolor{preprocessor}{\#\ FLAG\ +=\ -\/g}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00010}00010\ \textcolor{preprocessor}{\#\ FLAG\ +=\ -\/fcheck=all\ -\/warn-\/all\ }}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00011}00011\ \textcolor{preprocessor}{\#\ FLAG\ +=\ -\/fp-\/model=precise\ }}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00012}00012\ \textcolor{preprocessor}{\#\ FLAG\ +=\ -\/check\ bounds}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00013}00013\ \textcolor{preprocessor}{\#\ FLAG\ +=\ -\/xMIC-\/AVX512}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00015}00015\ \textcolor{preprocessor}{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00016}00016\ \textcolor{preprocessor}{\#\ Compile\ setting\ with\ nvfortran\ and\ non-\/intel\ MPI.}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00017}00017\ \textcolor{preprocessor}{\#\ Modify\ flags\ according\ to\ the\ system\ and\ environment}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00018}00018\ \textcolor{preprocessor}{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00020}00020\ FC\ =\ mpifort}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00022}00022\ FLAG\ \ =\ -\/O3\ -\/fPIC\ -\/cpp\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00023}00023\ FLAG\ +=\ -\/tp=skylake\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00025}00025\ \textcolor{preprocessor}{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00026}00026\ \textcolor{preprocessor}{\#\ To\ use\ CUDA}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00027}00027\ \textcolor{preprocessor}{\#\ PaScaL\_TDMA\ is\ compiled\ for\ CUDA\ also.}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00028}00028\ \textcolor{preprocessor}{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00030}00030\ USE\_CUDA\ =\ yes}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00031}00031\ FLAG\ +=\ -\/mp:multicore\ -\/Mcuda\ -\/Minfo=accel\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00032}00032\ \textcolor{preprocessor}{\#FLAG\ +=\ -\/DUSE\_NVTX}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2makefile_8inc_source_l00034}00034\ }
+
+\end{DoxyCode}

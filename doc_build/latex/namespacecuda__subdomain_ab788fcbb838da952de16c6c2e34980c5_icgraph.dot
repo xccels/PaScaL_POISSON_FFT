@@ -1,0 +1,11 @@
+digraph "cuda_subdomain::cuda_subdomain_blockandthreads"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="cuda_subdomain::cuda\l_subdomain_blockandthreads",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge2_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="cuda_subdomain::cuda\l_subdomain_initial",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacecuda__subdomain.html#a5d8b98bd38d2f6dc1e19c2d8a714ed49",tooltip=" "];
+}

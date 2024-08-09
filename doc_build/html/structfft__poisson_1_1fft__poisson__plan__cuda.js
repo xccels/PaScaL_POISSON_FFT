@@ -1,0 +1,25 @@
+var structfft__poisson_1_1fft__poisson__plan__cuda =
+[
+    [ "comm_1d_x2", "structfft__poisson_1_1fft__poisson__plan__cuda.html#ad710e67ccac0679cf2f7d39a06e1eca9", null ],
+    [ "comm_1d_x3", "structfft__poisson_1_1fft__poisson__plan__cuda.html#acaf4530d43afa6b1c135f1ffe9fd2429", null ],
+    [ "l1", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a9791c38feee191f04bf265c41faae8fe", null ],
+    [ "l2", "structfft__poisson_1_1fft__poisson__plan__cuda.html#af29097456c902d3bc0036f8f512d7b7f", null ],
+    [ "l3", "structfft__poisson_1_1fft__poisson__plan__cuda.html#af39dc391d33764cf6a5abb2c857ec65c", null ],
+    [ "n1", "structfft__poisson_1_1fft__poisson__plan__cuda.html#aaa2992c4bb0c920be6c1dd8819dc074e", null ],
+    [ "n1m", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a779f30a7cda74f21606d646dd24aae91", null ],
+    [ "n1msub", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a2bdc5bc47be06107f053d1b31b4b511a", null ],
+    [ "n1sub", "structfft__poisson_1_1fft__poisson__plan__cuda.html#afef9934204007751fa34ca2c845143d7", null ],
+    [ "n2", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a19fda8f57c1b89af821ecf27bac941c9", null ],
+    [ "n2m", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a7da237de331df817a818f20a52a82c00", null ],
+    [ "n2msub", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a51a62b32de986d87efbbf885346b162b", null ],
+    [ "n2sub", "structfft__poisson_1_1fft__poisson__plan__cuda.html#aacb90aa0d42b590f0c9dbd9f62705a27", null ],
+    [ "n3", "structfft__poisson_1_1fft__poisson__plan__cuda.html#aae2b6bc57aa1c29ce055a414bf462118", null ],
+    [ "n3m", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a324b448085a14506c3674448262b7c01", null ],
+    [ "n3msub", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a099aef1e36292dfbc591e50c8a124f30", null ],
+    [ "n3sub", "structfft__poisson_1_1fft__poisson__plan__cuda.html#aa3bdb157ceb0148fd79d6e5b54d74763", null ],
+    [ "pbc1", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a5bd20c7feeeab72d94ac476194551699", null ],
+    [ "pbc2", "structfft__poisson_1_1fft__poisson__plan__cuda.html#ad2ed0378ca4e3aa615cbd300b1db1ce2", null ],
+    [ "pbc3", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a62fb25cfdd7a341eb6e52865cf6f5e00", null ],
+    [ "threads_fft", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a6bca1f885664d298447ec7ccbb5ea1c9", null ],
+    [ "threads_tdma", "structfft__poisson_1_1fft__poisson__plan__cuda.html#a86a9a752626413def4fb6d48fb4713d2", null ]
+];

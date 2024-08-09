@@ -1,0 +1,79 @@
+\doxysection{nvtx.\+f90}
+\hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source}{}\label{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source}\index{PaScaL\_TDMA/src/nvtx.f90@{PaScaL\_TDMA/src/nvtx.f90}}
+\mbox{\hyperlink{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00001}00001\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespacenvtx}{nvtx}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00003}00003\ \ \ \ \ \textcolor{keywordtype}{use\ }iso\_c\_binding}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00004}00004\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00005}00005\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00006}00006\ \ \ \ \ \textcolor{keywordtype}{integer},\textcolor{keywordtype}{private}\ ::\ col(7)\ =\ [\ z\textcolor{stringliteral}{'0000ff00'},\ z\textcolor{stringliteral}{'000000ff'},\ z\textcolor{stringliteral}{'00ffff00'},\ z\textcolor{stringliteral}{'00ff00ff'},\ z\textcolor{stringliteral}{'0000ffff'},\ z\textcolor{stringliteral}{'00ff0000'},\ z\textcolor{stringliteral}{'00ffffff'}]}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{character},\textcolor{keywordtype}{private},\textcolor{keywordtype}{target}\ ::\ tempName(256)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00008}00008\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{type},\ \textcolor{keyword}{bind(C)}::\ nvtxEventAttributes}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00010}00010\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT16\_T)}::\ version=1}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00011}00011\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT16\_T)}::\ size=48\ \textcolor{comment}{!}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00012}00012\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT)}::\ category=0}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00013}00013\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT)}::\ colorType=1\ \textcolor{comment}{!\ NVTX\_COLOR\_ARGB\ =\ 1}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00014}00014\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT)}::\ color}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00015}00015\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT)}::\ payloadType=0\ \textcolor{comment}{!\ NVTX\_PAYLOAD\_UNKNOWN\ =\ 0}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00016}00016\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT)}::\ reserved0}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00017}00017\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT64\_T)}::\ payload\ \ \ \textcolor{comment}{!\ union\ uint,int,double}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00018}00018\ \ \ \ \ \ \ \textcolor{keywordtype}{integer(C\_INT)}::\ messageType=1\ \ \textcolor{comment}{!\ NVTX\_MESSAGE\_TYPE\_ASCII\ \ \ \ \ =\ 1\ }}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00019}00019\ \ \ \ \ \ \ \textcolor{keywordtype}{type}(C\_PTR)::\ message\ \ \textcolor{comment}{!\ ascii\ char}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{end\ type}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00021}00021\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{interface}\ \mbox{\hyperlink{interfacenvtx_1_1nvtxrangepush}{nvtxrangepush}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00023}00023\ \ \ \ \ \ \ \textcolor{comment}{!\ push\ range\ with\ custom\ label\ and\ standard\ color}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00024}\mbox{\hyperlink{interfacenvtx_1_1nvtxrangepush_a9b89d40371882183ffd7f3c6afb7c32a}{00024}}\ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }nvtxrangepusha(name)\ bind(C,\ name='nvtxRangePushA')}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00025}00025\ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }iso\_c\_binding}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00026}00026\ \ \ \ \ \ \ \textcolor{keywordtype}{character(kind=C\_CHAR)}\ ::\ name(256)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00027}00027\ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00029}00029\ \ \ \ \ \ \ \textcolor{comment}{!\ push\ range\ with\ custom\ label\ and\ custom\ color}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00030}\mbox{\hyperlink{interfacenvtx_1_1nvtxrangepush_ab940fa7d62630e799d93f4a6bbe64fd7}{00030}}\ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }nvtxrangepushex(event)\ bind(C,\ name='nvtxRangePushEx')}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00031}00031\ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }iso\_c\_binding}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00032}00032\ \ \ \ \ \ \ import::\ \mbox{\hyperlink{structnvtx_1_1nvtxeventattributes}{nvtxeventattributes}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00033}00033\ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structnvtx_1_1nvtxeventattributes}{nvtxeventattributes}})::\ event}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00034}00034\ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00036}00036\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{interface}\ \mbox{\hyperlink{interfacenvtx_1_1nvtxrangepop}{nvtxrangepop}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00038}\mbox{\hyperlink{interfacenvtx_1_1nvtxrangepop_ade36ac9b48a28449dab91510ce6e4a02}{00038}}\ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{interfacenvtx_1_1nvtxrangepop}{nvtxrangepop}}()\ bind(C,\ name='nvtxRangePop')}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00039}00039\ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00041}00041\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00043}00043\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacenvtx_abaf43be3229e42bd0f4c1e75d9670075}{nvtxstartrange}}(name,id)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00045}00045\ \ \ \ \ \ \ \textcolor{keywordtype}{character(kind=c\_char,len=*)}\ ::\ name}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00046}00046\ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{optional}::\ id}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00047}00047\ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\mbox{\hyperlink{structnvtx_1_1nvtxeventattributes}{nvtxeventattributes}})::\ event}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00048}00048\ \ \ \ \ \ \ \textcolor{keywordtype}{character(kind=c\_char,len=256)}\ ::\ trimmed\_name}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00049}00049\ \ \ \ \ \ \ \textcolor{keywordtype}{integer}::\ i}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00050}00050\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00051}00051\ \ \ \ \ \ \ trimmed\_name=trim(name)//c\_null\_char}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00052}00052\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00053}00053\ \ \ \ \ \ \ \textcolor{comment}{!\ move\ scalar\ trimmed\_name\ into\ character\ array\ tempName}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00054}00054\ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,len(trim(name))\ +\ 1}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ \ tempname(i)\ =\ trimmed\_name(i:i)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00056}00056\ \textcolor{keywordflow}{\ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00057}00057\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00058}00058\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00059}00059\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ .not.\ \textcolor{keyword}{present}(id))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{interfacenvtx_1_1nvtxrangepush}{nvtxrangepush}}(tempname)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00061}00061\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00062}00062\ \ \ \ \ \ \ \ \ event\%color=col(mod(id,7)+1)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ event\%message=c\_loc(tempname)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }nvtxrangepushex(event)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00065}00065\ \textcolor{keywordflow}{\ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00066}00066\ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00067}00067\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00068}00068\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespacenvtx_aed9b06c5398e0a5b8d7a6e687564fb46}{nvtxendrange}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00069}00069\ \ \ \ \ \ \ \textcolor{keyword}{call\ }\mbox{\hyperlink{interfacenvtx_1_1nvtxrangepop}{nvtxrangepop}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00070}00070\ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00071}00071\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00072}00072\ \textcolor{keyword}{end\ module\ }\mbox{\hyperlink{namespacenvtx}{nvtx}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2nvtx_8f90_source_l00073}00073\ \ \ \ \ }
+
+\end{DoxyCode}

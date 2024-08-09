@@ -1,0 +1,73 @@
+\doxysection{fft\+\_\+poisson Module Reference}
+\hypertarget{namespacefft__poisson}{}\label{namespacefft__poisson}\index{fft\_poisson@{fft\_poisson}}
+\doxysubsubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \mbox{\hyperlink{structfft__poisson_1_1fft__poisson__plan__cuda}{fft\+\_\+poisson\+\_\+plan\+\_\+cuda}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, parameter \mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}} = kind(0.\+0)
+\item 
+integer, parameter \mbox{\hyperlink{namespacefft__poisson_ae580a37def568d214e72a0041f48f995}{mpi\+\_\+real\+\_\+type}} = MPI\+\_\+\+REAL
+\item 
+integer, parameter \mbox{\hyperlink{namespacefft__poisson_a55c0444a3d0ec739512b0970070dd289}{mpi\+\_\+complex\+\_\+type}} = MPI\+\_\+\+COMPLEX
+\item 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}), parameter \mbox{\hyperlink{namespacefft__poisson_aa36ab67de567472ec3ee396ce622be37}{pi}} = real(dacos(-\/1.\+0d0), \mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}})
+\item 
+integer, dimension(2, 2) \mbox{\hyperlink{namespacefft__poisson_aacfcb7a96d48dfbda49773e329f01cf6}{plan\+\_\+fft}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacefft__poisson_a55c0444a3d0ec739512b0970070dd289}\index{fft\_poisson@{fft\_poisson}!mpi\_complex\_type@{mpi\_complex\_type}}
+\index{mpi\_complex\_type@{mpi\_complex\_type}!fft\_poisson@{fft\_poisson}}
+\doxysubsubsection{\texorpdfstring{mpi\_complex\_type}{mpi\_complex\_type}}
+{\footnotesize\ttfamily \label{namespacefft__poisson_a55c0444a3d0ec739512b0970070dd289} 
+integer parameter fft\+\_\+poisson\+::mpi\+\_\+complex\+\_\+type = MPI\+\_\+\+COMPLEX}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00012}{12}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{namespacefft__poisson_ae580a37def568d214e72a0041f48f995}\index{fft\_poisson@{fft\_poisson}!mpi\_real\_type@{mpi\_real\_type}}
+\index{mpi\_real\_type@{mpi\_real\_type}!fft\_poisson@{fft\_poisson}}
+\doxysubsubsection{\texorpdfstring{mpi\_real\_type}{mpi\_real\_type}}
+{\footnotesize\ttfamily \label{namespacefft__poisson_ae580a37def568d214e72a0041f48f995} 
+integer parameter fft\+\_\+poisson\+::mpi\+\_\+real\+\_\+type = MPI\+\_\+\+REAL}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00012}{12}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{namespacefft__poisson_aa36ab67de567472ec3ee396ce622be37}\index{fft\_poisson@{fft\_poisson}!pi@{pi}}
+\index{pi@{pi}!fft\_poisson@{fft\_poisson}}
+\doxysubsubsection{\texorpdfstring{pi}{pi}}
+{\footnotesize\ttfamily \label{namespacefft__poisson_aa36ab67de567472ec3ee396ce622be37} 
+real(\mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}}), parameter fft\+\_\+poisson\+::pi = real(dacos(-\/1.\+0d0), \mbox{\hyperlink{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}{rp}})}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00016}{16}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{namespacefft__poisson_aacfcb7a96d48dfbda49773e329f01cf6}\index{fft\_poisson@{fft\_poisson}!plan\_fft@{plan\_fft}}
+\index{plan\_fft@{plan\_fft}!fft\_poisson@{fft\_poisson}}
+\doxysubsubsection{\texorpdfstring{plan\_fft}{plan\_fft}}
+{\footnotesize\ttfamily \label{namespacefft__poisson_aacfcb7a96d48dfbda49773e329f01cf6} 
+integer, dimension(2,2) fft\+\_\+poisson\+::plan\+\_\+fft}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00042}{42}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+
+\Hypertarget{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca}\index{fft\_poisson@{fft\_poisson}!rp@{rp}}
+\index{rp@{rp}!fft\_poisson@{fft\_poisson}}
+\doxysubsubsection{\texorpdfstring{rp}{rp}}
+{\footnotesize\ttfamily \label{namespacefft__poisson_a42841907dbd61422c74db6d6937bacca} 
+integer parameter fft\+\_\+poisson\+::rp = kind(0.\+0)}
+
+
+
+Definition at line \mbox{\hyperlink{fft__3d__poisson_8f90_source_l00012}{12}} of file \mbox{\hyperlink{fft__3d__poisson_8f90_source}{fft\+\_\+3d\+\_\+poisson.\+f90}}.
+

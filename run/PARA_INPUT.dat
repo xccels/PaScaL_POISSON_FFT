@@ -1,0 +1,56 @@
+&domain_size
+L1 = 2.0d0
+L2 = 2.0d0
+L3 = 2.0d0
+/
+
+&mesh
+n1m = 64
+n2m = 64
+n3m = 64  
+/
+
+&grid_style
+pbc1 = .true.
+pbc2 = .true.
+pbc3 = .false.
+uniform1 = 1
+uniform2 = 1
+uniform3 = 1 
+gamma1 = 3.0d0
+gamma2 = 3.0d0
+gamma3 = 3.0d0
+/
+
+&MPI_procs
+np1 = 1
+np2 = 1
+np3 = 2
+/
+
+&cuda_thread
+thread_in_x = 8
+thread_in_y = 4
+thread_in_z = 4
+/
+
+&cuda_pascal_tdma_thread
+thread_in_x_pascal = 32
+thread_in_y_pascal = 8
+thread_in_fft_pascal = 32
+/
+
+&Poisson
+Poisson_model = 1
+/
+
+&post_option
+ContinueFilein = .false.
+ContinueFileout = .true.
+/
+
+&directories
+dir_cont_filein = './data/1_continue/MPI_IO/'
+dir_cont_fileout = './data/1_continue/'
+dir_instantfield = './data/2_instantfield/'
+/

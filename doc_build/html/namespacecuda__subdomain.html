@@ -1,0 +1,2219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:image" content="../preview.png" />
+<meta property="og:description" content="Documentation for parallel and scalable tri-diagonal matrix solver" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="../preview.png" />
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END twitter metadata -->
+<title>PaScaL_POISSON_FFT: cuda_subdomain Module Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            messageStyle: "normal",
+            linebreaks: {
+                automatic: false
+            }
+        },
+        tex2jax: { 
+            inlineMath: [["\\(","\\)"]], 
+            displayMath: [["$$","$$"],["\\[","\\]"]], 
+            processEscapes: true
+        },
+        TeX: {
+            Macros: {
+                tr: "{\\scriptscriptstyle\\mathrm{T}}",
+            }
+        }
+    });
+</script>
+<!--MathJax(LaTeX) -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript" id="MathJax-script" async  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/xccels/PaScaL_POISSON_FFT" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 65px;">
+  <td id="projectlogo">
+    <a href="./index.html">
+        <img alt="Logo" src="home.png"/></td>
+    </a>
+  <td id="projectalign" style="padding-left: 0.5em;padding-top: 0.5em;">
+   <div id="projectname">PaScaL_POISSON_FFT
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespacecuda__subdomain.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Types</a> &#124;
+<a href="#func-members">Functions/Subroutines</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">cuda_subdomain Module Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Types</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecuda__subdomain_1_1cuda__subdomain__ghostcell__update.html">cuda_subdomain_ghostcell_update</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecuda__subdomain_1_1ghostcell__update__on__direction.html">ghostcell_update_on_direction</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions/Subroutines</h2></td></tr>
+<tr class="memitem:aad00f718e2a92cbfac05c26d3107d43b" id="r_aad00f718e2a92cbfac05c26d3107d43b"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad00f718e2a92cbfac05c26d3107d43b">cuda_subdomain_environment</a> ()</td></tr>
+<tr class="separator:aad00f718e2a92cbfac05c26d3107d43b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d8b98bd38d2f6dc1e19c2d8a714ed49" id="r_a5d8b98bd38d2f6dc1e19c2d8a714ed49"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d8b98bd38d2f6dc1e19c2d8a714ed49">cuda_subdomain_initial</a> ()</td></tr>
+<tr class="separator:a5d8b98bd38d2f6dc1e19c2d8a714ed49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f350540445c4f9a623b3d088ab914a9" id="r_a0f350540445c4f9a623b3d088ab914a9"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f350540445c4f9a623b3d088ab914a9">cuda_subdomain_mesh</a></td></tr>
+<tr class="separator:a0f350540445c4f9a623b3d088ab914a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab788fcbb838da952de16c6c2e34980c5" id="r_ab788fcbb838da952de16c6c2e34980c5"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab788fcbb838da952de16c6c2e34980c5">cuda_subdomain_blockandthreads</a> ()</td></tr>
+<tr class="separator:ab788fcbb838da952de16c6c2e34980c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37b21deccd62523a052bd0cf1c2ae31d" id="r_a37b21deccd62523a052bd0cf1c2ae31d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37b21deccd62523a052bd0cf1c2ae31d">cuda_subdomain_dtoh</a> (devicedata, hostdata)</td></tr>
+<tr class="separator:a37b21deccd62523a052bd0cf1c2ae31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2110a2fa10782f739c468aff4a622ab7" id="r_a2110a2fa10782f739c468aff4a622ab7"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2110a2fa10782f739c468aff4a622ab7">cuda_subdomain_htod</a> (hostdata, devicedata)</td></tr>
+<tr class="separator:a2110a2fa10782f739c468aff4a622ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e8dd3c26f412a82b4cbe286d653fd2d" id="r_a3e8dd3c26f412a82b4cbe286d653fd2d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e8dd3c26f412a82b4cbe286d653fd2d">cuda_subdomain_ghostcell_update_scalar</a> (value_sub_d)</td></tr>
+<tr class="separator:a3e8dd3c26f412a82b4cbe286d653fd2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ca880a7e12134f59b98203215f77a4" id="r_a91ca880a7e12134f59b98203215f77a4"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91ca880a7e12134f59b98203215f77a4">cuda_subdomain_ghostcell_update_real</a> (value_sub_d)</td></tr>
+<tr class="separator:a91ca880a7e12134f59b98203215f77a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f983585f2c46773a5e10bbc5eaf679b" id="r_a9f983585f2c46773a5e10bbc5eaf679b"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f983585f2c46773a5e10bbc5eaf679b">ghostcell_update_on_direction_real</a> (comm_1d, direction, pbc, sbuf_0_d, sbuf_1_d, rbuf_0_d, rbuf_1_d, nsub_a, nsub_b, nsub_c, value_sub_d)</td></tr>
+<tr class="separator:a9f983585f2c46773a5e10bbc5eaf679b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f080aaec4f196d1dbc0081925cdae6" id="r_a25f080aaec4f196d1dbc0081925cdae6"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25f080aaec4f196d1dbc0081925cdae6">cuda_neumann_bc</a> (x_d)</td></tr>
+<tr class="separator:a25f080aaec4f196d1dbc0081925cdae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4faaf90ef0c1f1199f9cae475f48274" id="r_ac4faaf90ef0c1f1199f9cae475f48274"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4faaf90ef0c1f1199f9cae475f48274">apply_bc_on_direction</a> (x_d, comm_1d, dmx_d, pbc, nmsub_a, nsub_a, nsub_b, nsub_c, direction)</td></tr>
+<tr class="separator:ac4faaf90ef0c1f1199f9cae475f48274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17df0e3552de6f8d48e097a6467e7bfb" id="r_a17df0e3552de6f8d48e097a6467e7bfb"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17df0e3552de6f8d48e097a6467e7bfb">cuda_subdomain_clean</a></td></tr>
+<tr class="separator:a17df0e3552de6f8d48e097a6467e7bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22fe6dbed56c513021cb3d2b2090db9c" id="r_a22fe6dbed56c513021cb3d2b2090db9c"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22fe6dbed56c513021cb3d2b2090db9c">cuda_subdomain_temp_allocation</a> ()</td></tr>
+<tr class="separator:a22fe6dbed56c513021cb3d2b2090db9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52a4ab13475e7529d1b619a334118f29" id="r_a52a4ab13475e7529d1b619a334118f29"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52a4ab13475e7529d1b619a334118f29">cuda_destroy_ptr</a></td></tr>
+<tr class="separator:a52a4ab13475e7529d1b619a334118f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a708c6fa08e0cef0a2399dea884aa02ef" id="r_a708c6fa08e0cef0a2399dea884aa02ef"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a708c6fa08e0cef0a2399dea884aa02ef">device</a></td></tr>
+<tr class="separator:a708c6fa08e0cef0a2399dea884aa02ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8d32a03324927a0a101e4d7286a1761" id="r_ad8d32a03324927a0a101e4d7286a1761"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8d32a03324927a0a101e4d7286a1761">target</a></td></tr>
+<tr class="separator:ad8d32a03324927a0a101e4d7286a1761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ba92a3b47d77096f508d2ef3613b49" id="r_ab0ba92a3b47d77096f508d2ef3613b49"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0ba92a3b47d77096f508d2ef3613b49">allocatable</a></td></tr>
+<tr class="separator:ab0ba92a3b47d77096f508d2ef3613b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a866b05d9154ca4b66f707485cfadf0" id="r_a6a866b05d9154ca4b66f707485cfadf0"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), dimension(:)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a866b05d9154ca4b66f707485cfadf0">dimension</a></td></tr>
+<tr class="separator:a6a866b05d9154ca4b66f707485cfadf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80329de72386f8ec27dca14b4341575f" id="r_a80329de72386f8ec27dca14b4341575f"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80329de72386f8ec27dca14b4341575f">x1_d_c</a></td></tr>
+<tr class="separator:a80329de72386f8ec27dca14b4341575f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad85cbe33da5277202c3e88524c2d88e1" id="r_ad85cbe33da5277202c3e88524c2d88e1"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad85cbe33da5277202c3e88524c2d88e1">x2_d_c</a></td></tr>
+<tr class="separator:ad85cbe33da5277202c3e88524c2d88e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a247ea374eb5323d75024191bfcfd72c3" id="r_a247ea374eb5323d75024191bfcfd72c3"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a247ea374eb5323d75024191bfcfd72c3">x3_d_c</a></td></tr>
+<tr class="separator:a247ea374eb5323d75024191bfcfd72c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3481424c7134059209b9e8e96435fdd" id="r_af3481424c7134059209b9e8e96435fdd"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3481424c7134059209b9e8e96435fdd">dx1_d_c</a></td></tr>
+<tr class="separator:af3481424c7134059209b9e8e96435fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf28e83fd4cd2a3674c08af4eb14a147" id="r_abf28e83fd4cd2a3674c08af4eb14a147"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf28e83fd4cd2a3674c08af4eb14a147">dx2_d_c</a></td></tr>
+<tr class="separator:abf28e83fd4cd2a3674c08af4eb14a147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8311a76ee3bd94b3d28c7718f29691a3" id="r_a8311a76ee3bd94b3d28c7718f29691a3"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8311a76ee3bd94b3d28c7718f29691a3">dx3_d_c</a></td></tr>
+<tr class="separator:a8311a76ee3bd94b3d28c7718f29691a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a546114f6221e81c94d6997012f1a3611" id="r_a546114f6221e81c94d6997012f1a3611"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a546114f6221e81c94d6997012f1a3611">dmx1_d_c</a></td></tr>
+<tr class="separator:a546114f6221e81c94d6997012f1a3611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f6f81c1e53525c2cc93429ee4e3cbd" id="r_a75f6f81c1e53525c2cc93429ee4e3cbd"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75f6f81c1e53525c2cc93429ee4e3cbd">dmx2_d_c</a></td></tr>
+<tr class="separator:a75f6f81c1e53525c2cc93429ee4e3cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385c4e6c82fa9729b2125831267fcb75" id="r_a385c4e6c82fa9729b2125831267fcb75"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a385c4e6c82fa9729b2125831267fcb75">dmx3_d_c</a></td></tr>
+<tr class="separator:a385c4e6c82fa9729b2125831267fcb75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c21e6bf3c0b73ff361aa784abd97a6" id="r_ac1c21e6bf3c0b73ff361aa784abd97a6"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1c21e6bf3c0b73ff361aa784abd97a6">ic_bc_d_c</a></td></tr>
+<tr class="separator:ac1c21e6bf3c0b73ff361aa784abd97a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb7b5076105322a0817c2882bcba3943" id="r_acb7b5076105322a0817c2882bcba3943"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb7b5076105322a0817c2882bcba3943">is_bc_d_c</a></td></tr>
+<tr class="separator:acb7b5076105322a0817c2882bcba3943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d54fac9f662eae5a1c43e6a1bb94f76" id="r_a8d54fac9f662eae5a1c43e6a1bb94f76"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d54fac9f662eae5a1c43e6a1bb94f76">jc_bc_d_c</a></td></tr>
+<tr class="separator:a8d54fac9f662eae5a1c43e6a1bb94f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48f28489bbac44672587f45dba4287f1" id="r_a48f28489bbac44672587f45dba4287f1"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48f28489bbac44672587f45dba4287f1">js_bc_d_c</a></td></tr>
+<tr class="separator:a48f28489bbac44672587f45dba4287f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abade6c94986752d08291ccfdf211fa14" id="r_abade6c94986752d08291ccfdf211fa14"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abade6c94986752d08291ccfdf211fa14">kc_bc_d_c</a></td></tr>
+<tr class="separator:abade6c94986752d08291ccfdf211fa14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53715a78c8eccfcb6d04b34e26063cd" id="r_af53715a78c8eccfcb6d04b34e26063cd"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af53715a78c8eccfcb6d04b34e26063cd">ks_bc_d_c</a></td></tr>
+<tr class="separator:af53715a78c8eccfcb6d04b34e26063cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8ce2ba686e04240d14a93c9480afc38" id="r_ab8ce2ba686e04240d14a93c9480afc38"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8ce2ba686e04240d14a93c9480afc38">ic_index_d_c</a></td></tr>
+<tr class="separator:ab8ce2ba686e04240d14a93c9480afc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af554dca546366cc1e3450acd67a6afde" id="r_af554dca546366cc1e3450acd67a6afde"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af554dca546366cc1e3450acd67a6afde">is_index_d_c</a></td></tr>
+<tr class="separator:af554dca546366cc1e3450acd67a6afde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d3f89ff30b942f720932bf2856ad489" id="r_a1d3f89ff30b942f720932bf2856ad489"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d3f89ff30b942f720932bf2856ad489">jc_index_d_c</a></td></tr>
+<tr class="separator:a1d3f89ff30b942f720932bf2856ad489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad13475d31be57c89579e30be77189ea0" id="r_ad13475d31be57c89579e30be77189ea0"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad13475d31be57c89579e30be77189ea0">js_index_d_c</a></td></tr>
+<tr class="separator:ad13475d31be57c89579e30be77189ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ffbfe7e9ad71309ffd5821a8ecfd877" id="r_a6ffbfe7e9ad71309ffd5821a8ecfd877"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ffbfe7e9ad71309ffd5821a8ecfd877">kc_index_d_c</a></td></tr>
+<tr class="separator:a6ffbfe7e9ad71309ffd5821a8ecfd877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ff9e3353109d870bda6c8d416a0b7e" id="r_a15ff9e3353109d870bda6c8d416a0b7e"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15ff9e3353109d870bda6c8d416a0b7e">ks_index_d_c</a></td></tr>
+<tr class="separator:a15ff9e3353109d870bda6c8d416a0b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa64034da3b565917a3d00569f3efa7cd" id="r_aa64034da3b565917a3d00569f3efa7cd"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa64034da3b565917a3d00569f3efa7cd">pointer</a></td></tr>
+<tr class="separator:aa64034da3b565917a3d00569f3efa7cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af41073bf416146dc555a44b1ce6ea4b2" id="r_af41073bf416146dc555a44b1ce6ea4b2"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af41073bf416146dc555a44b1ce6ea4b2">x1_d</a></td></tr>
+<tr class="separator:af41073bf416146dc555a44b1ce6ea4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe92472cd9d3c88faa482f1e9b1bde9f" id="r_afe92472cd9d3c88faa482f1e9b1bde9f"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe92472cd9d3c88faa482f1e9b1bde9f">x2_d</a></td></tr>
+<tr class="separator:afe92472cd9d3c88faa482f1e9b1bde9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34101a1e5f0c07b84d55f4a27d3d998a" id="r_a34101a1e5f0c07b84d55f4a27d3d998a"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34101a1e5f0c07b84d55f4a27d3d998a">x3_d</a></td></tr>
+<tr class="separator:a34101a1e5f0c07b84d55f4a27d3d998a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b87e1bc53505104acbcd89b6527b955" id="r_a0b87e1bc53505104acbcd89b6527b955"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b87e1bc53505104acbcd89b6527b955">dx1_d</a></td></tr>
+<tr class="separator:a0b87e1bc53505104acbcd89b6527b955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ee96c686c41bdaf2f37c105c760b98" id="r_ae9ee96c686c41bdaf2f37c105c760b98"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9ee96c686c41bdaf2f37c105c760b98">dx2_d</a></td></tr>
+<tr class="separator:ae9ee96c686c41bdaf2f37c105c760b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a4bcadeffec62435e74b77503a08c8c" id="r_a7a4bcadeffec62435e74b77503a08c8c"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a4bcadeffec62435e74b77503a08c8c">dx3_d</a></td></tr>
+<tr class="separator:a7a4bcadeffec62435e74b77503a08c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24bc4eccede8d85a98e4f598a3f7a606" id="r_a24bc4eccede8d85a98e4f598a3f7a606"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24bc4eccede8d85a98e4f598a3f7a606">dmx1_d</a></td></tr>
+<tr class="separator:a24bc4eccede8d85a98e4f598a3f7a606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a272b659dde090c7270a4097517bfea7b" id="r_a272b659dde090c7270a4097517bfea7b"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a272b659dde090c7270a4097517bfea7b">dmx2_d</a></td></tr>
+<tr class="separator:a272b659dde090c7270a4097517bfea7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dd6c22a9218eead4be5a1ee9801ce7e" id="r_a3dd6c22a9218eead4be5a1ee9801ce7e"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3dd6c22a9218eead4be5a1ee9801ce7e">dmx3_d</a></td></tr>
+<tr class="separator:a3dd6c22a9218eead4be5a1ee9801ce7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af280bbddf94542f487dc02663ff6c62e" id="r_af280bbddf94542f487dc02663ff6c62e"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af280bbddf94542f487dc02663ff6c62e">ic_bc_d</a></td></tr>
+<tr class="separator:af280bbddf94542f487dc02663ff6c62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8077edc4116d8b4c173e61614f57ea50" id="r_a8077edc4116d8b4c173e61614f57ea50"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8077edc4116d8b4c173e61614f57ea50">is_bc_d</a></td></tr>
+<tr class="separator:a8077edc4116d8b4c173e61614f57ea50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb5b8d9c612ffb9ad4a3001d023ff9c3" id="r_adb5b8d9c612ffb9ad4a3001d023ff9c3"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb5b8d9c612ffb9ad4a3001d023ff9c3">jc_bc_d</a></td></tr>
+<tr class="separator:adb5b8d9c612ffb9ad4a3001d023ff9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21408e5fbc8f94d75457236aa5bbac45" id="r_a21408e5fbc8f94d75457236aa5bbac45"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21408e5fbc8f94d75457236aa5bbac45">js_bc_d</a></td></tr>
+<tr class="separator:a21408e5fbc8f94d75457236aa5bbac45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f69a1cb32e5957607750c10fa4f042" id="r_a75f69a1cb32e5957607750c10fa4f042"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75f69a1cb32e5957607750c10fa4f042">kc_bc_d</a></td></tr>
+<tr class="separator:a75f69a1cb32e5957607750c10fa4f042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19ce41ff2ca2734287af4d4b709e1902" id="r_a19ce41ff2ca2734287af4d4b709e1902"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19ce41ff2ca2734287af4d4b709e1902">ks_bc_d</a></td></tr>
+<tr class="separator:a19ce41ff2ca2734287af4d4b709e1902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc7a9ae2f1479a0f9e0290eeabdc8b0" id="r_a9dc7a9ae2f1479a0f9e0290eeabdc8b0"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dc7a9ae2f1479a0f9e0290eeabdc8b0">x1_g_d</a></td></tr>
+<tr class="separator:a9dc7a9ae2f1479a0f9e0290eeabdc8b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc61b578e77db5fed743106e813c714" id="r_affc61b578e77db5fed743106e813c714"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affc61b578e77db5fed743106e813c714">x2_g_d</a></td></tr>
+<tr class="separator:affc61b578e77db5fed743106e813c714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d114733ca3fd7b567fdb9c92e0f2441" id="r_a6d114733ca3fd7b567fdb9c92e0f2441"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d114733ca3fd7b567fdb9c92e0f2441">x3_g_d</a></td></tr>
+<tr class="separator:a6d114733ca3fd7b567fdb9c92e0f2441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bab8b1df311fccb58f4b282932fcc9b" id="r_a7bab8b1df311fccb58f4b282932fcc9b"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bab8b1df311fccb58f4b282932fcc9b">dx1_g_d</a></td></tr>
+<tr class="separator:a7bab8b1df311fccb58f4b282932fcc9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3a18f9e0918e9043e084ca3cc7d05c4" id="r_af3a18f9e0918e9043e084ca3cc7d05c4"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3a18f9e0918e9043e084ca3cc7d05c4">dx2_g_d</a></td></tr>
+<tr class="separator:af3a18f9e0918e9043e084ca3cc7d05c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe3093c95ca5a9d3518ce6c6d26e6047" id="r_abe3093c95ca5a9d3518ce6c6d26e6047"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe3093c95ca5a9d3518ce6c6d26e6047">dx3_g_d</a></td></tr>
+<tr class="separator:abe3093c95ca5a9d3518ce6c6d26e6047"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bd2097d085ddc7441fdb4d2c97bca53" id="r_a9bd2097d085ddc7441fdb4d2c97bca53"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bd2097d085ddc7441fdb4d2c97bca53">dmx1_g_d</a></td></tr>
+<tr class="separator:a9bd2097d085ddc7441fdb4d2c97bca53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e435bf11f90b88fc51186f35552240" id="r_ad5e435bf11f90b88fc51186f35552240"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5e435bf11f90b88fc51186f35552240">dmx2_g_d</a></td></tr>
+<tr class="separator:ad5e435bf11f90b88fc51186f35552240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1bd4d9dde41692de5c02c65b1ebd07a" id="r_ad1bd4d9dde41692de5c02c65b1ebd07a"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1bd4d9dde41692de5c02c65b1ebd07a">dmx3_g_d</a></td></tr>
+<tr class="separator:ad1bd4d9dde41692de5c02c65b1ebd07a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ba556a03a5fc5cb953d197dc3cd3528" id="r_a0ba556a03a5fc5cb953d197dc3cd3528"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ba556a03a5fc5cb953d197dc3cd3528">x1_g_d_c</a></td></tr>
+<tr class="separator:a0ba556a03a5fc5cb953d197dc3cd3528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51173eaaaec67d4f734fd1f929938a2a" id="r_a51173eaaaec67d4f734fd1f929938a2a"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51173eaaaec67d4f734fd1f929938a2a">x2_g_d_c</a></td></tr>
+<tr class="separator:a51173eaaaec67d4f734fd1f929938a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b470324062f8561193672f38a9e9c7a" id="r_a5b470324062f8561193672f38a9e9c7a"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b470324062f8561193672f38a9e9c7a">x3_g_d_c</a></td></tr>
+<tr class="separator:a5b470324062f8561193672f38a9e9c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a961579b609123ec52254123750721339" id="r_a961579b609123ec52254123750721339"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a961579b609123ec52254123750721339">dx1_g_d_c</a></td></tr>
+<tr class="separator:a961579b609123ec52254123750721339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad88be71db0621c6d53ffafeef2ec1894" id="r_ad88be71db0621c6d53ffafeef2ec1894"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad88be71db0621c6d53ffafeef2ec1894">dx2_g_d_c</a></td></tr>
+<tr class="separator:ad88be71db0621c6d53ffafeef2ec1894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c02179a76e9941b3f7a15338346b6cd" id="r_a1c02179a76e9941b3f7a15338346b6cd"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c02179a76e9941b3f7a15338346b6cd">dx3_g_d_c</a></td></tr>
+<tr class="separator:a1c02179a76e9941b3f7a15338346b6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a329d87a57d3455098a2a589ba3151332" id="r_a329d87a57d3455098a2a589ba3151332"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a329d87a57d3455098a2a589ba3151332">dmx1_g_d_c</a></td></tr>
+<tr class="separator:a329d87a57d3455098a2a589ba3151332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2c2d2f50bdb8328a68107f6ebd4404" id="r_a4a2c2d2f50bdb8328a68107f6ebd4404"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a2c2d2f50bdb8328a68107f6ebd4404">dmx2_g_d_c</a></td></tr>
+<tr class="separator:a4a2c2d2f50bdb8328a68107f6ebd4404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0db10266bc93023023e24e57ad5b120" id="r_ab0db10266bc93023023e24e57ad5b120"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0db10266bc93023023e24e57ad5b120">dmx3_g_d_c</a></td></tr>
+<tr class="separator:ab0db10266bc93023023e24e57ad5b120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8957ee4a038f7eb32fa07380b6247f6" id="r_ab8957ee4a038f7eb32fa07380b6247f6"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8957ee4a038f7eb32fa07380b6247f6">block_in_x</a></td></tr>
+<tr class="separator:ab8957ee4a038f7eb32fa07380b6247f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04878817e99727a2ce6f05324aa8cc7e" id="r_a04878817e99727a2ce6f05324aa8cc7e"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04878817e99727a2ce6f05324aa8cc7e">block_in_y</a></td></tr>
+<tr class="separator:a04878817e99727a2ce6f05324aa8cc7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6720d30aaae59ede400b6be45787bcb" id="r_ae6720d30aaae59ede400b6be45787bcb"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6720d30aaae59ede400b6be45787bcb">block_in_z</a></td></tr>
+<tr class="separator:ae6720d30aaae59ede400b6be45787bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00615354884cc42f3e4e03c0f9041c6b" id="r_a00615354884cc42f3e4e03c0f9041c6b"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00615354884cc42f3e4e03c0f9041c6b">share_size</a></td></tr>
+<tr class="separator:a00615354884cc42f3e4e03c0f9041c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a205700209d6c6672e930a72494147" id="r_ae2a205700209d6c6672e930a72494147"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2a205700209d6c6672e930a72494147">share_size_pascal</a></td></tr>
+<tr class="separator:ae2a205700209d6c6672e930a72494147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9968f61db736546ffc233f00f2e9b3d" id="r_ad9968f61db736546ffc233f00f2e9b3d"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9968f61db736546ffc233f00f2e9b3d">share_size_fft</a></td></tr>
+<tr class="separator:ad9968f61db736546ffc233f00f2e9b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8060dba8d36ffd68a153094cd9ae5c" id="r_a9e8060dba8d36ffd68a153094cd9ae5c"><td class="memItemLeft" align="right" valign="top">type(dim3)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e8060dba8d36ffd68a153094cd9ae5c">blocks</a></td></tr>
+<tr class="separator:a9e8060dba8d36ffd68a153094cd9ae5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a303a5e170d58092c2d044c0eea935d81" id="r_a303a5e170d58092c2d044c0eea935d81"><td class="memItemLeft" align="right" valign="top">type(dim3)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a303a5e170d58092c2d044c0eea935d81">threads</a></td></tr>
+<tr class="separator:a303a5e170d58092c2d044c0eea935d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa412d320c48f771347d03a0df60aad79" id="r_aa412d320c48f771347d03a0df60aad79"><td class="memItemLeft" align="right" valign="top">type(dim3)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa412d320c48f771347d03a0df60aad79">threads_tdma</a></td></tr>
+<tr class="separator:aa412d320c48f771347d03a0df60aad79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f1b6ff4980dffe8999bb6a47206b6e6" id="r_a7f1b6ff4980dffe8999bb6a47206b6e6"><td class="memItemLeft" align="right" valign="top">type(dim3)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f1b6ff4980dffe8999bb6a47206b6e6">threads_fft</a></td></tr>
+<tr class="separator:a7f1b6ff4980dffe8999bb6a47206b6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9920a75d2af837068feac1eccaf05d8d" id="r_a9920a75d2af837068feac1eccaf05d8d"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9920a75d2af837068feac1eccaf05d8d">sbuf_0_temp</a></td></tr>
+<tr class="separator:a9920a75d2af837068feac1eccaf05d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac6a507bcb235d0591e1a27db2d3a42c" id="r_aac6a507bcb235d0591e1a27db2d3a42c"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac6a507bcb235d0591e1a27db2d3a42c">sbuf_1_temp</a></td></tr>
+<tr class="separator:aac6a507bcb235d0591e1a27db2d3a42c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a789d983096fe0dded583587d784a6e7c" id="r_a789d983096fe0dded583587d784a6e7c"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a789d983096fe0dded583587d784a6e7c">rbuf_0_temp</a></td></tr>
+<tr class="separator:a789d983096fe0dded583587d784a6e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0e7d2d38a187bcdc8b7523dff9aad63" id="r_af0e7d2d38a187bcdc8b7523dff9aad63"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0e7d2d38a187bcdc8b7523dff9aad63">rbuf_1_temp</a></td></tr>
+<tr class="separator:af0e7d2d38a187bcdc8b7523dff9aad63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2671a41e8c8755d4f3f8ab57101bf17a" id="r_a2671a41e8c8755d4f3f8ab57101bf17a"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2671a41e8c8755d4f3f8ab57101bf17a">sbuf_0_temp_int</a></td></tr>
+<tr class="separator:a2671a41e8c8755d4f3f8ab57101bf17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8785380a8b8853f782a37f78e4ae6e07" id="r_a8785380a8b8853f782a37f78e4ae6e07"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8785380a8b8853f782a37f78e4ae6e07">sbuf_1_temp_int</a></td></tr>
+<tr class="separator:a8785380a8b8853f782a37f78e4ae6e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2bf70267a33599bc62e429e7fd1a1a9" id="r_af2bf70267a33599bc62e429e7fd1a1a9"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2bf70267a33599bc62e429e7fd1a1a9">rbuf_0_temp_int</a></td></tr>
+<tr class="separator:af2bf70267a33599bc62e429e7fd1a1a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad8580cea523c9a78ad3c1da57672589" id="r_aad8580cea523c9a78ad3c1da57672589"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad8580cea523c9a78ad3c1da57672589">rbuf_1_temp_int</a></td></tr>
+<tr class="separator:aad8580cea523c9a78ad3c1da57672589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2bc24e99070283a76585fc865e29553" id="r_ab2bc24e99070283a76585fc865e29553"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2bc24e99070283a76585fc865e29553">rhs_buff1</a></td></tr>
+<tr class="separator:ab2bc24e99070283a76585fc865e29553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df3ceea49264608f8b3b4884e5453ae" id="r_a2df3ceea49264608f8b3b4884e5453ae"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2df3ceea49264608f8b3b4884e5453ae">rhs_buff2</a></td></tr>
+<tr class="separator:a2df3ceea49264608f8b3b4884e5453ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad435eaf71375e605405189a7b0e378b4" id="r_ad435eaf71375e605405189a7b0e378b4"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad435eaf71375e605405189a7b0e378b4">api_ptr</a></td></tr>
+<tr class="separator:ad435eaf71375e605405189a7b0e378b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59bbf6ec286453bdf2a5696426f7997c" id="r_a59bbf6ec286453bdf2a5696426f7997c"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59bbf6ec286453bdf2a5696426f7997c">aci_ptr</a></td></tr>
+<tr class="separator:a59bbf6ec286453bdf2a5696426f7997c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a089aed354949b4c9bde5a96b0d5cb551" id="r_a089aed354949b4c9bde5a96b0d5cb551"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a089aed354949b4c9bde5a96b0d5cb551">ami_ptr</a></td></tr>
+<tr class="separator:a089aed354949b4c9bde5a96b0d5cb551"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab380e335289614d7c34cd0057a491a23" id="r_ab380e335289614d7c34cd0057a491a23"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab380e335289614d7c34cd0057a491a23">apj_ptr</a></td></tr>
+<tr class="separator:ab380e335289614d7c34cd0057a491a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7f2c913dd00bacd5d3750304ba22ab" id="r_aca7f2c913dd00bacd5d3750304ba22ab"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca7f2c913dd00bacd5d3750304ba22ab">acj_ptr</a></td></tr>
+<tr class="separator:aca7f2c913dd00bacd5d3750304ba22ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a451b86d748a63a66aa6779b2d4edc9fb" id="r_a451b86d748a63a66aa6779b2d4edc9fb"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a451b86d748a63a66aa6779b2d4edc9fb">amj_ptr</a></td></tr>
+<tr class="separator:a451b86d748a63a66aa6779b2d4edc9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a77c51dc29c0e4992a3f1ef25ca114" id="r_a34a77c51dc29c0e4992a3f1ef25ca114"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34a77c51dc29c0e4992a3f1ef25ca114">apk_ptr</a></td></tr>
+<tr class="separator:a34a77c51dc29c0e4992a3f1ef25ca114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b51d420095c4ef93697bbe4f7cc8085" id="r_a1b51d420095c4ef93697bbe4f7cc8085"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b51d420095c4ef93697bbe4f7cc8085">ack_ptr</a></td></tr>
+<tr class="separator:a1b51d420095c4ef93697bbe4f7cc8085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e1410260bc4de401716abc6cd0a015" id="r_a76e1410260bc4de401716abc6cd0a015"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76e1410260bc4de401716abc6cd0a015">amk_ptr</a></td></tr>
+<tr class="separator:a76e1410260bc4de401716abc6cd0a015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ababb6b0c882894d178c9efb66fefff9e" id="r_ababb6b0c882894d178c9efb66fefff9e"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ababb6b0c882894d178c9efb66fefff9e">temp1</a></td></tr>
+<tr class="separator:ababb6b0c882894d178c9efb66fefff9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43cd4c4357678d5f0265a642703f0d2a" id="r_a43cd4c4357678d5f0265a642703f0d2a"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43cd4c4357678d5f0265a642703f0d2a">temp2</a></td></tr>
+<tr class="separator:a43cd4c4357678d5f0265a642703f0d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="ac4faaf90ef0c1f1199f9cae475f48274" name="ac4faaf90ef0c1f1199f9cae475f48274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4faaf90ef0c1f1199f9cae475f48274">&#9670;&#160;</a></span>apply_bc_on_direction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::apply_bc_on_direction </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>x_d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structmpi__topology_1_1cart__comm__1d.html">cart_comm_1d</a>)</td>          <td class="paramname"><span class="paramname"><em>comm_1d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>dmx_d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical</td>          <td class="paramname"><span class="paramname"><em>pbc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>nmsub_a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>nsub_a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>nsub_b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>nsub_c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00324">324</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacecuda__subdomain_ac4faaf90ef0c1f1199f9cae475f48274_icgraph.png" border="0" usemap="#anamespacecuda__subdomain_ac4faaf90ef0c1f1199f9cae475f48274_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a52a4ab13475e7529d1b619a334118f29" name="a52a4ab13475e7529d1b619a334118f29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52a4ab13475e7529d1b619a334118f29">&#9670;&#160;</a></span>cuda_destroy_ptr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_destroy_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00400">400</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a25f080aaec4f196d1dbc0081925cdae6" name="a25f080aaec4f196d1dbc0081925cdae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f080aaec4f196d1dbc0081925cdae6">&#9670;&#160;</a></span>cuda_neumann_bc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_neumann_bc </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>x_d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00313">313</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacecuda__subdomain_a25f080aaec4f196d1dbc0081925cdae6_cgraph.png" border="0" usemap="#anamespacecuda__subdomain_a25f080aaec4f196d1dbc0081925cdae6_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ab788fcbb838da952de16c6c2e34980c5" name="ab788fcbb838da952de16c6c2e34980c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab788fcbb838da952de16c6c2e34980c5">&#9670;&#160;</a></span>cuda_subdomain_blockandthreads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_blockandthreads</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00146">146</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacecuda__subdomain_ab788fcbb838da952de16c6c2e34980c5_icgraph.png" border="0" usemap="#anamespacecuda__subdomain_ab788fcbb838da952de16c6c2e34980c5_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a17df0e3552de6f8d48e097a6467e7bfb" name="a17df0e3552de6f8d48e097a6467e7bfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17df0e3552de6f8d48e097a6467e7bfb">&#9670;&#160;</a></span>cuda_subdomain_clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_clean</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00370">370</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a37b21deccd62523a052bd0cf1c2ae31d" name="a37b21deccd62523a052bd0cf1c2ae31d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37b21deccd62523a052bd0cf1c2ae31d">&#9670;&#160;</a></span>cuda_subdomain_dtoh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_dtoh </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>devicedata</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), <a class="el" href="#a6a866b05d9154ca4b66f707485cfadf0">dimension</a>(0:n1sub, 0:n2sub, 0:n3sub), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>hostdata</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00176">176</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aad00f718e2a92cbfac05c26d3107d43b" name="aad00f718e2a92cbfac05c26d3107d43b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad00f718e2a92cbfac05c26d3107d43b">&#9670;&#160;</a></span>cuda_subdomain_environment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_environment</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00056">56</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a91ca880a7e12134f59b98203215f77a4" name="a91ca880a7e12134f59b98203215f77a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91ca880a7e12134f59b98203215f77a4">&#9670;&#160;</a></span>cuda_subdomain_ghostcell_update_real()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_ghostcell_update_real </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>value_sub_d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00199">199</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacecuda__subdomain_a91ca880a7e12134f59b98203215f77a4_icgraph.png" border="0" usemap="#anamespacecuda__subdomain_a91ca880a7e12134f59b98203215f77a4_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a3e8dd3c26f412a82b4cbe286d653fd2d" name="a3e8dd3c26f412a82b4cbe286d653fd2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e8dd3c26f412a82b4cbe286d653fd2d">&#9670;&#160;</a></span>cuda_subdomain_ghostcell_update_scalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_ghostcell_update_scalar </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>value_sub_d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00189">189</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a2110a2fa10782f739c468aff4a622ab7" name="a2110a2fa10782f739c468aff4a622ab7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2110a2fa10782f739c468aff4a622ab7">&#9670;&#160;</a></span>cuda_subdomain_htod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_htod </td>
+          <td>(</td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), <a class="el" href="#a6a866b05d9154ca4b66f707485cfadf0">dimension</a>(0:n1sub, 0:n2sub, 0:n3sub), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>hostdata</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>devicedata</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00182">182</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a5d8b98bd38d2f6dc1e19c2d8a714ed49" name="a5d8b98bd38d2f6dc1e19c2d8a714ed49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d8b98bd38d2f6dc1e19c2d8a714ed49">&#9670;&#160;</a></span>cuda_subdomain_initial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_initial</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00089">89</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacecuda__subdomain_a5d8b98bd38d2f6dc1e19c2d8a714ed49_cgraph.png" border="0" usemap="#anamespacecuda__subdomain_a5d8b98bd38d2f6dc1e19c2d8a714ed49_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a0f350540445c4f9a623b3d088ab914a9" name="a0f350540445c4f9a623b3d088ab914a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f350540445c4f9a623b3d088ab914a9">&#9670;&#160;</a></span>cuda_subdomain_mesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_mesh</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00096">96</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacecuda__subdomain_a0f350540445c4f9a623b3d088ab914a9_icgraph.png" border="0" usemap="#anamespacecuda__subdomain_a0f350540445c4f9a623b3d088ab914a9_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a22fe6dbed56c513021cb3d2b2090db9c" name="a22fe6dbed56c513021cb3d2b2090db9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22fe6dbed56c513021cb3d2b2090db9c">&#9670;&#160;</a></span>cuda_subdomain_temp_allocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::cuda_subdomain_temp_allocation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00387">387</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a9f983585f2c46773a5e10bbc5eaf679b" name="a9f983585f2c46773a5e10bbc5eaf679b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f983585f2c46773a5e10bbc5eaf679b">&#9670;&#160;</a></span>ghostcell_update_on_direction_real()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine cuda_subdomain::ghostcell_update_on_direction_real </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structmpi__topology_1_1cart__comm__1d.html">cart_comm_1d</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>comm_1d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>pbc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>sbuf_0_d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>sbuf_1_d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>rbuf_0_d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>          <td class="paramname"><span class="paramname"><em>rbuf_1_d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsub_a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsub_b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nsub_c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), <a class="el" href="#a6a866b05d9154ca4b66f707485cfadf0">dimension</a>(0:,0:,0:)</td>          <td class="paramname"><span class="paramname"><em>value_sub_d</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00222">222</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a59bbf6ec286453bdf2a5696426f7997c" name="a59bbf6ec286453bdf2a5696426f7997c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59bbf6ec286453bdf2a5696426f7997c">&#9670;&#160;</a></span>aci_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::aci_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aca7f2c913dd00bacd5d3750304ba22ab" name="aca7f2c913dd00bacd5d3750304ba22ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7f2c913dd00bacd5d3750304ba22ab">&#9670;&#160;</a></span>acj_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::acj_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1b51d420095c4ef93697bbe4f7cc8085" name="a1b51d420095c4ef93697bbe4f7cc8085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b51d420095c4ef93697bbe4f7cc8085">&#9670;&#160;</a></span>ack_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::ack_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab0ba92a3b47d77096f508d2ef3613b49" name="ab0ba92a3b47d77096f508d2ef3613b49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0ba92a3b47d77096f508d2ef3613b49">&#9670;&#160;</a></span>allocatable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::allocatable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00012">12</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a089aed354949b4c9bde5a96b0d5cb551" name="a089aed354949b4c9bde5a96b0d5cb551"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a089aed354949b4c9bde5a96b0d5cb551">&#9670;&#160;</a></span>ami_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::ami_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a451b86d748a63a66aa6779b2d4edc9fb" name="a451b86d748a63a66aa6779b2d4edc9fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a451b86d748a63a66aa6779b2d4edc9fb">&#9670;&#160;</a></span>amj_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::amj_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a76e1410260bc4de401716abc6cd0a015" name="a76e1410260bc4de401716abc6cd0a015"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e1410260bc4de401716abc6cd0a015">&#9670;&#160;</a></span>amk_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::amk_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad435eaf71375e605405189a7b0e378b4" name="ad435eaf71375e605405189a7b0e378b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad435eaf71375e605405189a7b0e378b4">&#9670;&#160;</a></span>api_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::api_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab380e335289614d7c34cd0057a491a23" name="ab380e335289614d7c34cd0057a491a23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab380e335289614d7c34cd0057a491a23">&#9670;&#160;</a></span>apj_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::apj_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a34a77c51dc29c0e4992a3f1ef25ca114" name="a34a77c51dc29c0e4992a3f1ef25ca114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a77c51dc29c0e4992a3f1ef25ca114">&#9670;&#160;</a></span>apk_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::apk_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00042">42</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab8957ee4a038f7eb32fa07380b6247f6" name="ab8957ee4a038f7eb32fa07380b6247f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8957ee4a038f7eb32fa07380b6247f6">&#9670;&#160;</a></span>block_in_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::block_in_x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00032">32</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a04878817e99727a2ce6f05324aa8cc7e" name="a04878817e99727a2ce6f05324aa8cc7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04878817e99727a2ce6f05324aa8cc7e">&#9670;&#160;</a></span>block_in_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::block_in_y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00032">32</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ae6720d30aaae59ede400b6be45787bcb" name="ae6720d30aaae59ede400b6be45787bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6720d30aaae59ede400b6be45787bcb">&#9670;&#160;</a></span>block_in_z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::block_in_z</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00032">32</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a9e8060dba8d36ffd68a153094cd9ae5c" name="a9e8060dba8d36ffd68a153094cd9ae5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e8060dba8d36ffd68a153094cd9ae5c">&#9670;&#160;</a></span>blocks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(dim3) cuda_subdomain::blocks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a708c6fa08e0cef0a2399dea884aa02ef" name="a708c6fa08e0cef0a2399dea884aa02ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a708c6fa08e0cef0a2399dea884aa02ef">&#9670;&#160;</a></span>device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::device</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00012">12</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6a866b05d9154ca4b66f707485cfadf0" name="a6a866b05d9154ca4b66f707485cfadf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a866b05d9154ca4b66f707485cfadf0">&#9670;&#160;</a></span>dimension</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::dimension</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00012">12</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a24bc4eccede8d85a98e4f598a3f7a606" name="a24bc4eccede8d85a98e4f598a3f7a606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24bc4eccede8d85a98e4f598a3f7a606">&#9670;&#160;</a></span>dmx1_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx1_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00020">20</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a546114f6221e81c94d6997012f1a3611" name="a546114f6221e81c94d6997012f1a3611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a546114f6221e81c94d6997012f1a3611">&#9670;&#160;</a></span>dmx1_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx1_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a9bd2097d085ddc7441fdb4d2c97bca53" name="a9bd2097d085ddc7441fdb4d2c97bca53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bd2097d085ddc7441fdb4d2c97bca53">&#9670;&#160;</a></span>dmx1_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx1_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00026">26</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a329d87a57d3455098a2a589ba3151332" name="a329d87a57d3455098a2a589ba3151332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a329d87a57d3455098a2a589ba3151332">&#9670;&#160;</a></span>dmx1_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx1_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00029">29</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a272b659dde090c7270a4097517bfea7b" name="a272b659dde090c7270a4097517bfea7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a272b659dde090c7270a4097517bfea7b">&#9670;&#160;</a></span>dmx2_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx2_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00020">20</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a75f6f81c1e53525c2cc93429ee4e3cbd" name="a75f6f81c1e53525c2cc93429ee4e3cbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f6f81c1e53525c2cc93429ee4e3cbd">&#9670;&#160;</a></span>dmx2_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx2_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad5e435bf11f90b88fc51186f35552240" name="ad5e435bf11f90b88fc51186f35552240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e435bf11f90b88fc51186f35552240">&#9670;&#160;</a></span>dmx2_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx2_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00026">26</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4a2c2d2f50bdb8328a68107f6ebd4404" name="a4a2c2d2f50bdb8328a68107f6ebd4404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a2c2d2f50bdb8328a68107f6ebd4404">&#9670;&#160;</a></span>dmx2_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx2_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00029">29</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a3dd6c22a9218eead4be5a1ee9801ce7e" name="a3dd6c22a9218eead4be5a1ee9801ce7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dd6c22a9218eead4be5a1ee9801ce7e">&#9670;&#160;</a></span>dmx3_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx3_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00020">20</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a385c4e6c82fa9729b2125831267fcb75" name="a385c4e6c82fa9729b2125831267fcb75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a385c4e6c82fa9729b2125831267fcb75">&#9670;&#160;</a></span>dmx3_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx3_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00014">14</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad1bd4d9dde41692de5c02c65b1ebd07a" name="ad1bd4d9dde41692de5c02c65b1ebd07a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1bd4d9dde41692de5c02c65b1ebd07a">&#9670;&#160;</a></span>dmx3_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx3_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00026">26</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab0db10266bc93023023e24e57ad5b120" name="ab0db10266bc93023023e24e57ad5b120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0db10266bc93023023e24e57ad5b120">&#9670;&#160;</a></span>dmx3_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dmx3_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00029">29</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0b87e1bc53505104acbcd89b6527b955" name="a0b87e1bc53505104acbcd89b6527b955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b87e1bc53505104acbcd89b6527b955">&#9670;&#160;</a></span>dx1_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx1_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00019">19</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af3481424c7134059209b9e8e96435fdd" name="af3481424c7134059209b9e8e96435fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3481424c7134059209b9e8e96435fdd">&#9670;&#160;</a></span>dx1_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx1_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00013">13</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a7bab8b1df311fccb58f4b282932fcc9b" name="a7bab8b1df311fccb58f4b282932fcc9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bab8b1df311fccb58f4b282932fcc9b">&#9670;&#160;</a></span>dx1_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx1_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00025">25</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a961579b609123ec52254123750721339" name="a961579b609123ec52254123750721339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a961579b609123ec52254123750721339">&#9670;&#160;</a></span>dx1_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx1_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00028">28</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ae9ee96c686c41bdaf2f37c105c760b98" name="ae9ee96c686c41bdaf2f37c105c760b98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ee96c686c41bdaf2f37c105c760b98">&#9670;&#160;</a></span>dx2_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx2_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00019">19</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="abf28e83fd4cd2a3674c08af4eb14a147" name="abf28e83fd4cd2a3674c08af4eb14a147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf28e83fd4cd2a3674c08af4eb14a147">&#9670;&#160;</a></span>dx2_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx2_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00013">13</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af3a18f9e0918e9043e084ca3cc7d05c4" name="af3a18f9e0918e9043e084ca3cc7d05c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3a18f9e0918e9043e084ca3cc7d05c4">&#9670;&#160;</a></span>dx2_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx2_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00025">25</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad88be71db0621c6d53ffafeef2ec1894" name="ad88be71db0621c6d53ffafeef2ec1894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad88be71db0621c6d53ffafeef2ec1894">&#9670;&#160;</a></span>dx2_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx2_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00028">28</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a7a4bcadeffec62435e74b77503a08c8c" name="a7a4bcadeffec62435e74b77503a08c8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a4bcadeffec62435e74b77503a08c8c">&#9670;&#160;</a></span>dx3_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx3_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00019">19</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a8311a76ee3bd94b3d28c7718f29691a3" name="a8311a76ee3bd94b3d28c7718f29691a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8311a76ee3bd94b3d28c7718f29691a3">&#9670;&#160;</a></span>dx3_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx3_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00013">13</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="abe3093c95ca5a9d3518ce6c6d26e6047" name="abe3093c95ca5a9d3518ce6c6d26e6047"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe3093c95ca5a9d3518ce6c6d26e6047">&#9670;&#160;</a></span>dx3_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx3_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00025">25</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1c02179a76e9941b3f7a15338346b6cd" name="a1c02179a76e9941b3f7a15338346b6cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c02179a76e9941b3f7a15338346b6cd">&#9670;&#160;</a></span>dx3_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::dx3_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00028">28</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af280bbddf94542f487dc02663ff6c62e" name="af280bbddf94542f487dc02663ff6c62e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af280bbddf94542f487dc02663ff6c62e">&#9670;&#160;</a></span>ic_bc_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::ic_bc_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00021">21</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ac1c21e6bf3c0b73ff361aa784abd97a6" name="ac1c21e6bf3c0b73ff361aa784abd97a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c21e6bf3c0b73ff361aa784abd97a6">&#9670;&#160;</a></span>ic_bc_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::ic_bc_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00015">15</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab8ce2ba686e04240d14a93c9480afc38" name="ab8ce2ba686e04240d14a93c9480afc38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8ce2ba686e04240d14a93c9480afc38">&#9670;&#160;</a></span>ic_index_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::ic_index_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00016">16</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a8077edc4116d8b4c173e61614f57ea50" name="a8077edc4116d8b4c173e61614f57ea50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8077edc4116d8b4c173e61614f57ea50">&#9670;&#160;</a></span>is_bc_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::is_bc_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00021">21</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="acb7b5076105322a0817c2882bcba3943" name="acb7b5076105322a0817c2882bcba3943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb7b5076105322a0817c2882bcba3943">&#9670;&#160;</a></span>is_bc_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::is_bc_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00015">15</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af554dca546366cc1e3450acd67a6afde" name="af554dca546366cc1e3450acd67a6afde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af554dca546366cc1e3450acd67a6afde">&#9670;&#160;</a></span>is_index_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::is_index_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00016">16</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="adb5b8d9c612ffb9ad4a3001d023ff9c3" name="adb5b8d9c612ffb9ad4a3001d023ff9c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb5b8d9c612ffb9ad4a3001d023ff9c3">&#9670;&#160;</a></span>jc_bc_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::jc_bc_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00021">21</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a8d54fac9f662eae5a1c43e6a1bb94f76" name="a8d54fac9f662eae5a1c43e6a1bb94f76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d54fac9f662eae5a1c43e6a1bb94f76">&#9670;&#160;</a></span>jc_bc_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::jc_bc_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00015">15</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1d3f89ff30b942f720932bf2856ad489" name="a1d3f89ff30b942f720932bf2856ad489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d3f89ff30b942f720932bf2856ad489">&#9670;&#160;</a></span>jc_index_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::jc_index_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00016">16</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a21408e5fbc8f94d75457236aa5bbac45" name="a21408e5fbc8f94d75457236aa5bbac45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21408e5fbc8f94d75457236aa5bbac45">&#9670;&#160;</a></span>js_bc_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::js_bc_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00021">21</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a48f28489bbac44672587f45dba4287f1" name="a48f28489bbac44672587f45dba4287f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48f28489bbac44672587f45dba4287f1">&#9670;&#160;</a></span>js_bc_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::js_bc_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00015">15</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad13475d31be57c89579e30be77189ea0" name="ad13475d31be57c89579e30be77189ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad13475d31be57c89579e30be77189ea0">&#9670;&#160;</a></span>js_index_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::js_index_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00016">16</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a75f69a1cb32e5957607750c10fa4f042" name="a75f69a1cb32e5957607750c10fa4f042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f69a1cb32e5957607750c10fa4f042">&#9670;&#160;</a></span>kc_bc_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::kc_bc_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00021">21</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="abade6c94986752d08291ccfdf211fa14" name="abade6c94986752d08291ccfdf211fa14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abade6c94986752d08291ccfdf211fa14">&#9670;&#160;</a></span>kc_bc_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::kc_bc_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00015">15</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6ffbfe7e9ad71309ffd5821a8ecfd877" name="a6ffbfe7e9ad71309ffd5821a8ecfd877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ffbfe7e9ad71309ffd5821a8ecfd877">&#9670;&#160;</a></span>kc_index_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::kc_index_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00016">16</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a19ce41ff2ca2734287af4d4b709e1902" name="a19ce41ff2ca2734287af4d4b709e1902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19ce41ff2ca2734287af4d4b709e1902">&#9670;&#160;</a></span>ks_bc_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::ks_bc_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00021">21</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af53715a78c8eccfcb6d04b34e26063cd" name="af53715a78c8eccfcb6d04b34e26063cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af53715a78c8eccfcb6d04b34e26063cd">&#9670;&#160;</a></span>ks_bc_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::ks_bc_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00015">15</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a15ff9e3353109d870bda6c8d416a0b7e" name="a15ff9e3353109d870bda6c8d416a0b7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ff9e3353109d870bda6c8d416a0b7e">&#9670;&#160;</a></span>ks_index_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::ks_index_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00016">16</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aa64034da3b565917a3d00569f3efa7cd" name="aa64034da3b565917a3d00569f3efa7cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa64034da3b565917a3d00569f3efa7cd">&#9670;&#160;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00018">18</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a789d983096fe0dded583587d784a6e7c" name="a789d983096fe0dded583587d784a6e7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a789d983096fe0dded583587d784a6e7c">&#9670;&#160;</a></span>rbuf_0_temp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::rbuf_0_temp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00037">37</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af2bf70267a33599bc62e429e7fd1a1a9" name="af2bf70267a33599bc62e429e7fd1a1a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2bf70267a33599bc62e429e7fd1a1a9">&#9670;&#160;</a></span>rbuf_0_temp_int</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::rbuf_0_temp_int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00038">38</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af0e7d2d38a187bcdc8b7523dff9aad63" name="af0e7d2d38a187bcdc8b7523dff9aad63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0e7d2d38a187bcdc8b7523dff9aad63">&#9670;&#160;</a></span>rbuf_1_temp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::rbuf_1_temp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00037">37</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aad8580cea523c9a78ad3c1da57672589" name="aad8580cea523c9a78ad3c1da57672589"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad8580cea523c9a78ad3c1da57672589">&#9670;&#160;</a></span>rbuf_1_temp_int</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::rbuf_1_temp_int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00038">38</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ab2bc24e99070283a76585fc865e29553" name="ab2bc24e99070283a76585fc865e29553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2bc24e99070283a76585fc865e29553">&#9670;&#160;</a></span>rhs_buff1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::rhs_buff1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a2df3ceea49264608f8b3b4884e5453ae" name="a2df3ceea49264608f8b3b4884e5453ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df3ceea49264608f8b3b4884e5453ae">&#9670;&#160;</a></span>rhs_buff2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::rhs_buff2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00041">41</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a9920a75d2af837068feac1eccaf05d8d" name="a9920a75d2af837068feac1eccaf05d8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9920a75d2af837068feac1eccaf05d8d">&#9670;&#160;</a></span>sbuf_0_temp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::sbuf_0_temp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00037">37</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a2671a41e8c8755d4f3f8ab57101bf17a" name="a2671a41e8c8755d4f3f8ab57101bf17a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2671a41e8c8755d4f3f8ab57101bf17a">&#9670;&#160;</a></span>sbuf_0_temp_int</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::sbuf_0_temp_int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00038">38</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aac6a507bcb235d0591e1a27db2d3a42c" name="aac6a507bcb235d0591e1a27db2d3a42c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6a507bcb235d0591e1a27db2d3a42c">&#9670;&#160;</a></span>sbuf_1_temp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::sbuf_1_temp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00037">37</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a8785380a8b8853f782a37f78e4ae6e07" name="a8785380a8b8853f782a37f78e4ae6e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8785380a8b8853f782a37f78e4ae6e07">&#9670;&#160;</a></span>sbuf_1_temp_int</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::sbuf_1_temp_int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00038">38</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a00615354884cc42f3e4e03c0f9041c6b" name="a00615354884cc42f3e4e03c0f9041c6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00615354884cc42f3e4e03c0f9041c6b">&#9670;&#160;</a></span>share_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::share_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00033">33</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad9968f61db736546ffc233f00f2e9b3d" name="ad9968f61db736546ffc233f00f2e9b3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9968f61db736546ffc233f00f2e9b3d">&#9670;&#160;</a></span>share_size_fft</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::share_size_fft</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00033">33</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ae2a205700209d6c6672e930a72494147" name="ae2a205700209d6c6672e930a72494147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2a205700209d6c6672e930a72494147">&#9670;&#160;</a></span>share_size_pascal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::share_size_pascal</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00033">33</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad8d32a03324927a0a101e4d7286a1761" name="ad8d32a03324927a0a101e4d7286a1761"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8d32a03324927a0a101e4d7286a1761">&#9670;&#160;</a></span>target</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer cuda_subdomain::target</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00012">12</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ababb6b0c882894d178c9efb66fefff9e" name="ababb6b0c882894d178c9efb66fefff9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ababb6b0c882894d178c9efb66fefff9e">&#9670;&#160;</a></span>temp1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::temp1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00044">44</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a43cd4c4357678d5f0265a642703f0d2a" name="a43cd4c4357678d5f0265a642703f0d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43cd4c4357678d5f0265a642703f0d2a">&#9670;&#160;</a></span>temp2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::temp2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00044">44</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a303a5e170d58092c2d044c0eea935d81" name="a303a5e170d58092c2d044c0eea935d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a303a5e170d58092c2d044c0eea935d81">&#9670;&#160;</a></span>threads</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(dim3) cuda_subdomain::threads</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a7f1b6ff4980dffe8999bb6a47206b6e6" name="a7f1b6ff4980dffe8999bb6a47206b6e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f1b6ff4980dffe8999bb6a47206b6e6">&#9670;&#160;</a></span>threads_fft</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(dim3) cuda_subdomain::threads_fft</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="aa412d320c48f771347d03a0df60aad79" name="aa412d320c48f771347d03a0df60aad79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa412d320c48f771347d03a0df60aad79">&#9670;&#160;</a></span>threads_tdma</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">type(dim3) cuda_subdomain::threads_tdma</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00034">34</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="af41073bf416146dc555a44b1ce6ea4b2" name="af41073bf416146dc555a44b1ce6ea4b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af41073bf416146dc555a44b1ce6ea4b2">&#9670;&#160;</a></span>x1_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x1_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00018">18</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a80329de72386f8ec27dca14b4341575f" name="a80329de72386f8ec27dca14b4341575f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80329de72386f8ec27dca14b4341575f">&#9670;&#160;</a></span>x1_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x1_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00012">12</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a9dc7a9ae2f1479a0f9e0290eeabdc8b0" name="a9dc7a9ae2f1479a0f9e0290eeabdc8b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dc7a9ae2f1479a0f9e0290eeabdc8b0">&#9670;&#160;</a></span>x1_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x1_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00024">24</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0ba556a03a5fc5cb953d197dc3cd3528" name="a0ba556a03a5fc5cb953d197dc3cd3528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ba556a03a5fc5cb953d197dc3cd3528">&#9670;&#160;</a></span>x1_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x1_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00027">27</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="afe92472cd9d3c88faa482f1e9b1bde9f" name="afe92472cd9d3c88faa482f1e9b1bde9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe92472cd9d3c88faa482f1e9b1bde9f">&#9670;&#160;</a></span>x2_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x2_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00018">18</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad85cbe33da5277202c3e88524c2d88e1" name="ad85cbe33da5277202c3e88524c2d88e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad85cbe33da5277202c3e88524c2d88e1">&#9670;&#160;</a></span>x2_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x2_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00012">12</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="affc61b578e77db5fed743106e813c714" name="affc61b578e77db5fed743106e813c714"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc61b578e77db5fed743106e813c714">&#9670;&#160;</a></span>x2_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x2_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00024">24</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a51173eaaaec67d4f734fd1f929938a2a" name="a51173eaaaec67d4f734fd1f929938a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51173eaaaec67d4f734fd1f929938a2a">&#9670;&#160;</a></span>x2_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x2_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00027">27</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a34101a1e5f0c07b84d55f4a27d3d998a" name="a34101a1e5f0c07b84d55f4a27d3d998a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34101a1e5f0c07b84d55f4a27d3d998a">&#9670;&#160;</a></span>x3_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x3_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00018">18</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a247ea374eb5323d75024191bfcfd72c3" name="a247ea374eb5323d75024191bfcfd72c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a247ea374eb5323d75024191bfcfd72c3">&#9670;&#160;</a></span>x3_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x3_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00012">12</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6d114733ca3fd7b567fdb9c92e0f2441" name="a6d114733ca3fd7b567fdb9c92e0f2441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d114733ca3fd7b567fdb9c92e0f2441">&#9670;&#160;</a></span>x3_g_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x3_g_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00024">24</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+<a id="a5b470324062f8561193672f38a9e9c7a" name="a5b470324062f8561193672f38a9e9c7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b470324062f8561193672f38a9e9c7a">&#9670;&#160;</a></span>x3_g_d_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>) cuda_subdomain::x3_g_d_c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cuda__subdomain_8f90_source.html#l00027">27</a> of file <a class="el" href="cuda__subdomain_8f90_source.html">cuda_subdomain.f90</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacecuda__subdomain.html">cuda_subdomain</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

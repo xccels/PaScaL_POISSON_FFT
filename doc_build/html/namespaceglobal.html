@@ -1,0 +1,1201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:image" content="../preview.png" />
+<meta property="og:description" content="Documentation for parallel and scalable tri-diagonal matrix solver" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="../preview.png" />
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END twitter metadata -->
+<title>PaScaL_POISSON_FFT: global Module Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            messageStyle: "normal",
+            linebreaks: {
+                automatic: false
+            }
+        },
+        tex2jax: { 
+            inlineMath: [["\\(","\\)"]], 
+            displayMath: [["$$","$$"],["\\[","\\]"]], 
+            processEscapes: true
+        },
+        TeX: {
+            Macros: {
+                tr: "{\\scriptscriptstyle\\mathrm{T}}",
+            }
+        }
+    });
+</script>
+<!--MathJax(LaTeX) -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript" id="MathJax-script" async  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/xccels/PaScaL_POISSON_FFT" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 65px;">
+  <td id="projectlogo">
+    <a href="./index.html">
+        <img alt="Logo" src="home.png"/></td>
+    </a>
+  <td id="projectalign" style="padding-left: 0.5em;padding-top: 0.5em;">
+   <div id="projectname">PaScaL_POISSON_FFT
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespaceglobal.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions/Subroutines</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">global Module Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions/Subroutines</h2></td></tr>
+<tr class="memitem:ac3c4a9e1a04fa53294db970883f9a5dc" id="r_ac3c4a9e1a04fa53294db970883f9a5dc"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3c4a9e1a04fa53294db970883f9a5dc">global_inputpara</a> (myrank)</td></tr>
+<tr class="separator:ac3c4a9e1a04fa53294db970883f9a5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a815507ebe28a87c3d2a5838296ff532e" id="r_a815507ebe28a87c3d2a5838296ff532e"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a815507ebe28a87c3d2a5838296ff532e">global_print_settings</a> (myrank)</td></tr>
+<tr class="separator:a815507ebe28a87c3d2a5838296ff532e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9668de581bd65e39fb8e742ab7d647a3" id="r_a9668de581bd65e39fb8e742ab7d647a3"><td class="memItemLeft" align="right" valign="top">character(len=20) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9668de581bd65e39fb8e742ab7d647a3">uniform_type</a> (uniform)</td></tr>
+<tr class="separator:a9668de581bd65e39fb8e742ab7d647a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275d8b2aa047d50fa89b2938235d3b64" id="r_a275d8b2aa047d50fa89b2938235d3b64"><td class="memItemLeft" align="right" valign="top">character(len=20) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a275d8b2aa047d50fa89b2938235d3b64">poisson_type</a> (poisson)</td></tr>
+<tr class="separator:a275d8b2aa047d50fa89b2938235d3b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af54590d9603fc342133e5ccdd4c472c8" id="r_af54590d9603fc342133e5ccdd4c472c8"><td class="memItemLeft" align="right" valign="top">integer, parameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a> = kind(0.0)</td></tr>
+<tr class="separator:af54590d9603fc342133e5ccdd4c472c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae70b9faacad6e117d1caccc696cd57dc" id="r_ae70b9faacad6e117d1caccc696cd57dc"><td class="memItemLeft" align="right" valign="top">integer, parameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae70b9faacad6e117d1caccc696cd57dc">mpi_real_type</a> = MPI_REAL</td></tr>
+<tr class="separator:ae70b9faacad6e117d1caccc696cd57dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc100e0ded3d8ef70c4324f683f79e8f" id="r_afc100e0ded3d8ef70c4324f683f79e8f"><td class="memItemLeft" align="right" valign="top">integer, parameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc100e0ded3d8ef70c4324f683f79e8f">mpi_complex_type</a> = MPI_COMPLEX</td></tr>
+<tr class="separator:afc100e0ded3d8ef70c4324f683f79e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a966b628b489f6e6612dcad5fd6f74977" id="r_a966b628b489f6e6612dcad5fd6f74977"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>), parameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966b628b489f6e6612dcad5fd6f74977">pi</a> = real(dacos(-1.0d0), <a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td></tr>
+<tr class="separator:a966b628b489f6e6612dcad5fd6f74977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08e5886ef7fa819f9fdc4727c35be45c" id="r_a08e5886ef7fa819f9fdc4727c35be45c"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08e5886ef7fa819f9fdc4727c35be45c">x1_start</a></td></tr>
+<tr class="separator:a08e5886ef7fa819f9fdc4727c35be45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe2087fcac22706ccf63c6687b3739f" id="r_a5fe2087fcac22706ccf63c6687b3739f"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fe2087fcac22706ccf63c6687b3739f">x2_start</a></td></tr>
+<tr class="separator:a5fe2087fcac22706ccf63c6687b3739f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59bd47c1996f54114ed35a50aa8bc60" id="r_ae59bd47c1996f54114ed35a50aa8bc60"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae59bd47c1996f54114ed35a50aa8bc60">x3_start</a></td></tr>
+<tr class="separator:ae59bd47c1996f54114ed35a50aa8bc60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a127a1f08cd9fbdd4ccb85a06660297ee" id="r_a127a1f08cd9fbdd4ccb85a06660297ee"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a127a1f08cd9fbdd4ccb85a06660297ee">x1_end</a></td></tr>
+<tr class="separator:a127a1f08cd9fbdd4ccb85a06660297ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3642fe4bf46a3e116b4c4d90998fca0" id="r_ad3642fe4bf46a3e116b4c4d90998fca0"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3642fe4bf46a3e116b4c4d90998fca0">x2_end</a></td></tr>
+<tr class="separator:ad3642fe4bf46a3e116b4c4d90998fca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e818bdb00de4389789443e127310bc" id="r_aa8e818bdb00de4389789443e127310bc"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8e818bdb00de4389789443e127310bc">x3_end</a></td></tr>
+<tr class="separator:aa8e818bdb00de4389789443e127310bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61df12b29bca54d780fd105be391e9cb" id="r_a61df12b29bca54d780fd105be391e9cb"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61df12b29bca54d780fd105be391e9cb">l1</a></td></tr>
+<tr class="separator:a61df12b29bca54d780fd105be391e9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc784850351a8d6d3c389df42c14b350" id="r_adc784850351a8d6d3c389df42c14b350"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc784850351a8d6d3c389df42c14b350">l2</a></td></tr>
+<tr class="separator:adc784850351a8d6d3c389df42c14b350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e2e938719f9f506a20baa4795cf152" id="r_a58e2e938719f9f506a20baa4795cf152"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58e2e938719f9f506a20baa4795cf152">l3</a></td></tr>
+<tr class="separator:a58e2e938719f9f506a20baa4795cf152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e71b371b2e38e04beca107129a77313" id="r_a6e71b371b2e38e04beca107129a77313"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e71b371b2e38e04beca107129a77313">volume</a></td></tr>
+<tr class="separator:a6e71b371b2e38e04beca107129a77313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c8a2a95d05302d597dff9c87218f47d" id="r_a0c8a2a95d05302d597dff9c87218f47d"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c8a2a95d05302d597dff9c87218f47d">n1</a></td></tr>
+<tr class="separator:a0c8a2a95d05302d597dff9c87218f47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace9ec405b0eae1e771312b12aceb4497" id="r_ace9ec405b0eae1e771312b12aceb4497"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace9ec405b0eae1e771312b12aceb4497">n2</a></td></tr>
+<tr class="separator:ace9ec405b0eae1e771312b12aceb4497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d191b692f93fbe770043a03ea5657a1" id="r_a5d191b692f93fbe770043a03ea5657a1"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d191b692f93fbe770043a03ea5657a1">n3</a></td></tr>
+<tr class="separator:a5d191b692f93fbe770043a03ea5657a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d811842c2d79f995acf2588cc7bb1b0" id="r_a7d811842c2d79f995acf2588cc7bb1b0"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d811842c2d79f995acf2588cc7bb1b0">n1m</a></td></tr>
+<tr class="separator:a7d811842c2d79f995acf2588cc7bb1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae77b7e199acdd9b7f3a52f3261a222" id="r_acae77b7e199acdd9b7f3a52f3261a222"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acae77b7e199acdd9b7f3a52f3261a222">n2m</a></td></tr>
+<tr class="separator:acae77b7e199acdd9b7f3a52f3261a222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8918979761fc45ad2d16f06dadda7ce9" id="r_a8918979761fc45ad2d16f06dadda7ce9"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8918979761fc45ad2d16f06dadda7ce9">n3m</a></td></tr>
+<tr class="separator:a8918979761fc45ad2d16f06dadda7ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a649bf30673124d767482f804477b0838" id="r_a649bf30673124d767482f804477b0838"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a649bf30673124d767482f804477b0838">n1p</a></td></tr>
+<tr class="separator:a649bf30673124d767482f804477b0838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed6cd18efdf63bf46c4bfb58af44e1b9" id="r_aed6cd18efdf63bf46c4bfb58af44e1b9"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed6cd18efdf63bf46c4bfb58af44e1b9">n2p</a></td></tr>
+<tr class="separator:aed6cd18efdf63bf46c4bfb58af44e1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab476bc5d461059612f5514025e1532f" id="r_aab476bc5d461059612f5514025e1532f"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab476bc5d461059612f5514025e1532f">n3p</a></td></tr>
+<tr class="separator:aab476bc5d461059612f5514025e1532f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3da9157e5a9945a236d7d613aa18b433" id="r_a3da9157e5a9945a236d7d613aa18b433"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3da9157e5a9945a236d7d613aa18b433">resolution_x</a></td></tr>
+<tr class="separator:a3da9157e5a9945a236d7d613aa18b433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad58cdc51689a93a75d7f283a826b412" id="r_aad58cdc51689a93a75d7f283a826b412"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad58cdc51689a93a75d7f283a826b412">resolution_y</a></td></tr>
+<tr class="separator:aad58cdc51689a93a75d7f283a826b412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d4b169d0b151bbd4a28c23e986701d2" id="r_a0d4b169d0b151bbd4a28c23e986701d2"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d4b169d0b151bbd4a28c23e986701d2">resolution_z</a></td></tr>
+<tr class="separator:a0d4b169d0b151bbd4a28c23e986701d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c97b706fc5c2c7ffde2935ad5f6f589" id="r_a4c97b706fc5c2c7ffde2935ad5f6f589"><td class="memItemLeft" align="right" valign="top">logical&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c97b706fc5c2c7ffde2935ad5f6f589">pbc1</a></td></tr>
+<tr class="separator:a4c97b706fc5c2c7ffde2935ad5f6f589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8db0c9a30b7366f3e35088807e40a3f" id="r_aa8db0c9a30b7366f3e35088807e40a3f"><td class="memItemLeft" align="right" valign="top">logical&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8db0c9a30b7366f3e35088807e40a3f">pbc2</a></td></tr>
+<tr class="separator:aa8db0c9a30b7366f3e35088807e40a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a248fbca810278258beab1a2dabb11f85" id="r_a248fbca810278258beab1a2dabb11f85"><td class="memItemLeft" align="right" valign="top">logical&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a248fbca810278258beab1a2dabb11f85">pbc3</a></td></tr>
+<tr class="separator:a248fbca810278258beab1a2dabb11f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76758cd220390a344b5e5dfe511a3a18" id="r_a76758cd220390a344b5e5dfe511a3a18"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76758cd220390a344b5e5dfe511a3a18">uniform1</a></td></tr>
+<tr class="separator:a76758cd220390a344b5e5dfe511a3a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d6b385391f1f43098fafbafc5c5c4d5" id="r_a1d6b385391f1f43098fafbafc5c5c4d5"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d6b385391f1f43098fafbafc5c5c4d5">uniform2</a></td></tr>
+<tr class="separator:a1d6b385391f1f43098fafbafc5c5c4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a849ac11b21aa0b23711238fceefb256d" id="r_a849ac11b21aa0b23711238fceefb256d"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a849ac11b21aa0b23711238fceefb256d">uniform3</a></td></tr>
+<tr class="separator:a849ac11b21aa0b23711238fceefb256d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a017612876f42763b31e243ece662f597" id="r_a017612876f42763b31e243ece662f597"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a017612876f42763b31e243ece662f597">gamma1</a></td></tr>
+<tr class="separator:a017612876f42763b31e243ece662f597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd79a22860c5a790a3173c3ad014fae8" id="r_afd79a22860c5a790a3173c3ad014fae8"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd79a22860c5a790a3173c3ad014fae8">gamma2</a></td></tr>
+<tr class="separator:afd79a22860c5a790a3173c3ad014fae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a067d163b994e44005278681094df41a9" id="r_a067d163b994e44005278681094df41a9"><td class="memItemLeft" align="right" valign="top">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a067d163b994e44005278681094df41a9">gamma3</a></td></tr>
+<tr class="separator:a067d163b994e44005278681094df41a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0712c73a2727555530c2ef0b8c5bb4b5" id="r_a0712c73a2727555530c2ef0b8c5bb4b5"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0712c73a2727555530c2ef0b8c5bb4b5">np1</a></td></tr>
+<tr class="separator:a0712c73a2727555530c2ef0b8c5bb4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e502b4b6979bd2863d01b3db92a06b0" id="r_a4e502b4b6979bd2863d01b3db92a06b0"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e502b4b6979bd2863d01b3db92a06b0">np2</a></td></tr>
+<tr class="separator:a4e502b4b6979bd2863d01b3db92a06b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344c6fc4e5718cc5e5654f805bdb53b5" id="r_a344c6fc4e5718cc5e5654f805bdb53b5"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a344c6fc4e5718cc5e5654f805bdb53b5">np3</a></td></tr>
+<tr class="separator:a344c6fc4e5718cc5e5654f805bdb53b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33db542cca17d8c3a156e90d31d8abe5" id="r_a33db542cca17d8c3a156e90d31d8abe5"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33db542cca17d8c3a156e90d31d8abe5">thread_in_x</a></td></tr>
+<tr class="separator:a33db542cca17d8c3a156e90d31d8abe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2694e42b57b63e348f472d5a59bfe0fb" id="r_a2694e42b57b63e348f472d5a59bfe0fb"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2694e42b57b63e348f472d5a59bfe0fb">thread_in_y</a></td></tr>
+<tr class="separator:a2694e42b57b63e348f472d5a59bfe0fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f39f066a0ed398d1e3e56d13d092718" id="r_a1f39f066a0ed398d1e3e56d13d092718"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f39f066a0ed398d1e3e56d13d092718">thread_in_z</a></td></tr>
+<tr class="separator:a1f39f066a0ed398d1e3e56d13d092718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c53f9dfde5486b01023d0c9479db29c" id="r_a0c53f9dfde5486b01023d0c9479db29c"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c53f9dfde5486b01023d0c9479db29c">thread_in_x_pascal</a></td></tr>
+<tr class="separator:a0c53f9dfde5486b01023d0c9479db29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af395b143d44c9d28517e64a695920dda" id="r_af395b143d44c9d28517e64a695920dda"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af395b143d44c9d28517e64a695920dda">thread_in_y_pascal</a></td></tr>
+<tr class="separator:af395b143d44c9d28517e64a695920dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad227cd185eef1c5ade91c3010086f796" id="r_ad227cd185eef1c5ade91c3010086f796"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad227cd185eef1c5ade91c3010086f796">thread_in_fft_pascal</a></td></tr>
+<tr class="separator:ad227cd185eef1c5ade91c3010086f796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a127f0f1018715311f41eab93b98d9ece" id="r_a127f0f1018715311f41eab93b98d9ece"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a127f0f1018715311f41eab93b98d9ece">poisson_model</a></td></tr>
+<tr class="separator:a127f0f1018715311f41eab93b98d9ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad316d4458ac81f4c048623c3c82207e7" id="r_ad316d4458ac81f4c048623c3c82207e7"><td class="memItemLeft" align="right" valign="top">logical&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad316d4458ac81f4c048623c3c82207e7">continuefilein</a></td></tr>
+<tr class="separator:ad316d4458ac81f4c048623c3c82207e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a575540418173b039c6a6078a9408e7ca" id="r_a575540418173b039c6a6078a9408e7ca"><td class="memItemLeft" align="right" valign="top">logical&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a575540418173b039c6a6078a9408e7ca">continuefileout</a></td></tr>
+<tr class="separator:a575540418173b039c6a6078a9408e7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a471b9b10d8ad3f6fc3a877831f3c0" id="r_a61a471b9b10d8ad3f6fc3a877831f3c0"><td class="memItemLeft" align="right" valign="top">character(len=128)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61a471b9b10d8ad3f6fc3a877831f3c0">dir_cont_filein</a></td></tr>
+<tr class="separator:a61a471b9b10d8ad3f6fc3a877831f3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af77417ee59b989d9a22c0392edddf6a5" id="r_af77417ee59b989d9a22c0392edddf6a5"><td class="memItemLeft" align="right" valign="top">character(len=128)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af77417ee59b989d9a22c0392edddf6a5">dir_cont_fileout</a></td></tr>
+<tr class="separator:af77417ee59b989d9a22c0392edddf6a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7f8d51f3d4c339f9d24d3043e518451" id="r_ae7f8d51f3d4c339f9d24d3043e518451"><td class="memItemLeft" align="right" valign="top">character(len=128)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7f8d51f3d4c339f9d24d3043e518451">dir_instantfield</a></td></tr>
+<tr class="separator:ae7f8d51f3d4c339f9d24d3043e518451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="ac3c4a9e1a04fa53294db970883f9a5dc" name="ac3c4a9e1a04fa53294db970883f9a5dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c4a9e1a04fa53294db970883f9a5dc">&#9670;&#160;</a></span>global_inputpara()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine global::global_inputpara </td>
+          <td>(</td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>myrank</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00051">51</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceglobal_ac3c4a9e1a04fa53294db970883f9a5dc_cgraph.png" border="0" usemap="#anamespaceglobal_ac3c4a9e1a04fa53294db970883f9a5dc_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a815507ebe28a87c3d2a5838296ff532e" name="a815507ebe28a87c3d2a5838296ff532e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a815507ebe28a87c3d2a5838296ff532e">&#9670;&#160;</a></span>global_print_settings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine global::global_print_settings </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>myrank</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00135">135</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceglobal_a815507ebe28a87c3d2a5838296ff532e_cgraph.png" border="0" usemap="#anamespaceglobal_a815507ebe28a87c3d2a5838296ff532e_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceglobal_a815507ebe28a87c3d2a5838296ff532e_icgraph.png" border="0" usemap="#anamespaceglobal_a815507ebe28a87c3d2a5838296ff532e_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a275d8b2aa047d50fa89b2938235d3b64" name="a275d8b2aa047d50fa89b2938235d3b64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275d8b2aa047d50fa89b2938235d3b64">&#9670;&#160;</a></span>poisson_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">character(len=20) function global::poisson_type </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>poisson</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00216">216</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceglobal_a275d8b2aa047d50fa89b2938235d3b64_icgraph.png" border="0" usemap="#anamespaceglobal_a275d8b2aa047d50fa89b2938235d3b64_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a9668de581bd65e39fb8e742ab7d647a3" name="a9668de581bd65e39fb8e742ab7d647a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9668de581bd65e39fb8e742ab7d647a3">&#9670;&#160;</a></span>uniform_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">character(len=20) function global::uniform_type </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>uniform</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00197">197</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceglobal_a9668de581bd65e39fb8e742ab7d647a3_icgraph.png" border="0" usemap="#anamespaceglobal_a9668de581bd65e39fb8e742ab7d647a3_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ad316d4458ac81f4c048623c3c82207e7" name="ad316d4458ac81f4c048623c3c82207e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad316d4458ac81f4c048623c3c82207e7">&#9670;&#160;</a></span>continuefilein</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical global::continuefilein</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00042">42</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a575540418173b039c6a6078a9408e7ca" name="a575540418173b039c6a6078a9408e7ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a575540418173b039c6a6078a9408e7ca">&#9670;&#160;</a></span>continuefileout</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical global::continuefileout</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00042">42</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a61a471b9b10d8ad3f6fc3a877831f3c0" name="a61a471b9b10d8ad3f6fc3a877831f3c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61a471b9b10d8ad3f6fc3a877831f3c0">&#9670;&#160;</a></span>dir_cont_filein</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">character(len=128) global::dir_cont_filein</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00045">45</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="af77417ee59b989d9a22c0392edddf6a5" name="af77417ee59b989d9a22c0392edddf6a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af77417ee59b989d9a22c0392edddf6a5">&#9670;&#160;</a></span>dir_cont_fileout</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">character(len=128) global::dir_cont_fileout</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00045">45</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="ae7f8d51f3d4c339f9d24d3043e518451" name="ae7f8d51f3d4c339f9d24d3043e518451"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7f8d51f3d4c339f9d24d3043e518451">&#9670;&#160;</a></span>dir_instantfield</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">character(len=128) global::dir_instantfield</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00045">45</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a017612876f42763b31e243ece662f597" name="a017612876f42763b31e243ece662f597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a017612876f42763b31e243ece662f597">&#9670;&#160;</a></span>gamma1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::gamma1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00029">29</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="afd79a22860c5a790a3173c3ad014fae8" name="afd79a22860c5a790a3173c3ad014fae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd79a22860c5a790a3173c3ad014fae8">&#9670;&#160;</a></span>gamma2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::gamma2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00029">29</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a067d163b994e44005278681094df41a9" name="a067d163b994e44005278681094df41a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a067d163b994e44005278681094df41a9">&#9670;&#160;</a></span>gamma3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::gamma3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00029">29</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a61df12b29bca54d780fd105be391e9cb" name="a61df12b29bca54d780fd105be391e9cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61df12b29bca54d780fd105be391e9cb">&#9670;&#160;</a></span>l1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::l1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00016">16</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="adc784850351a8d6d3c389df42c14b350" name="adc784850351a8d6d3c389df42c14b350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc784850351a8d6d3c389df42c14b350">&#9670;&#160;</a></span>l2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::l2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00016">16</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a58e2e938719f9f506a20baa4795cf152" name="a58e2e938719f9f506a20baa4795cf152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58e2e938719f9f506a20baa4795cf152">&#9670;&#160;</a></span>l3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::l3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00016">16</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="afc100e0ded3d8ef70c4324f683f79e8f" name="afc100e0ded3d8ef70c4324f683f79e8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc100e0ded3d8ef70c4324f683f79e8f">&#9670;&#160;</a></span>mpi_complex_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer parameter global::mpi_complex_type = MPI_COMPLEX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00006">6</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="ae70b9faacad6e117d1caccc696cd57dc" name="ae70b9faacad6e117d1caccc696cd57dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae70b9faacad6e117d1caccc696cd57dc">&#9670;&#160;</a></span>mpi_real_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer parameter global::mpi_real_type = MPI_REAL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00006">6</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0c8a2a95d05302d597dff9c87218f47d" name="a0c8a2a95d05302d597dff9c87218f47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8a2a95d05302d597dff9c87218f47d">&#9670;&#160;</a></span>n1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00020">20</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a7d811842c2d79f995acf2588cc7bb1b0" name="a7d811842c2d79f995acf2588cc7bb1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d811842c2d79f995acf2588cc7bb1b0">&#9670;&#160;</a></span>n1m</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n1m</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00021">21</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a649bf30673124d767482f804477b0838" name="a649bf30673124d767482f804477b0838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a649bf30673124d767482f804477b0838">&#9670;&#160;</a></span>n1p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n1p</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00022">22</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="ace9ec405b0eae1e771312b12aceb4497" name="ace9ec405b0eae1e771312b12aceb4497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace9ec405b0eae1e771312b12aceb4497">&#9670;&#160;</a></span>n2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00020">20</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="acae77b7e199acdd9b7f3a52f3261a222" name="acae77b7e199acdd9b7f3a52f3261a222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae77b7e199acdd9b7f3a52f3261a222">&#9670;&#160;</a></span>n2m</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n2m</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00021">21</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="aed6cd18efdf63bf46c4bfb58af44e1b9" name="aed6cd18efdf63bf46c4bfb58af44e1b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed6cd18efdf63bf46c4bfb58af44e1b9">&#9670;&#160;</a></span>n2p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n2p</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00022">22</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a5d191b692f93fbe770043a03ea5657a1" name="a5d191b692f93fbe770043a03ea5657a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d191b692f93fbe770043a03ea5657a1">&#9670;&#160;</a></span>n3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00020">20</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a8918979761fc45ad2d16f06dadda7ce9" name="a8918979761fc45ad2d16f06dadda7ce9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8918979761fc45ad2d16f06dadda7ce9">&#9670;&#160;</a></span>n3m</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n3m</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00021">21</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="aab476bc5d461059612f5514025e1532f" name="aab476bc5d461059612f5514025e1532f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab476bc5d461059612f5514025e1532f">&#9670;&#160;</a></span>n3p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::n3p</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00022">22</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0712c73a2727555530c2ef0b8c5bb4b5" name="a0712c73a2727555530c2ef0b8c5bb4b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0712c73a2727555530c2ef0b8c5bb4b5">&#9670;&#160;</a></span>np1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::np1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00033">33</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4e502b4b6979bd2863d01b3db92a06b0" name="a4e502b4b6979bd2863d01b3db92a06b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e502b4b6979bd2863d01b3db92a06b0">&#9670;&#160;</a></span>np2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::np2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00033">33</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a344c6fc4e5718cc5e5654f805bdb53b5" name="a344c6fc4e5718cc5e5654f805bdb53b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a344c6fc4e5718cc5e5654f805bdb53b5">&#9670;&#160;</a></span>np3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::np3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00033">33</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a4c97b706fc5c2c7ffde2935ad5f6f589" name="a4c97b706fc5c2c7ffde2935ad5f6f589"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c97b706fc5c2c7ffde2935ad5f6f589">&#9670;&#160;</a></span>pbc1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical global::pbc1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00027">27</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="aa8db0c9a30b7366f3e35088807e40a3f" name="aa8db0c9a30b7366f3e35088807e40a3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8db0c9a30b7366f3e35088807e40a3f">&#9670;&#160;</a></span>pbc2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical global::pbc2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00027">27</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a248fbca810278258beab1a2dabb11f85" name="a248fbca810278258beab1a2dabb11f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a248fbca810278258beab1a2dabb11f85">&#9670;&#160;</a></span>pbc3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical global::pbc3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00027">27</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a966b628b489f6e6612dcad5fd6f74977" name="a966b628b489f6e6612dcad5fd6f74977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966b628b489f6e6612dcad5fd6f74977">&#9670;&#160;</a></span>pi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>), parameter global::pi = real(dacos(-1.0d0), <a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00010">10</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a127f0f1018715311f41eab93b98d9ece" name="a127f0f1018715311f41eab93b98d9ece"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a127f0f1018715311f41eab93b98d9ece">&#9670;&#160;</a></span>poisson_model</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::poisson_model</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00039">39</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a3da9157e5a9945a236d7d613aa18b433" name="a3da9157e5a9945a236d7d613aa18b433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3da9157e5a9945a236d7d613aa18b433">&#9670;&#160;</a></span>resolution_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::resolution_x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00023">23</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="aad58cdc51689a93a75d7f283a826b412" name="aad58cdc51689a93a75d7f283a826b412"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad58cdc51689a93a75d7f283a826b412">&#9670;&#160;</a></span>resolution_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::resolution_y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00023">23</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0d4b169d0b151bbd4a28c23e986701d2" name="a0d4b169d0b151bbd4a28c23e986701d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4b169d0b151bbd4a28c23e986701d2">&#9670;&#160;</a></span>resolution_z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::resolution_z</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00023">23</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="af54590d9603fc342133e5ccdd4c472c8" name="af54590d9603fc342133e5ccdd4c472c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af54590d9603fc342133e5ccdd4c472c8">&#9670;&#160;</a></span>rp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer parameter global::rp = kind(0.0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00006">6</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad227cd185eef1c5ade91c3010086f796" name="ad227cd185eef1c5ade91c3010086f796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad227cd185eef1c5ade91c3010086f796">&#9670;&#160;</a></span>thread_in_fft_pascal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::thread_in_fft_pascal</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00037">37</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a33db542cca17d8c3a156e90d31d8abe5" name="a33db542cca17d8c3a156e90d31d8abe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33db542cca17d8c3a156e90d31d8abe5">&#9670;&#160;</a></span>thread_in_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::thread_in_x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00035">35</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a0c53f9dfde5486b01023d0c9479db29c" name="a0c53f9dfde5486b01023d0c9479db29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c53f9dfde5486b01023d0c9479db29c">&#9670;&#160;</a></span>thread_in_x_pascal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::thread_in_x_pascal</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00037">37</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a2694e42b57b63e348f472d5a59bfe0fb" name="a2694e42b57b63e348f472d5a59bfe0fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2694e42b57b63e348f472d5a59bfe0fb">&#9670;&#160;</a></span>thread_in_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::thread_in_y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00035">35</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="af395b143d44c9d28517e64a695920dda" name="af395b143d44c9d28517e64a695920dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af395b143d44c9d28517e64a695920dda">&#9670;&#160;</a></span>thread_in_y_pascal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::thread_in_y_pascal</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00037">37</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1f39f066a0ed398d1e3e56d13d092718" name="a1f39f066a0ed398d1e3e56d13d092718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f39f066a0ed398d1e3e56d13d092718">&#9670;&#160;</a></span>thread_in_z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::thread_in_z</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00035">35</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a76758cd220390a344b5e5dfe511a3a18" name="a76758cd220390a344b5e5dfe511a3a18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76758cd220390a344b5e5dfe511a3a18">&#9670;&#160;</a></span>uniform1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::uniform1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00028">28</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a1d6b385391f1f43098fafbafc5c5c4d5" name="a1d6b385391f1f43098fafbafc5c5c4d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d6b385391f1f43098fafbafc5c5c4d5">&#9670;&#160;</a></span>uniform2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::uniform2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00028">28</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a849ac11b21aa0b23711238fceefb256d" name="a849ac11b21aa0b23711238fceefb256d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a849ac11b21aa0b23711238fceefb256d">&#9670;&#160;</a></span>uniform3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer global::uniform3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00028">28</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6e71b371b2e38e04beca107129a77313" name="a6e71b371b2e38e04beca107129a77313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e71b371b2e38e04beca107129a77313">&#9670;&#160;</a></span>volume</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::volume</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00017">17</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a127a1f08cd9fbdd4ccb85a06660297ee" name="a127a1f08cd9fbdd4ccb85a06660297ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a127a1f08cd9fbdd4ccb85a06660297ee">&#9670;&#160;</a></span>x1_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::x1_end</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00015">15</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a08e5886ef7fa819f9fdc4727c35be45c" name="a08e5886ef7fa819f9fdc4727c35be45c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08e5886ef7fa819f9fdc4727c35be45c">&#9670;&#160;</a></span>x1_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::x1_start</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00014">14</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="ad3642fe4bf46a3e116b4c4d90998fca0" name="ad3642fe4bf46a3e116b4c4d90998fca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3642fe4bf46a3e116b4c4d90998fca0">&#9670;&#160;</a></span>x2_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::x2_end</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00015">15</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="a5fe2087fcac22706ccf63c6687b3739f" name="a5fe2087fcac22706ccf63c6687b3739f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fe2087fcac22706ccf63c6687b3739f">&#9670;&#160;</a></span>x2_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::x2_start</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00014">14</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="aa8e818bdb00de4389789443e127310bc" name="aa8e818bdb00de4389789443e127310bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8e818bdb00de4389789443e127310bc">&#9670;&#160;</a></span>x3_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::x3_end</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00015">15</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+<a id="ae59bd47c1996f54114ed35a50aa8bc60" name="ae59bd47c1996f54114ed35a50aa8bc60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59bd47c1996f54114ed35a50aa8bc60">&#9670;&#160;</a></span>x3_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(<a class="el" href="#af54590d9603fc342133e5ccdd4c472c8">rp</a>) global::x3_start</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="global_8f90_source.html#l00014">14</a> of file <a class="el" href="global_8f90_source.html">global.f90</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceglobal.html">global</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

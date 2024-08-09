@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:image" content="../preview.png" />
+<meta property="og:description" content="Documentation for parallel and scalable tri-diagonal matrix solver" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="../preview.png" />
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END twitter metadata -->
+<title>PaScaL_POISSON_FFT: examples/cuda_pressure.f90 Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            messageStyle: "normal",
+            linebreaks: {
+                automatic: false
+            }
+        },
+        tex2jax: { 
+            inlineMath: [["\\(","\\)"]], 
+            displayMath: [["$$","$$"],["\\[","\\]"]], 
+            processEscapes: true
+        },
+        TeX: {
+            Macros: {
+                tr: "{\\scriptscriptstyle\\mathrm{T}}",
+            }
+        }
+    });
+</script>
+<!--MathJax(LaTeX) -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript" id="MathJax-script" async  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/xccels/PaScaL_POISSON_FFT" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 65px;">
+  <td id="projectlogo">
+    <a href="./index.html">
+        <img alt="Logo" src="home.png"/></td>
+    </a>
+  <td id="projectalign" style="padding-left: 0.5em;padding-top: 0.5em;">
+   <div id="projectname">PaScaL_POISSON_FFT
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('cuda__pressure_8f90_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">cuda_pressure.f90</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="cuda__pressure_8f90.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacecuda__pressure.html">    1</a></span><span class="keyword">module</span> <a class="code hl_namespace" href="namespacecuda__pressure.html">cuda_pressure</a></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span>    <span class="comment">! use debug</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>    <span class="keywordtype">use </span><a class="code hl_namespace" href="namespaceglobal.html">global</a></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    <span class="keywordtype">use </span>openacc</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    <span class="keywordtype">use </span><a class="code hl_namespace" href="namespacenvtx.html">nvtx</a></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keywordtype">use </span>cufft</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keywordtype">use </span>cudafor</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keywordtype">use </span><a class="code hl_namespace" href="namespacempi__subdomain.html">mpi_subdomain</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordtype">use </span><a class="code hl_namespace" href="namespacecuda__subdomain.html">cuda_subdomain</a>, <span class="keywordtype">only</span> : <a class="code hl_variable" href="namespacempi__subdomain.html#a35bc02b9405da47b034646c07e99ba8c">n1sub</a>, <a class="code hl_variable" href="namespacempi__subdomain.html#a6310973b1645cf729d629916d7de3be2">n2sub</a>, <a class="code hl_variable" href="namespacempi__subdomain.html#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a>, <a class="code hl_variable" href="namespacempi__subdomain.html#a071dcdc72760ebe3e03e78c0b6df370d">n1msub</a>, <a class="code hl_variable" href="namespacempi__subdomain.html#aef43d8b875825360eb1d4e684c0b40de">n2msub</a>, <a class="code hl_variable" href="namespacempi__subdomain.html#a6c2f36f6adbb1fea8556998474335969">n3msub</a></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">implicit none</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="namespacecuda__pressure.html#a7ee458e69544e248e0cb596a219c32f2">   13</a></span><span class="keywordtype">    real</span>(<a class="code hl_variable" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>),         <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:,:)</span> :: <a class="code hl_variable" href="namespacecuda__pressure.html#a7ee458e69544e248e0cb596a219c32f2">p</a> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespacecuda__pressure.html#a728f643b192a6d30bf29cdac20518786">   14</a></span><span class="keywordtype">    real</span>(<a class="code hl_variable" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>), <a class="code hl_variable" href="namespacecuda__pressure.html#a933598d08aac2015599038b79442c3a7">device</a>, <span class="keywordtype">allocatable</span>, <span class="keywordtype">dimension(:,:,:)</span> :: <a class="code hl_variable" href="namespacecuda__pressure.html#a8b1cf014b1cbf920c9338baebf89badd">p_d</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespacecuda__pressure.html#af8a329bcc8fcfdccd351eead6ea6251f">   15</a></span><span class="keywordtype">    real</span>(<a class="code hl_variable" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>),     <span class="keywordtype">pointer</span>, <a class="code hl_variable" href="namespacecuda__pressure.html#a933598d08aac2015599038b79442c3a7">device</a>, <span class="keywordtype">dimension(:,:,:)</span> :: <a class="code hl_variable" href="namespacecuda__pressure.html#af8a329bcc8fcfdccd351eead6ea6251f">prhs_d</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">contains</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="" data-end="">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespacecuda__pressure.html#a480deca50547f83061e7a2a6385e4021">   19</a></span>    <span class="keyword">subroutine </span><a class="code hl_function" href="namespacecuda__pressure.html#a480deca50547f83061e7a2a6385e4021">cuda_pressure_memory</a>(action)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordtype">implicit none</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(in)</span> :: action</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordtype">integer</span> :: i, j, k</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">selectcase</span>(action)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">case</span>(<span class="stringliteral">&#39;allocate&#39;</span>)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <span class="keyword">allocate</span>(<a class="code hl_variable" href="namespacecuda__pressure.html#a7ee458e69544e248e0cb596a219c32f2">p</a>(0:<a class="code hl_variable" href="namespacempi__subdomain.html#a35bc02b9405da47b034646c07e99ba8c">n1sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#a6310973b1645cf729d629916d7de3be2">n2sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a>))</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <a class="code hl_variable" href="namespacecuda__pressure.html#a7ee458e69544e248e0cb596a219c32f2">p</a>(0:<a class="code hl_variable" href="namespacempi__subdomain.html#a35bc02b9405da47b034646c07e99ba8c">n1sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#a6310973b1645cf729d629916d7de3be2">n2sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a>) = real(0.0, <a class="code hl_variable" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keyword">allocate</span>(<a class="code hl_variable" href="namespacecuda__pressure.html#a8b1cf014b1cbf920c9338baebf89badd">p_d</a>(0:<a class="code hl_variable" href="namespacempi__subdomain.html#a35bc02b9405da47b034646c07e99ba8c">n1sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#a6310973b1645cf729d629916d7de3be2">n2sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a>))</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <a class="code hl_variable" href="namespacecuda__pressure.html#a8b1cf014b1cbf920c9338baebf89badd">p_d</a>(0:<a class="code hl_variable" href="namespacempi__subdomain.html#a35bc02b9405da47b034646c07e99ba8c">n1sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#a6310973b1645cf729d629916d7de3be2">n2sub</a>,0:<a class="code hl_variable" href="namespacempi__subdomain.html#ada135affeeebabdf246cc4ea1b27c2ce">n3sub</a>) = real(0.0, <a class="code hl_variable" href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">rp</a>)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">case</span>(<span class="stringliteral">&#39;clean&#39;</span>)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keyword">deallocate</span>(<a class="code hl_variable" href="namespacecuda__pressure.html#a7ee458e69544e248e0cb596a219c32f2">p</a>)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <span class="keyword">deallocate</span>(<a class="code hl_variable" href="namespacecuda__pressure.html#a8b1cf014b1cbf920c9338baebf89badd">p_d</a>)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordflow">        endselect</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">end subroutine </span><a class="code hl_function" href="namespacecuda__pressure.html#a480deca50547f83061e7a2a6385e4021">cuda_pressure_memory</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="" data-end="">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespacecuda__pressure.html#ab5bc5dcd31eec76cce182e570d735ace">   38</a></span>    <span class="keyword">subroutine </span><a class="code hl_function" href="namespacecuda__pressure.html#ab5bc5dcd31eec76cce182e570d735ace">cuda_pressure_rhs</a>(prhs_d)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">use </span><a class="code hl_namespace" href="namespacecuda__subdomain.html">cuda_subdomain</a>,   <span class="keywordtype">only</span> : <a class="code hl_variable" href="namespaceglobal.html#a33db542cca17d8c3a156e90d31d8abe5">thread_in_x</a>, <a class="code hl_variable" href="namespaceglobal.html#a2694e42b57b63e348f472d5a59bfe0fb">thread_in_y</a>, <a class="code hl_variable" href="namespaceglobal.html#a1f39f066a0ed398d1e3e56d13d092718">thread_in_z</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#ab8957ee4a038f7eb32fa07380b6247f6">block_in_x</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#a04878817e99727a2ce6f05324aa8cc7e">block_in_y</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#ae6720d30aaae59ede400b6be45787bcb">block_in_z</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#a303a5e170d58092c2d044c0eea935d81">threads</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#a9e8060dba8d36ffd68a153094cd9ae5c">blocks</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#a00615354884cc42f3e4e03c0f9041c6b">share_size</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">implicit none</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keywordtype">        real</span>(rp), device, <span class="keywordtype">dimension( 1:, 1:, 1:)</span>, <span class="keywordtype">intent(out)</span>  :: prhs_d</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <a class="code hl_variable" href="namespacecuda__subdomain.html#a9e8060dba8d36ffd68a153094cd9ae5c">blocks</a>  = dim3(<a class="code hl_variable" href="namespacecuda__subdomain.html#ab8957ee4a038f7eb32fa07380b6247f6">block_in_x</a> ,  <a class="code hl_variable" href="namespacecuda__subdomain.html#a04878817e99727a2ce6f05324aa8cc7e">block_in_y</a>,  <a class="code hl_variable" href="namespacecuda__subdomain.html#ae6720d30aaae59ede400b6be45787bcb">block_in_z</a>)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <a class="code hl_variable" href="namespacecuda__subdomain.html#a303a5e170d58092c2d044c0eea935d81">threads</a> = dim3(<a class="code hl_variable" href="namespaceglobal.html#a33db542cca17d8c3a156e90d31d8abe5">thread_in_x</a>, <a class="code hl_variable" href="namespaceglobal.html#a2694e42b57b63e348f472d5a59bfe0fb">thread_in_y</a>, <a class="code hl_variable" href="namespaceglobal.html#a1f39f066a0ed398d1e3e56d13d092718">thread_in_z</a>)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">call </span><a class="code hl_function" href="namespacenvtx.html#abaf43be3229e42bd0f4c1e75d9670075">nvtxstartrange</a>(<span class="stringliteral">&quot;Poisson-RHS&quot;</span>)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keyword">call </span>cuda_pressure_rhs_kernel&lt;&lt;&lt;<a class="code hl_variable" href="namespacecuda__subdomain.html#a9e8060dba8d36ffd68a153094cd9ae5c">blocks</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#a303a5e170d58092c2d044c0eea935d81">threads</a>, 5*<a class="code hl_variable" href="namespacecuda__subdomain.html#a00615354884cc42f3e4e03c0f9041c6b">share_size</a>&gt;&gt;&gt;(prhs_d, <a class="code hl_variable" href="namespacempi__subdomain.html#a071dcdc72760ebe3e03e78c0b6df370d">n1msub</a>, <a class="code hl_variable" href="namespacempi__subdomain.html#aef43d8b875825360eb1d4e684c0b40de">n2msub</a>, <a class="code hl_variable" href="namespacempi__subdomain.html#a6c2f36f6adbb1fea8556998474335969">n3msub</a>)    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">call </span><a class="code hl_function" href="namespacenvtx.html#aed9b06c5398e0a5b8d7a6e687564fb46">nvtxendrange</a></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">end subroutine </span><a class="code hl_function" href="namespacecuda__pressure.html#ab5bc5dcd31eec76cce182e570d735ace">cuda_pressure_rhs</a></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="" data-end="">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="namespacecuda__pressure.html#a1dd6cc8f9dcfac76157fadcbee3643d4">   53</a></span>    <span class="keyword">subroutine </span><a class="code hl_function" href="namespacecuda__pressure.html#a1dd6cc8f9dcfac76157fadcbee3643d4">cuda_pressure_prhs_memory</a>(action)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">implicit none</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordtype">character(len=*)</span>, <span class="keywordtype">intent(in)</span> :: action</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">selectcase</span>(action)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">case</span>(<span class="stringliteral">&#39;allocate&#39;</span>)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">case</span>(<span class="stringliteral">&#39;clean&#39;</span>)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keyword">deallocate</span>(<a class="code hl_variable" href="namespacecuda__pressure.html#af8a329bcc8fcfdccd351eead6ea6251f">prhs_d</a>)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keywordflow">        endselect</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        </div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">end subroutine </span><a class="code hl_function" href="namespacecuda__pressure.html#a1dd6cc8f9dcfac76157fadcbee3643d4">cuda_pressure_prhs_memory</a></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    attributes(<a class="code hl_namespace" href="namespaceglobal.html">global</a>) <span class="keyword">subroutine </span>cuda_pressure_rhs_kernel(prhs_d, n1, n2, n3)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordtype">use </span><a class="code hl_namespace" href="namespacecuda__subdomain.html">cuda_subdomain</a>, <span class="keywordtype">only</span> : <a class="code hl_variable" href="namespacecuda__subdomain.html#af41073bf416146dc555a44b1ce6ea4b2">x1_d</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#afe92472cd9d3c88faa482f1e9b1bde9f">x2_d</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#a34101a1e5f0c07b84d55f4a27d3d998a">x3_d</a>, <a class="code hl_variable" href="namespacecuda__subdomain.html#a7a4bcadeffec62435e74b77503a08c8c">dx3_d</a></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordtype">implicit none</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keywordtype">        real</span>(rp), device, <span class="keywordtype">dimension( 1:, 1:, 1:)</span>, <span class="keywordtype">intent(out)</span>  :: prhs_d</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordtype">integer</span>,  <span class="keywordtype">value</span>, <span class="keywordtype">intent(in)</span> :: n1, n2, n3</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordtype">integer</span> :: i, j, k</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordtype">integer</span> :: im ,ip ,jm ,jp ,km ,kp</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordtype">integer</span> :: ium,iup,jvm,jvp,kwm,kwp</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordtype">integer</span> :: tim, ti, tip, tjm, tj, tjp, tkm, tk, tkp</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        i = (blockidx%x-1) * blockdim%x + threadidx%x; im=i-1; ip=i+1;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        j = (blockidx%y-1) * blockdim%y + threadidx%y; jm=j-1; jp=j+1;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        k = (blockidx%z-1) * blockdim%z + threadidx%z; km=k-1; kp=k+1;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">if</span> ((i &lt;= n1) .and. (j &lt;= n2) .and. (k &lt;= n3)) <span class="keywordflow">then</span>         </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            prhs_d(i,j,k) = - cos(<a class="code hl_variable" href="namespacecuda__subdomain.html#af41073bf416146dc555a44b1ce6ea4b2">x1_d</a>(i)*<a class="code hl_variable" href="namespaceglobal.html#a966b628b489f6e6612dcad5fd6f74977">pi</a>)*cos(<a class="code hl_variable" href="namespacecuda__subdomain.html#afe92472cd9d3c88faa482f1e9b1bde9f">x2_d</a>(j)*<a class="code hl_variable" href="namespaceglobal.html#a966b628b489f6e6612dcad5fd6f74977">pi</a>)*cos(<a class="code hl_variable" href="namespacecuda__subdomain.html#a34101a1e5f0c07b84d55f4a27d3d998a">x3_d</a>(k)*<a class="code hl_variable" href="namespaceglobal.html#a966b628b489f6e6612dcad5fd6f74977">pi</a>)*3.0*<a class="code hl_variable" href="namespaceglobal.html#a966b628b489f6e6612dcad5fd6f74977">pi</a>*<a class="code hl_variable" href="namespaceglobal.html#a966b628b489f6e6612dcad5fd6f74977">pi</a></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keywordflow">        endif</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">end subroutine </span>cuda_pressure_rhs_kernel</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">end module </span><a class="code hl_namespace" href="namespacecuda__pressure.html">cuda_pressure</a></div>
+<div class="ttc" id="anamespacecuda__pressure_html"><div class="ttname"><a href="namespacecuda__pressure.html">cuda_pressure</a></div><div class="ttdef"><b>Definition</b> <a href="#l00001">cuda_pressure.f90:1</a></div></div>
+<div class="ttc" id="anamespacecuda__pressure_html_a1dd6cc8f9dcfac76157fadcbee3643d4"><div class="ttname"><a href="namespacecuda__pressure.html#a1dd6cc8f9dcfac76157fadcbee3643d4">cuda_pressure::cuda_pressure_prhs_memory</a></div><div class="ttdeci">subroutine cuda_pressure_prhs_memory(action)</div><div class="ttdef"><b>Definition</b> <a href="#l00053">cuda_pressure.f90:54</a></div></div>
+<div class="ttc" id="anamespacecuda__pressure_html_a480deca50547f83061e7a2a6385e4021"><div class="ttname"><a href="namespacecuda__pressure.html#a480deca50547f83061e7a2a6385e4021">cuda_pressure::cuda_pressure_memory</a></div><div class="ttdeci">subroutine cuda_pressure_memory(action)</div><div class="ttdef"><b>Definition</b> <a href="#l00019">cuda_pressure.f90:20</a></div></div>
+<div class="ttc" id="anamespacecuda__pressure_html_a7ee458e69544e248e0cb596a219c32f2"><div class="ttname"><a href="namespacecuda__pressure.html#a7ee458e69544e248e0cb596a219c32f2">cuda_pressure::p</a></div><div class="ttdeci">real(rp), dimension(:,:,:), allocatable p</div><div class="ttdef"><b>Definition</b> <a href="#l00013">cuda_pressure.f90:13</a></div></div>
+<div class="ttc" id="anamespacecuda__pressure_html_a8b1cf014b1cbf920c9338baebf89badd"><div class="ttname"><a href="namespacecuda__pressure.html#a8b1cf014b1cbf920c9338baebf89badd">cuda_pressure::p_d</a></div><div class="ttdeci">real(rp) p_d</div><div class="ttdef"><b>Definition</b> <a href="#l00014">cuda_pressure.f90:14</a></div></div>
+<div class="ttc" id="anamespacecuda__pressure_html_a933598d08aac2015599038b79442c3a7"><div class="ttname"><a href="namespacecuda__pressure.html#a933598d08aac2015599038b79442c3a7">cuda_pressure::device</a></div><div class="ttdeci">real(rp), pointer device</div><div class="ttdef"><b>Definition</b> <a href="#l00014">cuda_pressure.f90:14</a></div></div>
+<div class="ttc" id="anamespacecuda__pressure_html_ab5bc5dcd31eec76cce182e570d735ace"><div class="ttname"><a href="namespacecuda__pressure.html#ab5bc5dcd31eec76cce182e570d735ace">cuda_pressure::cuda_pressure_rhs</a></div><div class="ttdeci">subroutine cuda_pressure_rhs(prhs_d)</div><div class="ttdef"><b>Definition</b> <a href="#l00038">cuda_pressure.f90:39</a></div></div>
+<div class="ttc" id="anamespacecuda__pressure_html_af8a329bcc8fcfdccd351eead6ea6251f"><div class="ttname"><a href="namespacecuda__pressure.html#af8a329bcc8fcfdccd351eead6ea6251f">cuda_pressure::prhs_d</a></div><div class="ttdeci">real(rp), pointer prhs_d</div><div class="ttdef"><b>Definition</b> <a href="#l00015">cuda_pressure.f90:15</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html"><div class="ttname"><a href="namespacecuda__subdomain.html">cuda_subdomain</a></div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00001">cuda_subdomain.f90:1</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_a00615354884cc42f3e4e03c0f9041c6b"><div class="ttname"><a href="namespacecuda__subdomain.html#a00615354884cc42f3e4e03c0f9041c6b">cuda_subdomain::share_size</a></div><div class="ttdeci">integer share_size</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00033">cuda_subdomain.f90:33</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_a04878817e99727a2ce6f05324aa8cc7e"><div class="ttname"><a href="namespacecuda__subdomain.html#a04878817e99727a2ce6f05324aa8cc7e">cuda_subdomain::block_in_y</a></div><div class="ttdeci">integer block_in_y</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00032">cuda_subdomain.f90:32</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_a303a5e170d58092c2d044c0eea935d81"><div class="ttname"><a href="namespacecuda__subdomain.html#a303a5e170d58092c2d044c0eea935d81">cuda_subdomain::threads</a></div><div class="ttdeci">type(dim3) threads</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00034">cuda_subdomain.f90:34</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_a34101a1e5f0c07b84d55f4a27d3d998a"><div class="ttname"><a href="namespacecuda__subdomain.html#a34101a1e5f0c07b84d55f4a27d3d998a">cuda_subdomain::x3_d</a></div><div class="ttdeci">real(rp) x3_d</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00018">cuda_subdomain.f90:18</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_a7a4bcadeffec62435e74b77503a08c8c"><div class="ttname"><a href="namespacecuda__subdomain.html#a7a4bcadeffec62435e74b77503a08c8c">cuda_subdomain::dx3_d</a></div><div class="ttdeci">real(rp) dx3_d</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00019">cuda_subdomain.f90:19</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_a9e8060dba8d36ffd68a153094cd9ae5c"><div class="ttname"><a href="namespacecuda__subdomain.html#a9e8060dba8d36ffd68a153094cd9ae5c">cuda_subdomain::blocks</a></div><div class="ttdeci">type(dim3) blocks</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00034">cuda_subdomain.f90:34</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_ab8957ee4a038f7eb32fa07380b6247f6"><div class="ttname"><a href="namespacecuda__subdomain.html#ab8957ee4a038f7eb32fa07380b6247f6">cuda_subdomain::block_in_x</a></div><div class="ttdeci">integer block_in_x</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00032">cuda_subdomain.f90:32</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_ae6720d30aaae59ede400b6be45787bcb"><div class="ttname"><a href="namespacecuda__subdomain.html#ae6720d30aaae59ede400b6be45787bcb">cuda_subdomain::block_in_z</a></div><div class="ttdeci">integer block_in_z</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00032">cuda_subdomain.f90:32</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_af41073bf416146dc555a44b1ce6ea4b2"><div class="ttname"><a href="namespacecuda__subdomain.html#af41073bf416146dc555a44b1ce6ea4b2">cuda_subdomain::x1_d</a></div><div class="ttdeci">real(rp) x1_d</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00018">cuda_subdomain.f90:18</a></div></div>
+<div class="ttc" id="anamespacecuda__subdomain_html_afe92472cd9d3c88faa482f1e9b1bde9f"><div class="ttname"><a href="namespacecuda__subdomain.html#afe92472cd9d3c88faa482f1e9b1bde9f">cuda_subdomain::x2_d</a></div><div class="ttdeci">real(rp) x2_d</div><div class="ttdef"><b>Definition</b> <a href="cuda__subdomain_8f90_source.html#l00018">cuda_subdomain.f90:18</a></div></div>
+<div class="ttc" id="anamespaceglobal_html"><div class="ttname"><a href="namespaceglobal.html">global</a></div><div class="ttdef"><b>Definition</b> <a href="global_8f90_source.html#l00001">global.f90:1</a></div></div>
+<div class="ttc" id="anamespaceglobal_html_a1f39f066a0ed398d1e3e56d13d092718"><div class="ttname"><a href="namespaceglobal.html#a1f39f066a0ed398d1e3e56d13d092718">global::thread_in_z</a></div><div class="ttdeci">integer thread_in_z</div><div class="ttdef"><b>Definition</b> <a href="global_8f90_source.html#l00035">global.f90:35</a></div></div>
+<div class="ttc" id="anamespaceglobal_html_a2694e42b57b63e348f472d5a59bfe0fb"><div class="ttname"><a href="namespaceglobal.html#a2694e42b57b63e348f472d5a59bfe0fb">global::thread_in_y</a></div><div class="ttdeci">integer thread_in_y</div><div class="ttdef"><b>Definition</b> <a href="global_8f90_source.html#l00035">global.f90:35</a></div></div>
+<div class="ttc" id="anamespaceglobal_html_a33db542cca17d8c3a156e90d31d8abe5"><div class="ttname"><a href="namespaceglobal.html#a33db542cca17d8c3a156e90d31d8abe5">global::thread_in_x</a></div><div class="ttdeci">integer thread_in_x</div><div class="ttdef"><b>Definition</b> <a href="global_8f90_source.html#l00035">global.f90:35</a></div></div>
+<div class="ttc" id="anamespaceglobal_html_a966b628b489f6e6612dcad5fd6f74977"><div class="ttname"><a href="namespaceglobal.html#a966b628b489f6e6612dcad5fd6f74977">global::pi</a></div><div class="ttdeci">real(rp), parameter pi</div><div class="ttdef"><b>Definition</b> <a href="global_8f90_source.html#l00010">global.f90:10</a></div></div>
+<div class="ttc" id="anamespaceglobal_html_af54590d9603fc342133e5ccdd4c472c8"><div class="ttname"><a href="namespaceglobal.html#af54590d9603fc342133e5ccdd4c472c8">global::rp</a></div><div class="ttdeci">integer, parameter rp</div><div class="ttdef"><b>Definition</b> <a href="global_8f90_source.html#l00006">global.f90:6</a></div></div>
+<div class="ttc" id="anamespacempi__subdomain_html"><div class="ttname"><a href="namespacempi__subdomain.html">mpi_subdomain</a></div><div class="ttdef"><b>Definition</b> <a href="mpi__subdomain_8f90_source.html#l00001">mpi_subdomain.f90:1</a></div></div>
+<div class="ttc" id="anamespacempi__subdomain_html_a071dcdc72760ebe3e03e78c0b6df370d"><div class="ttname"><a href="namespacempi__subdomain.html#a071dcdc72760ebe3e03e78c0b6df370d">mpi_subdomain::n1msub</a></div><div class="ttdeci">integer, public n1msub</div><div class="ttdef"><b>Definition</b> <a href="mpi__subdomain_8f90_source.html#l00011">mpi_subdomain.f90:11</a></div></div>
+<div class="ttc" id="anamespacempi__subdomain_html_a35bc02b9405da47b034646c07e99ba8c"><div class="ttname"><a href="namespacempi__subdomain.html#a35bc02b9405da47b034646c07e99ba8c">mpi_subdomain::n1sub</a></div><div class="ttdeci">integer, public n1sub</div><div class="ttdoc">Grid numbers in the subdomain.</div><div class="ttdef"><b>Definition</b> <a href="mpi__subdomain_8f90_source.html#l00010">mpi_subdomain.f90:10</a></div></div>
+<div class="ttc" id="anamespacempi__subdomain_html_a6310973b1645cf729d629916d7de3be2"><div class="ttname"><a href="namespacempi__subdomain.html#a6310973b1645cf729d629916d7de3be2">mpi_subdomain::n2sub</a></div><div class="ttdeci">integer, public n2sub</div><div class="ttdef"><b>Definition</b> <a href="mpi__subdomain_8f90_source.html#l00010">mpi_subdomain.f90:10</a></div></div>
+<div class="ttc" id="anamespacempi__subdomain_html_a6c2f36f6adbb1fea8556998474335969"><div class="ttname"><a href="namespacempi__subdomain.html#a6c2f36f6adbb1fea8556998474335969">mpi_subdomain::n3msub</a></div><div class="ttdeci">integer, public n3msub</div><div class="ttdef"><b>Definition</b> <a href="mpi__subdomain_8f90_source.html#l00011">mpi_subdomain.f90:11</a></div></div>
+<div class="ttc" id="anamespacempi__subdomain_html_ada135affeeebabdf246cc4ea1b27c2ce"><div class="ttname"><a href="namespacempi__subdomain.html#ada135affeeebabdf246cc4ea1b27c2ce">mpi_subdomain::n3sub</a></div><div class="ttdeci">integer, public n3sub</div><div class="ttdef"><b>Definition</b> <a href="mpi__subdomain_8f90_source.html#l00010">mpi_subdomain.f90:10</a></div></div>
+<div class="ttc" id="anamespacempi__subdomain_html_aef43d8b875825360eb1d4e684c0b40de"><div class="ttname"><a href="namespacempi__subdomain.html#aef43d8b875825360eb1d4e684c0b40de">mpi_subdomain::n2msub</a></div><div class="ttdeci">integer, public n2msub</div><div class="ttdef"><b>Definition</b> <a href="mpi__subdomain_8f90_source.html#l00011">mpi_subdomain.f90:11</a></div></div>
+<div class="ttc" id="anamespacenvtx_html"><div class="ttname"><a href="namespacenvtx.html">nvtx</a></div><div class="ttdef"><b>Definition</b> <a href="examples_2nvtx_8f90_source.html#l00001">nvtx.f90:1</a></div></div>
+<div class="ttc" id="anamespacenvtx_html_abaf43be3229e42bd0f4c1e75d9670075"><div class="ttname"><a href="namespacenvtx.html#abaf43be3229e42bd0f4c1e75d9670075">nvtx::nvtxstartrange</a></div><div class="ttdeci">subroutine nvtxstartrange(name, id)</div><div class="ttdef"><b>Definition</b> <a href="examples_2nvtx_8f90_source.html#l00044">nvtx.f90:45</a></div></div>
+<div class="ttc" id="anamespacenvtx_html_aed9b06c5398e0a5b8d7a6e687564fb46"><div class="ttname"><a href="namespacenvtx.html#aed9b06c5398e0a5b8d7a6e687564fb46">nvtx::nvtxendrange</a></div><div class="ttdeci">subroutine nvtxendrange</div><div class="ttdef"><b>Definition</b> <a href="examples_2nvtx_8f90_source.html#l00068">nvtx.f90:69</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="cuda__pressure_8f90.html">cuda_pressure.f90</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+\doxysection{interface.\+f90}
+\hypertarget{interface_8f90_source}{}\label{interface_8f90_source}\index{examples/interface.f90@{examples/interface.f90}}
+\mbox{\hyperlink{interface_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00001}\mbox{\hyperlink{namespaceinterface}{00001}}\ \textcolor{keyword}{module}\ \mbox{\hyperlink{namespaceinterface}{interface}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00002}00002\ \ \ \ \ \textcolor{keywordtype}{use\ }\mbox{\hyperlink{namespaceglobal}{global}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00003}00003\ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00004}00004\ \ \ \ \ \textcolor{keywordtype}{use\ }cudafor}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00006}00006\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00008}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init}{00008}}\ \ \ \ \ \textcolor{keyword}{interface}\ \mbox{\hyperlink{interfaceinterface_1_1allocate__and__init}{allocate\_and\_init}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ \mbox{\hyperlink{namespaceinterface_a84bb49c3de2c1bf551aae8b348c63112}{allocate\_and\_init\_1d\_real}},\ \mbox{\hyperlink{namespaceinterface_a87c9ba43120cdad1cd558bb44cb324b7}{allocate\_and\_init\_1d\_int}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ \mbox{\hyperlink{namespaceinterface_a15db45a5a58ed930c3cde4856f2b98be}{allocate\_and\_init\_2d\_real}},\ \mbox{\hyperlink{namespaceinterface_aad5cd04381a3ff801864cf761bc75985}{allocate\_and\_init\_2d\_int}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ \mbox{\hyperlink{namespaceinterface_aee79e433157722628e8886c85b54eed6}{allocate\_and\_init\_3d\_real}},\ \mbox{\hyperlink{namespaceinterface_a908859bd5c642659a274e8e1b92be02c}{allocate\_and\_init\_3d\_int}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ \mbox{\hyperlink{namespaceinterface_a89cf5ad01a4febc6a835a5ae513e4ef4}{allocate\_and\_init\_4d\_real}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00015}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device}{00015}}\ \ \ \ \ \textcolor{keyword}{interface}\ \mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device}{allocate\_and\_init\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ \mbox{\hyperlink{namespaceinterface_ac99a03e9616398bc6225c9a664c96951}{allocate\_and\_init\_1d\_real\_device}},\ \mbox{\hyperlink{namespaceinterface_ad94f6c1a4c8a25f029e3fb35143f5db6}{allocate\_and\_init\_1d\_int\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ \mbox{\hyperlink{namespaceinterface_a57f3ca1bfe913cc700d5502a35ad1b14}{allocate\_and\_init\_2d\_real\_device}},\ \mbox{\hyperlink{namespaceinterface_acb9a27e5de48f8d3a30a52249958c7aa}{allocate\_and\_init\_2d\_int\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ \mbox{\hyperlink{namespaceinterface_a91796d20d758a961dea54864159acf2d}{allocate\_and\_init\_3d\_real\_device}},\ \mbox{\hyperlink{namespaceinterface_a2a6cabcada945bfd6f69626fd8407549}{allocate\_and\_init\_3d\_int\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00023}00023\ \ \ \ \ \textcolor{comment}{!\ Allocate\_and\_init\ interfaces}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00024}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init_ac4c4dd1d1fa1ebc67049b2e9ca45edb5}{00024}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a84bb49c3de2c1bf551aae8b348c63112}{allocate\_and\_init\_1d\_real}}(array,\ size)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00026}00026\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00030}00030\ \ \ \ \ \ \ \ \ array(0:size)\ =\ real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a84bb49c3de2c1bf551aae8b348c63112}{allocate\_and\_init\_1d\_real}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00033}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init_a56b7cf46adcf8363a7486b0327eca446}{00033}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a87c9ba43120cdad1cd558bb44cb324b7}{allocate\_and\_init\_1d\_int}}(array,\ size)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00037}00037\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ array(0:size)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a87c9ba43120cdad1cd558bb44cb324b7}{allocate\_and\_init\_1d\_int}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00041}00041\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00042}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init_aa99e1b73b481eb267e925bcc74a49853}{00042}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a15db45a5a58ed930c3cde4856f2b98be}{allocate\_and\_init\_2d\_real}}(array,\ size1,\ size2)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00044}00044\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00046}00046\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2)\ =\ real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00049}00049\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a15db45a5a58ed930c3cde4856f2b98be}{allocate\_and\_init\_2d\_real}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00050}00050\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00051}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init_aba765dd9da4769d92018011765fb28a0}{00051}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_aad5cd04381a3ff801864cf761bc75985}{allocate\_and\_init\_2d\_int}}(array,\ size1,\ size2)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00055}00055\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00058}00058\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_aad5cd04381a3ff801864cf761bc75985}{allocate\_and\_init\_2d\_int}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00059}00059\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00060}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init_a2875df415c46bb1765f30b3f1a57788a}{00060}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_aee79e433157722628e8886c85b54eed6}{allocate\_and\_init\_3d\_real}}(array,\ size1,\ size2,\ size3)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00062}00062\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2,\ size3}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00064}00064\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2,\ 0:size3))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2,\ 0:size3)\ =\ real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00067}00067\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_aee79e433157722628e8886c85b54eed6}{allocate\_and\_init\_3d\_real}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00068}00068\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00069}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init_a9ea5a1421fdb90f6816db8696524ca24}{00069}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a908859bd5c642659a274e8e1b92be02c}{allocate\_and\_init\_3d\_int}}(array,\ size1,\ size2,\ size3)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2,\ size3}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00073}00073\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2,\ 0:size3))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2,\ 0:size3)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00076}00076\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a908859bd5c642659a274e8e1b92be02c}{allocate\_and\_init\_3d\_int}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00078}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init_ad3724d5e23af84586462f1ae93cf0874}{00078}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a89cf5ad01a4febc6a835a5ae513e4ef4}{allocate\_and\_init\_4d\_real}}(array,\ size1,\ size2,\ size3,\ size4)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00080}00080\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:,:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2,\ size3,\ size4}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00082}00082\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2,\ 0:size3,\ 1:size4))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2,\ 0:size3,\ 1:size4)\ =\ real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00085}00085\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a89cf5ad01a4febc6a835a5ae513e4ef4}{allocate\_and\_init\_4d\_real}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00087}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device_ab7226bc9b7850dc76f45391458db6c2d}{00087}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_ac99a03e9616398bc6225c9a664c96951}{allocate\_and\_init\_1d\_real\_device}}(array,\ size)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00089}00089\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ device,\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00091}00091\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ array(0:size)\ =\ real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00094}00094\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_ac99a03e9616398bc6225c9a664c96951}{allocate\_and\_init\_1d\_real\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00095}00095\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00096}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device_a4e458e9c76a481e1277d04978f9cbdc2}{00096}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_ad94f6c1a4c8a25f029e3fb35143f5db6}{allocate\_and\_init\_1d\_int\_device}}(array,\ size)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ device,\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00100}00100\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ array(0:size)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00103}00103\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_ad94f6c1a4c8a25f029e3fb35143f5db6}{allocate\_and\_init\_1d\_int\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00104}00104\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00105}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device_a4a0ca4e3b126f5707a3a823d5f5c746f}{00105}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a57f3ca1bfe913cc700d5502a35ad1b14}{allocate\_and\_init\_2d\_real\_device}}(array,\ size1,\ size2)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00107}00107\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ device,\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00109}00109\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2)\ =\ real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00113}00113\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a57f3ca1bfe913cc700d5502a35ad1b14}{allocate\_and\_init\_2d\_real\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00114}00114\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00115}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device_a2c67ba2ccaeac876b98ddb40605a2701}{00115}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_acb9a27e5de48f8d3a30a52249958c7aa}{allocate\_and\_init\_2d\_int\_device}}(array,\ size1,\ size2)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ device,\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00119}00119\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00122}00122\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_acb9a27e5de48f8d3a30a52249958c7aa}{allocate\_and\_init\_2d\_int\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00123}00123\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00124}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device_aa0fb20e188a3279a3223091d7d8d1aec}{00124}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a91796d20d758a961dea54864159acf2d}{allocate\_and\_init\_3d\_real\_device}}(array,\ size1,\ size2,\ size3)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00126}00126\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(rp),\ device,\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2,\ size3}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00128}00128\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2,\ 0:size3))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00130}00130\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2,\ 0:size3)\ =\ real(0.0,\ rp)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00131}00131\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a91796d20d758a961dea54864159acf2d}{allocate\_and\_init\_3d\_real\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00132}00132\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00133}\mbox{\hyperlink{interfaceinterface_1_1allocate__and__init__device_aa7faf607ba3b35ffe5d12bb55183235f}{00133}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{namespaceinterface_a2a6cabcada945bfd6f69626fd8407549}{allocate\_and\_init\_3d\_int\_device}}(array,\ size1,\ size2,\ size3)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ device,\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{intent(out)}\ ::\ array(:,:,:)}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ size1,\ size2,\ size3}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00137}00137\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(array(0:size1,\ 0:size2,\ 0:size3))}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ array(0:size1,\ 0:size2,\ 0:size3)\ =\ 0}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00140}00140\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{namespaceinterface_a2a6cabcada945bfd6f69626fd8407549}{allocate\_and\_init\_3d\_int\_device}}}
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{interface_8f90_source_l00142}00142\ \textcolor{keyword}{end\ module\ }\mbox{\hyperlink{namespaceinterface}{interface}}}
+
+\end{DoxyCode}

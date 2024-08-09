@@ -1,0 +1,75 @@
+\doxysection{Pa\+Sca\+L\+\_\+\+TDMA/src/pascal\+\_\+tdma.f90 File Reference}
+\hypertarget{pascal__tdma_8f90}{}\label{pascal__tdma_8f90}\index{PaScaL\_TDMA/src/pascal\_tdma.f90@{PaScaL\_TDMA/src/pascal\_tdma.f90}}
+
+
+Pa\+Sca\+L\+\_\+\+TDMA -\/ Parallel and Scalable Library for Tri\+Diagonal Matrix Algorithm.  
+
+
+\doxysubsubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__many}{pascal\+\_\+tdma\+::ptdma\+\_\+plan\+\_\+many}}
+\begin{DoxyCompactList}\small\item\em Execution plan for many tridiagonal systems of equations. \end{DoxyCompactList}\item 
+type \mbox{\hyperlink{structpascal__tdma_1_1ptdma__plan__single}{pascal\+\_\+tdma\+::ptdma\+\_\+plan\+\_\+single}}
+\begin{DoxyCompactList}\small\item\em Execution plan for a single tridiagonal system of equations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \mbox{\hyperlink{namespacepascal__tdma}{pascal\+\_\+tdma}}
+\begin{DoxyCompactList}\small\item\em Module for Pa\+Sca\+L-\/\+TDMA library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_a5dfc2d7c919b47ad364a74d141532a9f}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+plan\+\_\+single\+\_\+create}} (plan, myrank, nprocs, mpi\+\_\+world, gather\+\_\+rank)
+\begin{DoxyCompactList}\small\item\em Create a plan for a single tridiagonal system of equations. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_adb04e59c740ce6c4b9518dd86eaeb594}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+plan\+\_\+single\+\_\+destroy}} (plan)
+\begin{DoxyCompactList}\small\item\em Deallocate the allocated arrays in the defined plan\+\_\+single . \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_a7e9c24b343ae949044eccc8692dcc6e9}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+plan\+\_\+many\+\_\+create}} (plan, n\+\_\+sys, myrank, nprocs, mpi\+\_\+world)
+\begin{DoxyCompactList}\small\item\em Create a plan for many tridiagonal systems of equations. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_aceec478e18d25d413a5bd8a174c3fcb8}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+plan\+\_\+many\+\_\+destroy}} (plan, nprocs)
+\begin{DoxyCompactList}\small\item\em Destroy the allocated arrays in the defined plan\+\_\+many. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_a6813b0fa9625caf2a7c41d7fee5ce5e2}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+single\+\_\+solve}} (plan, a, b, c, d, n\+\_\+row)
+\begin{DoxyCompactList}\small\item\em Solve a single tridiagonal system of equation. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_a87ccb9a30141caf44726566f93d17cf7}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+single\+\_\+solve\+\_\+cycle}} (plan, a, b, c, d, n\+\_\+row)
+\begin{DoxyCompactList}\small\item\em Solve a single cyclic tridiagonal system of equations. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_ad2e08adda91b031a6df7d90ef43c7f2a}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+many\+\_\+solve}} (plan, a, b, c, d, n\+\_\+sys, n\+\_\+row)
+\begin{DoxyCompactList}\small\item\em Solve many tridiagonal systems of equations. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacepascal__tdma_a44784cc88e2252697711d2ac7d525d97}{pascal\+\_\+tdma\+::pascal\+\_\+tdma\+\_\+many\+\_\+solve\+\_\+cycle}} (plan, a, b, c, d, n\+\_\+sys, n\+\_\+row)
+\begin{DoxyCompactList}\small\item\em Solve many cyclic tridiagonal systems of equations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Pa\+Sca\+L\+\_\+\+TDMA -\/ Parallel and Scalable Library for Tri\+Diagonal Matrix Algorithm. 
+
+Pa\+Sca\+L\+\_\+\+TDMA provides an efficient and scalable computational procedure to solve many tridiagonal systems in multi-\/dimensional partial differential equations. The modified Thomas algorithm proposed by Laszlo et al.(2016) and the newly designed communication scheme have been used to reduce the communication overhead in solving many tridiagonal systems. This library is for both single and many tridiagonal systems of equations. The main algorithm for a tridiagonal matrix consists of the following five steps\+:
+
+(1) Transform the partitioned submatrices in the tridiagonal systems into modified submatrices\+: Each computing core transforms the partitioned submatrices in the tridiagonal systems of equations into modified forms by applying the modified Thomas algorithm. (2) Construct reduced tridiagonal systems from the modified submatrices\+: The reduced tridiagonal systems are constructed by collecting the first and last rows of the modified submatrices from each core using MPI\+\_\+\+Ialltoallw. (3) Solve the reduced tridiagonal systems\+: The reduced tridiagonal systems constructed in Step 2 are solved by applying the Thomas algorithm. (4) Distribute the solutions of the reduced tridiagonal systems\+: The solutions of the reduced tridiagonal systems in Step 3 are distributed to each core using MPI\+\_\+\+Ialltoallw. This communication is an exact inverse of the communication in Step 2. (5) Update the other unknowns in the modified tridiagonal systems\+: The remaining unknowns in the modified submatrices in Step 1 are solved in each computing core using the solutions obtained in Step 3 and Step 4.
+
+Step 1 and Step 5 are similar to the method proposed by Laszlo et al.(2016) which uses parallel cyclic reduction (PCR) algorithm to build and solve the reduced tridiagonal systems. Instead of using the PCR, we develop an all-\/to-\/all communication scheme using the MPI\+\_\+\+Ialltoall function after the modified Thomas algorithm is executed. The number of coefficients for the reduced tridiagonal systems are greatly reduced, so we can avoid the communication bandwidth problem, which is a main bottleneck for all-\/to-\/all communications. Our algorithm is also distinguished from the work of Mattor et al. (1995) which assembles the undetermined coefficients of the temporary solutions in a single processor using MPI\+\_\+\+Gather, where load imbalances are serious.
+
+\begin{DoxyAuthor}{Author}
+~\newline
+
+\begin{DoxyItemize}
+\item Ki-\/\+Ha Kim (\href{mailto:k-kiha@yonsei.ac.kr}{\texttt{ k-\/kiha@yonsei.\+ac.\+kr}}), School of Mathematics and Computing (Computational Science and Engineering), Yonsei University
+\item Ji-\/\+Hoon Kang (\href{mailto:jhkang@kisti.re.kr}{\texttt{ jhkang@kisti.\+re.\+kr}}), Korea Institute of Science and Technology Information
+\item Jung-\/\+Il Choi (\href{mailto:jic@yonsei.ac.kr}{\texttt{ jic@yonsei.\+ac.\+kr}}), School of Mathematics and Computing (Computational Science and Engineering), Yonsei University
+\end{DoxyItemize}
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+May 2023 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+2.\+0 
+\end{DoxyVersion}
+\begin{DoxyParagraph}{Copyright}
+Copyright (c) 2019-\/2023 Ki-\/\+Ha Kim and Jung-\/\+Il choi, Yonsei University and Ji-\/\+Hoon Kang, Korea Institute of Science and Technology Information, All rights reserved. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{License }
+~\newline
+ This project is release under the terms of the MIT License (see LICENSE file). 
+\end{DoxyParagraph}
+
+
+Definition in file \mbox{\hyperlink{pascal__tdma_8f90_source}{pascal\+\_\+tdma.\+f90}}.
+

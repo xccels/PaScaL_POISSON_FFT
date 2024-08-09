@@ -1,0 +1,36 @@
+\doxysection{examples/mpi\+\_\+topology.f90 File Reference}
+\hypertarget{mpi__topology_8f90}{}\label{mpi__topology_8f90}\index{examples/mpi\_topology.f90@{examples/mpi\_topology.f90}}
+\doxysubsubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{mpi\+\_\+topology\+::cart\+\_\+comm\+\_\+1d}}
+\begin{DoxyCompactList}\small\item\em Type variable for the information of 1D communicator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \mbox{\hyperlink{namespacempi__topology}{mpi\+\_\+topology}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \mbox{\hyperlink{namespacempi__topology_aa14e91baaec6d1c1082ebd5ac6e19128}{mpi\+\_\+topology\+::mpi\+\_\+topology\+\_\+clean}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the communicator for cartesian topology. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacempi__topology_a8819f16f50aded913f17520a29d3ec4c}{mpi\+\_\+topology\+::mpi\+\_\+topology\+\_\+make}} ()
+\begin{DoxyCompactList}\small\item\em Create the cartesian topology for the MPI processes and subcommunicators. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacempi__topology_a1025e7bec20c5a8ec92fbec6a5b1888d}{mpi\+\_\+topology\+::create\+\_\+subcommunicator}} (remain, comm\+\_\+1d)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacempi__topology_ac56c9af9d5b60d2c9cf21393d5c6b68c}{mpi\+\_\+topology\+::mpi\+\_\+world\+\_\+cart}}
+\begin{DoxyCompactList}\small\item\em Communicator for cartesian topology. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__topology_a20f350d369d53188bc7684c1110eb55e}{mpi\+\_\+topology\+::nprocs}}
+\begin{DoxyCompactList}\small\item\em World size. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__topology_af18a08dff5101a7992d60ec381c3e2d4}{mpi\+\_\+topology\+::myrank}}
+\begin{DoxyCompactList}\small\item\em World rank. \end{DoxyCompactList}\item 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) \mbox{\hyperlink{namespacempi__topology_a557f20509824c8b99ea09b1f71efbb7c}{mpi\+\_\+topology\+::comm\+\_\+1d\+\_\+x1}}
+\begin{DoxyCompactList}\small\item\em Subcommunicator information in x-\/direction. \end{DoxyCompactList}\item 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) \mbox{\hyperlink{namespacempi__topology_ad4fac6b08762018c34ffadc4bb81b385}{mpi\+\_\+topology\+::comm\+\_\+1d\+\_\+x2}}
+\begin{DoxyCompactList}\small\item\em Subcommunicator information in y-\/direction. \end{DoxyCompactList}\item 
+type(\mbox{\hyperlink{structmpi__topology_1_1cart__comm__1d}{cart\+\_\+comm\+\_\+1d}}) \mbox{\hyperlink{namespacempi__topology_ae10ed14bc299bc08c779453199acb580}{mpi\+\_\+topology\+::comm\+\_\+1d\+\_\+x3}}
+\begin{DoxyCompactList}\small\item\em Subcommunicator information in z-\/direction. \end{DoxyCompactList}\end{DoxyCompactItemize}

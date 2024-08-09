@@ -1,0 +1,165 @@
+\doxysection{tdmas.\+f90}
+\hypertarget{tdmas_8f90_source}{}\label{tdmas_8f90_source}\index{PaScaL\_TDMA/src/tdmas.f90@{PaScaL\_TDMA/src/tdmas.f90}}
+\mbox{\hyperlink{tdmas_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00001}00001\ \textcolor{comment}{!======================================================================================================================}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00018}00018\ \textcolor{comment}{!======================================================================================================================}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00028}\mbox{\hyperlink{tdmas_8f90_a4a6130fff49607012fefacc8640424a7}{00028}}\ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{tdmas_8f90_a4a6130fff49607012fefacc8640424a7}{tdma\_single}}(a,\ b,\ c,\ d,\ n1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00033}00033\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{intent(inout)}\ ::\ a(n1),\ b(n1),\ c(n1),\ d(n1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{double\ precision}\ ::\ r}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00038}00038\ \ \ \ \ d(1)=d(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00039}00039\ \ \ \ \ c(1)=c(1)/b(1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{do}\ i=2,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00042}00042\ \ \ \ \ \ \ \ \ r=1.d0/(b(i)-\/a(i)*c(i-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ d(i)=r*(d(i)-\/a(i)*d(i-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ c(i)=r*c(i)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00045}00045\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{do}\ i=n1-\/1,1,-\/1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ d(i)=d(i)-\/c(i)*d(i+1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00049}00049\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00051}00051\ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{tdmas_8f90_a4a6130fff49607012fefacc8640424a7}{tdma\_single}}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00061}\mbox{\hyperlink{tdmas_8f90_a4cb1f95e9c608085c5bb19baff639d9e}{00061}}\ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{tdmas_8f90_a4cb1f95e9c608085c5bb19baff639d9e}{tdma\_cycl\_single}}(a,\ b,\ c,\ d,\ n1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00063}00063\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{intent(inout)}\ ::\ a(n1),\ b(n1),\ c(n1),\ d(n1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00067}00067\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00068}00068\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00069}00069\ \ \ \ \ \textcolor{keywordtype}{double\ precision}\ ::\ rr}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ ::\ e}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{allocate}(e(1:n1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00074}00074\ \ \ \ \ e(:)=0}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00075}00075\ \ \ \ \ e(2\ )\ =\ -\/a(2\ )}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00076}00076\ \ \ \ \ e(n1)\ =\ -\/c(n1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00078}00078\ \ \ \ \ d(2)=d(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00079}00079\ \ \ \ \ e(2)=e(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00080}00080\ \ \ \ \ c(2)=c(2)/b(2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{do}\ i=3,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ rr=1.d0/(b(i)-\/a(i)*c(i-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ d(i)=rr*(d(i)-\/a(i)*d(i-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ e(i)=rr*(e(i)-\/a(i)*e(i-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ c(i)=rr*c(i)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00087}00087\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{do}\ i=n1-\/1,2,-\/1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ d(i)=d(i)-\/c(i)*d(i+1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ e(i)=e(i)-\/c(i)*e(i+1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00092}00092\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00094}00094\ \ \ \ \ d(1)=(d(1)-\/a(1)*d(n1)-\/c(1)*d(2))/(b(1)+a(1)*e(n1)+c(1)*e(2))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 2,\ n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ d(i)\ =\ d(i)\ +\ d(1)*e(i)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00098}00098\ \textcolor{keywordflow}{\ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00100}00100\ \ \ \ \ \textcolor{keyword}{deallocate}(e)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00101}00101\ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{tdmas_8f90_a4cb1f95e9c608085c5bb19baff639d9e}{tdma\_cycl\_single}}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00114}\mbox{\hyperlink{tdmas_8f90_ab8cc761496e63e21ee8379d4fc077f05}{00114}}\ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{tdmas_8f90_ab8cc761496e63e21ee8379d4fc077f05}{tdma\_many}}(a,\ b,\ c,\ d,\ n1,\ n2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00116}00116\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n1,n2}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00119}00119\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{intent(inout)}\ ::\ a(n1,n2),\ b(n1,n2),\ c(n1,n2),\ d(n1,n2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00120}00120\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00121}00121\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,j}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00122}00122\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ ::\ r}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00124}00124\ \ \ \ \ \textcolor{keyword}{allocate}(r(1:n1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00127}00127\ \ \ \ \ \ \ \ \ d(i,1)=d(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00128}00128\ \ \ \ \ \ \ \ \ c(i,1)=c(i,1)/b(i,1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00129}00129\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{do}\ j=2,n2}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ r(i)=1.d0/(b(i,j)-\/a(i,j)*c(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)=r(i)*(d(i,j)-\/a(i,j)*d(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ c(i,j)=r(i)*c(i,j)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00136}00136\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00137}00137\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00139}00139\ \ \ \ \ \textcolor{keywordflow}{do}\ j=n2-\/1,1,-\/1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)=d(i,j)-\/c(i,j)*d(i,j+1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00142}00142\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00143}00143\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00145}00145\ \ \ \ \ \textcolor{keyword}{deallocate}(r)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00147}00147\ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{tdmas_8f90_ab8cc761496e63e21ee8379d4fc077f05}{tdma\_many}}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00160}\mbox{\hyperlink{tdmas_8f90_a6c50d548eaa4b5e9b96ccbf8f65cb12a}{00160}}\ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{tdmas_8f90_a6c50d548eaa4b5e9b96ccbf8f65cb12a}{tdma\_cycl\_many}}(a,\ b,\ c,\ d,\ n1,\ n2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00162}00162\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00164}00164\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n1,n2}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00165}00165\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{intent(inout)}\ ::\ a(n1,n2),\ b(n1,n2),\ c(n1,n2),\ d(n1,n2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00166}00166\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00167}00167\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,j}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00168}00168\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:,:)}\ ::\ e}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00169}00169\ \ \ \ \ \textcolor{keywordtype}{double\ precision},\ \textcolor{keywordtype}{allocatable},\ \textcolor{keywordtype}{dimension(:)}\ ::\ rr}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00171}00171\ \ \ \ \ \textcolor{keyword}{allocate}(e(1:n1,1:n2),rr(1:n1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ e(i,:)=0}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ e(i,2\ )\ =\ -\/a(i,2\ )}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ e(i,n2)\ =\ -\/c(i,n2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00177}00177\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00179}00179\ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ d(i,2)=d(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ e(i,2)=e(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ c(i,2)=c(i,2)/b(i,2)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00183}00183\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00185}00185\ \ \ \ \ \textcolor{keywordflow}{do}\ j=3,n2}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ rr(i)=1.d0/(b(i,j)-\/a(i,j)*c(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)=rr(i)*(d(i,j)-\/a(i,j)*d(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ e(i,j)=rr(i)*(e(i,j)-\/a(i,j)*e(i,j-\/1))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ c(i,j)=rr(i)*c(i,j)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00191}00191\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00192}00192\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00194}00194\ \ \ \ \ \textcolor{keywordflow}{do}\ j=n2-\/1,2,-\/1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)=d(i,j)-\/c(i,j)*d(i,j+1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ e(i,j)=e(i,j)-\/c(i,j)*e(i,j+1)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00198}00198\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00199}00199\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00201}00201\ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ d(i,1)=(d(i,1)-\/a(i,1)*d(i,n2)-\/c(i,1)*d(i,2))/(b(i,1)+a(i,1)*e(i,n2)+c(i,1)*e(i,2))}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00203}00203\ \textcolor{keywordflow}{\ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00205}00205\ \ \ \ \ \textcolor{keywordflow}{do}\ j\ =\ 2,n2}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i=1,n1}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ d(i,j)\ =\ d(i,j)\ +\ d(i,1)*e(i,j)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00208}00208\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ enddo}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00209}00209\ \textcolor{keywordflow}{\ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00210}00210\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00211}00211\ \ \ \ \ \textcolor{keyword}{deallocate}(e,rr)}
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{tdmas_8f90_source_l00213}00213\ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{tdmas_8f90_a6c50d548eaa4b5e9b96ccbf8f65cb12a}{tdma\_cycl\_many}}}
+
+\end{DoxyCode}

@@ -1,0 +1,231 @@
+\doxysection{examples/mpi\+\_\+subdomain.f90 File Reference}
+\hypertarget{mpi__subdomain_8f90}{}\label{mpi__subdomain_8f90}\index{examples/mpi\_subdomain.f90@{examples/mpi\_subdomain.f90}}
+\doxysubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \mbox{\hyperlink{namespacempi__subdomain}{mpi\+\_\+subdomain}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a08a058394bb6440415e751416d179b4e}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+environment}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_ac4f8fae60589d5823dd003cf000d666c}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+initial}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a4d94c8bb173fa5431f9871f55c5e21e1}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+make}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_ab6e43d2f880ef0c364c36d64b348daf2}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+clean}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a64428ebdf38fd330259d426e918a5a7f}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+mesh}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a0c4582ad06e86f894c7639d95c440172}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+ddt\+\_\+ghostcell}} ()
+\begin{DoxyCompactList}\small\item\em Build derived datatypes for subdomain communication using ghostcells. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a6977abd3483be7c07e8e9787e0153067}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+ddt\+\_\+transpose2}} ()
+\begin{DoxyCompactList}\small\item\em Build derived datatypes for FFT with transpose scheme 1. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a1049eaee94f74b47de90db7f6c6fe720}{mpi\+\_\+subdomain\+::calculate\+\_\+x}} (uniform, sta, end, x\+\_\+start, x\+\_\+end, l, n, nm, gamma, pbc, comm\+\_\+1d, x, nsub)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a1ff4a11473c234629f88d085a5552202}{mpi\+\_\+subdomain\+::non\+\_\+uniform\+\_\+channel\+\_\+grid}} (sta, end, x, x\+\_\+start, l, nm, gamma)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_ad137fad7b035a82fad57a58b736b63fd}{mpi\+\_\+subdomain\+::uniform\+\_\+grid}} (sta, end, x, x\+\_\+start, l, nm)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_af6afc5409589148cbe322d22ffd9e731}{mpi\+\_\+subdomain\+::calculate\+\_\+dx\+\_\+dmx}} (comm\+\_\+1d, x, dx, dmx, nsub, nmsub, pbc)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_afb00f13df2d2b6fcea5955b69f8de639}{mpi\+\_\+subdomain\+::expand\+\_\+global\+\_\+grid}} (comm\+\_\+1d, nsub, x, dx, dmx, x\+\_\+g, dx\+\_\+g, dmx\+\_\+g)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a3ffc2f3ce5695ca6deb3f35581f1aabc}{mpi\+\_\+subdomain\+::subdomain\+\_\+para\+\_\+range}} (nsta, nend, nprocs, myrank, index\+\_\+sta, index\+\_\+end)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_acb37a0b27f109e760d54e03787a4be49}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+real}} (value\+\_\+sub)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_ad828fd7887fe8117fa64bf339d0a0e4e}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+ghostcell\+\_\+update\+\_\+integer}} (value\+\_\+sub)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_ac2689ec8a6f874f4174026e93eab4b1b}{mpi\+\_\+subdomain\+::mpi\+\_\+subdomain\+\_\+ghostcell\+\_\+1d}} (data, comm\+\_\+1d, nsub, nmsub)
+\item 
+subroutine \mbox{\hyperlink{namespacempi__subdomain_a66c765f687b3641b442074d73496d23c}{mpi\+\_\+subdomain\+::mpi\+\_\+allreduce\+\_\+max}} (value)
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}) function \mbox{\hyperlink{namespacempi__subdomain_a1e91a05f224a31553e16ea833af9bf06}{mpi\+\_\+subdomain\+::calc\+\_\+x3}} (index, min\+\_\+size, n3cut, stretch)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_a35bc02b9405da47b034646c07e99ba8c}{mpi\+\_\+subdomain\+::n1sub}}
+\begin{DoxyCompactList}\small\item\em Grid numbers in the subdomain. \end{DoxyCompactList}\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_a6310973b1645cf729d629916d7de3be2}{mpi\+\_\+subdomain\+::n2sub}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_ada135affeeebabdf246cc4ea1b27c2ce}{mpi\+\_\+subdomain\+::n3sub}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_a071dcdc72760ebe3e03e78c0b6df370d}{mpi\+\_\+subdomain\+::n1msub}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_aef43d8b875825360eb1d4e684c0b40de}{mpi\+\_\+subdomain\+::n2msub}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_a6c2f36f6adbb1fea8556998474335969}{mpi\+\_\+subdomain\+::n3msub}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_ab8925faaa6f45326c1d11efa37e03566}{mpi\+\_\+subdomain\+::ista}}
+\begin{DoxyCompactList}\small\item\em Grid indices of the assigned range. \end{DoxyCompactList}\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_abbd7d35107c53bcfd2b2b52771f4aa67}{mpi\+\_\+subdomain\+::iend}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_ac85bfba1caf77f9c3c0047fe9450fee6}{mpi\+\_\+subdomain\+::jsta}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_a06433a0d1a081c51202a0010c21c9d36}{mpi\+\_\+subdomain\+::jend}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_acd499eb1d07159aa9f5c878f9519b00f}{mpi\+\_\+subdomain\+::ksta}}
+\item 
+integer, public \mbox{\hyperlink{namespacempi__subdomain_af9934313b1ccbcb09f30916df3326076}{mpi\+\_\+subdomain\+::kend}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a549159be14ce5ccf1c046a2f8f4d360e}{mpi\+\_\+subdomain\+::x1}}
+\begin{DoxyCompactList}\small\item\em Coordinates of grid points in the subdomain. \end{DoxyCompactList}\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a1dc70b2d2a7cb45deb0fcb39d3bd5cdb}{mpi\+\_\+subdomain\+::x2}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a6684d132faeeffbaccc7744c9ae670f1}{mpi\+\_\+subdomain\+::x3}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_ad7ed6615192b7dbec4ff972ee18dc2a7}{mpi\+\_\+subdomain\+::x1\+\_\+g}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_ad5fabef2439fa78ab5c3553b8ee59920}{mpi\+\_\+subdomain\+::x2\+\_\+g}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_af4cf06a0ab87be2f45328e8e41b23dc6}{mpi\+\_\+subdomain\+::x3\+\_\+g}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a4e02fdf7c38b038bbcbad8f91b15525e}{mpi\+\_\+subdomain\+::dx1}}
+\begin{DoxyCompactList}\small\item\em Grid lengths in the subdomain. \end{DoxyCompactList}\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_abc76de54a5a6e7da32d6efb205f1b1e5}{mpi\+\_\+subdomain\+::dx2}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a2c438d5dfbc448cabe080f67373619a1}{mpi\+\_\+subdomain\+::dx3}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_acfacef2b3b4818caae18b9139fa6dad1}{mpi\+\_\+subdomain\+::dmx1}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a8dd28b6a1d18efdbeab60b8da47afe8c}{mpi\+\_\+subdomain\+::dmx2}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a3e61cc2167c9ad2404a7edaddc7ddd7c}{mpi\+\_\+subdomain\+::dmx3}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a92ba74c2adee8762f1a802b45ef3cc00}{mpi\+\_\+subdomain\+::dx1\+\_\+g}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_ac88fb0c8e48afa4b3da372cd5c57ca05}{mpi\+\_\+subdomain\+::dx2\+\_\+g}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a67317f24830c6cc391d5288fbfded6c4}{mpi\+\_\+subdomain\+::dx3\+\_\+g}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_af311a47573a8198d4567c3fdcc6fbe85}{mpi\+\_\+subdomain\+::dmx1\+\_\+g}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a4b446f4b3208823044781c9f18a2281b}{mpi\+\_\+subdomain\+::dmx2\+\_\+g}}
+\item 
+real(\mbox{\hyperlink{namespaceglobal_af54590d9603fc342133e5ccdd4c472c8}{rp}}), dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a972faa18cdacd1504cc746e5879ef633}{mpi\+\_\+subdomain\+::dmx3\+\_\+g}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a93395266b1630e5a91e8e89531dfcec6}{mpi\+\_\+subdomain\+::ddtype\+\_\+sendto\+\_\+e}}
+\begin{DoxyCompactList}\small\item\em Derived datatype for communication between x-\/neighbor subdomains. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a0b2a4ab6d6a88a3817f473a5c2c172b9}{mpi\+\_\+subdomain\+::ddtype\+\_\+recvfrom\+\_\+w}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a0701fde01daea1a6fd51b62c75b8ee82}{mpi\+\_\+subdomain\+::ddtype\+\_\+sendto\+\_\+w}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a18a84c0f3ca27cd4dd73057ff035f341}{mpi\+\_\+subdomain\+::ddtype\+\_\+recvfrom\+\_\+e}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a55f5c1af9bd941fd176e619bddbb8d82}{mpi\+\_\+subdomain\+::ddtype\+\_\+sendto\+\_\+n}}
+\begin{DoxyCompactList}\small\item\em Derived datatype for communication between y-\/neighbor subdomains. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a1f46916f08758533cad3ecac33233e38}{mpi\+\_\+subdomain\+::ddtype\+\_\+recvfrom\+\_\+s}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a660f83d621188fb7eb60ad10eab4c9b5}{mpi\+\_\+subdomain\+::ddtype\+\_\+sendto\+\_\+s}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a74f1edb3c9227692b250285680518dc4}{mpi\+\_\+subdomain\+::ddtype\+\_\+recvfrom\+\_\+n}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a4f3d66535b947c7afee75e6e73a47206}{mpi\+\_\+subdomain\+::ddtype\+\_\+sendto\+\_\+f}}
+\begin{DoxyCompactList}\small\item\em Derived datatype for communication between z-\/neighbor subdomains. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_ad6462f18c8c68c076005957e9d062252}{mpi\+\_\+subdomain\+::ddtype\+\_\+recvfrom\+\_\+b}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a7a2af0322a7aaa435951a5432859687a}{mpi\+\_\+subdomain\+::ddtype\+\_\+sendto\+\_\+b}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a4da19838e8bc3934ad5c24db424bec2c}{mpi\+\_\+subdomain\+::ddtype\+\_\+recvfrom\+\_\+f}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a407e938c99b3069cdfc9f18d1cab5609}{mpi\+\_\+subdomain\+::h1p}}
+\begin{DoxyCompactList}\small\item\em Half grid numbers plus one in the global domain. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a68c628c55d42d70212d1a703acdfb41d}{mpi\+\_\+subdomain\+::h2p}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_aaddc53e3475e23021946f5cb4a5e6233}{mpi\+\_\+subdomain\+::h1pjsub}}
+\begin{DoxyCompactList}\small\item\em Partitioned grid numbers in the subdomain for transpose scheme 1. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_af8612b8563a66e84340b2e9e2b10f7df}{mpi\+\_\+subdomain\+::n2misub}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_ae8afdf04327005005535e7c3a10cb3ca}{mpi\+\_\+subdomain\+::n2mjsub}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_ad11f1273d0f1d7aabe759ac19201588d}{mpi\+\_\+subdomain\+::h1pjsub\+\_\+ista}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_aebdac5c8b4380c37e113c1101a43b1e8}{mpi\+\_\+subdomain\+::h1pjsub\+\_\+iend}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a87d8a941b42e2dddb7b3b4e7c948fd97}{mpi\+\_\+subdomain\+::n2mjsub\+\_\+jsta}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a4db1926a76505ff3a30f63117ffb7ef5}{mpi\+\_\+subdomain\+::n2mjsub\+\_\+jend}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_acdfbaef272f85dd85651ffc2a8931f61}{mpi\+\_\+subdomain\+::n2msub\+\_\+isub}}
+\begin{DoxyCompactList}\small\item\em Partitioned grid numbers in the subdomain for transpose scheme 2. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a0f0d09d33d408ff034b32ea20a451f3b}{mpi\+\_\+subdomain\+::h1psub}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a7477357f2c1fdb3755564c452873d01d}{mpi\+\_\+subdomain\+::h1psub\+\_\+jsub}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_a1df2d2970263f71188fdcc45f11055b5}{mpi\+\_\+subdomain\+::h1psub\+\_\+jsub\+\_\+ista}}
+\item 
+integer \mbox{\hyperlink{namespacempi__subdomain_ad10c793a002372e3bebad09f57aee184}{mpi\+\_\+subdomain\+::h1psub\+\_\+jsub\+\_\+iend}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a8787fa485469e2580a10f7efa2765e90}{mpi\+\_\+subdomain\+::ddtype\+\_\+dble\+\_\+c\+\_\+in\+\_\+c2i}}
+\begin{DoxyCompactList}\small\item\em Derived datatype for transpose scheme 1 and transpose scheme 2. C\+: cubic (org.), I\+: x-\/aligned, J\+: y-\/aligned. \end{DoxyCompactList}\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_ab861a1890b8820f0b2e97dbbe0430c50}{mpi\+\_\+subdomain\+::ddtype\+\_\+dble\+\_\+i\+\_\+in\+\_\+c2i}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a397d797e4c78dc667212cf71ff7c9559}{mpi\+\_\+subdomain\+::ddtype\+\_\+cplx\+\_\+c\+\_\+in\+\_\+c2i}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a844b95feed9833f453b886390ad1bb16}{mpi\+\_\+subdomain\+::ddtype\+\_\+cplx\+\_\+i\+\_\+in\+\_\+c2i}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a6d63d8ec3c37848c4eec1cb6312aad88}{mpi\+\_\+subdomain\+::ddtype\+\_\+cplx\+\_\+i\+\_\+in\+\_\+i2j}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_ac78b0a36b2acae13132869e0f4b80f3a}{mpi\+\_\+subdomain\+::ddtype\+\_\+cplx\+\_\+j\+\_\+in\+\_\+i2j}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a7e4c0f670c06e31894c28a44c8736727}{mpi\+\_\+subdomain\+::ddtype\+\_\+dble\+\_\+c\+\_\+in\+\_\+c2j}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a29160b65c81e9d021939008c7b3d374c}{mpi\+\_\+subdomain\+::ddtype\+\_\+dble\+\_\+j\+\_\+in\+\_\+c2j}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a4ff3cb68106648833f0119a127b59f9b}{mpi\+\_\+subdomain\+::ddtype\+\_\+cplx\+\_\+c\+\_\+in\+\_\+c2j}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_af650f876ca51cafc16d0ae57cca1a14c}{mpi\+\_\+subdomain\+::ddtype\+\_\+cplx\+\_\+j\+\_\+in\+\_\+c2j}}
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a6380c67dc324ef2e21c6836f312ab608}{mpi\+\_\+subdomain\+::countsendi}}
+\begin{DoxyCompactList}\small\item\em Array for MPI\+\_\+\+Alltoallw. \end{DoxyCompactList}\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a80ca32c69051325db389a0d9b235d266}{mpi\+\_\+subdomain\+::countdisti}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_aac04f49403582cb43b233c91f5410e86}{mpi\+\_\+subdomain\+::countsendj}}
+\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{namespacempi__subdomain_a79d1db8bd23476a5d5700b0a68bc75c5}{mpi\+\_\+subdomain\+::countdistj}}
+\end{DoxyCompactItemize}
+

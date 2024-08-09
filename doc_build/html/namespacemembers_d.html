@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:image" content="../preview.png" />
+<meta property="og:description" content="Documentation for parallel and scalable tri-diagonal matrix solver" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="../preview.png" />
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END twitter metadata -->
+<title>PaScaL_POISSON_FFT: Module Members</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            messageStyle: "normal",
+            linebreaks: {
+                automatic: false
+            }
+        },
+        tex2jax: { 
+            inlineMath: [["\\(","\\)"]], 
+            displayMath: [["$$","$$"],["\\[","\\]"]], 
+            processEscapes: true
+        },
+        TeX: {
+            Macros: {
+                tr: "{\\scriptscriptstyle\\mathrm{T}}",
+            }
+        }
+    });
+</script>
+<!--MathJax(LaTeX) -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript" id="MathJax-script" async  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/xccels/PaScaL_POISSON_FFT" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 65px;">
+  <td id="projectlogo">
+    <a href="./index.html">
+        <img alt="Logo" src="home.png"/></td>
+    </a>
+  <td id="projectalign" style="padding-left: 0.5em;padding-top: 0.5em;">
+   <div id="projectname">PaScaL_POISSON_FFT
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespacemembers_d.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all module members with links to the module documentation for each member:</div>
+
+<h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
+<li>data&#160;:&#160;<a class="el" href="namespacecuda__post.html#a8a9de38fb1c5c5e8e3f3c69dadc2ff9a">cuda_post</a></li>
+<li>ddtype_aggregation_chunk&#160;:&#160;<a class="el" href="namespacecuda__post.html#a55c617c03e441d0ce2e867490b7b81b5">cuda_post</a></li>
+<li>ddtype_cplx_c_in_c2i&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a397d797e4c78dc667212cf71ff7c9559">mpi_subdomain</a></li>
+<li>ddtype_cplx_c_in_c2j&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a4ff3cb68106648833f0119a127b59f9b">mpi_subdomain</a></li>
+<li>ddtype_cplx_i_in_c2i&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a844b95feed9833f453b886390ad1bb16">mpi_subdomain</a></li>
+<li>ddtype_cplx_i_in_i2j&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a6d63d8ec3c37848c4eec1cb6312aad88">mpi_subdomain</a></li>
+<li>ddtype_cplx_j_in_c2j&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#af650f876ca51cafc16d0ae57cca1a14c">mpi_subdomain</a></li>
+<li>ddtype_cplx_j_in_i2j&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#ac78b0a36b2acae13132869e0f4b80f3a">mpi_subdomain</a></li>
+<li>ddtype_dble_c_in_c2i&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a8787fa485469e2580a10f7efa2765e90">mpi_subdomain</a></li>
+<li>ddtype_dble_c_in_c2j&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a7e4c0f670c06e31894c28a44c8736727">mpi_subdomain</a></li>
+<li>ddtype_dble_i_in_c2i&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#ab861a1890b8820f0b2e97dbbe0430c50">mpi_subdomain</a></li>
+<li>ddtype_dble_j_in_c2j&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a29160b65c81e9d021939008c7b3d374c">mpi_subdomain</a></li>
+<li>ddtype_global_domain_mpi_io&#160;:&#160;<a class="el" href="namespacecuda__post.html#ac349052ed42338825cf7787affffb43e">cuda_post</a></li>
+<li>ddtype_global_domain_mpi_io_aggregation&#160;:&#160;<a class="el" href="namespacecuda__post.html#af21f7efe43ad04325fc4a20227c76341">cuda_post</a></li>
+<li>ddtype_global_domain_pr_io&#160;:&#160;<a class="el" href="namespacecuda__post.html#a54a842d824cf455f92f509b1114121d0">cuda_post</a></li>
+<li>ddtype_inner_domain&#160;:&#160;<a class="el" href="namespacecuda__post.html#a308d6b4f121550c2b4759f2f8c771ad6">cuda_post</a></li>
+<li>ddtype_recvfrom_b&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#ad6462f18c8c68c076005957e9d062252">mpi_subdomain</a></li>
+<li>ddtype_recvfrom_e&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a18a84c0f3ca27cd4dd73057ff035f341">mpi_subdomain</a></li>
+<li>ddtype_recvfrom_f&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a4da19838e8bc3934ad5c24db424bec2c">mpi_subdomain</a></li>
+<li>ddtype_recvfrom_n&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a74f1edb3c9227692b250285680518dc4">mpi_subdomain</a></li>
+<li>ddtype_recvfrom_s&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a1f46916f08758533cad3ecac33233e38">mpi_subdomain</a></li>
+<li>ddtype_recvfrom_w&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a0b2a4ab6d6a88a3817f473a5c2c172b9">mpi_subdomain</a></li>
+<li>ddtype_sendto_b&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a7a2af0322a7aaa435951a5432859687a">mpi_subdomain</a></li>
+<li>ddtype_sendto_e&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a93395266b1630e5a91e8e89531dfcec6">mpi_subdomain</a></li>
+<li>ddtype_sendto_f&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a4f3d66535b947c7afee75e6e73a47206">mpi_subdomain</a></li>
+<li>ddtype_sendto_n&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a55f5c1af9bd941fd176e619bddbb8d82">mpi_subdomain</a></li>
+<li>ddtype_sendto_s&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a660f83d621188fb7eb60ad10eab4c9b5">mpi_subdomain</a></li>
+<li>ddtype_sendto_w&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a0701fde01daea1a6fd51b62c75b8ee82">mpi_subdomain</a></li>
+<li>device&#160;:&#160;<a class="el" href="namespacecuda__pressure.html#a933598d08aac2015599038b79442c3a7">cuda_pressure</a>, <a class="el" href="namespacecuda__subdomain.html#a708c6fa08e0cef0a2399dea884aa02ef">cuda_subdomain</a></li>
+<li>dimension&#160;:&#160;<a class="el" href="namespacecuda__pressure.html#a64e48d7b3c3c6b66deb369862490eb4a">cuda_pressure</a>, <a class="el" href="namespacecuda__subdomain.html#a6a866b05d9154ca4b66f707485cfadf0">cuda_subdomain</a></li>
+<li>dir_cont_filein&#160;:&#160;<a class="el" href="namespaceglobal.html#a61a471b9b10d8ad3f6fc3a877831f3c0">global</a></li>
+<li>dir_cont_fileout&#160;:&#160;<a class="el" href="namespaceglobal.html#af77417ee59b989d9a22c0392edddf6a5">global</a></li>
+<li>dir_instantfield&#160;:&#160;<a class="el" href="namespaceglobal.html#ae7f8d51f3d4c339f9d24d3043e518451">global</a></li>
+<li>disp_aggr&#160;:&#160;<a class="el" href="namespacecuda__post.html#a0f934efd4ad822056d2477f5d29145b9">cuda_post</a></li>
+<li>disp_pr&#160;:&#160;<a class="el" href="namespacecuda__post.html#a11906e0ae1df27ee4dc73de09cefe3cf">cuda_post</a></li>
+<li>dmx1&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#acfacef2b3b4818caae18b9139fa6dad1">mpi_subdomain</a></li>
+<li>dmx1_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a24bc4eccede8d85a98e4f598a3f7a606">cuda_subdomain</a></li>
+<li>dmx1_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a546114f6221e81c94d6997012f1a3611">cuda_subdomain</a></li>
+<li>dmx1_g&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#af311a47573a8198d4567c3fdcc6fbe85">mpi_subdomain</a></li>
+<li>dmx1_g_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a9bd2097d085ddc7441fdb4d2c97bca53">cuda_subdomain</a></li>
+<li>dmx1_g_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a329d87a57d3455098a2a589ba3151332">cuda_subdomain</a></li>
+<li>dmx2&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a8dd28b6a1d18efdbeab60b8da47afe8c">mpi_subdomain</a></li>
+<li>dmx2_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a272b659dde090c7270a4097517bfea7b">cuda_subdomain</a></li>
+<li>dmx2_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a75f6f81c1e53525c2cc93429ee4e3cbd">cuda_subdomain</a></li>
+<li>dmx2_g&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a4b446f4b3208823044781c9f18a2281b">mpi_subdomain</a></li>
+<li>dmx2_g_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#ad5e435bf11f90b88fc51186f35552240">cuda_subdomain</a></li>
+<li>dmx2_g_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a4a2c2d2f50bdb8328a68107f6ebd4404">cuda_subdomain</a></li>
+<li>dmx3&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a3e61cc2167c9ad2404a7edaddc7ddd7c">mpi_subdomain</a></li>
+<li>dmx3_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a3dd6c22a9218eead4be5a1ee9801ce7e">cuda_subdomain</a></li>
+<li>dmx3_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a385c4e6c82fa9729b2125831267fcb75">cuda_subdomain</a></li>
+<li>dmx3_g&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a972faa18cdacd1504cc746e5879ef633">mpi_subdomain</a></li>
+<li>dmx3_g_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#ad1bd4d9dde41692de5c02c65b1ebd07a">cuda_subdomain</a></li>
+<li>dmx3_g_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#ab0db10266bc93023023e24e57ad5b120">cuda_subdomain</a></li>
+<li>dx1&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a4e02fdf7c38b038bbcbad8f91b15525e">mpi_subdomain</a></li>
+<li>dx1_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a0b87e1bc53505104acbcd89b6527b955">cuda_subdomain</a></li>
+<li>dx1_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#af3481424c7134059209b9e8e96435fdd">cuda_subdomain</a></li>
+<li>dx1_g&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a92ba74c2adee8762f1a802b45ef3cc00">mpi_subdomain</a></li>
+<li>dx1_g_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a7bab8b1df311fccb58f4b282932fcc9b">cuda_subdomain</a></li>
+<li>dx1_g_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a961579b609123ec52254123750721339">cuda_subdomain</a></li>
+<li>dx2&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#abc76de54a5a6e7da32d6efb205f1b1e5">mpi_subdomain</a></li>
+<li>dx2_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#ae9ee96c686c41bdaf2f37c105c760b98">cuda_subdomain</a></li>
+<li>dx2_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#abf28e83fd4cd2a3674c08af4eb14a147">cuda_subdomain</a></li>
+<li>dx2_g&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#ac88fb0c8e48afa4b3da372cd5c57ca05">mpi_subdomain</a></li>
+<li>dx2_g_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#af3a18f9e0918e9043e084ca3cc7d05c4">cuda_subdomain</a></li>
+<li>dx2_g_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#ad88be71db0621c6d53ffafeef2ec1894">cuda_subdomain</a></li>
+<li>dx3&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a2c438d5dfbc448cabe080f67373619a1">mpi_subdomain</a></li>
+<li>dx3_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a7a4bcadeffec62435e74b77503a08c8c">cuda_subdomain</a></li>
+<li>dx3_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a8311a76ee3bd94b3d28c7718f29691a3">cuda_subdomain</a></li>
+<li>dx3_g&#160;:&#160;<a class="el" href="namespacempi__subdomain.html#a67317f24830c6cc391d5288fbfded6c4">mpi_subdomain</a></li>
+<li>dx3_g_d&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#abe3093c95ca5a9d3518ce6c6d26e6047">cuda_subdomain</a></li>
+<li>dx3_g_d_c&#160;:&#160;<a class="el" href="namespacecuda__subdomain.html#a1c02179a76e9941b3f7a15338346b6cd">cuda_subdomain</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

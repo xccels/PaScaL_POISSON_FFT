@@ -1,0 +1,646 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:image" content="../preview.png" />
+<meta property="og:description" content="Documentation for parallel and scalable tri-diagonal matrix solver" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="../preview.png" />
+<meta property="og:title" content="PaScaL_POISSON_FFT Documentation" />
+<meta property="og:url" content="https://xccels.github.io/PaScaL_POISSON_FFT" />
+<!-- END twitter metadata -->
+<title>PaScaL_POISSON_FFT: pascal_tdma Module Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            messageStyle: "normal",
+            linebreaks: {
+                automatic: false
+            }
+        },
+        tex2jax: { 
+            inlineMath: [["\\(","\\)"]], 
+            displayMath: [["$$","$$"],["\\[","\\]"]], 
+            processEscapes: true
+        },
+        TeX: {
+            Macros: {
+                tr: "{\\scriptscriptstyle\\mathrm{T}}",
+            }
+        }
+    });
+</script>
+<!--MathJax(LaTeX) -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript" id="MathJax-script" async  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/xccels/PaScaL_POISSON_FFT" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 65px;">
+  <td id="projectlogo">
+    <a href="./index.html">
+        <img alt="Logo" src="home.png"/></td>
+    </a>
+  <td id="projectalign" style="padding-left: 0.5em;padding-top: 0.5em;">
+   <div id="projectname">PaScaL_POISSON_FFT
+   &#160;<span id="projectnumber">v1.0</span>
+   </div>
+   <div id="projectbrief">Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespacepascal__tdma.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Types</a> &#124;
+<a href="#func-members">Functions/Subroutines</a>  </div>
+  <div class="headertitle"><div class="title">pascal_tdma Module Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Module for PaScaL-TDMA library.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Types</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">type &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpascal__tdma_1_1ptdma__plan__many.html">ptdma_plan_many</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execution plan for many tridiagonal systems of equations.  <a href="structpascal__tdma_1_1ptdma__plan__many.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">type &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpascal__tdma_1_1ptdma__plan__single.html">ptdma_plan_single</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execution plan for a single tridiagonal system of equations.  <a href="structpascal__tdma_1_1ptdma__plan__single.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions/Subroutines</h2></td></tr>
+<tr class="memitem:a5dfc2d7c919b47ad364a74d141532a9f" id="r_a5dfc2d7c919b47ad364a74d141532a9f"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dfc2d7c919b47ad364a74d141532a9f">pascal_tdma_plan_single_create</a> (plan, myrank, nprocs, mpi_world, gather_rank)</td></tr>
+<tr class="memdesc:a5dfc2d7c919b47ad364a74d141532a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a plan for a single tridiagonal system of equations.  <br /></td></tr>
+<tr class="separator:a5dfc2d7c919b47ad364a74d141532a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb04e59c740ce6c4b9518dd86eaeb594" id="r_adb04e59c740ce6c4b9518dd86eaeb594"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb04e59c740ce6c4b9518dd86eaeb594">pascal_tdma_plan_single_destroy</a> (plan)</td></tr>
+<tr class="memdesc:adb04e59c740ce6c4b9518dd86eaeb594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocate the allocated arrays in the defined plan_single .  <br /></td></tr>
+<tr class="separator:adb04e59c740ce6c4b9518dd86eaeb594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9c24b343ae949044eccc8692dcc6e9" id="r_a7e9c24b343ae949044eccc8692dcc6e9"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e9c24b343ae949044eccc8692dcc6e9">pascal_tdma_plan_many_create</a> (plan, n_sys, myrank, nprocs, mpi_world)</td></tr>
+<tr class="memdesc:a7e9c24b343ae949044eccc8692dcc6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a plan for many tridiagonal systems of equations.  <br /></td></tr>
+<tr class="separator:a7e9c24b343ae949044eccc8692dcc6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceec478e18d25d413a5bd8a174c3fcb8" id="r_aceec478e18d25d413a5bd8a174c3fcb8"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aceec478e18d25d413a5bd8a174c3fcb8">pascal_tdma_plan_many_destroy</a> (plan, nprocs)</td></tr>
+<tr class="memdesc:aceec478e18d25d413a5bd8a174c3fcb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the allocated arrays in the defined plan_many.  <br /></td></tr>
+<tr class="separator:aceec478e18d25d413a5bd8a174c3fcb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6813b0fa9625caf2a7c41d7fee5ce5e2" id="r_a6813b0fa9625caf2a7c41d7fee5ce5e2"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6813b0fa9625caf2a7c41d7fee5ce5e2">pascal_tdma_single_solve</a> (plan, a, b, c, d, n_row)</td></tr>
+<tr class="memdesc:a6813b0fa9625caf2a7c41d7fee5ce5e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve a single tridiagonal system of equation.  <br /></td></tr>
+<tr class="separator:a6813b0fa9625caf2a7c41d7fee5ce5e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ccb9a30141caf44726566f93d17cf7" id="r_a87ccb9a30141caf44726566f93d17cf7"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87ccb9a30141caf44726566f93d17cf7">pascal_tdma_single_solve_cycle</a> (plan, a, b, c, d, n_row)</td></tr>
+<tr class="memdesc:a87ccb9a30141caf44726566f93d17cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve a single cyclic tridiagonal system of equations.  <br /></td></tr>
+<tr class="separator:a87ccb9a30141caf44726566f93d17cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2e08adda91b031a6df7d90ef43c7f2a" id="r_ad2e08adda91b031a6df7d90ef43c7f2a"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2e08adda91b031a6df7d90ef43c7f2a">pascal_tdma_many_solve</a> (plan, a, b, c, d, n_sys, n_row)</td></tr>
+<tr class="memdesc:ad2e08adda91b031a6df7d90ef43c7f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve many tridiagonal systems of equations.  <br /></td></tr>
+<tr class="separator:ad2e08adda91b031a6df7d90ef43c7f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44784cc88e2252697711d2ac7d525d97" id="r_a44784cc88e2252697711d2ac7d525d97"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44784cc88e2252697711d2ac7d525d97">pascal_tdma_many_solve_cycle</a> (plan, a, b, c, d, n_sys, n_row)</td></tr>
+<tr class="memdesc:a44784cc88e2252697711d2ac7d525d97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve many cyclic tridiagonal systems of equations.  <br /></td></tr>
+<tr class="separator:a44784cc88e2252697711d2ac7d525d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Module for PaScaL-TDMA library. </p>
+<p>It contains plans for tridiagonal systems of equations and subroutines for solving them using the defined plans. The operation of the library includes the following three phases: (1) Create a data structure called a plan, which has the information for communication and reduced systems. (2) Solve the tridiagonal systems of equations executing from Step 1 to Step 5 (3) Destroy the created plan </p>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="ad2e08adda91b031a6df7d90ef43c7f2a" name="ad2e08adda91b031a6df7d90ef43c7f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e08adda91b031a6df7d90ef43c7f2a">&#9670;&#160;</a></span>pascal_tdma_many_solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_many_solve </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__many.html">ptdma_plan_many</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_row</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Solve many tridiagonal systems of equations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for many tridiagonal systems of equations </td></tr>
+    <tr><td class="paramname">A</td><td>Coefficients in lower diagonal elements </td></tr>
+    <tr><td class="paramname">B</td><td>Coefficients in diagonal elements </td></tr>
+    <tr><td class="paramname">C</td><td>Coefficients in upper diagonal elements </td></tr>
+    <tr><td class="paramname">D</td><td>Coefficients in right-hand side terms </td></tr>
+    <tr><td class="paramname">n_sys</td><td>Number of tridiagonal systems per process </td></tr>
+    <tr><td class="paramname">n_row</td><td>Number of rows in each process, size of a tridiagonal matrix N divided by nprocs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00506">506</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepascal__tdma_ad2e08adda91b031a6df7d90ef43c7f2a_cgraph.png" border="0" usemap="#anamespacepascal__tdma_ad2e08adda91b031a6df7d90ef43c7f2a_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a44784cc88e2252697711d2ac7d525d97" name="a44784cc88e2252697711d2ac7d525d97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44784cc88e2252697711d2ac7d525d97">&#9670;&#160;</a></span>pascal_tdma_many_solve_cycle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_many_solve_cycle </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__many.html">ptdma_plan_many</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_sys,1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_row</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Solve many cyclic tridiagonal systems of equations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for many tridiagonal systems of equations </td></tr>
+    <tr><td class="paramname">A</td><td>Coefficients in lower diagonal elements </td></tr>
+    <tr><td class="paramname">B</td><td>Coefficients in diagonal elements </td></tr>
+    <tr><td class="paramname">C</td><td>Coefficients in upper diagonal elements </td></tr>
+    <tr><td class="paramname">D</td><td>Coefficients in right-hand side terms </td></tr>
+    <tr><td class="paramname">n_sys</td><td>Number of tridiagonal systems per process </td></tr>
+    <tr><td class="paramname">n_row</td><td>Number of rows in each process, size of a tridiagonal matrix N divided by nprocs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00620">620</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepascal__tdma_a44784cc88e2252697711d2ac7d525d97_cgraph.png" border="0" usemap="#anamespacepascal__tdma_a44784cc88e2252697711d2ac7d525d97_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a7e9c24b343ae949044eccc8692dcc6e9" name="a7e9c24b343ae949044eccc8692dcc6e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e9c24b343ae949044eccc8692dcc6e9">&#9670;&#160;</a></span>pascal_tdma_plan_many_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_plan_many_create </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__many.html">ptdma_plan_many</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>myrank</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nprocs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>mpi_world</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a plan for many tridiagonal systems of equations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for a single tridiagonal system of equations </td></tr>
+    <tr><td class="paramname">n_sys</td><td>Number of tridiagonal systems of equations for process </td></tr>
+    <tr><td class="paramname">myrank</td><td>Rank ID in mpi_world </td></tr>
+    <tr><td class="paramname">nprocs</td><td>Number of MPI process in mpi_world </td></tr>
+    <tr><td class="paramname">mpi_world</td><td>Communicator for MPI_Gather and MPI_Scatter of reduced equations </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00189">189</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepascal__tdma_a7e9c24b343ae949044eccc8692dcc6e9_cgraph.png" border="0" usemap="#anamespacepascal__tdma_a7e9c24b343ae949044eccc8692dcc6e9_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aceec478e18d25d413a5bd8a174c3fcb8" name="aceec478e18d25d413a5bd8a174c3fcb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceec478e18d25d413a5bd8a174c3fcb8">&#9670;&#160;</a></span>pascal_tdma_plan_many_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_plan_many_destroy </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__many.html">ptdma_plan_many</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer</td>          <td class="paramname"><span class="paramname"><em>nprocs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroy the allocated arrays in the defined plan_many. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for many tridiagonal systems of equations </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00278">278</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+
+</div>
+</div>
+<a id="a5dfc2d7c919b47ad364a74d141532a9f" name="a5dfc2d7c919b47ad364a74d141532a9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dfc2d7c919b47ad364a74d141532a9f">&#9670;&#160;</a></span>pascal_tdma_plan_single_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_plan_single_create </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__single.html">ptdma_plan_single</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>myrank</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>nprocs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>mpi_world</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>gather_rank</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a plan for a single tridiagonal system of equations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for a single tridiagonal system of equations </td></tr>
+    <tr><td class="paramname">myrank</td><td>Rank ID in mpi_world </td></tr>
+    <tr><td class="paramname">nprocs</td><td>Number of MPI process in mpi_world </td></tr>
+    <tr><td class="paramname">mpi_world</td><td>Communicator for MPI_Gather and MPI_Scatter of a reduced system </td></tr>
+    <tr><td class="paramname">gather_rank</td><td>Target rank where all coefficients are gathered to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00142">142</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+
+</div>
+</div>
+<a id="adb04e59c740ce6c4b9518dd86eaeb594" name="adb04e59c740ce6c4b9518dd86eaeb594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb04e59c740ce6c4b9518dd86eaeb594">&#9670;&#160;</a></span>pascal_tdma_plan_single_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_plan_single_destroy </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__single.html">ptdma_plan_single</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deallocate the allocated arrays in the defined plan_single . </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for a single tridiagonal system of equations </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00170">170</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+
+</div>
+</div>
+<a id="a6813b0fa9625caf2a7c41d7fee5ce5e2" name="a6813b0fa9625caf2a7c41d7fee5ce5e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6813b0fa9625caf2a7c41d7fee5ce5e2">&#9670;&#160;</a></span>pascal_tdma_single_solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_single_solve </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__single.html">ptdma_plan_single</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_row</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Solve a single tridiagonal system of equation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for a single tridiagonal system of equation </td></tr>
+    <tr><td class="paramname">A</td><td>Coefficients in lower diagonal elements </td></tr>
+    <tr><td class="paramname">B</td><td>Coefficients in diagonal elements </td></tr>
+    <tr><td class="paramname">C</td><td>Coefficients in upper diagonal elements </td></tr>
+    <tr><td class="paramname">D</td><td>Coefficients in right-hand side terms </td></tr>
+    <tr><td class="paramname">n_row</td><td>Number of rows in each process, size of a tridiagonal matrix N divided by nprocs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00307">307</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepascal__tdma_a6813b0fa9625caf2a7c41d7fee5ce5e2_cgraph.png" border="0" usemap="#anamespacepascal__tdma_a6813b0fa9625caf2a7c41d7fee5ce5e2_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a87ccb9a30141caf44726566f93d17cf7" name="a87ccb9a30141caf44726566f93d17cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ccb9a30141caf44726566f93d17cf7">&#9670;&#160;</a></span>pascal_tdma_single_solve_cycle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public pascal_tdma::pascal_tdma_single_solve_cycle </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structpascal__tdma_1_1ptdma__plan__single.html">ptdma_plan_single</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>plan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double precision, dimension(1:n_row), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>d</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_row</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Solve a single cyclic tridiagonal system of equations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>Plan for a single tridiagonal system of equations </td></tr>
+    <tr><td class="paramname">A</td><td>Coefficients in lower diagonal elements </td></tr>
+    <tr><td class="paramname">B</td><td>Coefficients in diagonal elements </td></tr>
+    <tr><td class="paramname">C</td><td>Coefficients in upper diagonal elements </td></tr>
+    <tr><td class="paramname">D</td><td>Coefficients in right-hand side terms </td></tr>
+    <tr><td class="paramname">n_row</td><td>Number of rows in each process, size of a tridiagonal matrix N divided by nprocs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="pascal__tdma_8f90_source.html#l00405">405</a> of file <a class="el" href="pascal__tdma_8f90_source.html">pascal_tdma.f90</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepascal__tdma_a87ccb9a30141caf44726566f93d17cf7_cgraph.png" border="0" usemap="#anamespacepascal__tdma_a87ccb9a30141caf44726566f93d17cf7_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacepascal__tdma.html">pascal_tdma</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+\chapter{Pa\+Sca\+L\+\_\+\+Poisson\+\_\+\+FFT}
+\hypertarget{index}{}\label{index}\index{PaScaL\_Poisson\_FFT@{PaScaL\_Poisson\_FFT}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+
+
+Pa\+Sca\+L\+\_\+\+Poisson\+\_\+\+FFT provides an efficient and scalable computational procedure to solve multi-\/dimensional elliptic partial differential equations. To ensure fast and accurate computation, the Fast Fourier Transform (FFT) library and Pa\+Sca\+L\+\_\+\+TDMA library are used, and a newly designed communication scheme has been implemented to reduce communication overhead.
+
+This library can be used for periodic boundary conditions and Neumann boundary conditions. The main algorithm for Pa\+Sca\+L\+\_\+\+Poisson\+\_\+\+FFT consists of the following four steps\+:
+
+
+\begin{DoxyItemize}
+\item (1) Selection of FFT algorithm based on boundary conditions\+: Periodic boundary conditions -\/ FFT, Neumann boundary conditions -\/ DCT
+\item (2) Transformation into an ordinary differential equation using 2D FFT\+: Through the 2D FFT, the 3D Poisson equation is transformed into a simple second-\/order ordinary differential equation for each horizontal wavenumber.
+\item (3) Solving the ordinary differential equation using TDMA\+: The transformed second-\/order ordinary differential equation is solved using the Pa\+Sca\+L\+\_\+\+TDMA library.
+\item (4) Restoration of the solution from the horizontal wavenumber space to the real space\+: The solution obtained in the horizontal wavenumber space is restored to the real space using the inverse FFT.
+\end{DoxyItemize}\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Parallel Computing Configuration}{Parallel Computing Configuration}}\label{index_autotoc_md1}
+This project leverages a 1-\/to-\/1 mapping strategy between MPI processes and CUDA GPUs to enhance the computational efficiency of the Pa\+Sca\+L\+\_\+poisson\+\_\+fft solver. It is critical that each MPI process is paired with a dedicated GPU, facilitating efficient parallel computations.\hypertarget{index_autotoc_md2}{}\doxysubsection{\texorpdfstring{MPI and CUDA GPU Matching}{MPI and CUDA GPU Matching}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Equal Number Required\+:}} It\textquotesingle{}s essential for the number of MPI cores to match the number of CUDA GPUs exactly. This ensures that each MPI process can operate on a dedicated GPU, optimizing data processing and computational speed.
+\item {\bfseries{Configuration Guidance\+:}} Before launching simulations, verify that your computational environment is set up to provide an equal number of MPI cores and GPUs. This setup is vital for achieving the expected performance and accuracy in simulations.
+\item {\bfseries{Optimization\+:}} The 1-\/to-\/1 mapping aims to maximize hardware utilization, enabling high performance for complex computational tasks. Make sure your job submission and environment setup reflect this requirement.
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{Configuration Requirement}{Configuration Requirement}}\label{index_autotoc_md3}
+Ensure your setup aligns with the 1-\/to-\/1 MPI-\/to-\/\+GPU mapping by checking available resources and configuring your computational environment accordingly. This may involve adjusting your job submission scripts or settings to ensure each MPI process is allocated to a specific GPU.\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Performance Implications}{Performance Implications}}\label{index_autotoc_md4}
+Adhering to this configuration is crucial for optimizing the solver\textquotesingle{}s performance. Incorrect setups, where the number of MPI processes does not match the number of GPUs, can lead to inefficiencies or computational errors. Always verify this alignment to ensure optimal operation of your simulations.
+
+Given the project\textquotesingle{}s existing Makefile, which already specifies how to execute the solver using MPI, users should refer to this setup for launching simulations. The crucial aspect to remember is maintaining the balance between MPI processes and GPUs for effective parallel computation.\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Authors}{Authors}}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Ki-\/\+Ha Kim (\href{mailto:k-kiha@yonsei.ac.kr}{\texttt{ k-\/kiha@yonsei.\+ac.\+kr}}), School of Mathematics and Computing (Computational Science and Engineering), Yonsei University
+\item Mingyu Yang (\href{mailto:yang926@yonsei.ac.kr}{\texttt{ yang926@yonsei.\+ac.\+kr}}), School of Mathematics and Computing (Computational Science and Engineering), Yonsei University
+\item Tian\+Tian Xu (\href{mailto:tian0917@yonsei.ac.kr}{\texttt{ tian0917@yonsei.\+ac.\+kr}}), School of Mathematics and Computing (Computational Science and Engineering), Yonsei University
+\item Jungwoo Kim (\href{mailto:yasandy@yonsei.ac.kr}{\texttt{ yasandy@yonsei.\+ac.\+kr}}), School of Mathematics and Computing (Computational Science and Engineering), Yonsei University
+\item Xiaomin Pan (\href{mailto:sanhepanxiaomin@gmail.com}{\texttt{ sanhepanxiaomin@gmail.\+com}}), Department of Mathematics, Shanghai University
+\item Ji-\/\+Hoon Kang (\href{mailto:jhkang@kisti.re.kr}{\texttt{ jhkang@kisti.\+re.\+kr}}), Korea Institute of Science and Technology Information
+\item Oh-\/\+Kyoung Kwon (\href{mailto:okkwon@kisti.re.kr}{\texttt{ okkwon@kisti.\+re.\+kr}}), Korea Institute of Science and Technology Information
+\item Jung-\/\+Il Choi (\href{mailto:jic@yonsei.ac.kr}{\texttt{ jic@yonsei.\+ac.\+kr}}), School of Mathematics and Computing (Computational Science and Engineering), Yonsei University
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{index_autotoc_md6}
+\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Downloading Pa\+Sca\+L\+\_\+\+Poisson\+\_\+fft}{Downloading Pa\+Sca\+L\+\_\+\+Poisson\+\_\+fft}}\label{index_autotoc_md7}
+The repository can be cloned as follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ <adress>}
+
+\end{DoxyCode}
+ Alternatively, the source files can be downloaded through github menu \textquotesingle{}Download ZIP\textquotesingle{}.\hypertarget{index_autotoc_md8}{}\doxysubsection{\texorpdfstring{Compile}{Compile}}\label{index_autotoc_md8}
+\hypertarget{index_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{index_autotoc_md9}
+Prerequistites to compile Pa\+Sca\+L\+\_\+\+Poisson\+\_\+fft are as follows\+:
+\begin{DoxyItemize}
+\item MPI
+\item fortran compiler ({\ttfamily nvfortran} for GPU runs, NVIDIA HPC SDK 21.\+1 or higher)
+\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsubsection{\texorpdfstring{Compile and build}{Compile and build}}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
+\item Build Pa\+Sca\+L\+\_\+\+Poisson\+\_\+fft 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ lib}
+
+\end{DoxyCode}
+
+\item Build an example problem after build Pa\+Sca\+L\+\_\+\+Poisson\+\_\+fft
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ example}
+
+\end{DoxyCode}
+
+\item Build all
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ all}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Mores on compile option}{Mores on compile option}}\label{index_autotoc_md11}
+The {\ttfamily Makefile} in root directory is to compile the source code, and is expected to work for most systems. The \textquotesingle{}Makefile.\+inc\textquotesingle{} file in the root directory can be used to change the compiler (and MPI wrapper) and a few pre-\/defined compile options depending on compiler, execution environment and et al.\hypertarget{index_autotoc_md12}{}\doxysubsection{\texorpdfstring{Running the example}{Running the example}}\label{index_autotoc_md12}
+After building the example file, an executable binary, {\ttfamily examples.\+exe}, is built in the {\ttfamily run} folder. The {\ttfamily PARA\+\_\+\+INPUT.\+dat} file in the {\ttfamily run} folder is a pre-\/defined input file, and the {\ttfamily examples.\+exe} can be executed as follows\+: {\ttfamily  mpirun -\/np 2 ./examples.exe }\hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{Folder structure}{Folder structure}}\label{index_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\ttfamily src} \+: source files of Pa\+Sca\+L\+\_\+\+Poisson\+\_\+fft.
+\item {\ttfamily examples} \+: source files of an example problem for 3D Poisson equation.
+\item {\ttfamily include} \+: header files are created after building
+\item {\ttfamily lib} \+: a static library of Pa\+Sca\+L\+\_\+\+Poisson\+\_\+fft is are created after building
+\item {\ttfamily doc} \+: documentation
+\item {\ttfamily run} \+: an executable binary file for the example problem is created after building.
+\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysection{\texorpdfstring{Cite}{Cite}}\label{index_autotoc_md14}
+\hypertarget{index_autotoc_md15}{}\doxysection{\texorpdfstring{Contact}{Contact}}\label{index_autotoc_md15}
+For questions or support, please contact Prof. Jung-\/\+Il Choi at \href{mailto:jic@yonsei.ac.kr}{\texttt{ jic@yonsei.\+ac.\+kr}}. 

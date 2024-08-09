@@ -1,0 +1,27 @@
+\doxysection{para\+\_\+range.\+f90}
+\hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source}{}\label{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source}\index{PaScaL\_TDMA/src/para\_range.f90@{PaScaL\_TDMA/src/para\_range.f90}}
+\mbox{\hyperlink{_pa_sca_l___t_d_m_a_2src_2para__range_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00001}00001\ \textcolor{comment}{!======================================================================================================================}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00017}00017\ \textcolor{comment}{!======================================================================================================================}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00027}\mbox{\hyperlink{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_ab75ab386311975aa4ff7cac06798fcd4}{00027}}\ \textcolor{keyword}{subroutine\ }\mbox{\hyperlink{examples_2para__range_8f90_ab75ab386311975aa4ff7cac06798fcd4}{para\_range}}(n1,\ n2,\ nprocs,\ myrank,\ ista,\ iend)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ ::\ n1,\ n2,\ nprocs,\ myrank}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(out)}\ \ \ \ ::\ ista,\ iend}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ iwork1,\ iwork2}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00035}00035\ \ \ \ \ \ \ \ \ iwork1\ =\ int((n2\ -\/\ n1\ +\ 1)\ /\ nprocs)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00036}00036\ \ \ \ \ \ \ \ \ iwork2\ =\ mod(n2\ -\/\ n1\ +\ 1,\ nprocs)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00037}00037\ \ \ \ \ \ \ \ \ ista\ =\ myrank\ *\ iwork1\ +\ n1\ +\ min(myrank,\ iwork2)}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00038}00038\ \ \ \ \ \ \ \ \ iend\ =\ ista\ +\ iwork1\ -\/\ 1}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iwork2\ >\ myrank)\ iend\ =\ iend\ +\ 1}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00041}00041\ \textcolor{keyword}{end\ subroutine\ }\mbox{\hyperlink{examples_2para__range_8f90_ab75ab386311975aa4ff7cac06798fcd4}{para\_range}}}
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_pa_sca_l___t_d_m_a_2src_2para__range_8f90_source_l00043}00043\ }
+
+\end{DoxyCode}
