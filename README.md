@@ -48,7 +48,7 @@ Given the project's existing Makefile, which already specifies how to execute th
 The repository can be cloned as follows:
 
 ```
-git clone <adress>
+git clone https://github.com/xccels/PaScaL_POISSON_FFT.git
 ```
 Alternatively, the source files can be downloaded through github menu 'Download ZIP'.
 
