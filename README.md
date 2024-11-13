@@ -94,5 +94,8 @@ After building the example file, an executable binary, `examples.exe`, is built 
 
 # Cite
 
+# documentaion page
+https://xccels.github.io/PaScaL_POISSON_FFT
+
 # Contact
 For questions or support, please contact Prof. Jung-Il Choi at jic@yonsei.ac.kr.
