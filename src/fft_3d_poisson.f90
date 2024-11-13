@@ -13,6 +13,7 @@ module fft_poisson
 #else
     integer, parameter :: rp = kind(0.0d0), MPI_real_type = MPI_DOUBLE_PRECISION, MPI_complex_type = MPI_DOUBLE_COMPLEX
 #endif
+
     real(rp), parameter :: PI = real(dacos(-1.0d0),rp)
     type, private :: comm_1d
         integer :: myrank                   !< Rank ID in current communicator
