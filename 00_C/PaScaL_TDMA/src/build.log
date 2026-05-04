@@ -1,0 +1,40 @@
+std::char_traits<char>::length(char const*):
+    339, _ZN30_INTERNAL_9_timer_cpp_ee6bba6fSt19__constant_string_pIcEEbPKT_ inlined, size=2 (inline) file timer.cpp (232)
+    340, __gnu_cxx::char_traits<char>::length(char const*) inlined, size=9 (inline) file timer.cpp (163)
+         165, __gnu_cxx::char_traits<char>::eq(char const&, char const&) inlined, size=3 (inline) file timer.cpp (101)
+         165, Loop not vectorized/parallelized: not countable
+std::allocator<char>::allocator():
+      0, std::allocator<char>::allocator() inlined, size=1 (inline) file timer.cpp (137)
+std::allocator<char>::allocator(std::allocator<char> const&):
+      0, std::allocator<char>::allocator(std::allocator<char> const&) inlined, size=1 (inline) file timer.cpp (141)
+std::allocator<char>::~allocator():
+      0, std::allocator<char>::~allocator() inlined, size=1 (inline) file timer.cpp (152)
+std::allocator_traits<std::allocator<char>>::allocate(std::allocator<char>&, unsigned long):
+    443, __gnu_cxx::new_allocator<char>::allocate(unsigned long, void const*) inlined, size=8 (inline) file timer.cpp (103)
+         104, __gnu_cxx::new_allocator<char>::max_size() const inlined, size=1 (inline) file timer.cpp (133)
+std::allocator_traits<std::allocator<char>>::deallocate(std::allocator<char>&, char*, unsigned long):
+    469, __gnu_cxx::new_allocator<char>::deallocate(char*, unsigned long) inlined, size=3 (inline) file timer.cpp (120)
+std::array<double, 64ul>::fill(double const&):
+      1, include "pascal_tdma.hpp"
+           4, include "array"
+              117, std::array<double, 64ul>::size() const inlined, size=1 (inline) file timer.cpp (175)
+    117, std::array<double, 64ul>::begin() inlined, size=9 (inline) file timer.cpp (127)
+         127, std::array<double, 64ul>::data() inlined, size=5 (inline) file timer.cpp (235)
+              235, std::__array_traits<double, 64ul>::_S_ptr(double const (&) [64]) inlined, size=2 (inline) file timer.cpp (60)
+                   117, double* std::fill_n<double*, unsigned long, double>(double*, unsigned long, double const&) inlined, size=17 (inline) file timer.cpp (803)
+                        808, Memory set idiom, loop replaced by call to __c_mset8
+std::array<double, 64ul>::begin():
+    127, std::array<double, 64ul>::data() inlined, size=5 (inline) file timer.cpp (235)
+         235, std::__array_traits<double, 64ul>::_S_ptr(double const (&) [64]) inlined, size=2 (inline) file timer.cpp (60)
+std::array<double, 64ul>::operator[](unsigned long):
+    186, std::__array_traits<double, 64ul>::_S_ref(double const (&) [64], unsigned long) inlined, size=2 (inline) file timer.cpp (56)
+std::array<double, 64ul>::data():
+    235, std::__array_traits<double, 64ul>::_S_ptr(double const (&) [64]) inlined, size=2 (inline) file timer.cpp (60)
+std::array<double, 8ul>::fill(double const&):
+      1, include "pascal_tdma.hpp"
+           4, include "array"
+              117, std::array<double, 8ul>::size() const inlined, size=1 (inline) file timer.cpp (175)
+    117, std::array<double, 8ul>::begin() inlined, size=9 (inline) file timer.cpp (127)
+         127, std::array<double, 8ul>::data() inlined, size=5 (inline) file timer.cpp (235)
+              235, std::__array_traits<double, 8ul>::_S_ptr(double const (&) [8]) inlined, size=2 (inline) file timer.cpp (60)
+                   117, double* std::fill_n<double*, unsigned long, double>(double*, unsigned long, double const&)cleaning up after signal(2)...
