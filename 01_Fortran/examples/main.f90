@@ -49,7 +49,9 @@ program main
 
     prhs_d(1:n1msub,1:n2msub,1:n3msub) => temp1
     call cuda_pressure_RHS(prhs_d)
-    call cuda_Poisson_FFT_1D(PRHS_d, P_d, dmx1_d, dmx2_d, dmx3_d, dx3_d)
+    call cuda_Poisson_FFT_1D(PRHS_d, P_d, dmx1_d, dmx2_d, dmx3_d, dx3_d, h1psub, h1psub_Jsub, n2msub_Isub, n1msub_Jsub, countsendI, countdistI, countsendJ, countdistJ, ddtype_dble_C_in_C2I, ddtype_dble_I_in_C2I,&
+                                         ddtype_dble_J_in_C2J, ddtype_dble_C_in_C2J, ddtype_cplx_I_in_C2I, ddtype_cplx_C_in_C2I,&
+                                         ddtype_cplx_J_in_C2J, ddtype_cplx_C_in_C2J)
     nullify(prhs_d)
     call cuda_subdomain_DtoH(P_d, P)
 

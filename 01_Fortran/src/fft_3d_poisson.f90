@@ -350,7 +350,10 @@ contains
 
     end subroutine cuda_Poisson_FFT_coefficient
 
-    subroutine cuda_Poisson_FFT_1D(PRHS_d, P_d, dmx1_d, dmx2_d, dmx3_d, dx3_d)
+    subroutine cuda_Poisson_FFT_1D(PRHS_d, P_d, dmx1_d, dmx2_d, dmx3_d, dx3_d, h1psub, h1psub_Jsub, n2msub_Isub, n1msub_Jsub, &
+                                   countsendI, countdistI, countsendJ, countdistJ, ddtype_dble_C_in_C2I,ddtype_dble_I_in_C2I, &
+                                   ddtype_dble_J_in_C2J, ddtype_dble_C_in_C2J, ddtype_cplx_I_in_C2I, ddtype_cplx_C_in_C2I,    &
+                                   ddtype_cplx_J_in_C2J, ddtype_cplx_C_in_C2J)
         use cublas
         use MPI
         implicit none
@@ -369,6 +372,22 @@ contains
         integer :: n1m, n2m 
         integer :: n1sub, n2sub
 
+        ! Dongyun
+        integer :: buffer_cd_size_d, buffer_dp_size_d, n1, n2
+        real(rp), pointer, device, dimension(:,:,:) :: PRHS_Iline_d, PRHS_Jline_d, rhsihat_jline_d
+        complex(rp), pointer, device, dimension(:,:,:) :: prhs_cplx_d
+        real(rp), allocatable, device, target, dimension(:) :: buffer_dp1_d, buffer_dp2_d
+        complex(rp), allocatable, device, target, dimension(:) :: buffer_cd1_d, buffer_cd2_d
+        integer :: n2msub_Isub, h1psub, h1psub_Jsub
+        integer :: n1msub_Jsub
+        integer, dimension(:) :: ddtype_dble_C_in_C2I, ddtype_dble_I_in_C2I, ddtype_dble_J_in_C2J, &
+                                 ddtype_cplx_I_in_C2I, ddtype_cplx_C_in_C2I, &
+                                 ddtype_cplx_J_in_C2J, ddtype_cplx_C_in_C2J, &
+                                 ddtype_dble_C_in_C2J, countsendI, countdistI, countsendJ, countdistJ
+        
+        n2 = p_poi%n2; n1 = p_poi%n1;
+        ! Dongyun
+
         n1msub = p_poi%n1msub; n2msub = p_poi%n2msub; n3msub = p_poi%n3msub;
         n1m = p_poi%n1m; n2m = p_poi%n2m; 
         n1sub = p_poi%n1sub; n2sub = p_poi%n2sub;
@@ -378,106 +397,376 @@ contains
         call nvtxStartRange("Poisson-F_x")
 
         if    ((BCtype(1)=='N'.and.BCtype(2)=='N') .or. (BCtype(1)=='N'.and.BCtype(2)=='P')) then ! X-R2R
+            ! Dongyun
+            buffer_dp_size_d = n1m * n2msub_Isub * n3msub ! 이거 max로 꼭 수정
+            allocate( buffer_dp1_d( buffer_dp_size_d ) )
+            allocate( buffer_dp2_d( buffer_dp_size_d ) )
+            PRHS_Iline_d(1:n1m,1:n2msub_Isub,1:n3msub) => buffer_dp1_d
 
-            FFT_x2(1:n1msub    ,1:n2msub,1:n3msub) => Buff_1
-            call cuda_Poisson_DCT_f_pre (PRHS_d, FFT_x2, n1msub, n2msub, n3msub)
+            ierr = cudaStreamSynchronize()
+            call MPI_alltoallw(PRHS_d,                    &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_C_in_C2I,      &
+                               PRHS_Iline_d,              &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_I_in_C2I,      &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
+            ! x방향 DCT
+            ! 나중에 Buff_1 크기 줄여보는것도 고민해보기
+            FFT_x2(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_1
+            call cuda_Poisson_DCT_f_pre(PRHS_Iline_d, FFT_x2, n1m, n2msub_Isub, n3msub)
+            nullify(PRHS_Iline_d)
+            FFT_xc(1:n1m/2+1,1:n2msub_Isub,1:n3msub) => Buff_c1
 
-            FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            ! plan 재작성 (batch 개수 수정)
+            ierr = cufftPlanMany(plan_fft(1,1), 1, n1m, null(), 1, n1m, null(), 1, n1m/2+1, CUFFT_D2Z, n2msub_Isub*n3msub)
             ierr = cufftExecD2Z(plan_fft(1,1), FFT_x2, FFT_xc)
             nullify(FFT_x2)
-
-            FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_2
-            call cuda_Poisson_DCT_f_post(FFT_xc, FFT_x1, n1msub, n2msub, n3msub)
+            FFT_x1(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_2
+            call cuda_Poisson_DCT_f_post(FFT_xc, FFT_x1, n1m, n2msub_Isub, n3msub)
             nullify(FFT_xc)
+            ! 먼저 alltoall transpose하고 나서 cuda transpose
+            ! 마지막 저장 장소: FFT_x1(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_2
+            
+            ! I2C (FFT_x1 -> PRHS_d)
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_x1, &
+                               countsendI, &
+                               countdistI, &
+                               ddtype_dble_I_in_C2I, &
+                               PRHS_d, &
+                               countsendI, &
+                               countdistI, &
+                               ddtype_dble_C_in_C2I, &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
+            nullify(FFT_x1)
+            ! C2J (PRHS_d -> RHSIhat_Jline_d)
+            RHSIhat_Jline_d(1:n1msub_Jsub, 1:n2m,1:n3msub) => buffer_dp2_d
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(PRHS_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_C_in_C2J, &
+                               RHSIhat_Jline_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_J_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
+            ! 이제 RHSIhat_Jline_d <- 여기에 들어가있음
+            ! Dongyun
+            
+            ! x방향 DCT
+            ! FFT_x2(1:n1msub    ,1:n2msub,1:n3msub) => Buff_1
+            ! call cuda_Poisson_DCT_f_pre (PRHS_d, &! Input array
+            !                              FFT_x2, &
+            !                              n1msub, &
+            !                              n2msub, &
+            !                              n3msub)
+
+            ! FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            ! ierr = cufftExecD2Z(plan_fft(1,1), FFT_x2, FFT_xc)
+            ! nullify(FFT_x2)
+
+            ! FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_2
+            ! call cuda_Poisson_DCT_f_post(FFT_xc, FFT_x1, n1msub, n2msub, n3msub)
+            ! nullify(FFT_xc)
 
         elseif(BCtype(1)=='P'.and.BCtype(2)=='N') then ! Y-R2R
-
-            FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_2
-            call cuda_Poisson_transpose_b_real(PRHS_d, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
-            
-            FFT_y2(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
-            call cuda_Poisson_DCT_f_pre (FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            ! Dongyun
+            buffer_dp_size_d = n1m * n2msub_Isub * n3msub
+            allocate( buffer_dp1_d( buffer_dp_size_d ) )
+            allocate( buffer_dp2_d( buffer_dp_size_d ) )
+            ! C2J (PRHS_d -> PRHS_Jline_d)
+            PRHS_Jline_d(1:n1msub_Jsub, 1:n2m, 1:n3msub) => buffer_dp1_d
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(PRHS_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_C_in_C2J, &
+                               PRHS_Jline_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_J_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
+            ! y 방향 DCT
+            FFT_y1(1:n2m, 1:n3msub, 1:n1msub_Jsub) => Buff_2
+            call cuda_Poisson_transpose_b_real(PRHS_Jline_d, FFT_y1, n2m, n3msub, n1msub_Jsub, real(1.0,rp))
+            FFT_y2(1:n2m, 1:n3msub, 1:n1msub_Jsub) => Buff_1
+            call cuda_Poisson_DCT_f_pre (FFT_y1, FFT_y2, n2m, n3msub, n1msub_Jsub)
             nullify(FFT_y1)
 
-            FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
+            FFT_yc(1:n2m/2+1,1:n3msub,1:n1msub_Jsub) => Buff_c1
+            ierr = cufftPlanMany(plan_fft(1,2), &         ! 
+                                 1,             &         ! 
+                                 p_poi%n2m,     &         ! idist
+                                 null(),        &         ! 
+                                 1,             &         ! istride
+                                 p_poi%n2m,     &
+                                 null(),        &
+                                 1,             &
+                                 p_poi%n2m/2+1, &
+                                 CUFFT_D2Z,     &
+                                 n1msub_Jsub*n3msub)
             ierr = cufftExecD2Z(plan_fft(1,2), FFT_y2, FFT_yc)
             nullify(FFT_y2)
-
-            FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_2
-            call cuda_Poisson_DCT_f_post(FFT_yc, FFT_y1, n2msub, n3msub, n1msub)
+            
+            FFT_y1(1:n2m    ,1:n3msub,1:n1msub_Jsub) => Buff_2
+            call cuda_Poisson_DCT_f_post(FFT_yc, FFT_y1, n2m, n3msub, n1msub_Jsub)
             nullify(FFT_yc)
+            nullify(PRHS_Jline_d)
+            ! FFT_y1에 있음
+            ! Dongyun
+
+            ! y 방향 DCT
+            ! FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_2
+            ! ijk -> kij transpose
+            ! call cuda_Poisson_transpose_b_real(PRHS_d, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
+            
+            ! FFT_y2(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
+            ! call cuda_Poisson_DCT_f_pre (FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            ! nullify(FFT_y1)
+
+            ! FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
+            ! ierr = cufftExecD2Z(plan_fft(1,2), FFT_y2, FFT_yc)
+            ! nullify(FFT_y2)
+
+            ! FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_2
+            ! call cuda_Poisson_DCT_f_post(FFT_yc, FFT_y1, n2msub, n3msub, n1msub)
+            ! nullify(FFT_yc)
 
         elseif(BCtype(1)=='P'.and.BCtype(2)=='P') then ! X-R2C
+            ! Dongyun
+            ! C2I
+            ! x 방향 FFT
+            buffer_dp_size_d = n1m * n2msub_Isub * n3msub ! 이거 max로 꼭 수정
+            allocate( buffer_dp1_d( buffer_dp_size_d ) )
+            allocate( buffer_dp2_d( buffer_dp_size_d ) )
+            PRHS_Iline_d(1:n1m,1:n2msub_Isub,1:n3msub) => buffer_dp1_d
+            ierr = cudaStreamSynchronize()
+            call MPI_alltoallw(PRHS_d,                    &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_C_in_C2I,      &
+                               PRHS_Iline_d,              &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_I_in_C2I,      &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
+            FFT_x1(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_1
+            call dcopy(n1m*n2msub_Isub*n3msub, PRHS_Iline_d, 1, FFT_x1, 1)  
 
-            FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_1
-            call dcopy(n1msub*n2msub*n3msub, PRHS_d, 1, FFT_x1, 1)  
-
-            FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            FFT_xc(1:n1m/2+1,1:n2msub_Isub,1:n3msub) => Buff_c1
+            ! plan 재작성 (batch 개수 수정)
+            ierr = cufftPlanMany(plan_fft(1,1), 1, n1m, null(), 1, n1m, null(), 1, n1m/2+1, CUFFT_D2Z, n2msub_Isub*n3msub)
             ierr = cufftExecD2Z(plan_fft(1,1), FFT_x1, FFT_xc)
             nullify(FFT_x1)
-    
+            ! Dongyun
+
+            ! FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_1
+            ! call dcopy(n1msub*n2msub*n3msub, PRHS_d, 1, FFT_x1, 1)  
+
+            ! FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            ! ierr = cufftExecD2Z(plan_fft(1,1), FFT_x1, FFT_xc)
+            ! nullify(FFT_x1)
         endif
 
         call nvtxEndRange
         call nvtxStartRange("Poisson-F_y")
 
         if    (BCtype(1)=='N'.and.BCtype(2)=='N') then ! Y-R2R
+            ! Dongyun
+            ! 이제 RHSIhat_Jline_d <- 여기에 들어가있음
+            ! RHSIhat_Jline_d -> FFT_y1
+            FFT_y1(1:n2m,1:n3msub, 1:n1msub_Jsub) => Buff_1
+            call cuda_Poisson_transpose_b(RHSIhat_Jline_d, FFT_y1, n2m, n3msub, n1msub_Jsub, real(1.0,rp))
 
-            FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
-            call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
-            nullify(FFT_x1)
-
-            FFT_y2(1:n2msub    ,1:n3msub,1:n1msub) => Buff_2
-            call cuda_Poisson_DCT_f_pre (FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            ! Buff_2도 줄이는거 고민좀
+            ! FFT_y1 -> FFT_y2
+            FFT_y2(1:n2m,1:n3msub, 1:n1msub_Jsub) => Buff_2
+            call cuda_Poisson_DCT_f_pre (FFT_y1, FFT_y2, n2m, n3msub, n1msub_Jsub)
             nullify(FFT_y1)
 
-            FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
+            FFT_yc(1:n2m/2+1,1:n3msub,1:n1msub_Jsub) => Buff_c1
+            ! Plan 재작성
+            ierr = cufftPlanMany(plan_fft(1,2), 1, n2m, null(), 1, n2m, null(), 1, n2m/2+1, CUFFT_D2Z, n1msub_Jsub * n3msub)	
+            ! yfft (FFT_y2 -> FFT_yc)
             ierr = cufftExecD2Z(plan_fft(1,2), FFT_y2, FFT_yc)
             nullify(FFT_y2)
 
-            FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
+            FFT_y1(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_1
+            ! FFT_yc -> FFT_y1
             call cuda_Poisson_DCT_f_post(FFT_yc, FFT_y1, n2msub, n3msub, n1msub)
             nullify(FFT_yc)
 
-            FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_2
-            call cuda_Poisson_transpose_f(FFT_y1, FFT_x1, n1msub, n2msub, n3msub, real(1.0,rp))
+            FFT_x1(1:n1msub_Jsub,1:n2m,1:n3msub) => Buff_2
+            ! FFT_y1 -> FFT_x1
+            call cuda_Poisson_transpose_f(FFT_y1, FFT_x1, n1msub_Jsub, n2m, n3msub, real(1.0,rp))
             nullify(FFT_y1)
+            ! Dongyun
+            
+            ! FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
+            ! call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
+            ! nullify(FFT_x1)
+
+            ! FFT_y2(1:n2msub    ,1:n3msub,1:n1msub) => Buff_2
+            ! call cuda_Poisson_DCT_f_pre (FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            ! nullify(FFT_y1)
+
+            ! FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
+            ! ierr = cufftExecD2Z(plan_fft(1,2), FFT_y2, FFT_yc)
+            ! nullify(FFT_y2)
+
+            ! FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
+            ! call cuda_Poisson_DCT_f_post(FFT_yc, FFT_y1, n2msub, n3msub, n1msub)
+            ! nullify(FFT_yc)
+
+            ! FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_2
+            ! call cuda_Poisson_transpose_f(FFT_y1, FFT_x1, n1msub, n2msub, n3msub, real(1.0,rp))
+            ! nullify(FFT_y1)
+            ! Last : FFT_x1 
 
         elseif(BCtype(1)=='N'.and.BCtype(2)=='P') then ! Y-R2C
+            ! Dongyun
+            ! 이제 RHSIhat_Jline_d <- 여기에 들어가있음
+            ! RHSIhat_Jline_d -> FFT_y1
+            FFT_y1(1:n2m,1:n3msub, 1:n1msub_Jsub) => Buff_1
+            call cuda_Poisson_transpose_b(RHSIhat_Jline_d, FFT_y1, n2m, n3msub, n1msub_Jsub, real(1.0,rp))
 
-            FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
-            call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
-            nullify(FFT_x1)
-
-            FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
-            ierr = cufftExecD2Z(plan_fft(1,2), FFT_y1, FFT_yc)
+            FFT_yc(1:n2m/2+1,1:n3msub,1:n1msub_Jsub) => Buff_c1
+            ierr = cufftPlanMany(plan_fft(1,2), 1, n2m, null(), 1, n2m, null(), 1, n2m/2+1, CUFFT_D2Z, n1msub_Jsub * n3msub)	
             nullify(FFT_y1)
 
-            FFT_xc(1:n1msub,1:n2msub/2+1,1:n3msub) => Buff_c2
-            call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, n1msub, n2msub/2+1, n3msub, real(1.0,rp))
+            FFT_xc(1:n1msub_Jsub,1:n2m/2+1,1:n3msub) => Buff_c2
+            call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, n1msub_Jsub, n2m/2+1, n3msub, real(1.0,rp))
             nullify(FFT_yc)
+            ! Last : FFT_xc
+            ! Dongyun
+
+            ! I2C (FFT_1 -> PRHS_d)
+            ! FFT_y1(1:n2msub    ,1:n3msub,1:n1msub) => Buff_1
+            ! call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
+            ! nullify(FFT_x1)
+
+            ! FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
+            ! ierr = cufftExecD2Z(plan_fft(1,2), FFT_y1, FFT_yc)
+            ! nullify(FFT_y1)
+
+            ! FFT_xc(1:n1msub,1:n2msub/2+1,1:n3msub) => Buff_c2
+            ! call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, n1msub, n2msub/2+1, n3msub, real(1.0,rp))
+            ! nullify(FFT_yc)
 
         elseif(BCtype(1)=='P'.and.BCtype(2)=='N') then ! X-R2C
-
-            FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_1
-            call cuda_Poisson_transpose_f(FFT_y1, FFT_x1, n1msub, n2msub, n3msub, real(1.0,rp))
+            ! Dongyun
+            ! FFT_y1에 있음
+            ! 먼저 transpose하고 ijk로 정렬한다음에 alltoall을 해야함!!
+            FFT_x1(1:n1msub_Jsub    ,1:n2m,1:n3msub) => Buff_1
+            call cuda_Poisson_transpose_f(FFT_y1, FFT_x1, n1msub_Jsub, n2m, n3msub, real(1.0,rp))
             nullify(FFT_y1)
 
-            FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
-            ierr = cufftExecD2Z(plan_fft(1,1), FFT_x1, FFT_xc)
+            ! 이제 J2C -> C2I를 해야 함
+            PRHS_Iline_d(1:n1m,1:n2msub_Isub,1:n3msub) => buffer_dp1_d
+            ! J2C (FFT_x1 -> PRHS_d)
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_x1, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_J_in_C2J, &
+                               PRHS_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_C_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
+            ! C2I (PRHS_d -> PRHS_Iline_d)
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(PRHS_d,                    &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_C_in_C2I,      &
+                               PRHS_Iline_d,              &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_I_in_C2I,      &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
+            FFT_xc(1:n1m/2+1,1:n2msub_Isub,1:n3msub) => Buff_c1
+            ! plan다시만들어
+            ierr = cufftPlanMany(plan_fft(1,1), 1, n1m, null(), 1, n1m, null(), 1, int(n1m/2) + 1, CUFFT_D2Z, n2msub_Isub*n3msub)
+            ierr = cufftExecD2Z(plan_fft(1,1), PRHS_Iline_d, FFT_xc)
             nullify(FFT_x1)
+            nullify(PRHS_Iline_d)
+            ! Dongyun
+
+            ! FFT_x1(1:n1msub    ,1:n2msub,1:n3msub) => Buff_1
+            
+            ! FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            ! ierr = cufftExecD2Z(plan_fft(1,1), FFT_x1, FFT_xc)
+            ! nullify(FFT_x1)
+            ! Last : FFT_xc
             
         elseif(BCtype(1)=='P'.and.BCtype(2)=='P') then ! Y-C2C
+            ! Dongyun
+            ! complex I2C -> C2J (FFT_xc -> PRHS_cplx_d)
+            ! i방향 n1m이 아니라 h1p인거 꼭 주의
+            buffer_cd_size_d = h1psub * n2msub * n3msub
+            allocate( buffer_cd1_d( buffer_cd_size_d ) )
+            PRHS_cplx_d(1:h1psub, 1:n2msub, 1:n3msub) => buffer_cd1_d
 
-            FFT_yc(1:n2msub,1:n3msub,1:n1msub/2+1) => Buff_c2
-            call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2msub, n3msub, n1msub/2+1, real(1.0,rp))
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_xc, &
+                               countsendI, &
+                               countdistI, &
+                               ddtype_cplx_I_in_C2I, &
+                               PRHS_cplx_d, &
+                               countsendI, &
+                               countdistI, &
+                               ddtype_cplx_C_in_C2I, &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
             nullify(FFT_xc)
+            FFT_xc(1:h1psub_Jsub,1:n2m,1:n3msub) => Buff_c1
 
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(PRHS_cplx_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_cplx_C_in_C2J, &
+                               FFT_xc, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_cplx_J_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
+            nullify(PRHS_cplx_d)
+            FFT_yc(1:n2m,1:n3msub,1:h1psub_Jsub) => Buff_c2
+            call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2m, n3msub, h1psub_Jsub, real(1.0,rp))
+            nullify(FFT_xc)
+            ! plan 다시 만들기
+            ierr = cufftPlanMany(plan_fft(1,2), 1, n2m, null(), 1, n2m, null(), 1, n2m, CUFFT_Z2Z, h1psub_Jsub*n3msub)	
             ierr = cufftExecZ2Z(plan_fft(1,2), FFT_yc, FFT_yc, CUFFT_FORWARD)
 
-            FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
-            call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, n1msub/2+1, n2msub, n3msub, real(1.0,rp))
+            FFT_xc(1:h1psub_Jsub,1:n2m,1:n3msub) => Buff_c1
+            call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, h1psub_Jsub, n2m, n3msub, real(1.0,rp))
             nullify(FFT_yc)
+            ! Dongyun
+
+            ! FFT_yc(1:n2msub,1:n3msub,1:n1msub/2+1) => Buff_c2
+
+            ! call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2msub, n3msub, n1msub/2+1, real(1.0,rp))
+            ! nullify(FFT_xc)
+            ! ierr = cufftExecZ2Z(plan_fft(1,2), FFT_yc, FFT_yc, CUFFT_FORWARD)
+
+            ! FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            ! call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, n1msub/2+1, n2msub, n3msub, real(1.0,rp))
+            ! nullify(FFT_yc)
+            ! Last : FFT_xc
 
         endif
 
@@ -495,123 +784,348 @@ contains
         call nvtxStartRange("Poisson-B_y")
 
         if(BCtype(1)=='N'.and.BCtype(2)=='N') then
-
-            FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
-            call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
+            ! Dongyun
+            FFT_y1(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_1
+            call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2m, n3msub, n1msub_Jsub, real(1.0,rp))
             nullify(FFT_x1)
 
-            FFT_yc(1:(n2msub)/2+1,1:n3msub,1:n1msub) => Buff_c1
-            FFT_y3(1:n2sub       ,1:n3msub,1:n1msub) => Buff_2
+            FFT_yc(1:(n2m)/2+1,1:n3msub,1:n1msub_Jsub) => Buff_c1
+            FFT_y3(1:n2       ,1:n3msub,1:n1msub_Jsub) => Buff_2
             call cuda_Poisson_DCT_b_pre(FFT_y1, FFT_y3, FFT_yc, n2msub, n3msub, n1msub)
             nullify(FFT_y3, FFT_y1)
 
-            FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
+            FFT_y1(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_1
+            ! Plan 다시만들기
+            ierr = cufftPlanMany(plan_fft(2,2), 1, n2m, null(), 1, n2m/2+1, null(), 1, n2m, CUFFT_Z2D, n3msub*n1msub_Jsub)	
             ierr = cufftExecZ2D(plan_fft(2,2), FFT_yc, FFT_y1)
             nullify(FFT_yc)
 
-            FFT_y2(1:n2msub,1:n3msub,1:n1msub) => Buff_2
-            call cuda_Poisson_DCT_b_post(FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            FFT_y2(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_2
+            call cuda_Poisson_DCT_b_post(FFT_y1, FFT_y2, n2m, n3msub, n1msub_Jsub)
             nullify(FFT_y1)
 
-            FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
-            call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub, n2msub, n3msub, real(1,rp)/real(2*n2m,rp))
+            FFT_x1(1:n1msub_Jsub,1:n2m,1:n3msub) => Buff_1
+            call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub_Jsub, n2m, n3msub, real(1,rp)/real(2*n2m,rp))
             nullify(FFT_y2)
+            ! Dongyun
+
+            ! FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
+            ! call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1.0,rp))
+            ! nullify(FFT_x1)
+
+            ! FFT_yc(1:(n2msub)/2+1,1:n3msub,1:n1msub) => Buff_c1
+            ! FFT_y3(1:n2sub       ,1:n3msub,1:n1msub) => Buff_2
+            ! call cuda_Poisson_DCT_b_pre(FFT_y1, FFT_y3, FFT_yc, n2msub, n3msub, n1msub)
+            ! nullify(FFT_y3, FFT_y1)
+
+            ! FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
+            ! ierr = cufftExecZ2D(plan_fft(2,2), FFT_yc, FFT_y1)
+            ! nullify(FFT_yc)
+
+            ! FFT_y2(1:n2msub,1:n3msub,1:n1msub) => Buff_2
+            ! call cuda_Poisson_DCT_b_post(FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            ! nullify(FFT_y1)
+
+            ! FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
+            ! call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub, n2msub, n3msub, real(1,rp)/real(2*n2m,rp))
+            ! nullify(FFT_y2)
 
         elseif(BCtype(1)=='N'.and.BCtype(2)=='P') then ! Y-C2R
-
-            FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
-            call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2msub/2+1, n3msub, n1msub, real(1.0,rp))
+            ! Dongyun
+            FFT_yc(1:n2m/2+1,1:n3msub,1:n1msub_Jsub) => Buff_c1
+            call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2m/2+1, n3msub, n1msub_Jsub, real(1.0,rp))
             nullify(FFT_xc)
 
-            FFT_y2(1:n2msub,1:n3msub,1:n1msub) => Buff_2
+            FFT_y2(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_2
+            ierr = cufftPlanMany(plan_fft(2,2), 1, n2m, null(), 1, n2m/2+1, null(), 1, n2m, CUFFT_Z2D, n3msub*n1msub_Jsub)	
             ierr = cufftExecZ2D(plan_fft(2,2), FFT_yc, FFT_y2)
             nullify(FFT_yc)
 
-            FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
-            call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub, n2msub, n3msub, real(1,rp)/real(n2m,rp))
+            FFT_x1(1:n1msub_Jsub,1:n2m,1:n3msub) => Buff_1
+            call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub_Jsub, n2m, n3msub, real(1,rp)/real(n2m,rp))
             nullify(FFT_y2)
+            ! Dongyun
+            
+            ! FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
+            ! call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2msub/2+1, n3msub, n1msub, real(1.0,rp))
+            ! nullify(FFT_xc)
+
+            ! FFT_y2(1:n2msub,1:n3msub,1:n1msub) => Buff_2
+            ! ierr = cufftExecZ2D(plan_fft(2,2), FFT_yc, FFT_y2)
+            ! nullify(FFT_yc)
+
+            ! FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
+            ! call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub, n2msub, n3msub, real(1,rp)/real(n2m,rp))
+            ! nullify(FFT_y2)
 
         elseif(BCtype(1)=='P'.and.BCtype(2)=='N') then ! X-C2R
-
-            FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_2
+            ! Dongyun
+            FFT_x1(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_1
+            ierr = cufftPlanMany(plan_fft(2,1), 1, n1m, null(), 1, int(n1m/2)+1, null(), 1, n1m, CUFFT_Z2D, n2msub_Isub*n3msub)	
             ierr = cufftExecZ2D(plan_fft(2,1), FFT_xc, FFT_x1)
             nullify(FFT_xc)
 
-            FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
-            call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1,rp)/real(n1m,rp))
+            ! 여기서 I2C, C2J까지 다 해놓고 TRANSPOSE를 해야합니다...
+            FFT_x2(1:n1msub_Jsub, 1:n2m, 1:n3msub) => Buff_2
+            ! 여기서 다시 I2C
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_x1,                    &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_I_in_C2I,      &
+                               PRHS_d,              &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_C_in_C2I,      &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
+            ! C2J
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(PRHS_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_C_in_C2J, &
+                               FFT_x2, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_J_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
             nullify(FFT_x1)
+            FFT_y1(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_1
+            call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2m, n3msub, n1msub_Jsub, real(1,rp)/real(n1m,rp))
+            ! Dongyun
+
+            ! FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_2
+            ! ierr = cufftExecZ2D(plan_fft(2,1), FFT_xc, FFT_x1)
+            ! nullify(FFT_xc)
+
+            ! FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
+            ! call cuda_Poisson_transpose_b(FFT_x1, FFT_y1, n2msub, n3msub, n1msub, real(1,rp)/real(n1m,rp))
+            ! nullify(FFT_x1)
 
         elseif(BCtype(1)=='P'.and.BCtype(2)=='P') then ! Y-C2C
-
-            FFT_yc(1:n2msub,1:n3msub,1:n1msub/2+1) => Buff_c2
-            call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2msub, n3msub, n1msub/2+1, real(1.0,rp))
+            ! Dongyun
+            FFT_yc(1:n2m,1:n3msub,1:h1psub_Jsub) => Buff_c2
+            call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2m, n3msub, h1psub_Jsub, real(1.0,rp))
             nullify(FFT_xc)
 
+            ierr = cufftPlanMany(plan_fft(2,2), 1, n2m, null(), 1, n2m, null(), 1, n2m, CUFFT_Z2Z, n3msub*h1psub_Jsub)
             ierr = cufftExecZ2Z(plan_fft(2,2), FFT_yc, FFT_yc, CUFFT_INVERSE)
 
-            FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
-            call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, n1msub/2+1, n2msub, n3msub, real(1,rp)/real(n2m,rp))
+            FFT_xc(1:h1psub_Jsub,1:n2m,1:n3msub) => Buff_c1
+            call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, h1psub_Jsub, n2m, n3msub, real(1,rp)/real(n2m,rp))
             nullify(FFT_yc)
+            ! Dongyun
 
+            ! FFT_yc(1:n2msub,1:n3msub,1:n1msub/2+1) => Buff_c2
+            ! call cuda_Poisson_transpose_b(FFT_xc, FFT_yc, n2msub, n3msub, n1msub/2+1, real(1.0,rp))
+            ! nullify(FFT_xc)
+            ! ierr = cufftExecZ2Z(plan_fft(2,2), FFT_yc, FFT_yc, CUFFT_INVERSE)
+
+            ! FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            ! call cuda_Poisson_transpose_f(FFT_yc, FFT_xc, n1msub/2+1, n2msub, n3msub, real(1,rp)/real(n2m,rp))
+            ! nullify(FFT_yc)
         endif
 
         call nvtxEndRange
-
         call nvtxStartRange("Poisson-B_x")
 
         if((BCtype(1)=='N'.and.BCtype(2)=='N') .or. (BCtype(1)=='N'.and.BCtype(2)=='P')) then ! X-R2R
-            FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
-            FFT_x3(1:n1sub     ,1:n2msub,1:n3msub) => Buff_2
-            call cuda_Poisson_DCT_b_pre(FFT_x1, FFT_x3, FFT_xc, n1msub, n2msub, n3msub)
+            ! Dongyun
+            ! NP : FFT_x1(1:n1msub_Jsub,1:n2m,1:n3msub)
+            ! NN : FFT_x1(1:n1msub_Jsub,1:n2m,1:n3msub)
+            ! 둘이 똑같음
+            ! 일단 J2C, C2I (double) 해야함
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_x1, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_J_in_C2J, &
+                               PRHS_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_C_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
+            PRHS_Iline_d(1:n1m,1:n2msub_Isub,1:n3msub) => buffer_dp1_d
+            ! C2I (PRHS_d -> PRHS_Iline_d)
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(PRHS_d,                    &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_C_in_C2I,      &
+                               PRHS_Iline_d,              &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_I_in_C2I,      &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
+            FFT_xc(1:n1m/2+1,1:n2msub_Isub,1:n3msub) => Buff_c1
+            FFT_x3(1:n1     ,1:n2msub_Isub,1:n3msub) => Buff_2
+            call cuda_Poisson_DCT_b_pre(FFT_x1, FFT_x3, FFT_xc, n1m, n2msub_Isub, n3msub)
             nullify(FFT_x1, FFT_x3)
 
-            FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
+            FFT_x1(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_1
+            ierr = cufftPlanMany(plan_fft(2,1), 1, n1m, null(), 1, int(n1m/2)+1, null(), 1, n1m, CUFFT_Z2D, n2msub_Isub*n3msub)	
             ierr = cufftExecZ2D(plan_fft(2,1), FFT_xc, FFT_x1)
             nullify(FFT_xc)
-
-            FFT_x2(1:n1msub,1:n2msub,1:n3msub) => Buff_2
-            call cuda_Poisson_DCT_b_post(FFT_x1, FFT_x2, n1msub, n2msub, n3msub)
+            
+            FFT_x2(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_2
+            call cuda_Poisson_DCT_b_post(FFT_x1, FFT_x2, n1m, n2msub_Isub, n3msub)
             nullify(FFT_x1)
-
-            call dcopy(n1msub*n2msub*n3msub, FFT_x2, 1, PRHS_d, 1)  
+            ! 여기서 다시 I2C
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_x2,                    &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_I_in_C2I,      &
+                               PRHS_d,              &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_C_in_C2I,      &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
             nullify(FFT_x2)
-
             call dscal(n1msub*n2msub*n3msub, real(1,rp)/real(2*n1m,rp), PRHS_d, 1)
 
-        elseif(BCtype(1)=='P'.and.BCtype(2)=='N') then ! Y-R2R
+            ! Dongyun
             
-            FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
-            FFT_y3(1:n2sub     ,1:n3msub,1:n1msub) => Buff_2
-            call cuda_Poisson_DCT_b_pre(FFT_y1, FFT_y3, FFT_yc, n2msub, n3msub, n1msub)
-            nullify(FFT_y1, FFT_y3)
+            ! FFT_xc(1:n1msub/2+1,1:n2msub,1:n3msub) => Buff_c1
+            ! FFT_x3(1:n1sub     ,1:n2msub,1:n3msub) => Buff_2
+            ! call cuda_Poisson_DCT_b_pre(FFT_x1, FFT_x3, FFT_xc, n1msub, n2msub, n3msub)
+            ! nullify(FFT_x1, FFT_x3)
 
-            FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
+            ! FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
+            ! ierr = cufftExecZ2D(plan_fft(2,1), FFT_xc, FFT_x1)
+            ! nullify(FFT_xc)
+
+            ! FFT_x2(1:n1msub,1:n2msub,1:n3msub) => Buff_2
+            ! call cuda_Poisson_DCT_b_post(FFT_x1, FFT_x2, n1msub, n2msub, n3msub)
+            ! nullify(FFT_x1)
+
+            ! call dcopy(n1msub*n2msub*n3msub, FFT_x2, 1, PRHS_d, 1)  
+            ! nullify(FFT_x2)
+
+            ! call dscal(n1msub*n2msub*n3msub, real(1,rp)/real(2*n1m,rp), PRHS_d, 1)
+
+        elseif(BCtype(1)=='P'.and.BCtype(2)=='N') then ! Y-R2R
+            ! Dongyun
+            ! FFT_y1(1:n2m,1:n3msub,1:n1msub_Jsub)
+            FFT_yc(1:n2m/2+1,1:n3msub,1:n1msub_Jsub) => Buff_c1
+            FFT_y3(1:n2     ,1:n3msub,1:n1msub_Jsub) => Buff_2
+            call cuda_Poisson_DCT_b_pre(FFT_y1, FFT_y3, FFT_yc, n2m, n3msub, n1msub_Jsub)
+            nullify(FFT_y1, FFT_y3)
+            
+            FFT_y1(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_1
             ierr = cufftExecZ2D(plan_fft(2,2), FFT_yc, FFT_y1)
             nullify(FFT_yc)
 
-            FFT_y2(1:n2msub,1:n3msub,1:n1msub) => Buff_2
-            call cuda_Poisson_DCT_b_post(FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            FFT_y2(1:n2m,1:n3msub,1:n1msub_Jsub) => Buff_2
+            call cuda_Poisson_DCT_b_post(FFT_y1, FFT_y2, n2m, n3msub, n1msub_Jsub)
             nullify(FFT_y1)
 
-            FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
-            call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub, n2msub, n3msub, real(1.0,rp))
+            FFT_x1(1:n1msub_Jsub,1:n2m,1:n3msub) => Buff_1
+            call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub_Jsub, n2m, n3msub, real(1.0,rp))
             nullify(FFT_y2)
 
-            call dcopy(n1msub*n2msub*n3msub, FFT_x1, 1, PRHS_d, 1)
+            ! 이제 J2C
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_x1, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_J_in_C2J, &
+                               PRHS_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_dble_C_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
             nullify(FFT_x1)
-
             call dscal(n1msub*n2msub*n3msub, real(1,rp)/real(2*n2m,rp), PRHS_d, 1)
+            ! Dongyun
+
+            ! FFT_yc(1:n2msub/2+1,1:n3msub,1:n1msub) => Buff_c1
+            ! FFT_y3(1:n2sub     ,1:n3msub,1:n1msub) => Buff_2
+            ! call cuda_Poisson_DCT_b_pre(FFT_y1, FFT_y3, FFT_yc, n2msub, n3msub, n1msub)
+            ! nullify(FFT_y1, FFT_y3)
+
+            ! FFT_y1(1:n2msub,1:n3msub,1:n1msub) => Buff_1
+            ! ierr = cufftExecZ2D(plan_fft(2,2), FFT_yc, FFT_y1)
+            ! nullify(FFT_yc)
+
+            ! FFT_y2(1:n2msub,1:n3msub,1:n1msub) => Buff_2
+            ! call cuda_Poisson_DCT_b_post(FFT_y1, FFT_y2, n2msub, n3msub, n1msub)
+            ! nullify(FFT_y1)
+
+            ! FFT_x1(1:n1msub,1:n2msub,1:n3msub) => Buff_1
+            ! call cuda_Poisson_transpose_f(FFT_y2, FFT_x1, n1msub, n2msub, n3msub, real(1.0,rp))
+            ! nullify(FFT_y2)
+
+            ! call dcopy(n1msub*n2msub*n3msub, FFT_x1, 1, PRHS_d, 1)
+            ! nullify(FFT_x1)
+
+            ! call dscal(n1msub*n2msub*n3msub, real(1,rp)/real(2*n2m,rp), PRHS_d, 1)
 
         elseif(BCtype(1)=='P'.and.BCtype(2)=='P') then ! X-C2R
-
-            FFT_x1(1:n1msub+1,1:n2msub,1:n3msub) => Buff_1
+            ! Dongyun
+            ! J2C, C2I
+            ! FFT_xc(1:h1psub_Jsub,1:n2m,1:n3msub) 
+            PRHS_cplx_d(1:h1psub, 1:n2msub, 1:n3msub) => buffer_cd1_d
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(FFT_xc, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_cplx_J_in_C2J, &
+                               PRHS_cplx_d, &
+                               countsendJ, &
+                               countdistJ, &
+                               ddtype_cplx_C_in_C2J, &
+                               p_poi%comm_1d_x2%mpi_comm, &
+                               ierr)
+            nullify(FFT_xc)
+            FFT_xc(1:n1m/2+1,1:n2msub_Isub,1:n3msub) => Buff_c1
+            ierr = cudaStreamSynchronize()
+            call MPI_Alltoallw(PRHS_cplx_d, &
+                               countsendI, &
+                               countdistI, &
+                               ddtype_cplx_C_in_C2I, &
+                               FFT_x1, &
+                               countsendI, &
+                               countdistI, &
+                               ddtype_cplx_I_in_C2I, &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)    
+            nullify(PRHS_cplx_d)
+            FFT_x1(1:n1m,1:n2msub_Isub,1:n3msub) => Buff_1
+            ierr = cufftPlanMany(plan_fft(2,1), 1, n1m, null(), 1, idist, null(), 1, n1m, CUFFT_Z2D, n2msub_Isub*n3msub)	
             ierr = cufftExecZ2D(plan_fft(2,1), FFT_xc, FFT_x1)
             nullify(FFT_xc)
 
-            call dcopy(n1msub*n2msub*n3msub, FFT_x1, 1, PRHS_d, 1)
+            ! 다시 I2C (double)
+            ierr = cudaStreamSynchronize()
+            call MPI_alltoallw(FFT_x1,                    &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_I_in_C2I,      &
+                               PRHS_d,              &
+                               countsendI,                &
+                               countdistI,                &
+                               ddtype_dble_C_in_C2I,      &
+                               p_poi%comm_1d_x1%mpi_comm, &
+                               ierr)
             nullify(FFT_x1)
-
             call dscal(n1msub*n2msub*n3msub, real(1,rp)/real(n1m,rp), PRHS_d, 1)
+            ! Dongyun
+
+            ! FFT_x1(1:n1msub+1,1:n2msub,1:n3msub) => Buff_1
+            ! ierr = cufftExecZ2D(plan_fft(2,1), FFT_xc, FFT_x1)
+            ! nullify(FFT_xc)
+
+            ! call dcopy(n1msub*n2msub*n3msub, FFT_x1, 1, PRHS_d, 1)
+            ! nullify(FFT_x1)
+
+            ! call dscal(n1msub*n2msub*n3msub, real(1,rp)/real(n1m,rp), PRHS_d, 1)
 
         endif
 
@@ -621,6 +1135,11 @@ contains
         call cuda_neumann_BC(P_d, dmx1_d, dmx2_d, dmx3_d)
         call cuda_ghostcell_update(P_d)
 
+        ! Dongyun
+        deallocate (buffer_dp1_d)
+        deallocate (buffer_dp2_d)
+        ! Dongyun
+        
         call nvtxEndRange
 
     end subroutine cuda_Poisson_FFT_1D
