@@ -89,6 +89,19 @@ contains
 
 !     end subroutine cuda_pressure_RHS_kernel
 
+    !>
+    !> @brief   Right-hand side of the analytic verification problem.
+    !> @details The test solution is p = cos(PI*x)cos(PI*y)cos(PI*z), i.e. physical wavenumber
+    !>          PI in every direction.  The coefficient is the eigenvalue of the *discrete*
+    !>          second-order Laplacian, -sum 4*sin(PI*h/2)^2/h^2, not the continuous -3*PI^2.
+    !>          cos*cos*cos is then an exact eigenvector of the discretised problem, so a correct
+    !>          solve reproduces it to machine precision.  The continuous coefficient would leave
+    !>          an O(h^2) gap (1.8e-5 at 256^3) and blur the correctness check.
+    !>
+    !>          One expression covers all three directions: the periodic cell-centred modes in x
+    !>          and y and the Neumann cell-centred mode in z share -4*sin(PI*h/2)^2/h^2.  The
+    !>          spacings come from the face coordinates, so no global grid data is needed here.
+    !>
     attributes(global) subroutine cuda_pressure_RHS_kernel(prhs_d, n1, n2, n3)
         use cuda_subdomain, only : x1_d, x2_d, x3_d
         implicit none
@@ -98,6 +111,7 @@ contains
 
         integer :: i, j, k
         real(rp) :: xc, yc, zc
+        real(rp) :: hx, hy, hz, rhs_coef
 
         i = (blockidx%x-1) * blockdim%x + threadidx%x
         j = (blockidx%y-1) * blockdim%y + threadidx%y
@@ -110,9 +124,18 @@ contains
             yc = real(0.5,rp) * (x2_d(j) + x2_d(j+1))
             zc = real(0.5,rp) * (x3_d(k) + x3_d(k+1))
 
-            prhs_d(i,j,k) = -real(3.0,rp)*PI*PI  &
-                            * cos(PI*xc)          &
-                            * cos(PI*yc)          &
+            ! Cell sizes -> discrete Laplacian eigenvalue for wavenumber PI
+            hx = x1_d(i+1) - x1_d(i)
+            hy = x2_d(j+1) - x2_d(j)
+            hz = x3_d(k+1) - x3_d(k)
+
+            rhs_coef = -( real(4.0,rp)*sin(real(0.5,rp)*PI*hx)**2/(hx*hx)    &
+                        + real(4.0,rp)*sin(real(0.5,rp)*PI*hy)**2/(hy*hy)    &
+                        + real(4.0,rp)*sin(real(0.5,rp)*PI*hz)**2/(hz*hz) )
+
+            prhs_d(i,j,k) = rhs_coef      &
+                            * cos(PI*xc)  &
+                            * cos(PI*yc)  &
                             * cos(PI*zc)
         endif
 

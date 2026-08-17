@@ -12,6 +12,7 @@ module wrapper_module
         use cuda_subdomain
         ! poisson solver
         use fft_poisson
+        use poisson_timer, only : poisson_timer_reset, poisson_timer_report
         ! physics
         use cuda_pressure
         ! for postprocessing
@@ -109,6 +110,9 @@ program mpm_std
 
         ! Discard any optional coarse-profile samples collected during warm-up.
         call poisson_coarse_profile_reset()
+        ! Same for the computation/communication split: warm-up carries cuFFT plan
+        ! creation and cuDecomp autotuning, which are not part of a steady solve.
+        call poisson_timer_reset()
 
         ierr_cuda = cudaDeviceSynchronize()
         call MPI_Barrier(MPI_COMM_WORLD, ierr)
@@ -147,6 +151,7 @@ program mpm_std
         ! One reduction after all solve timers.  This prints nothing when the
         ! optional coarse profiler is disabled.
         call poisson_coarse_profile_report()
+        call poisson_timer_report()
 
         if (myrank == 0) then
             perf_total_min = sum(perf_min) / dble(timed_solves)
@@ -237,6 +242,7 @@ program mpm_std
         ierr_cuda = cudaDeviceSynchronize()
         call MPI_Barrier(MPI_COMM_WORLD, ierr)
 
+        call poisson_timer_reset()
         call poisson_profile_set_enabled(.true., .true.)
         if (myrank == 0) then
             write(*,'(/,A)') &
@@ -251,6 +257,7 @@ program mpm_std
         ierr_cuda = cudaDeviceSynchronize()
         timer(4) = MPI_Wtime()
         call poisson_profile_set_enabled(.false.)
+        call poisson_timer_report()
 
         if (myrank == 0) then
             write(*,'(A,1X,ES13.6,A)') &

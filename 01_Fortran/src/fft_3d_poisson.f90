@@ -5,6 +5,8 @@ module fft_poisson
     use cudafor
     use PaScaL_TDMA_cuda
     use mpi
+    use poisson_timer, only : poisson_timer_solve_begin, poisson_timer_solve_end, &
+                              poisson_timer_comm_enter,  poisson_timer_comm_exit
 #ifdef POISSON_USE_CUDECOMP
     use fft_cudecomp_bridge, only: fft_cudecomp_initialize, &
         fft_cudecomp_x_to_y, fft_cudecomp_y_to_x, &
@@ -1672,6 +1674,7 @@ contains
         enddo
 
         ierr = cudaStreamSynchronize()
+        call poisson_timer_comm_enter()
         call MPI_Alltoallv(fft_mpi_send_r_d, &
                            fft_meta_c2i_real%sendcounts, &
                            fft_meta_c2i_real%senddispls, MPI_real_type, &
@@ -1679,6 +1682,7 @@ contains
                            fft_meta_c2i_real%recvcounts, &
                            fft_meta_c2i_real%recvdispls, MPI_real_type, &
                            comm, ierr)
+        call poisson_timer_comm_exit()
 
         do peer = 0, nprocs-1
             call fft_block_range(n1i, nprocs, peer, first_index, last_index)
@@ -1730,6 +1734,7 @@ contains
         enddo
 
         ierr = cudaStreamSynchronize()
+        call poisson_timer_comm_enter()
         call MPI_Alltoallv(fft_mpi_send_r_d, &
                            fft_meta_i2c_real%sendcounts, &
                            fft_meta_i2c_real%senddispls, MPI_real_type, &
@@ -1737,6 +1742,7 @@ contains
                            fft_meta_i2c_real%recvcounts, &
                            fft_meta_i2c_real%recvdispls, MPI_real_type, &
                            comm, ierr)
+        call poisson_timer_comm_exit()
 
         do peer = 0, nprocs-1
             call fft_block_range(n2c, nprocs, peer, first_index, last_index)
@@ -1788,6 +1794,7 @@ contains
         enddo
 
         ierr = cudaStreamSynchronize()
+        call poisson_timer_comm_enter()
         call MPI_Alltoallv(fft_mpi_send_c_d, &
                            fft_meta_c2i_complex%sendcounts, &
                            fft_meta_c2i_complex%senddispls, MPI_complex_type, &
@@ -1795,6 +1802,7 @@ contains
                            fft_meta_c2i_complex%recvcounts, &
                            fft_meta_c2i_complex%recvdispls, MPI_complex_type, &
                            comm, ierr)
+        call poisson_timer_comm_exit()
 
         do peer = 0, nprocs-1
             call fft_block_range(n1i, nprocs, peer, first_index, last_index)
@@ -1846,6 +1854,7 @@ contains
         enddo
 
         ierr = cudaStreamSynchronize()
+        call poisson_timer_comm_enter()
         call MPI_Alltoallv(fft_mpi_send_c_d, &
                            fft_meta_i2c_complex%sendcounts, &
                            fft_meta_i2c_complex%senddispls, MPI_complex_type, &
@@ -1853,6 +1862,7 @@ contains
                            fft_meta_i2c_complex%recvcounts, &
                            fft_meta_i2c_complex%recvdispls, MPI_complex_type, &
                            comm, ierr)
+        call poisson_timer_comm_exit()
 
         do peer = 0, nprocs-1
             call fft_block_range(n2c, nprocs, peer, first_index, last_index)
@@ -1920,6 +1930,7 @@ contains
             route_t0 = MPI_Wtime()
         endif
 #endif
+        call poisson_timer_comm_enter()
         call MPI_Alltoallv(fft_mpi_send_c_d, &
                            fft_meta_c2j_complex%sendcounts, &
                            fft_meta_c2j_complex%senddispls, MPI_complex_type, &
@@ -1927,6 +1938,7 @@ contains
                            fft_meta_c2j_complex%recvcounts, &
                            fft_meta_c2j_complex%recvdispls, MPI_complex_type, &
                            comm, ierr)
+        call poisson_timer_comm_exit()
 
 #ifdef POISSON_DETAILED_PROFILE
         if (poisson_profile_enabled) then
@@ -2013,6 +2025,7 @@ contains
             route_t0 = MPI_Wtime()
         endif
 #endif
+        call poisson_timer_comm_enter()
         call MPI_Alltoallv(fft_mpi_send_c_d, &
                            fft_meta_j2c_complex%sendcounts, &
                            fft_meta_j2c_complex%senddispls, MPI_complex_type, &
@@ -2020,6 +2033,7 @@ contains
                            fft_meta_j2c_complex%recvcounts, &
                            fft_meta_j2c_complex%recvdispls, MPI_complex_type, &
                            comm, ierr)
+        call poisson_timer_comm_exit()
 
 #ifdef POISSON_DETAILED_PROFILE
         if (poisson_profile_enabled) then
@@ -2107,6 +2121,7 @@ contains
         ! call nvtxStartRange("Poisson-F_x")
 
         call poisson_coarse_profile_begin()
+        call poisson_timer_solve_begin()
 
         if    ((BCtype(1)=='N'.and.BCtype(2)=='N') .or. (BCtype(1)=='N'.and.BCtype(2)=='P')) then ! X-R2R
             ! Dongyun
@@ -3061,6 +3076,8 @@ contains
         call poisson_profile_start(prof_t0)
         call cuda_ghostcell_update(P_d)
         call poisson_profile_stop(prof_t0, prof_times(21))
+        ! Close the timing chain here: the reports below are diagnostics, not part of the solve.
+        call poisson_timer_solve_end()
         call poisson_coarse_profile_mark(7)
 #ifdef POISSON_DETAILED_PROFILE
         call fft_route_profile_report()
@@ -3102,8 +3119,10 @@ contains
         ! world communicator directly to remove two collective-latency steps
         ! from every Poisson solve without changing the decomposition.
         AVERmpi = real(0.0,rp)
+        call poisson_timer_comm_enter()
         call MPI_ALLREDUCE(AVERsub, AVERmpi, 1, MPI_real_type, &
                            MPI_SUM, MPI_COMM_WORLD, ierr)
+        call poisson_timer_comm_exit()
         AVERmpi=AVERmpi/real(p_poi%n1m,rp)/real(p_poi%n2m,rp)/real(p_poi%n3m,rp)
 
         !$cuf kernel do(3) <<<*,*>>>
@@ -3217,11 +3236,13 @@ contains
         else
             
             ierr = cudaStreamSynchronize()
+            call poisson_timer_comm_enter()
             call MPI_Isend(sbuf_0_d, (nsub_b+1)*(nsub_c+1), MPI_real_type, comm_1d_x%west_rank, 111, comm_1d_x%mpi_comm, request(1), ierr)
             call MPI_Irecv(rbuf_1_d, (nsub_b+1)*(nsub_c+1), MPI_real_type, comm_1d_x%east_rank, 111, comm_1d_x%mpi_comm, request(2), ierr)
             call MPI_Irecv(rbuf_0_d, (nsub_b+1)*(nsub_c+1), MPI_real_type, comm_1d_x%west_rank, 222, comm_1d_x%mpi_comm, request(3), ierr)
             call MPI_Isend(sbuf_1_d, (nsub_b+1)*(nsub_c+1), MPI_real_type, comm_1d_x%east_rank, 222, comm_1d_x%mpi_comm, request(4), ierr)
-            call MPI_Waitall(4, request, MPI_STATUSES_IGNORE, ierr)    
+            call MPI_Waitall(4, request, MPI_STATUSES_IGNORE, ierr)
+            call poisson_timer_comm_exit()
         endif
     
         !$cuf kernel do(2) <<< *,* >>>

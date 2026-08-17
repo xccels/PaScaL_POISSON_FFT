@@ -2,6 +2,7 @@ module fft_cudecomp_bridge
     use cudafor
     use mpi
     use cudecomp
+    use poisson_timer, only : poisson_timer_comm_enter, poisson_timer_comm_exit
     use, intrinsic :: iso_fortran_env, only: int64
 
     implicit none
@@ -225,11 +226,13 @@ contains
             call MPI_Abort(MPI_COMM_WORLD, 9220, ierr)
         endif
 
+        call poisson_timer_comm_enter()
         istat = cudecompTransposeXToY( &
             fft_cudecomp_handle, fft_cudecomp_grid, &
             input_d, output_d, fft_cudecomp_work_d, &
             cudecomp_complex_type)
         call fft_cudecomp_abort(istat, 'cudecompTransposeXToY')
+        call poisson_timer_comm_exit()
     end subroutine fft_cudecomp_x_to_y
 
 
@@ -243,11 +246,13 @@ contains
             call MPI_Abort(MPI_COMM_WORLD, 9221, ierr)
         endif
 
+        call poisson_timer_comm_enter()
         istat = cudecompTransposeYToX( &
             fft_cudecomp_handle, fft_cudecomp_grid, &
             input_d, output_d, fft_cudecomp_work_d, &
             cudecomp_complex_type)
         call fft_cudecomp_abort(istat, 'cudecompTransposeYToX')
+        call poisson_timer_comm_exit()
     end subroutine fft_cudecomp_y_to_x
 
 

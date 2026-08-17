@@ -1,0 +1,41 @@
+# =============================================================================
+# PaScaL_POISSON_FFT - Python GPU environment
+#
+#   Create:    conda env create -f environment.yml
+#   Activate:  conda activate pascal-poisson-gpu
+#
+#   Normally you do not run those by hand; use setup_env.sh, which also builds
+#   mpi4py against the right MPI.
+#
+# This file is deliberately site-independent: no cluster paths, no module names.
+# On another machine the two commands above are the whole setup, plus the mpi4py
+# build below against whatever CUDA-aware MPI is local.  Everything specific to
+# the Neuron cluster lives in setup_env.sh and 01_Fortran/load_neuron_env.sh.
+#
+# conda provides only python + pip; the packages are installed as pip wheels.
+#
+# mpi4py is intentionally NOT listed here.  It must be built from source against
+# the same CUDA-aware MPI that lib/libpoisson_capi.so was linked with, because
+# the Python side hands MPI communicator and derived-datatype handles to the
+# Fortran solver through Comm.py2f() / Datatype.py2f().  Those integers are
+# indices into the MPI library's own handle tables: a conda-forge mpi4py would
+# resolve them against a different MPI and the solver would read garbage.
+#
+#   OMPI_CC=gcc MPICC=$(which mpicc) pip install --no-binary=mpi4py mpi4py
+# =============================================================================
+name: pascal-poisson-gpu
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - numpy
+      - matplotlib          # 00_base/bench_result_visualize/plot_scalability.py
+      - cupy-cuda12x        # CuPy for CUDA 12.x
+      # Pin the JIT compiler (NVRTC) to CUDA 12 so CuPy does not pick up a
+      # system CUDA 13 toolkit on the compute nodes.
+      - nvidia-cuda-nvrtc-cu12
+      - nvidia-nvjitlink-cu12

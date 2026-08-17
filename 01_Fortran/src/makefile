@@ -9,7 +9,7 @@ OBJDIR = ./obj/$(MODE)
 LIBDIR = ../lib/$(MODE)
 INCLUDEDIR = ../include/$(MODE)
 
-SRCFILES = para_range.f90 fft_cudecomp_bridge.f90 fft_3d_poisson.f90
+SRCFILES = para_range.f90 poisson_timer.f90 fft_cudecomp_bridge.f90 fft_3d_poisson.f90
 OBJS = $(addprefix $(OBJDIR)/, $(SRCFILES:.f90=.o))
 
 PaScaL_HOME = ../PaScaL_TDMA
@@ -40,7 +40,8 @@ $(INCLUDEDIR):
 $(OBJDIR)/%.o: %.f90 | $(OBJDIR)
 	$(FC) $(FLAG) -c $< -o $@ -module $(OBJDIR) -I$(OBJDIR) $(FC_FLAGS)
 
-$(OBJDIR)/fft_3d_poisson.o: $(OBJDIR)/fft_cudecomp_bridge.o
+$(OBJDIR)/fft_cudecomp_bridge.o: $(OBJDIR)/poisson_timer.o
+$(OBJDIR)/fft_3d_poisson.o: $(OBJDIR)/fft_cudecomp_bridge.o $(OBJDIR)/poisson_timer.o
 
 $(LIBDIR)/$(LIB): $(OBJS) | $(LIBDIR) $(INCLUDEDIR)
 	ar rcs $@ $(OBJS)
