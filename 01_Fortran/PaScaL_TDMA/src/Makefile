@@ -13,11 +13,8 @@ TDMAS = $(OBJDIR)/tdmas.o
 PTDMA = $(OBJDIR)/pascal_tdma.o
 TDMAS_CUDA = $(OBJDIR)/tdmas_cuda.o
 PTDMA_CUDA = $(OBJDIR)/pascal_tdma_cuda.o
-# timer.f90 shipped with PaScaL_TDMA but not previously built.  src/poisson_timer.f90
-# uses it for the computation/communication split of the Poisson solve.
-TIMER = $(OBJDIR)/timer.o
 
-OBJS = $(RANGE) $(TDMAS) $(PTDMA) $(TIMER)
+OBJS = $(RANGE) $(TDMAS) $(PTDMA)
 
 ifdef USE_CUDA
     OBJS += $(TDMAS_CUDA) $(PTDMA_CUDA)
